@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan TikTok: [Nama Pria] & [Nama Wanita]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* ======================================================= */
+        /* CSS CORE & UTILITIES (TEMA TIKTOK) */
+        /* ======================================================= */
+        
+        :root {
+            --tiktok-black: #101010;
+            --tiktok-dark-grey: #1c1c1c;
+            --tiktok-red: #FE2C55; /* Warna Neon Merah/Pink */
+            --tiktok-blue: #25F4EE; /* Warna Neon Biru/Cyan */
+            --tiktok-white: #fff;
+            --font-primary: 'Montserrat', sans-serif;
+            --font-cursive: 'Great Vibes', cursive;
+            --padding-mobile: 20px;
+        }
+
+        body {
+            background-color: var(--tiktok-black);
+            color: var(--tiktok-white);
+            font-family: var(--font-primary);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+        
+        /* Utility Classes */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 var(--padding-mobile);
+        }
+        .mr-2 { margin-right: 0.5rem; }
+
+        /* Scroll Lock for Cover Page */
+        .scroll-locked {
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        /* ======================================================= */
+        /* COVER PAGE STYLING (THE OPENER) */
+        /* ======================================================= */
+        #cover-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .template-cover-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+            background: url('https://via.placeholder.com/800x1200/000000/FFFFFF?text=Cover+Video+Snapshot') center/cover no-repeat;
+        }
+
+        .template-cover-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Lebih transparan agar foto terlihat */
+            backdrop-filter: blur(5px); /* Efek blur ala video */
+        }
+        
+        .template-cover-content-wrapper {
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+        }
+
+        .template-cover-guest-name {
+            font-size: 1.5rem;
+            color: var(--tiktok-blue);
+            text-shadow: 0 0 5px var(--tiktok-red); /* Efek Neon */
+            margin: 0.5rem 0 1.5rem;
+            font-weight: bold;
+        }
+        
+        .template-cover-title {
+            font-family: var(--font-cursive);
+            font-size: 3rem;
+            color: var(--tiktok-white);
+            text-shadow: 3px 3px 0 var(--tiktok-red), -3px -3px 0 var(--tiktok-blue); /* Efek Glitch/Shadow TikTok */
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+        
+        .cover-open-btn {
+            background-color: var(--tiktok-red);
+            color: var(--tiktok-white);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px; /* Lebih kotak */
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .cover-open-btn:hover { 
+            background-color: #ff4a6e;
+            transform: scale(1.02);
+        }
+
+        /* ======================================================= */
+        /* MAIN CONTENT STYLING (ALA FEED) */
+        /* ======================================================= */
+        #main-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1.5s ease-in-out;
+        }
+        
+        .section {
+            padding: 40px 0;
+            min-height: 300px;
+            text-align: center;
+        }
+
+        .main-title {
+            font-family: var(--font-cursive);
+            font-size: 3.5rem;
+            color: var(--tiktok-red);
+            text-shadow: 2px 2px 0 var(--tiktok-blue); /* Efek Glitch */
+            margin: 0.5rem 0 2rem;
+        }
+        .subtitle-top {
+            font-size: 0.9rem;
+            color: var(--tiktok-blue);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+        
+        /* --- Section Intro (Logo & Pembukaan) --- */
+        .title-wedding {
+            font-family: var(--font-primary);
+            font-weight: 900;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            color: var(--tiktok-white);
+            margin-bottom: 5px;
+        }
+        
+        /* Simbol 'and' */
+        .intro-main p:nth-child(2) {
+            font-size: 1.2rem;
+            color: var(--tiktok-red);
+            font-weight: 900;
+            margin-bottom: 30px;
+        }
+        
+        /* --- Section Couple & Detail Pasangan --- */
+        .couple-names {
+            font-family: var(--font-cursive);
+            font-size: 4rem;
+            color: var(--tiktok-white);
+            text-shadow: 2px 2px 0 var(--tiktok-red), -2px -2px 0 var(--tiktok-blue);
+            margin: 20px 0;
+            line-height: 1;
+        }
+        
+        .quote-opening, .quote-closing {
+            color: #ddd;
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 20px auto;
+            line-height: 1.6;
+        }
+        
+        .couple-cards {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+
+        .card {
+            max-width: 180px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s, transform 0.8s;
+            background-color: var(--tiktok-dark-grey);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .card-image-wrapper {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--tiktok-blue); /* Border biru/cyan */
+            box-shadow: 0 0 15px rgba(37, 244, 238, 0.5); /* Shadow neon */
+            margin: 0 auto 15px;
+        }
+        .card-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card-name {
+            font-family: var(--font-primary);
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: var(--tiktok-red);
+            text-shadow: 1px 1px 0 var(--tiktok-blue);
+            margin: 5px 0 0;
+        }
+        
+        /* --- Section Event & Countdown (Gaya Digital/Modern) --- */
+        #countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0 40px;
+        }
+
+        .time-box {
+            background-color: var(--tiktok-dark-grey);
+            padding: 10px 15px;
+            border-radius: 5px;
+            min-width: 60px;
+            line-height: 1;
+            border: 1px solid var(--tiktok-red);
+        }
+        .time-number {
+            font-family: var(--font-primary);
+            font-weight: 900;
+            font-size: 2rem;
+            color: var(--tiktok-blue);
+            margin: 0;
+        }
+        .time-label {
+            font-size: 0.7rem;
+            color: var(--tiktok-red);
+            margin: 5px 0 0;
+            font-weight: bold;
+        }
+        
+        .btn-maps-link {
+            display: inline-block;
+            background-color: var(--tiktok-red);
+            color: var(--tiktok-white);
+            padding: 10px 25px;
+            border-radius: 50px; /* Lebih rounded */
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+            box-shadow: 0 5px 15px rgba(254, 44, 85, 0.4);
+        }
+        .btn-maps-link:hover { background-color: #ff4a6e; }
+        
+        /* --- Section Gift & Comments --- */
+        .detail-box {
+            background-color: var(--tiktok-dark-grey);
+            padding: 30px;
+            border-radius: 10px;
+        }
+        
+        .copy-btn {
+            background-color: var(--tiktok-blue);
+            color: var(--tiktok-black);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        .bank-card {
+            border: 1px solid var(--tiktok-red);
+            box-shadow: 0 0 10px rgba(254, 44, 85, 0.2);
+        }
+
+        .template-status-btn {
+            border: 1px solid var(--tiktok-red);
+            background-color: var(--tiktok-dark-grey);
+            color: var(--tiktok-red);
+        }
+        .template-status-btn.status-active {
+            background-color: var(--tiktok-red);
+            border-color: var(--tiktok-red);
+            color: var(--tiktok-white);
+        }
+        .btn-submit {
+            background-color: var(--tiktok-blue);
+            color: var(--tiktok-black);
+            font-weight: 900;
+        }
+        .comment-card {
+            background-color: var(--tiktok-dark-grey);
+        }
+
+        /* --- Section Gallery (Video Fokus) --- */
+        .video-container {
+             background-color: var(--tiktok-dark-grey); 
+             padding: 10px; 
+             border-radius: 10px;
+             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ======================================================= */
+        /* BOTTOM NAVIGATION (Mobile Fixed Bar - TikTok Style) */
+        /* ======================================================= */
+        .bottom-nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: var(--tiktok-dark-grey); /* Warna lebih gelap */
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.7);
+            z-index: 9000;
+            padding: 5px 0;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #aaa; /* Warna default abu-abu */
+            font-size: 0.7rem;
+            padding: 5px;
+            transition: color 0.3s;
+        }
+        .nav-item i {
+            font-size: 1.2rem;
+            margin-bottom: 3px;
+        }
+        .nav-item.active {
+            color: var(--tiktok-red);
+            text-shadow: 0 0 5px var(--tiktok-blue); /* Efek neon kecil pada yang aktif */
+        }
+        
+        /* ======================================================= */
+        /* MEDIA QUERIES (Mobile Adjustments) */
+        /* ======================================================= */
+        @media (max-width: 600px) {
+            .template-cover-title {
+                font-size: 2.5rem;
+            }
+            .couple-names {
+                font-size: 3rem;
+            }
+            .main-title {
+                font-size: 2.5rem;
+            }
+            .couple-cards {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+            .intro-main p:nth-child(2) {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="scroll-locked">
+
+    <div id="cover-page" class="template-cover-container">
+        <div class="template-cover-overlay"></div>
+        <div class="template-cover-content-wrapper">
+            <p style="color: white; font-size: 1.1rem;">Swipe Up Untuk Menonton:</p>
+            <h3 class="template-cover-guest-name" id="guest-name-display">Bapak/Ibu/Saudara/i</h3>
+            
+            <h1 class="template-cover-title">[Nama Pria] & [Nama Wanita]</h1>
+            <p style="color: #E0E0E0; margin-bottom: 2rem;">#EpisodeSeumurHidup</p>
+            
+            <button id="open-invitation-btn" class="cover-open-btn">
+                <i class="fas fa-play-circle mr-2"></i> MULAI TAYANGAN
+            </button>
+        </div>
+    </div>
+
+    <div id="main-content">
+        
+        <section id="intro-section-id" class="section section-intro">
+            <div class="container">
+                <div class="intro-main" style="text-align: center;">
+                    <p class="subtitle-top">@[NamaPria] <i class="fas fa-heart"></i> @[NamaWanita]</p>
+                    <h1 class="title-wedding">WEDDING ANNOUNCEMENT</h1>
+                    <p style="font-size: 1rem; color: #ccc;">Dengan memohon rahmat dan ridho Allah SWT</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-couple" style="padding-top: 0;">
+            <div class="container" style="text-align: center;">
+                <div class="couple-details" style="max-width: 500px; margin: 0 auto;">
+                    <div class="couple-image-container">
+                        <img 
+                            src="https://via.placeholder.com/500x300/333/FFFFFF?text=Foto+Pasangan+Di+Kolase+Video"
+                            alt="Foto Pasangan" 
+                            style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); border: 2px solid var(--tiktok-red);"
+                        >
+                    </div>
+                    <h1 class="couple-names font-great-vibes">[Nama Pria] & [Nama Wanita]</h1>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-detail" style="padding-top: 0;">
+            <div class="container detail-box">
+                <p class="quote-opening">
+                    Tanpa mengurangi rasa hormat, kami mengundang Anda untuk berkenan menghadiri acara pernikahan kami:
+                </p>
+
+                <div class="couple-cards">
+                    <div class="card groom-card animate-up" data-delay="0.0s">
+                        <div class="card-image-wrapper">
+                            <img src="https://via.placeholder.com/150/0000FF/FFFFFF?text=Pria" alt="Foto Pria">
+                        </div>
+                        <p class="card-name">[Nama Pria]</p>
+                        <p style="font-size: 0.8rem; color: #aaa;">Putra dari Bapak [Ayah] & Ibu [Ibu]</p>
+                    </div>
+                    
+                    <div class="card bride-card animate-up" data-delay="0.3s">
+                        <div class="card-image-wrapper">
+                            <img src="https://via.placeholder.com/150/FF0000/FFFFFF?text=Wanita" alt="Foto Wanita">
+                        </div>
+                        <p class="card-name">[Nama Wanita]</p>
+                        <p style="font-size: 0.8rem; color: #aaa;">Putri dari Bapak [Ayah] & Ibu [Ibu]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="event-section-id" class="section section-event">
+            <div class="container detail-box">
+                <p class="subtitle-top">#FYP (FOR YOUR PESTA)</p>
+                <h2 class="main-title font-cursive">Waktu Tayang</h2>
+
+                <div id="countdown-timer">
+                    <div class="time-box"><p id="days" class="time-number">00</p><p class="time-label">Hari</p></div>
+                    <div class="time-box"><p id="hours" class="time-number">00</p><p class="time-label">Jam</p></div>
+                    <div class="time-box"><p id="minutes" class="time-number">00</p><p class="time-label">Menit</p></div>
+                    <div class="time-box"><p id="seconds" class="time-number">00</p><p class="time-label">Detik</p></div>
+                </div>
+                
+                <p class="couple-date" style="font-size: 1.5rem; font-weight: bold;">Sabtu, 30 Februari 2026</p>
+                
+                <p class="event-location-address" style="margin-bottom: 10px;">
+                    <i class="fas fa-map-marker-alt mr-2"></i> [Nama Tempat Acara]
+                </p>
+                
+                <a href="[LINK GOOGLE MAPS ANDA]" target="_blank" class="btn-maps-link">
+                    <i class="fas fa-route"></i> Dapatkan Petunjuk Arah
+                </a>
+            </div>
+        </section>
+        
+        <section id="gallery-section-id" class="section section-gallery" style="padding: 60px 0;">
+            <div class="container" style="text-align: center;">
+                <p class="subtitle-top">OUR MOMENT</p>
+                <h2 class="main-title font-cursive">#CoupleGoals Video</h2>
+                
+                <div class="video-container">
+                    <iframe 
+                        width="100%" 
+                        height="315" 
+                        src="[LINK YOUTUBE VIDEO ANDA]" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        style="max-width: 560px; margin: 0 auto; display: block;"
+                    ></iframe>
+                </div>
+                <p style="color: #aaa; margin-top: 15px; font-size: 0.9rem;">(Pastikan video di atas adalah Video Pendek/Potrait)</p>
+            </div>
+        </section>
+        
+        <section id="gift-section-id" class="section section-gift">
+            <div class="container detail-box">
+                <p class="subtitle-top">HADIAH</p>
+                <h2 class="main-title font-cursive">Kirim Kado</h2>
+
+                <p class="gift-text" style="font-size: 1rem; color: #ccc; margin-bottom: 30px; max-width: 600px; margin: 0 auto 30px;">
+                    Do'a restu dari Anda adalah hadiah terbaik. Jika Anda ingin mengirimkan kado digital, silakan transfer ke:
+                </p>
+
+                <div id="bank-accounts-cards" class="bank-accounts-cards">
+                    <div class="bank-card">
+                        <button class="copy-btn" onclick="copyText('rek-bca', 'BCA')"><i class="fas fa-copy"></i> Salin</button>
+                        <p style="font-size: 1.2rem; font-weight: bold; color: var(--tiktok-red);">BCA</p>
+                        <p id="rek-bca" style="font-size: 1.1rem; margin: 5px 0;">888 123 4567</p>
+                        <p style="font-size: 0.9rem; color: #ccc;">a.n. [Nama Penerima]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="comments-section-id" class="section section-comments">
+            <div class="container detail-box">
+                <p class="subtitle-top">KOMENTAR</p>
+                <h2 class="main-title font-cursive">Tinggalkan Ucapan</h2>
+                
+                <div style="margin-bottom: 40px;">
+                    <form id="comment-form" onsubmit="submitComment(event)">
+                        <div class="form-group">
+                            <label for="comment-name-input">Nama Anda:</label>
+                            <input type="text" id="comment-name-input" class="form-control" value="[Nama Tamu]" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment-message-input">Pesan Ucapan:</label>
+                            <textarea id="comment-message-input" placeholder="Tuliskan ucapan dan doa terbaik Anda..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Konfirmasi Kehadiran (RSVP):</label>
+                            <div class="status-btn-group">
+                                <button type="button" id="status-yes" class="template-status-btn status-active" onclick="toggleStatus(this, 'yes')">
+                                    <i class="fas fa-check-circle"></i> Hadir
+                                </button>
+                                <button type="button" id="status-no" class="template-status-btn" onclick="toggleStatus(this, 'no')">
+                                    <i class="fas fa-times-circle"></i> Tidak Hadir
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="submit-comment-btn" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i> Kirim
+                        </button>
+                    </form>
+                </div>
+                
+                <p class="subtitle-top">KOMENTAR TERBARU (1K+) </p>
+                <div class="comment-card">
+                    <div class="comment-header">
+                        <span class="comment-author" style="font-weight: bold; color: var(--tiktok-blue);">@Admin</span>
+                    </div>
+                    <p style="font-size: 0.9rem; color: #ccc;">Video ini sangat viral! Jangan lupa konfirmasi kehadiran ya!</p>
+                </div>
+            </div>
+        </section>
+
+        <div style="height: 60px;"></div>
+
+        <div class="bottom-nav-bar">
+            <a href="#intro-section-id" class="nav-item active" data-section="intro-section-id">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#event-section-id" class="nav-item" data-section="event-section-id">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Jadwal</span>
+            </a>
+            <a href="#gallery-section-id" class="nav-item" data-section="gallery-section-id">
+                <i class="fas fa-video"></i>
+                <span>Video</span>
+            </a>
+            <a href="#gift-section-id" class="nav-item" data-section="gift-section-id">
+                <i class="fas fa-coins"></i>
+                <span>Transfer</span>
+            </a>
+            <a href="#comments-section-id" class="nav-item" data-section="comments-section-id">
+                <i class="fas fa-comment-dots"></i>
+                <span>Komen</span>
+            </a>
+        </div>
+        
+    </div>
+    
+    <div id="toast-message"></div>
+
+    <script>
+        // Data Pernikahan
+        // GANTI DENGAN TANGGAL ACARA ASLI ANDA
+        const WEDDING_DATE = new Date("February 30, 2026 19:00:00").getTime(); 
+        
+        // Ambil nama tamu dari parameter URL 'to'
+        const urlParams = new URLSearchParams(window.location.search);
+        const guestNameParam = urlParams.get('to');
+        const GUEST_NAME = guestNameParam ? decodeURIComponent(guestNameParam) : "Bapak/Ibu/Saudara/i";
+        
+        document.getElementById('guest-name-display').textContent = GUEST_NAME;
+        document.getElementById('comment-name-input').value = GUEST_NAME;
+
+        // --- Utility Functions (Sama dengan kode sebelumnya) ---
+
+        window.toggleStatus = function(clickedButton, status) {
+            const statusBtns = document.querySelectorAll('.template-status-btn');
+            statusBtns.forEach(btn => btn.classList.remove('status-active'));
+            clickedButton.classList.add('status-active');
+        }
+        
+        window.showToast = function(message, type = 'success') {
+            const toast = document.getElementById('toast-message');
+            if (!toast) return;
+            
+            toast.textContent = message;
+            toast.className = ``; 
+            toast.classList.add('show', type);
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000); 
+        }
+
+        window.submitComment = function(event) {
+            event.preventDefault();
+            const message = document.getElementById('comment-message-input').value;
+            if (message.trim() === "") {
+                window.showToast("Pesan ucapan tidak boleh kosong!", "error");
+                return;
+            }
+            
+            const senderName = document.getElementById('comment-name-input').value || "Anonim";
+            const attendanceStatus = document.querySelector('.template-status-btn.status-active').textContent.trim();
+
+            window.showToast(`Terima kasih, ${senderName}! Ucapan berhasil dikirim. Status: ${attendanceStatus}`, "success");
+            
+            // Simulasikan penambahan komentar ke UI
+            const newComment = document.createElement('div');
+            newComment.classList.add('comment-card');
+            newComment.innerHTML = `
+                <div class="comment-header">
+                    <span class="comment-author" style="font-weight: bold; color: var(--tiktok-blue);">@${senderName.replace(/\s/g, '')}</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #ccc;">${message}</p>
+            `;
+            // Sisipkan di bawah subjudul KOMENTAR TERBARU
+            document.querySelector('.comment-card').before(newComment);
+            
+            document.getElementById('comment-message-input').value = '';
+        }
+
+        window.copyText = function(elementId, bankName = '') {
+            const element = document.getElementById(elementId);
+            if (!element) {
+                 window.showToast('Gagal menyalin.', "error");
+                 return;
+            }
+            
+            const textToCopy = element.textContent;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                window.showToast(`Nomor rekening ${bankName} berhasil disalin!`, "success");
+            }).catch(err => {
+                const tempInput = document.createElement('textarea');
+                tempInput.value = textToCopy;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                try {
+                    document.execCommand('copy');
+                     window.showToast(`Nomor rekening ${bankName} berhasil disalin (fallback)!`, "success");
+                } catch (e) {
+                     window.showToast('Gagal menyalin. Silakan salin manual.', "error");
+                }
+                document.body.removeChild(tempInput);
+            });
+        }
+
+        // --- Core Application Logic (Sama dengan kode sebelumnya) ---
+
+        document.getElementById('open-invitation-btn').addEventListener('click', function() {
+            const cover = document.getElementById('cover-page');
+            const mainContent = document.getElementById('main-content');
+            const body = document.body;
+
+            cover.style.opacity = '0';
+            mainContent.style.visibility = 'visible';
+            mainContent.style.opacity = '1';
+
+            setTimeout(() => {
+                cover.style.display = 'none';
+                body.classList.remove('scroll-locked');
+                initIntersectionObserver();
+            }, 1500); 
+            
+            startCountdown();
+        });
+
+        function startCountdown() {
+            const elements = ['days', 'hours', 'minutes', 'seconds'].map(id => document.getElementById(id));
+            const [daysEl, hoursEl, minutesEl, secondsEl] = elements;
+
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const distance = WEDDING_DATE - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    document.getElementById('countdown-timer').innerHTML = '<h2 style="color: var(--tiktok-red);">ACARA SEDANG BERLANGSUNG!</h2>';
+                } else {
+                    daysEl.textContent = String(days).padStart(2, '0');
+                    hoursEl.textContent = String(hours).padStart(2, '0');
+                    minutesEl.textContent = String(minutes).padStart(2, '0');
+                    secondsEl.textContent = String(seconds).padStart(2, '0');
+                }
+            }
+
+            updateCountdown();
+            const interval = setInterval(updateCountdown, 1000);
+        }
+        
+        function initIntersectionObserver() {
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const delay = parseFloat(element.getAttribute('data-delay') || '0');
+                        
+                        element.classList.add('animated');
+                        element.style.transitionDelay = delay + 's';
+                        
+                        observer.unobserve(element);
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2
+            });
+
+            document.querySelectorAll('.card.animate-up').forEach(card => {
+                observer.observe(card);
+            });
+        }
+        
+        // Navigation Active State on Scroll (from previous code)
+        document.querySelectorAll('.nav-item').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                this.classList.add('active');
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            document.querySelectorAll('.section').forEach(section => {
+                if (section.offsetTop <= scrollPosition && section.offsetTop + section.offsetHeight > scrollPosition) {
+                    const id = section.getAttribute('id');
+                    document.querySelectorAll('.nav-item').forEach(nav => {
+                        nav.classList.remove('active');
+                        if (nav.getAttribute('href') === `#${id}`) {
+                            nav.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

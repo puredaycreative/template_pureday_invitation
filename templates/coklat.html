@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Elegan: [Nama Pria] & [Nama Wanita]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* ======================================================= */
+        /* CSS CORE & UTILITIES (TEMA ELEGANT) */
+        /* ======================================================= */
+        
+        :root {
+            /* Palet Warna Timeless Elegance (Rose Gold & Ivory) */
+            --elegant-ivory: #F9F7F5;   /* Putih Gading untuk Background */
+            --elegant-black: #1A1A1A;   /* Hitam Elegan untuk Teks Utama */
+            --elegant-rosegold-light: #C9A49A; /* Rose Gold Pucat */
+            --elegant-rosegold-dark: #A47B71;  /* Rose Gold Tua */
+            --elegant-gray: #6C757D;    /* Abu-abu Lembut untuk Sub-detail */
+
+            /* Gradient Rose Gold */
+            --gradient-rosegold: linear-gradient(45deg, var(--elegant-rosegold-light) 0%, var(--elegant-rosegold-dark) 100%);
+            
+            /* Font */
+            --font-display: 'Playfair Display', serif; /* Serif Klasik untuk Judul */
+            --font-body: 'Montserrat', sans-serif;    /* Sans-serif Bersih untuk Body */
+            
+            --padding-mobile: 25px;
+        }
+
+        body {
+            background-color: var(--elegant-ivory);
+            color: var(--elegant-black);
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+        
+        /* Utility Classes */
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 0 var(--padding-mobile);
+        }
+        .scroll-locked {
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        /* ======================================================= */
+        /* DEKORASI CSS (BINGKAI HALUS & SHADOW) */
+        /* ======================================================= */
+        
+        /* Box Dekoratif dengan Border Rose Gold */
+        .elegant-box {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Drop Shadow Lembut */
+            border: 1px solid var(--elegant-rosegold-light);
+            position: relative;
+            overflow: hidden;
+        }
+        /* Dekorasi Rose Gold di Sudut (Pseudo Element) */
+        .elegant-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 30px;
+            height: 30px;
+            border-top: 3px solid var(--elegant-rosegold-dark);
+            border-left: 3px solid var(--elegant-rosegold-dark);
+        }
+        .elegant-box::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 30px;
+            height: 30px;
+            border-bottom: 3px solid var(--elegant-rosegold-dark);
+            border-right: 3px solid var(--elegant-rosegold-dark);
+        }
+
+        /* Border Tipis dengan Rose Gold Accent */
+        .fine-border {
+            width: 100px;
+            height: 1px;
+            background: var(--gradient-rosegold);
+            margin: 15px auto;
+            box-shadow: 0 0 5px rgba(184, 134, 11, 0.5); /* Rose Gold Glow Halus */
+        }
+
+        /* ======================================================= */
+        /* COVER PAGE */
+        /* ======================================================= */
+        #cover-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('https://via.placeholder.com/1080x1920/F9F7F5/A47B71?text=Classic+Elegance+Cover') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: opacity 1.5s ease-in-out;
+            
+        }
+        .cover-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4); /* Overlay Putih Transparan */
+        }
+        .cover-content {
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+        }
+        .cover-title {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            color: var(--elegant-rosegold-dark);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            line-height: 1.1;
+            font-weight: 700;
+        }
+        .cover-subtitle {
+            font-family: var(--font-body);
+            font-size: 1.2rem;
+            color: var(--elegant-gray);
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .cover-open-btn {
+            background: var(--elegant-rosegold-dark);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px; 
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s, box-shadow 0.3s;
+            text-transform: uppercase;
+            margin-top: 20px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .cover-open-btn:hover {
+            background: var(--elegant-rosegold-light);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ======================================================= */
+        /* MAIN CONTENT - SECTIONS */
+        /* ======================================================= */
+        #main-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .section {
+            padding: 80px 0;
+            text-align: center;
+        }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 3.2rem;
+            color: var(--elegant-rosegold-dark);
+            margin: 0 0 15px;
+            font-weight: 700;
+        }
+        .sub-heading {
+            font-family: var(--font-body);
+            font-weight: 300;
+            font-size: 1.1rem;
+            color: var(--elegant-gray);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+        
+        /* --- Couple Profile --- */
+        .couple-card-elegant {
+            margin: 40px auto;
+            text-align: center;
+            max-width: 300px;
+        }
+        .card-photo-wrapper {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 15px;
+            border: 4px solid var(--elegant-rosegold-light);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+        }
+        .couple-names-elegant {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--elegant-black);
+            margin: 10px 0 5px;
+            font-weight: 400;
+        }
+        
+        /* --- Event Details --- */
+        .event-card {
+            margin: 20px 0;
+            padding: 25px;
+            background-color: white;
+            border: 1px solid var(--elegant-rosegold-light);
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        .event-card h4 {
+            font-family: var(--font-body);
+            font-weight: 500;
+            color: var(--elegant-rosegold-dark);
+            border-bottom: 1px solid var(--elegant-rosegold-light);
+            padding-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        .event-info p {
+            margin: 5px 0;
+            font-size: 0.95rem;
+            color: var(--elegant-black);
+        }
+        .btn-maps-elegant {
+            background: var(--gradient-rosegold);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-weight: 500;
+            margin-top: 15px;
+            display: inline-block;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        .btn-maps-elegant:hover {
+             opacity: 0.9;
+        }
+        
+        /* --- Countdown --- */
+        #countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .time-box-elegant {
+            background-color: white;
+            color: var(--elegant-black);
+            padding: 15px 10px;
+            border-radius: 8px;
+            min-width: 60px;
+            line-height: 1.2;
+            border: 1px solid var(--elegant-rosegold-light);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        .time-number {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin: 0;
+            color: var(--elegant-rosegold-dark);
+        }
+        .time-label {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            color: var(--elegant-gray);
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* --- Gift & Comment --- */
+        .copy-btn-elegant {
+            background: var(--elegant-rosegold-dark);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        .form-control, textarea {
+            background-color: white;
+            border: 1px solid var(--elegant-rosegold-light);
+            color: var(--elegant-black);
+            padding: 12px;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-family: var(--font-body);
+            font-weight: 300;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        .btn-submit-elegant {
+            background: var(--gradient-rosegold);
+            color: white;
+            border: none;
+            font-weight: 500;
+            padding: 12px 20px;
+            border-radius: 5px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transition: background 0.3s;
+        }
+        .btn-submit-elegant:hover {
+            background: var(--elegant-rosegold-dark);
+        }
+        .comment-card-elegant {
+            background-color: var(--elegant-ivory);
+            border-left: 3px solid var(--elegant-rosegold-dark);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            text-align: left;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08);
+        }
+        .comment-card-elegant strong {
+            color: var(--elegant-rosegold-dark);
+            font-weight: 500;
+        }
+        
+        /* ======================================================= */
+        /* BOTTOM NAVIGATION (Fixed - Minimalis) */
+        /* ======================================================= */
+        .bottom-nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            border-top: 1px solid var(--elegant-rosegold-light);
+            box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.08);
+            z-index: 9000;
+            padding: 5px 0;
+        }
+        .nav-item {
+            color: var(--elegant-gray);
+            font-size: 0.75rem;
+            padding: 5px;
+            transition: color 0.3s, transform 0.3s;
+            text-align: center;
+            text-decoration: none;
+        }
+        .nav-item i {
+            font-size: 1.5rem;
+            margin-bottom: 3px;
+        }
+        .nav-item.active {
+            color: var(--elegant-rosegold-dark); 
+            transform: translateY(-2px);
+        }
+        .nav-item:hover {
+            color: var(--elegant-rosegold-light);
+        }
+        
+        /* Toast Styling (Soft) */
+        #toast-message {
+            position: fixed;
+            bottom: 70px; 
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--elegant-black);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            pointer-events: none;
+            font-size: 0.9rem;
+        }
+        #toast-message.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body class="scroll-locked">
+
+    <div id="cover-page">
+        <div class="cover-overlay"></div>
+        <div class="cover-content">
+            <p class="cover-subtitle">THE WEDDING OF</p>
+            <h1 class="cover-title">[Nama Pria] & [Nama Wanita]</h1>
+            <p class="cover-subtitle">TO: <br>**<span id="guest-name-display">[Nama Tamu]</span>**</p>
+            
+            <button id="open-invitation-btn" class="cover-open-btn">
+                <i class="fas fa-envelope-open-text mr-2"></i> OPEN INVITATION
+            </button>
+        </div>
+    </div>
+
+    <div id="main-content">
+        
+        <section id="intro-section-id" class="section">
+            <div class="container elegant-box">
+                <p style="font-family: var(--font-display); font-size: 2rem; color: var(--elegant-rosegold-dark);">"Love is composed of a single soul inhabiting two bodies."</p>
+                <div class="fine-border"></div>
+                <p style="font-size: 0.95rem; color: var(--elegant-gray);">
+                    Dengan penuh kerendahan hati dan sukacita, kami mengundang Anda untuk menjadi saksi pengucapan janji suci dan penyatuan cinta kasih kami.
+                </p>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+                <h2 class="section-title">The Bride & Groom</h2>
+                <p class="sub-heading">A Love Story Begins</p>
+                
+                <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px;">
+                    <div class="couple-card-elegant">
+                        <div class="card-photo-wrapper">
+                            <img src="https://via.placeholder.com/200/F9F7F5/1A1A1A?text=Groom" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h3 class="couple-names-elegant">[Nama Pria]</h3>
+                        <p style="font-size: 0.9rem; color: var(--elegant-gray);">Putra dari Bp. [Ayah Pria] & Ibu [Ibu Pria]</p>
+                    </div>
+                    
+                    <h1 class="couple-names-elegant" style="font-size: 3rem; color: var(--elegant-rosegold-dark); margin: 0;">&</h1>
+
+                    <div class="couple-card-elegant">
+                        <div class="card-photo-wrapper">
+                            <img src="https://via.placeholder.com/200/F9F7F5/1A1A1A?text=Bride" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h3 class="couple-names-elegant">[Nama Wanita]</h3>
+                        <p style="font-size: 0.9rem; color: var(--elegant-gray);">Putri dari Bp. [Ayah Wanita] & Ibu [Ibu Wanita]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="event-section-id" class="section" style="background-color: #f5f5f5;">
+            <div class="container">
+                <h2 class="section-title">The Ceremony</h2>
+                <div class="fine-border"></div>
+                <p class="sub-heading" style="color: var(--elegant-rosegold-dark);">**[Tanggal Acara Anda, cth: Sabtu, 30 Februari 2026]**</p>
+                
+                <div id="countdown-timer">
+                    <div class="time-box-elegant"><p id="days" class="time-number">00</p><p class="time-label">Days</p></div>
+                    <div class="time-box-elegant"><p id="hours" class="time-number">00</p><p class="time-label">Hours</p></div>
+                    <div class="time-box-elegant"><p id="minutes" class="time-number">00</p><p class="time-label">Mins</p></div>
+                    <div class="time-box-elegant"><p id="seconds" class="time-number">00</p><p class="time-label">Secs</p></div>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <div class="event-card">
+                        <h4><i class="fas fa-church" style="color: var(--elegant-rosegold-light);"></i> HOLY MATRIMONY / AKAD</h4>
+                        <div class="event-info">
+                            <p><strong>Waktu:</strong> 09.00 - 11.00 WIB</p>
+                            <p><strong>Lokasi:</strong> [Nama Tempat Akad]</p>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <h4><i class="fas fa-champagne-glasses" style="color: var(--elegant-rosegold-light);"></i> WEDDING RECEPTION</h4>
+                        <div class="event-info">
+                            <p><strong>Waktu:</strong> 12.00 - 16.00 WIB</p>
+                            <p><strong>Lokasi:</strong> [Nama Tempat Resepsi]</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="[LINK GOOGLE MAPS ANDA]" target="_blank" class="btn-maps-elegant">
+                    <i class="fas fa-location-dot"></i> VIEW LOCATION
+                </a>
+            </div>
+        </section>
+        
+        <section id="gallery-section-id" class="section">
+             <div class="container">
+                 <h2 class="section-title">Gallery</h2>
+                 <p class="sub-heading">Pre-Wedding Memories</p>
+
+                <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 30px;">
+                    <img src="https://via.placeholder.com/300/F9F7F5/A47B71?text=Photo+A" style="width: 100%; height: auto; border: 1px solid var(--elegant-rosegold-light); box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);">
+                    <img src="https://via.placeholder.com/300/F9F7F5/A47B71?text=Photo+B" style="width: 100%; height: auto; border: 1px solid var(--elegant-rosegold-light); box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);">
+                    <img src="https://via.placeholder.com/300/F9F7F5/A47B71?text=Photo+C" style="width: 100%; height: auto; border: 1px solid var(--elegant-rosegold-light); box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);">
+                    <img src="https://via.placeholder.com/300/F9F7F5/A47B71?text=Photo+D" style="width: 100%; height: auto; border: 1px solid var(--elegant-rosegold-light); box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);">
+                </div>
+            </div>
+        </section>
+
+
+        <section id="comments-section-id" class="section" style="background-color: #f5f5f5;">
+            <div class="container elegant-box">
+                <h2 class="section-title">RSVP & Gifts</h2>
+                <div class="fine-border"></div>
+                
+                <div class="gift-box" style="margin-bottom: 40px;">
+                    <h3 class="sub-heading" style="color: var(--elegant-rosegold-dark);">SEND WISHES / GIFTS</h3>
+                    <p style="color: var(--elegant-gray); font-size: 0.95rem;">Doa restu Anda adalah hadiah terindah. Jika Anda ingin mengirimkan hadiah, dapat melalui:</p>
+                    
+                    <div style="background-color: white; padding: 15px; border-radius: 5px; margin-top: 15px; border: 1px solid var(--elegant-rosegold-light); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);">
+                        <button class="copy-btn-elegant" onclick="copyText('rek-bca', 'BCA')"><i class="fas fa-copy"></i> Copy</button>
+                        <p style="font-family: var(--font-body); font-size: 1.1rem; font-weight: 500; color: var(--elegant-black); margin-bottom: 5px;">BCA</p>
+                        <p id="rek-bca" style="font-family: var(--font-display); font-size: 1.2rem; color: var(--elegant-rosegold-dark); margin: 0;">888 123 4567</p>
+                        <p style="font-family: var(--font-body); font-size: 0.8rem; color: var(--elegant-gray);">a.n. [Nama Penerima]</p>
+                    </div>
+                </div>
+
+                <div class="comment-form-elegant">
+                    <h3 class="sub-heading" style="color: var(--elegant-rosegold-dark);">CONFIRM YOUR ATTENDANCE</h3>
+                    <form id="comment-form" onsubmit="submitComment(event)">
+                        <input type="text" id="comment-name-input" class="form-control" value="[Nama Tamu]" placeholder="Nama Anda" required>
+                        <textarea id="comment-message-input" placeholder="Tuliskan ucapan & doa terbaik..." required></textarea>
+                        
+                        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                            <button type="button" class="btn-submit-elegant" style="background: var(--elegant-rosegold-dark); flex: 1;" onclick="toggleStatus(this, 'yes')">
+                                <i class="fas fa-check-circle"></i> ATTEND
+                            </button>
+                            <button type="button" class="btn-submit-elegant" style="background-color: var(--elegant-gray); flex: 1;" onclick="toggleStatus(this, 'no')">
+                                <i class="fas fa-times-circle"></i> UNABLE TO ATTEND
+                            </button>
+                        </div>
+
+                        <button type="submit" id="submit-comment-btn" class="btn-submit-elegant">
+                            <i class="fas fa-paper-plane"></i> SEND RSVP
+                        </button>
+                    </form>
+                </div>
+                
+                <h3 class="sub-heading" style="color: var(--elegant-rosegold-dark); margin-top: 40px;">GUEST BOOK</h3>
+                <div class="comment-card-elegant">
+                    <strong style="color: var(--elegant-rosegold-dark);">@Admin</strong>
+                    <p style="margin: 5px 0 0;">Wishing you a lifetime of happiness. Congratulations!</p>
+                </div>
+            </div>
+        </section>
+
+        <div style="height: 60px;"></div>
+
+        <div class="bottom-nav-bar">
+            <a href="#intro-section-id" class="nav-item active" data-section="intro-section-id">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#event-section-id" class="nav-item" data-section="event-section-id">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Events</span>
+            </a>
+             <a href="#gallery-section-id" class="nav-item" data-section="gallery-section-id">
+                <i class="fas fa-camera"></i>
+                <span>Gallery</span>
+            </a>
+            <a href="#comments-section-id" class="nav-item" data-section="comments-section-id">
+                <i class="fas fa-gift"></i>
+                <span>RSVP</span>
+            </a>
+        </div>
+        
+    </div>
+    
+    <div id="toast-message"></div>
+
+    <script>
+        // Data Pernikahan
+        const WEDDING_DATE = new Date("February 30, 2026 19:00:00").getTime(); 
+        
+        // Ambil nama tamu dari parameter URL 'to'
+        const urlParams = new URLSearchParams(window.location.search);
+        const guestNameParam = urlParams.get('to');
+        const GUEST_NAME = guestNameParam ? decodeURIComponent(guestNameParam) : "Guest";
+        
+        document.getElementById('guest-name-display').textContent = GUEST_NAME;
+        document.getElementById('comment-name-input').value = GUEST_NAME;
+        
+        // Default RSVP state
+        let rsvpStatus = 'yes';
+        const rsvpButtons = document.querySelectorAll('.comment-form-elegant .btn-submit-elegant');
+        
+        // Set initial active state for RSVP buttons
+        if (rsvpButtons.length >= 2) {
+             rsvpButtons[0].classList.add('status-active'); // Default to ATTEND
+             // Apply active colors from CSS variables
+             rsvpButtons[0].style.backgroundColor = 'var(--elegant-rosegold-dark)';
+             rsvpButtons[0].style.color = 'white';
+
+             // For the "UNABLE TO ATTEND" button, ensure it has the default style
+             rsvpButtons[1].style.backgroundColor = 'var(--elegant-gray)';
+             rsvpButtons[1].style.color = 'white';
+        }
+
+
+        // --- Utility Functions ---
+
+        window.toggleStatus = function(clickedButton, status) {
+            rsvpStatus = status;
+            rsvpButtons.forEach(btn => {
+                btn.classList.remove('status-active');
+                // Reset to default/inactive color
+                if (btn.textContent.includes('ATTEND')) {
+                     btn.style.backgroundColor = 'var(--elegant-rosegold-dark)';
+                } else if (btn.textContent.includes('UNABLE')) {
+                    btn.style.backgroundColor = 'var(--elegant-gray)';
+                }
+            });
+            clickedButton.classList.add('status-active');
+            // Apply active style - slightly different color/opacity or just keep the primary one
+            clickedButton.style.backgroundColor = (status === 'yes') ? 'var(--elegant-rosegold-dark)' : 'var(--elegant-gray)';
+            clickedButton.style.opacity = '1';
+        }
+        
+        window.showToast = function(message, type = 'success') {
+            const toast = document.getElementById('toast-message');
+            if (!toast) return;
+            
+            toast.textContent = message;
+            toast.className = ``; 
+            toast.classList.add('show', type);
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000); 
+        }
+
+        window.submitComment = function(event) {
+            event.preventDefault();
+            const message = document.getElementById('comment-message-input').value;
+            if (message.trim() === "") {
+                window.showToast("Message cannot be empty.", "error");
+                return;
+            }
+            
+            const senderName = document.getElementById('comment-name-input').value || "Anonymous";
+            const statusText = rsvpStatus === 'yes' ? 'Attending' : 'Not Attending';
+
+            window.showToast(`RSVP & wishes sent! Status: ${statusText}`, "success");
+            
+            // Simulasikan penambahan komentar ke UI
+            const newComment = document.createElement('div');
+            newComment.classList.add('comment-card-elegant');
+            newComment.innerHTML = `
+                <strong style="color: var(--elegant-rosegold-dark);">@${senderName}</strong> (${statusText})
+                <p style="margin: 5px 0 0;">${message}</p>
+            `;
+            // Sisipkan di bawah komentar admin
+            document.querySelector('.comment-card-elegant').before(newComment);
+            
+            document.getElementById('comment-message-input').value = '';
+        }
+
+        window.copyText = function(elementId, bankName = '') {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            
+            const textToCopy = element.textContent;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                window.showToast(`${bankName} account copied to clipboard.`, "success");
+            }).catch(err => {
+                const tempInput = document.createElement('textarea');
+                tempInput.value = textToCopy;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                try {
+                    document.execCommand('copy');
+                     window.showToast(`${bankName} account copied (fallback).`, "success");
+                } catch (e) {
+                     window.showToast('Copy failed. Manual copy required.', "error");
+                }
+                document.body.removeChild(tempInput);
+            });
+        }
+
+        // --- Core Application Logic ---
+
+        document.getElementById('open-invitation-btn').addEventListener('click', function() {
+            const cover = document.getElementById('cover-page');
+            const mainContent = document.getElementById('main-content');
+            const body = document.body;
+
+            cover.style.opacity = '0';
+            mainContent.style.visibility = 'visible';
+            mainContent.style.opacity = '1';
+
+            setTimeout(() => {
+                cover.style.display = 'none';
+                body.classList.remove('scroll-locked');
+            }, 1500); 
+            
+            startCountdown();
+        });
+
+        function startCountdown() {
+            const elements = ['days', 'hours', 'minutes', 'seconds'].map(id => document.getElementById(id));
+            const [daysEl, hoursEl, minutesEl, secondsEl] = elements;
+
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const distance = WEDDING_DATE - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    document.getElementById('countdown-timer').innerHTML = '<h2 style="color: var(--elegant-rosegold-dark);">EVENT HELD</h2>';
+                } else {
+                    daysEl.textContent = String(days).padStart(2, '0');
+                    hoursEl.textContent = String(hours).padStart(2, '0');
+                    minutesEl.textContent = String(minutes).padStart(2, '0');
+                    secondsEl.textContent = String(seconds).padStart(2, '0');
+                }
+            }
+
+            updateCountdown();
+            const interval = setInterval(updateCountdown, 1000);
+        }
+        
+        // Navigation Active State on Scroll (tetap dipertahankan)
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            document.querySelectorAll('.section').forEach(section => {
+                const id = section.getAttribute('id');
+                if (id && section.offsetTop <= scrollPosition && section.offsetTop + section.offsetHeight > scrollPosition) {
+                    document.querySelectorAll('.nav-item').forEach(nav => {
+                        nav.classList.remove('active');
+                        if (nav.getAttribute('data-section') === id) {
+                            nav.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

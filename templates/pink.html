@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Tema Pink Chic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Variabel Warna dan Font Tema Pink --- */
+        :root {
+            /* Palet Warna Pink Elegant */
+            --primary-color: #d17a86; /* Soft Pink / Dusty Rose */
+            --secondary-color: #ffffff; /* Putih Bersih */
+            --accent-color: #f0c3d0; /* Light Pink / Blush */
+            --text-dark: #4b4b4b; /* Abu-abu Gelap */
+            --text-light: #ffffff;
+            
+            /* Font Chic */
+            --font-serif: 'Great Vibes', cursive; /* Untuk Judul Utama (Script) */
+            --font-body: 'Montserrat', sans-serif; /* Untuk Teks Tubuh (Modern) */
+
+            /* Warna untuk Script */
+            --blue-primary: #85d0e3; /* Soft Teal/Blue (untuk HADIR) */
+            --red-primary: #c24d67;  /* Darker Rose/Mauve (untuk TIDAK HADIR) */
+            --outline-dark: #b8b8b8; /* Soft Gray Outline */
+        }
+
+        /* --- Global Reset & Styling --- */
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background-color: var(--accent-color); /* Latar Belakang Blush */
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-family: var(--font-body); 
+            color: var(--primary-color);
+            text-transform: none; 
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+        }
+        
+        h1 {
+            font-family: var(--font-serif); /* Khusus Judul Besar pakai font script */
+            font-size: 4em;
+            line-height: 1;
+        }
+
+
+        /* --- Transisi dan Efek Ornamen Utama (CSS) --- */
+        .section {
+            padding: 80px 20px;
+            min-height: 60vh;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px) scale(0.95); /* Efek Muncul Lebih Lembut */
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+            margin: 40px auto;
+            max-width: 900px;
+            background: var(--secondary-color);
+            border: 2px solid var(--accent-color);
+            border-radius: 10px; /* Sudut lebih lembut */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        /* Ornamen Sudut (Pseudo-elements - Floral/Lace Look) */
+        .section::before, .section::after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--primary-color);
+            border-radius: 50%; /* Membuat efek 'pita' atau 'pola' melingkar di sudut */
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .section::before { top: -25px; left: -25px; border-right: none; border-bottom: none; }
+        .section::after { bottom: -25px; right: -25px; border-left: none; border-top: none; }
+
+        /* Transisi Reveal dari JS */
+        .section.in-view {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        
+        /* Divider Ornamen (Floral) */
+        .divider {
+            margin: 30px auto;
+            width: 100px;
+            height: 1px;
+            background: var(--primary-color);
+            position: relative;
+        }
+        .divider::before, .divider::after {
+            content: "❀"; /* Simbol Bunga (Floral) */
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+            font-size: 1.5em;
+        }
+        .divider::before { left: -10px; }
+        .divider::after { right: -10px; }
+
+        /* --- Cover Page Styling (Elegan) --- */
+        #cover-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-color);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease-in-out;
+            text-align: center;
+        }
+        
+        #cover-page.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .cover-to {
+            font-size: 1.2em;
+            margin-top: 30px;
+            border-top: 1px solid var(--primary-color);
+            padding-top: 10px;
+        }
+
+        /* Tombol Utama (dengan Efek Soft) */
+        #open-invitation-btn {
+            padding: 15px 30px;
+            font-family: var(--font-body);
+            font-weight: bold;
+            font-size: 1.2em;
+            color: var(--text-light);
+            background-color: var(--primary-color);
+            border: 2px solid var(--text-dark);
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+        
+        #open-invitation-btn:hover {
+            background-color: #b36371; /* Slightly darker pink */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transform: translateY(1px);
+        }
+        
+        /* --- Navigasi Samping (Sticky) --- */
+        .navigation {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 500;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-item {
+            display: block;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .nav-item.active {
+            width: 15px;
+            height: 15px;
+            background: var(--primary-color);
+            box-shadow: 0 0 5px var(--primary-color);
+        }
+
+        /* Tooltip untuk Navigasi */
+        .nav-item::before {
+            content: attr(data-section);
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-item:hover::before {
+            opacity: 1;
+        }
+
+
+        /* --- Countdown Styling --- */
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .time-box {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 10px 15px;
+            border: 3px solid var(--accent-color);
+            min-width: 80px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        .time-box:hover {
+            transform: scale(1.05);
+        }
+
+        .time-value {
+            display: block;
+            font-size: 2.5em;
+            font-family: var(--font-body);
+            margin-bottom: 5px;
+        }
+        .time-label {
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+        
+        /* --- RSVP & Komentar Styling --- */
+        .rsvp-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            padding: 20px;
+            border: 2px dashed var(--accent-color);
+            border-radius: 10px;
+        }
+        
+        .rsvp-btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .rsvp-btn {
+            padding: 10px 20px;
+            font-family: var(--font-body);
+            font-size: 1.1em;
+            color: var(--text-light);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 2px 2px 0 0 var(--outline-dark);
+            transition: all 0.3s ease;
+        }
+        
+        .rsvp-btn:hover {
+            transform: translate(1px, 1px);
+            box-shadow: 1px 1px 0 0 var(--outline-dark);
+        }
+
+        /* Input dan Textarea */
+        #comment-form input[type="text"], 
+        #comment-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid var(--primary-color);
+            background-color: #fff8f9;
+            font-family: var(--font-body);
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+        
+        #comment-form button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+        }
+        
+        #comment-form button[type="submit"]:hover {
+            background-color: #b36371;
+        }
+        
+        /* Daftar Komentar */
+        #comment-list {
+            margin-top: 30px;
+            max-height: 400px;
+            overflow-y: auto;
+            border-top: 1px solid var(--accent-color);
+            padding-top: 15px;
+        }
+        
+        .comment-item {
+            text-align: left;
+            padding: 10px 0;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-name {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .comment-status {
+            font-size: 0.9em;
+            margin-left: 10px;
+            font-style: italic;
+        }
+        
+        /* Utilitas (Amplop Digital) */
+        .bank-info-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .bank-info {
+            display: inline-block;
+            padding: 15px;
+            margin-top: 10px;
+            border: 1px solid var(--primary-color);
+            background: var(--accent-color); 
+            border-radius: 5px;
+        }
+        .copy-btn {
+            background: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+            border-radius: 3px;
+        }
+        .copy-btn:hover {
+            background: var(--red-primary);
+        }
+
+        /* Quote Box (Floral Chic) */
+        .quote-box {
+            margin: 40px auto;
+            padding: 30px;
+            max-width: 600px;
+            position: relative;
+            border: 1px solid var(--accent-color);
+            background: #fff8f9;
+            border-radius: 10px;
+        }
+        .quote-box::before, .quote-box::after {
+            content: "♡"; 
+            font-family: sans-serif;
+            font-size: 3em;
+            color: var(--red-primary);
+            position: absolute;
+            opacity: 0.6;
+            line-height: 1;
+        }
+        .quote-box::before { top: -15px; left: 10px; }
+        .quote-box::after { content: "♡"; bottom: -15px; right: 10px; }
+
+
+        /* Media Queries untuk Responsif */
+        @media (max-width: 768px) {
+            .section {
+                padding: 40px 10px;
+                margin: 20px auto;
+            }
+            h1 {
+                font-size: 3em;
+            }
+            .countdown-timer {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .time-box {
+                min-width: 60px;
+                padding: 5px 10px;
+            }
+            .time-value {
+                font-size: 2em;
+            }
+            .navigation {
+                right: auto;
+                left: 50%;
+                top: auto;
+                bottom: 0;
+                transform: translateX(-50%);
+                flex-direction: row;
+                background: rgba(255, 255, 255, 0.8);
+                padding: 5px;
+                border-radius: 10px 10px 0 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cover-page">
+        <h3 class="cover-title">The Wedding of</h3>
+        <h1>Sarah & David</h1>
+        <div class="divider"></div>
+        <p class="cover-subtitle">Mempersatukan Dua Hati dalam Kasih Sayang</p>
+        <div class="cover-to">
+            Kepada Yth.<br>
+            <span style="font-size: 1.5em; font-weight: bold; font-family: var(--font-body);" id="guest-name-display">Player 2</span>
+        </div>
+        <button id="open-invitation-btn">BUKA UNDANGAN</button>
+    </div>
+
+    <main>
+        <nav class="navigation">
+            <a href="#home" class="nav-item active" data-section="home"></a>
+            <a href="#mempelai" class="nav-item" data-section="mempelai"></a>
+            <a href="#acara" class="nav-item" data-section="acara"></a>
+            <a href="#doa-restu" class="nav-item" data-section="doa-restu"></a>
+            <a href="#ucapan" class="nav-item" data-section="ucapan"></a>
+        </nav>
+
+        <section id="home" class="section">
+            <p style="font-style: italic;">Atas Rahmat-Nya, kami mengundang Anda untuk merayakan cinta kami pada:</p>
+            <h1>Sarah & David</h1>
+            <h3 style="margin-top: -10px; font-weight: 400;">Our Greatest Adventure</h3>
+            
+            <div class="divider"></div>
+            
+            <div class="countdown-timer">
+                <div class="time-box"><span id="days" class="time-value">00</span><span class="time-label">Hari</span></div>
+                <div class="time-box"><span id="hours" class="time-value">00</span><span class="time-label">Jam</span></div>
+                <div class="time-box"><span id="minutes" class="time-value">00</span><span class="time-label">Menit</span></div>
+                <div class="time-box"><span id="seconds" class="time-value">00</span><span class="time-label">Detik</span></div>
+            </div>
+            
+            <p style="margin-top: 30px; font-weight: bold;">Sabtu, 12 Desember 2026</p>
+        </section>
+
+        <section id="mempelai" class="section">
+            <h2>The Bride & Groom</h2>
+            <div class="divider"></div>
+            
+            <p style="margin-bottom: 40px; font-style: italic;">"Cinta tidak melihat dengan mata, tetapi dengan jiwa."</p>
+            
+
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 30px;">
+                <div style="width: 45%;">
+                    <h3 style="font-size: 1.8em; font-family: var(--font-serif);">Sarah</h3>
+                    <p>Putri dari Bpk. Budi & Ibu Nina</p>
+                </div>
+                <div style="width: 45%;">
+                    <h3 style="font-size: 1.8em; font-family: var(--font-serif);">David</h3>
+                    <p>Putra dari Bpk. Toni & Ibu Lisa</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="acara" class="section">
+            <h2>Waktu dan Lokasi</h2>
+            <div class="divider"></div>
+
+            <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+                <div style="border: 3px solid var(--accent-color); padding: 20px; flex-basis: 45%; max-width: 300px; margin-bottom: 20px; border-radius: 8px;">
+                    <h3 style="color: var(--primary-color); margin-top: 0; font-family: var(--font-body);">Akad Nikah</h3>
+                    <p>Sabtu, 12 Desember 2026</p>
+                    <p>Pukul: 09.00 WIB</p>
+                </div>
+                <div style="border: 3px solid var(--accent-color); padding: 20px; flex-basis: 45%; max-width: 300px; margin-bottom: 20px; border-radius: 8px;">
+                    <h3 style="color: var(--primary-color); margin-top: 0; font-family: var(--font-body);">Resepsi</h3>
+                    <p>Sabtu, 12 Desember 2026</p>
+                    <p>Pukul: 11.00 - 13.00 WIB</p>
+                </div>
+            </div>
+
+            <p style="margin-top: 30px;">Lokasi:<br>**The Rose Hall**<br>Jl. Kenangan No. 10, Jakarta Pusat</p>
+            <button class="copy-btn" onclick="window.location.href='https://maps.app.goo.gl/example';" style="background: var(--blue-primary);">LIHAT LOKASI DI MAPS</button>
+        </section>
+
+        <section id="doa-restu" class="section">
+            <h2>Doa Restu & Tanda Kasih</h2>
+            <div class="divider"></div>
+            
+            <div class="quote-box">
+                <p style="font-family: var(--font-body); font-style: italic; font-size: 1.2em;">
+                    "Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan untukmu pasangan-pasangan dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
+                </p>
+                <p style="margin-top: 10px; font-weight: bold;">(QS. Ar-Rum: 21)</p>
+            </div>
+
+            <h3 style="margin-top: 40px;">Amplop Digital</h3>
+            <p style="font-style: italic;">Kehadiran Anda adalah kado terindah. Jika ingin memberikan tanda kasih, silakan melalui rekening di bawah:</p>
+            
+            <div class="bank-info-container">
+                <div class="bank-info">
+                    <span style="font-weight: bold;">BCA:</span> <span id="bank-acc-1">123456789</span> (A.N. S. David) 
+                    <button class="copy-btn" onclick="copyToClipboard('bank-acc-1', 'Nomor Rekening BCA')">COPY</button>
+                </div>
+                <div class="bank-info" style="margin-top: 15px;">
+                    <span style="font-weight: bold;">Mandiri:</span> <span id="bank-acc-2">987654321</span> (A.N. Sarah) 
+                    <button class="copy-btn" onclick="copyToClipboard('bank-acc-2', 'Nomor Rekening Mandiri')">COPY</button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="ucapan" class="section">
+            <h2>Konfirmasi Kehadiran & Ucapan</h2>
+            <div class="divider"></div>
+
+            <div class="rsvp-form-container">
+                <form id="comment-form" onsubmit="submitComment(event)">
+                    <h3 style="margin-top: 0; text-align: center;">Konfirmasi Kehadiran</h3>
+                    <div class="rsvp-btn-container">
+                        <button type="button" class="rsvp-btn" onclick="toggleStatus(this, 'yes')" style="background-color: var(--blue-primary);">SAYA HADIR!</button>
+                        <button type="button" class="rsvp-btn" onclick="toggleStatus(this, 'no')" style="background-color: var(--red-primary);">TIDAK BISA HADIR</button>
+                    </div>
+                    
+                    <label for="comment-name-input">Nama Anda:</label>
+                    <input type="text" id="comment-name-input" placeholder="Nama Lengkap" required>
+                    
+                    <label for="comment-message-input">Ucapan/Doa:</label>
+                    <textarea id="comment-message-input" rows="4" placeholder="Tuliskan harapan dan doa terbaik Anda..."></textarea>
+                    
+                    <button type="submit">KIRIM UCAPAN & RSVP</button>
+                </form>
+            </div>
+            
+            <h3 style="margin-top: 40px;">Ucapan dan Harapan</h3>
+            <div id="comment-list">
+                </div>
+        </section>
+    </main>
+
+    <footer style="text-align: center; padding: 20px; background: var(--primary-color); color: var(--secondary-color); font-size: 0.8em;">
+        <p>© 2023 Sarah & David. Forever Starts Now.</p>
+    </footer>
+
+    <script>
+        // Data Pernikahan
+        // Ganti tanggal di sini: Bulan/Hari/Tahun
+        const WEDDING_DATE = new Date("December 12, 2026 12:00:00").getTime(); 
+        const COMMENTS_STORAGE_KEY = 'cartoon_wedding_comments';
+        
+        // Setup Nama Tamu dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const guestNameParam = urlParams.get('to');
+        const GUEST_NAME = guestNameParam ? decodeURIComponent(guestNameParam.replace(/\+/g, ' ')) : "Player 2";
+        
+        document.getElementById('guest-name-display').textContent = GUEST_NAME;
+        document.getElementById('comment-name-input').value = GUEST_NAME;
+
+        let rsvpStatus = 'yes';
+        let storedComments = []; 
+
+        // --- Manajemen Komentar (Persistence dengan LocalStorage) ---
+        function loadComments() {
+            const data = localStorage.getItem(COMMENTS_STORAGE_KEY);
+            storedComments = data ? JSON.parse(data) : [
+                { name: "Admin Bot", message: "CONGRATS! LOVE YOU GUYS! POW!", status: "yes" }
+            ];
+            renderComments();
+        }
+
+        function saveComments() {
+            localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(storedComments));
+        }
+        
+        function renderComment(comment) {
+            const commentList = document.getElementById('comment-list');
+            const statusText = comment.status === 'yes' ? '[HADIR]' : '[TIDAK HADIR]';
+            const statusColor = comment.status === 'yes' ? 'var(--blue-primary)' : 'var(--red-primary)';
+            
+            const newComment = document.createElement('div');
+            newComment.className = 'comment-item';
+            newComment.innerHTML = `
+                <span class="comment-name">${comment.name}</span>
+                <span class="comment-status" style="color: ${statusColor};">${statusText}</span>
+                <p style="margin: 5px 0 0; font-size: 0.9em;">${comment.message}</p>
+            `;
+            commentList.prepend(newComment); 
+        }
+        
+        function renderComments() {
+            const commentList = document.getElementById('comment-list');
+            commentList.innerHTML = '';
+            storedComments.forEach(comment => renderComment(comment));
+        }
+
+        // --- Core Interaction Functions ---
+        
+        // Fungsi Tombol RSVP
+        window.toggleStatus = function(clickedButton, status) {
+            rsvpStatus = status;
+            document.querySelectorAll('.rsvp-btn').forEach(btn => {
+                btn.style.backgroundColor = 'var(--red-primary)';
+                btn.style.boxShadow = '2px 2px 0 0 var(--outline-dark)';
+                btn.style.transform = '';
+            });
+            
+            clickedButton.style.transform = 'scale(1.05) rotate(0deg)';
+            clickedButton.style.backgroundColor = (status === 'yes') ? 'var(--blue-primary)' : 'var(--red-primary)';
+        }
+
+        // Fungsi Submit Komentar
+        window.submitComment = function(event) {
+            event.preventDefault();
+            const messageInput = document.getElementById('comment-message-input');
+            const senderName = document.getElementById('comment-name-input').value || "ANONYMOUS";
+            const message = messageInput.value.trim();
+            
+            if (message === "") return;
+            
+            const newComment = {
+                name: senderName,
+                message: message,
+                status: rsvpStatus
+            };
+            
+            storedComments.unshift(newComment);
+            saveComments();
+            renderComment(newComment);
+            
+            messageInput.value = '';
+            const statusText = rsvpStatus === 'yes' ? 'BOOM! HADIR' : 'SAD FACE... ABSEN';
+            alert(`TRANSMISI DITERIMA DARI ${senderName} (${statusText})\n\n[TERIMA KASIH DARI HEROES]`);
+        }
+        
+        // Fungsi Copy Rekening
+        window.copyToClipboard = function(elementId, type) {
+            const textToCopy = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert(`${type} berhasil dicopy: ${textToCopy}`);
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+            });
+        };
+
+        // 1. Countdown Timer
+        function startCountdown() {
+            const elements = ['days', 'hours', 'minutes', 'seconds'].map(id => document.getElementById(id));
+            const [daysEl, hoursEl, minutesEl, secondsEl] = elements;
+
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const distance = WEDDING_DATE - now;
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    elements.forEach(el => el.textContent = 'XX');
+                } else {
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    
+                    daysEl.textContent = String(days).padStart(2, '0');
+                    hoursEl.textContent = String(hours).padStart(2, '0');
+                    minutesEl.textContent = String(minutes).padStart(2, '0');
+                    secondsEl.textContent = String(seconds).padStart(2, '0');
+                }
+            }
+
+            updateCountdown();
+            const interval = setInterval(updateCountdown, 1000);
+        }
+        
+        // 2. Transisi Section In-View & Navigasi
+        function handleScroll() {
+            const scrollPosition = window.scrollY + window.innerHeight * 0.75;
+            const halfViewport = window.scrollY + window.innerHeight / 2;
+            
+            document.querySelectorAll('.section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                const id = section.getAttribute('id');
+                
+                // Section Reveal 
+                if (sectionTop < scrollPosition && !section.classList.contains('in-view')) {
+                    section.classList.add('in-view');
+                }
+                
+                // Update Navigasi
+                if (id && section.offsetTop <= halfViewport && section.offsetTop + section.offsetHeight > halfViewport) {
+                    document.querySelectorAll('.nav-item').forEach(nav => {
+                        nav.classList.remove('active');
+                        if (nav.getAttribute('data-section') === id) {
+                            nav.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+        
+        // Listener Tombol Start (Explosion Effect)
+        document.getElementById('open-invitation-btn').addEventListener('click', function() {
+            document.getElementById('cover-page').classList.add('hidden');
+            document.body.style.overflowY = 'auto'; 
+            
+            setTimeout(() => {
+                document.getElementById('cover-page').style.display = 'none';
+                handleScroll(); 
+            }, 800); 
+            
+            startCountdown();
+        });
+
+        // --- Initial Load Setup ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set default status dan load komentar
+            toggleStatus(document.querySelector('.rsvp-btn:nth-child(1)'), 'yes');
+            loadComments(); 
+        });
+        
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleScroll); 
+        
+        // Sembunyikan scrollbar di awal (sebelum klik START)
+        document.body.style.overflowY = 'hidden'; 
+    </script>
+</body>
+</html>

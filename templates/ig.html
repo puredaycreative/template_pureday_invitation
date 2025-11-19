@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan IG: [Nama Pria] & [Nama Wanita]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* ======================================================= */
+        /* CSS CORE & UTILITIES (TEMA INSTAGRAM) */
+        /* ======================================================= */
+        
+        :root {
+            --ig-white: #fafafa; /* Background Instagram */
+            --ig-light-grey: #e8e8e8; /* Border dan Card */
+            --ig-dark-text: #262626; /* Teks Utama */
+            --ig-link-blue: #0095f6;
+            --ig-pink-gradient: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+            --font-primary: 'Roboto', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+            --padding-mobile: 20px;
+        }
+
+        body {
+            background-color: var(--ig-white);
+            color: var(--ig-dark-text);
+            font-family: var(--font-primary);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+        
+        /* Utility Classes */
+        .container {
+            max-width: 600px; /* Lebar khas feed Instagram */
+            margin: 0 auto;
+            padding: 0 var(--padding-mobile);
+        }
+        .mr-2 { margin-right: 0.5rem; }
+        .scroll-locked {
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        /* ======================================================= */
+        /* COVER PAGE (INSTAGRAM STORY) */
+        /* ======================================================= */
+        #cover-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .template-cover-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+            /* Foto vertikal resolusi tinggi untuk Story */
+            background: url('https://via.placeholder.com/1080x1920/D4D4D4/262626?text=Cover+Story+Estetik') center/cover no-repeat;
+        }
+        .template-cover-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2); /* Overlay tipis */
+        }
+        .template-cover-content-wrapper {
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+            color: var(--ig-white);
+        }
+        .template-cover-guest-name {
+            font-size: 1.2rem;
+            font-weight: 400;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 8px 15px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        .template-cover-title {
+            font-family: var(--font-serif);
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            font-style: italic;
+        }
+        .cover-open-btn {
+            background: var(--ig-link-blue);
+            color: var(--ig-white);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+        
+        /* ======================================================= */
+        /* MAIN CONTENT STYLING - FEED POSTS */
+        /* ======================================================= */
+        #main-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .section {
+            padding: 40px 0; 
+            text-align: center;
+        }
+        .post-card {
+            background-color: var(--ig-white);
+            border: 1px solid var(--ig-light-grey);
+            border-radius: 3px;
+            margin-bottom: 30px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Header Post (Akun) */
+        .post-header {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--ig-light-grey);
+        }
+        .post-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 10px;
+            /* Border Gradien Khas IG */
+            background: var(--ig-pink-gradient);
+            padding: 2px;
+        }
+        .post-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid var(--ig-white);
+        }
+        .post-username {
+            font-weight: 700;
+            color: var(--ig-dark-text);
+        }
+        
+        /* Image/Video Post */
+        .post-media img {
+            width: 100%;
+            display: block;
+        }
+        
+        /* Footer Post (Caption & Likes) */
+        .post-footer {
+            padding: 10px 15px;
+            text-align: left;
+        }
+        .post-actions {
+            display: flex;
+            margin-bottom: 8px;
+        }
+        .post-actions i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: var(--ig-dark-text);
+            cursor: pointer;
+        }
+        .post-caption {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: var(--ig-dark-text);
+        }
+        .post-hashtags {
+            color: var(--ig-link-blue);
+            font-weight: 500;
+        }
+
+        /* --- Section Gallery (INSTAGRAM GRID) --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 kolom yang sama */
+            gap: 2px; /* Jarak antar foto minimal seperti IG */
+            margin-top: 20px;
+            border-top: 1px solid var(--ig-light-grey);
+            border-bottom: 1px solid var(--ig-light-grey);
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 100%; /* Menjaga aspek rasio 1:1 (kotak) */
+        }
+        .gallery-item img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item img:hover {
+            transform: scale(1.05); /* Efek zoom tipis saat di-hover/tap */
+            opacity: 0.9;
+        }
+        .gallery-header {
+             display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+        }
+        .gallery-header i {
+            color: var(--ig-link-blue);
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        /* --- General Section Styles --- */
+        .couple-names {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        .detail-info {
+            background-color: var(--ig-white);
+            border: 1px solid var(--ig-light-grey);
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        /* --- Section Event & Countdown (Story Style) --- */
+        .story-box {
+            background-color: var(--ig-white);
+            border: 1px solid var(--ig-light-grey);
+            padding: 30px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        #countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0 30px;
+        }
+        .time-box {
+            background-color: var(--ig-light-grey);
+            padding: 10px;
+            border-radius: 5px;
+            min-width: 60px;
+            line-height: 1;
+        }
+        .time-number {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--ig-dark-text);
+            margin: 0;
+        }
+        .time-label {
+            font-size: 0.7rem;
+            color: #777;
+            margin-top: 5px;
+            font-weight: 400;
+        }
+        .btn-maps-link {
+            background-color: var(--ig-link-blue);
+            color: var(--ig-white);
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-weight: 700;
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        /* --- Section Gift & Comments Form --- */
+        .bank-card {
+            background-color: var(--ig-light-grey);
+            border: none;
+            text-align: left;
+        }
+        .copy-btn {
+            background: var(--ig-link-blue);
+            color: var(--ig-white);
+            border: none;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            float: right;
+        }
+        .form-group label {
+            font-size: 0.9rem;
+            color: #777;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-control, textarea {
+            background-color: var(--ig-white);
+            border: 1px solid var(--ig-light-grey);
+            color: var(--ig-dark-text);
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 3px;
+            margin-bottom: 10px;
+            font-family: var(--font-primary);
+        }
+        .template-status-btn {
+            background-color: var(--ig-light-grey);
+            border: 1px solid var(--ig-light-grey);
+            color: var(--ig-dark-text);
+            font-weight: 400;
+        }
+        .template-status-btn.status-active {
+            background-color: var(--ig-link-blue);
+            color: var(--ig-white);
+        }
+        .btn-submit {
+            background-color: var(--ig-link-blue);
+            color: var(--ig-white);
+            font-weight: 700;
+        }
+        .comment-card {
+            background-color: var(--ig-white);
+            border: 1px solid var(--ig-light-grey);
+            padding: 10px 15px;
+            border-radius: 3px;
+            margin-top: 10px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        /* ======================================================= */
+        /* BOTTOM NAVIGATION (Mobile Fixed Bar - Instagram Style) */
+        /* ======================================================= */
+        .bottom-nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: var(--ig-white);
+            border-top: 1px solid var(--ig-light-grey);
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+            z-index: 9000;
+            padding: 5px 0;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--ig-dark-text);
+            font-size: 0.7rem;
+            padding: 5px;
+            transition: color 0.3s;
+        }
+        .nav-item i {
+            font-size: 1.4rem;
+            margin-bottom: 3px;
+        }
+        .nav-item.active {
+            color: var(--ig-link-blue); /* Biru khas IG untuk yang aktif */
+        }
+
+        /* Toast Styling */
+        #toast-message {
+            position: fixed;
+            bottom: 70px; 
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--ig-dark-text);
+            color: var(--ig-white);
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            pointer-events: none;
+            font-size: 0.9rem;
+        }
+        #toast-message.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body class="scroll-locked">
+
+    <div id="cover-page" class="template-cover-container">
+        <div class="template-cover-overlay"></div>
+        <div class="template-cover-content-wrapper">
+            <h3 class="template-cover-guest-name" id="guest-name-display">Untuk: [Nama Tamu]</h3>
+            
+            <p style="color: white; font-size: 1.5rem; margin-bottom: 0; font-family: var(--font-serif); font-style: italic;">We're Getting Married</p>
+            <h1 class="template-cover-title">[Nama Pria] & [Nama Wanita]</h1>
+            <p style="color: #E0E0E0; margin-bottom: 2rem;">#OurForeverPost</p>
+            
+            <button id="open-invitation-btn" class="cover-open-btn">
+                <i class="fas fa-arrow-right mr-2"></i> LIHAT STORY
+            </button>
+        </div>
+    </div>
+
+    <div id="main-content">
+        
+        <div class="container">
+            
+            <section id="intro-section-id" class="section" style="padding-top: 40px;">
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-avatar">
+                            <img src="https://via.placeholder.com/150/FFFFFF/000000?text=P" alt="Avatar">
+                        </div>
+                        <span class="post-username">@[NamaPria]and[NamaWanita]</span>
+                    </div>
+                    <div class="post-media">
+                        <img 
+                            src="https://via.placeholder.com/600x600/D4D4D4/262626?text=Foto+Couple+Estetik+(1:1)" 
+                            alt="Foto Pasangan" 
+                        >
+                    </div>
+                    <div class="post-footer">
+                        <div class="post-actions">
+                            <i class="far fa-heart"></i>
+                            <i class="far fa-comment"></i>
+                            <i class="far fa-paper-plane"></i>
+                        </div>
+                        <p style="font-weight: 700; font-size: 0.9rem; margin: 0 0 5px;">Liked by **[Nama Tamu]** and **9,999 others**</p>
+                        <p class="post-caption">
+                            <span class="post-username">@[NamaPria]and[NamaWanita]</span> ❤️ With the grace of God, we are delighted to announce our wedding! The greatest adventure is about to begin.
+                            <br><span class="post-hashtags">#TiedTheKnot #Engaged #OurForeverPost</span>
+                        </p>
+                        <p style="color: #999; font-size: 0.75rem; margin-top: 5px;">VIEW ALL 1,500 COMMENTS</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="gallery-section-id" class="section" style="padding: 20px 0;">
+                <div class="post-card" style="border: none; box-shadow: none;">
+                    
+                    <div class="gallery-header">
+                        <i class="fas fa-th"></i>
+                        <h2 style="font-size: 1.2rem; font-weight: 700; margin: 0; color: var(--ig-link-blue);">FOTO KAMI (GRID)</h2>
+                    </div>
+
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/300/A0A0A0/FFFFFF?text=Foto+1" alt="Foto 1">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/300/B0B0B0/FFFFFF?text=Foto+2" alt="Foto 2">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/300/C0C0C0/FFFFFF?text=Foto+3" alt="Foto 3">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/300/D0D0D0/FFFFFF?text=Foto+4" alt="Foto 4">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/300/E0E0E0/FFFFFF?text=Foto+5" alt="Foto 5">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/300/F0F0F0/FFFFFF?text=Foto+6" alt="Foto 6">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="event-section-id" class="section" style="padding-top: 0;">
+                <div class="post-card">
+                     <div class="post-header">
+                        <div class="post-avatar">
+                            <img src="https://via.placeholder.com/150/FFFFFF/000000?text=I" alt="Avatar">
+                        </div>
+                        <span class="post-username">@INFO_PERNIKAHAN</span>
+                    </div>
+                    <div class="post-media">
+                        <img 
+                            src="https://via.placeholder.com/600x750/D4D4D4/262626?text=Foto+Acara+Album+(4:5)" 
+                            alt="Foto Detail" 
+                        >
+                    </div>
+                    <div class="post-footer">
+                        <p class="post-caption">
+                            <span class="post-username">@INFO_PERNIKAHAN</span> Details for our upcoming event. Mark your calendar and click the link in bio (tombol di bawah) for RSVP!
+                            <br><span class="post-hashtags">#SaveTheDate #WeddingDetails</span>
+                        </p>
+                        
+                        <div class="story-box" style="margin-top: 15px; text-align: center;">
+                            <h3 class="couple-names" style="margin-top: 0;">Sabtu, 30 Februari 2026</h3>
+                            
+                            <div id="countdown-timer">
+                                <div class="time-box"><p id="days" class="time-number">00</p><p class="time-label">Hari</p></div>
+                                <div class="time-box"><p id="hours" class="time-number">00</p><p class="time-label">Jam</p></div>
+                                <div class="time-box"><p id="minutes" class="time-number">00</p><p class="time-label">Menit</p></div>
+                                <div class="time-box"><p id="seconds" class="time-number">00</p><p class="time-label">Detik</p></div>
+                            </div>
+                            
+                            <p style="font-weight: 700; margin-bottom: 5px;"><i class="fas fa-map-marker-alt mr-2"></i> [Nama Tempat Acara]</p>
+                            <p style="font-size: 0.9rem; color: #777;">[Alamat Detail Lokasi]</p>
+
+                            <a href="[LINK GOOGLE MAPS ANDA]" target="_blank" class="btn-maps-link">
+                                <i class="fas fa-route"></i> Get Direction
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="comments-section-id" class="section" style="padding-top: 0;">
+                <div class="post-card">
+                     <div class="post-header">
+                        <div class="post-avatar">
+                            <img src="https://via.placeholder.com/150/FFFFFF/000000?text=U" alt="Avatar">
+                        </div>
+                        <span class="post-username">@UCAPAN_DOA</span>
+                    </div>
+                    <div class="post-footer">
+                        <p class="post-caption">
+                            <span class="post-username">@UCAPAN_DOA</span> Leave your comment and best wishes below. We'd love to see your RSVP!
+                            <br><span class="post-hashtags">#LeaveAComment #RSVP</span>
+                        </p>
+                        
+                        <div class="detail-info" style="margin-top: 15px;">
+                             <form id="comment-form" onsubmit="submitComment(event)">
+                                <h3 style="font-size: 1.2rem; margin-top: 0;">Your Comment & RSVP</h3>
+                                <div class="form-group">
+                                    <label for="comment-name-input">Your Instagram Username / Name:</label>
+                                    <input type="text" id="comment-name-input" class="form-control" value="[Nama Tamu]" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment-message-input">Your Best Wishes (Caption):</label>
+                                    <textarea id="comment-message-input" placeholder="Tuliskan ucapan dan doa terbaik Anda..." required></textarea>
+                                </div>
+                                
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label>Attendance Status (RSVP):</label>
+                                    <div class="status-btn-group" style="display: flex; gap: 10px;">
+                                        <button type="button" id="status-yes" class="template-status-btn status-active" onclick="toggleStatus(this, 'yes')">
+                                            <i class="fas fa-check-circle"></i> Hadir
+                                        </button>
+                                        <button type="button" id="status-no" class="template-status-btn" onclick="toggleStatus(this, 'no')">
+                                            <i class="fas fa-times-circle"></i> Tidak Hadir
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <button type="submit" id="submit-comment-btn" class="btn-submit" style="width: 100%; padding: 10px;">
+                                    <i class="fas fa-paper-plane"></i> POST COMMENT
+                                </button>
+                            </form>
+                        </div>
+
+                        <p style="font-size: 0.9rem; font-weight: 700; margin-top: 15px;">Recent Comments:</p>
+                        <div class="comment-card">
+                            <span class="post-username">@IG_Admin</span> Great post! Looking forward to the wedding!
+                        </div>
+                        <div id="new-comments-area"></div>
+                        
+                    </div>
+                </div>
+            </section>
+
+            <section id="gift-section-id" class="section" style="padding-top: 0;">
+                <div class="post-card">
+                     <div class="post-header">
+                        <div class="post-avatar">
+                            <img src="https://via.placeholder.com/150/FFFFFF/000000?text=G" alt="Avatar">
+                        </div>
+                        <span class="post-username">@GIFT_REGISTRY</span>
+                    </div>
+                    <div class="post-footer">
+                        <p class="post-caption">
+                            <span class="post-username">@GIFT_REGISTRY</span> Your presence is the greatest gift. But if you insist, here are the registry details!
+                            <br><span class="post-hashtags">#DigitalGift #KadoPernikahan</span>
+                        </p>
+                        
+                        <div class="detail-info" style="margin-top: 15px;">
+                            <h3 style="font-size: 1.1rem; margin-top: 0;">Wedding Gift Details</h3>
+                            <div id="bank-accounts-cards" style="display: flex; flex-direction: column; gap: 10px;">
+                                <div class="bank-card" style="padding: 15px;">
+                                    <button class="copy-btn" onclick="copyText('rek-bca', 'BCA')"><i class="fas fa-copy"></i> Copy</button>
+                                    <p style="font-size: 1rem; font-weight: bold; color: var(--ig-dark-text); margin-bottom: 5px;">BCA</p>
+                                    <p id="rek-bca" style="font-size: 1.1rem; margin: 0;">888 123 4567</p>
+                                    <p style="font-size: 0.8rem; color: #777;">a.n. [Nama Penerima]</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <div style="height: 60px;"></div>
+
+        <div class="bottom-nav-bar">
+            <a href="#intro-section-id" class="nav-item active" data-section="intro-section-id">
+                <i class="fas fa-home"></i>
+            </a>
+            <a href="#gallery-section-id" class="nav-item" data-section="gallery-section-id">
+                <i class="fas fa-th-large"></i>
+            </a>
+            <a href="#event-section-id" class="nav-item" data-section="event-section-id">
+                <i class="far fa-compass"></i>
+            </a>
+            <a href="#comments-section-id" class="nav-item" data-section="comments-section-id">
+                <i class="far fa-comment-dots"></i>
+            </a>
+            <a href="#gift-section-id" class="nav-item" data-section="gift-section-id">
+                <i class="far fa-user"></i>
+            </a>
+        </div>
+        
+    </div>
+    
+    <div id="toast-message"></div>
+
+    <script>
+        // Data Pernikahan
+        // GANTI DENGAN TANGGAL ACARA ASLI ANDA
+        const WEDDING_DATE = new Date("February 30, 2026 19:00:00").getTime(); 
+        
+        // Ambil nama tamu dari parameter URL 'to'
+        const urlParams = new URLSearchParams(window.location.search);
+        const guestNameParam = urlParams.get('to');
+        const GUEST_NAME = guestNameParam ? decodeURIComponent(guestNameParam) : "Nama Tamu";
+        
+        document.getElementById('guest-name-display').textContent = `Untuk: ${GUEST_NAME}`;
+        document.getElementById('comment-name-input').value = GUEST_NAME;
+
+        // --- Utility Functions ---
+
+        window.toggleStatus = function(clickedButton, status) {
+            const statusBtns = document.querySelectorAll('.template-status-btn');
+            statusBtns.forEach(btn => btn.classList.remove('status-active'));
+            clickedButton.classList.add('status-active');
+        }
+        
+        window.showToast = function(message, type = 'success') {
+            const toast = document.getElementById('toast-message');
+            if (!toast) return;
+            
+            toast.textContent = message;
+            toast.className = ``; 
+            toast.classList.add('show', type);
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000); 
+        }
+
+        window.submitComment = function(event) {
+            event.preventDefault();
+            const message = document.getElementById('comment-message-input').value;
+            if (message.trim() === "") {
+                window.showToast("Caption/Ucapan tidak boleh kosong!", "error");
+                return;
+            }
+            
+            const senderName = document.getElementById('comment-name-input').value || "Anonim";
+            const attendanceStatus = document.querySelector('.template-status-btn.status-active').textContent.trim();
+            const senderUsername = senderName.replace(/\s/g, '_');
+
+            window.showToast(`Comment Posted! Status: ${attendanceStatus}`, "success");
+            
+            // Simulasikan penambahan komentar ke UI
+            const newComment = document.createElement('div');
+            newComment.classList.add('comment-card');
+            newComment.innerHTML = `
+                <span class="post-username">@${senderUsername}</span> ${message}
+            `;
+            // Sisipkan di area komentar
+            document.getElementById('new-comments-area').prepend(newComment);
+            
+            document.getElementById('comment-message-input').value = '';
+        }
+
+        window.copyText = function(elementId, bankName = '') {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            
+            const textToCopy = element.textContent;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                window.showToast(`Rekening ${bankName} disalin!`, "success");
+            }).catch(err => {
+                const tempInput = document.createElement('textarea');
+                tempInput.value = textToCopy;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                try {
+                    document.execCommand('copy');
+                     window.showToast(`Rekening ${bankName} disalin (fallback)!`, "success");
+                } catch (e) {
+                     window.showToast('Gagal menyalin. Silakan salin manual.', "error");
+                }
+                document.body.removeChild(tempInput);
+            });
+        }
+
+        // --- Core Application Logic ---
+
+        document.getElementById('open-invitation-btn').addEventListener('click', function() {
+            const cover = document.getElementById('cover-page');
+            const mainContent = document.getElementById('main-content');
+            const body = document.body;
+
+            cover.style.opacity = '0';
+            mainContent.style.visibility = 'visible';
+            mainContent.style.opacity = '1';
+
+            setTimeout(() => {
+                cover.style.display = 'none';
+                body.classList.remove('scroll-locked');
+            }, 1500); 
+            
+            startCountdown();
+        });
+
+        function startCountdown() {
+            const elements = ['days', 'hours', 'minutes', 'seconds'].map(id => document.getElementById(id));
+            const [daysEl, hoursEl, minutesEl, secondsEl] = elements;
+
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const distance = WEDDING_DATE - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    document.getElementById('countdown-timer').innerHTML = '<h2 style="color: var(--ig-link-blue);">ACARA SEDANG BERLANGSUNG!</h2>';
+                } else {
+                    daysEl.textContent = String(days).padStart(2, '0');
+                    hoursEl.textContent = String(hours).padStart(2, '0');
+                    minutesEl.textContent = String(minutes).padStart(2, '0');
+                    secondsEl.textContent = String(seconds).padStart(2, '0');
+                }
+            }
+
+            updateCountdown();
+            const interval = setInterval(updateCountdown, 1000);
+        }
+        
+        // Navigation Active State on Scroll (tetap dipertahankan)
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            document.querySelectorAll('.section').forEach(section => {
+                if (section.offsetTop <= scrollPosition && section.offsetTop + section.offsetHeight > scrollPosition) {
+                    const id = section.getAttribute('id');
+                    document.querySelectorAll('.nav-item').forEach(nav => {
+                        nav.classList.remove('active');
+                        if (nav.getAttribute('data-section') === id) {
+                            nav.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
