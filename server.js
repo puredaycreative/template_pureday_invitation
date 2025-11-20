@@ -8,7 +8,7 @@ const port = 3003;
 
 // CORS
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://pureday-invitation.vercel.app']
+  origin: ['http://localhost:3000', 'https://pureday-invitation.vercel.app','https://www.puredayinvitation.my.id', 'https://puredayinvitation.my.id']
 }));
 
 app.use(express.json());
