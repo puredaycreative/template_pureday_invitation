@@ -423,6 +423,7 @@ p {
 }
 
 /* --- 9. Bottom Navigation (Fixed Navbar) --- */
+/* --- 9. Bottom Navigation (Fixed Navbar) --- */
 .bottom-nav-bar {
     position: fixed;
     bottom: 0;
@@ -436,6 +437,12 @@ p {
     background-color: var(--primary-color);
     border-top: 3px solid var(--secondary-color);
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+    
+    /* [PERUBAHAN/TAMBAHAN UNTUK SAFE AREA iOS] */
+    /* Gunakan env(safe-area-inset-bottom) jika didukung */
+    padding-bottom: env(safe-area-inset-bottom, 0); 
+    /* Sesuaikan tinggi total navbar agar mencakup safe area */
+    height: calc(60px + env(safe-area-inset-bottom, 0px));
 }
 .bottom-nav-bar .nav-item {
     display: flex;
@@ -461,7 +468,7 @@ p {
 /* --- 10. Music Toggle & Toast Message --- */
 #floating-music-toggle {
     position: fixed;
-    bottom: 80px; /* Di atas navbar */
+    /* bottom: 80px; /* Nilai Awal */
     right: 20px;
     width: 45px;
     height: 45px;
@@ -478,6 +485,10 @@ p {
     font-size: 1.1rem;
     transition: all 0.3s ease;
     opacity: 0; /* Tersembunyi di awal */
+
+    /* [PERUBAHAN/TAMBAHAN UNTUK SAFE AREA iOS] */
+    /* 60px adalah tinggi navbar awal, 20px adalah margin dari atas navbar. */
+    bottom: calc(60px + 20px + env(safe-area-inset-bottom, 0px)); 
 }
 #floating-music-toggle.visible {
     opacity: 1;
