@@ -128,7 +128,7 @@
     
     .template-cover-title {
         font-family: 'Dancing Script', cursive;
-        font-size: 4rem;
+        font-size: 3rem;
         color: #FFFFFF;
         margin: 10px 0;
     }
@@ -271,26 +271,37 @@
     }
 
  
-    /* --- Section Gallery --- */
+    
+/* --- Section Gallery --- */
 .section-gallery {
-    padding: 60px 20px; /* Kurangi padding untuk membuat section lebih ringkas */
+    padding: 60px 20px;
 }
 
 .photo-slider-container {
     position: relative;
-    max-width: 450px; /* **Diubah:** Maksimum lebar container slider */
-    height: 300px; /* **Diubah:** Tinggi tetap untuk menjaga rasio kecil */
+    max-width: 450px; 
     margin: 30px auto;
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    border: 3px solid var(--color-bg-dark);
+    
+    /* TETAPKAN BORDER PADA CONTAINER INI */
+    border: 3px solid var(--color-bg-dark); 
+    
+    /* 🔴 PERUBAHAN UTAMA: RASIO 1:1 (KOTAK SEMPURNA) */
+    /* Tinggi/Lebar * 100 = 100% */
+    padding-bottom: 100%; 
+    height: 0; 
 }
 
 .photo-slider {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    height: 100%; /* Pastikan slider memenuhi tinggi container */
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 .slider-item {
     min-width: 100%; 
@@ -300,7 +311,10 @@
 .slider-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Penting: Memastikan gambar mengisi area tanpa terdistorsi */
+    /* object-fit: cover akan memastikan foto mengisi penuh kotak 1:1 */
+    object-fit: cover; 
+    border: none; 
+    border-radius: 0; 
 }
 
 .slider-nav {
@@ -310,10 +324,10 @@
     background: rgba(165, 148, 124, 0.7); 
     color: white;
     border: none;
-    padding: 8px 10px; /* Ukuran tombol sedikit dikecilkan */
+    padding: 8px 10px; 
     cursor: pointer;
     z-index: 10;
-    font-size: 1.2rem; /* Ukuran ikon dikecilkan */
+    font-size: 1.2rem; 
     opacity: 0.8;
     transition: opacity 0.3s;
 }
@@ -323,6 +337,14 @@
 .prev-btn { left: 0; border-radius: 0 5px 5px 0; }
 .next-btn { right: 0; border-radius: 5px 0 0 5px; }
 
+/* Tambahan: Penyesuaian untuk layar sangat kecil */
+@media (max-width: 380px) {
+    .photo-slider-container {
+        max-width: 100%;
+        padding-bottom: 100%; /* Rasio tetap 1:1 */
+        height: 0;
+    }
+}
 /* Tambahan: Penyesuaian untuk layar sangat kecil */
 @media (max-width: 380px) {
     .photo-slider-container {
@@ -605,7 +627,7 @@
                             style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); border: 2px solid var(--netflix-red);"
                         >
                     </div>
-                    <h1 class="couple-names font-great-vibes">{{nama_pria}} & {{nama_wanita}}</h1>
+                    <h3 class="couple-names font-great-vibes">{{nama_pria}} & {{nama_wanita}}</h3>
                 </div>
             </div>
                 </div>
@@ -697,7 +719,7 @@
                 <p class="subtitle-top">WEDDING GIFT</p>
                 <h2 class="main-title font-cursive">Kirim Hadiah</h2>
 
-                <p class="gift-text" style="font-size: 1rem; color: #ccc; margin-bottom: 30px; max-width: 600px; margin: 0 auto 30px;">
+                <p class="gift-text" style="font-size: 1rem; color: #373434; margin-bottom: 30px; max-width: 600px; margin: 0 auto 30px;">
                     Do'a restu dari Anda merupakan karunia yang sangat berarti. Jika Anda ingin memberikan hadiah, Anda dapat mengirimkannya melalui:
                 </p>
 
@@ -1035,7 +1057,7 @@ window.submitComment = async function(event) {
             
             // Simplified copy logic for modern browsers
             navigator.clipboard.writeText(textToCopy).then(() => {
-                window.showToast(`Nomor rekening ${bankName} berhasil disalin!`, "success");
+                window.showToast(`Nomor rekening ${bankName} berhasil disalin!`);
             }).catch(err => {
                 // Fallback for older browsers
                 const tempInput = document.createElement('textarea');
@@ -1044,7 +1066,7 @@ window.submitComment = async function(event) {
                 tempInput.select();
                 try {
                     document.execCommand('copy');
-                     window.showToast(`Nomor rekening ${bankName} berhasil disalin!`, "success");
+                     window.showToast(`Nomor rekening ${bankName} berhasil disalin!`);
                 } catch (e) {
                      window.showToast('Gagal menyalin. Silakan salin manual.', "error");
                 }
