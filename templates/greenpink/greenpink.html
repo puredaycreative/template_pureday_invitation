@@ -2,355 +2,572 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pureday Invitation: {{nama_pria}} & {{nama_wanita}}</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <style>
-        /* ======================================================= */
-        /* CSS CORE & UTILITIES */
-        /* ======================================================= */
-        
-        :root {
-            --netflix-red: #E50914;
-            --netflix-black: #141414;
-            --netflix-grey: #808080;
-            --font-primary: 'Montserrat', sans-serif;
-            --font-title: 'Bebas Neue', cursive;
-            --font-cursive: 'Great Vibes', cursive; /* Untuk nama pasangan */
-            --font-quote: 'Playfair Display', serif; /* Untuk detail/quote */
-            --padding-mobile: 20px;
-            --padding-desktop: 40px;
-            --transition-speed: 0.5s;
-        }
+<style>
+    /* --- Variabel Warna Kustom --- */
+:root {
+    /* Warna Utama */
+    --color-primary: #C5A3A3; /* Dusty Rose/Soft Mauve */
+    --color-secondary: #587C7C; /* Sage Green/Deep Teal (untuk kontras) */
+    --color-text-dark: #587C7C;
+    --color-text-light: #FFFFFF;
+    
+    /* Warna Latar */
+    --color-background: #F8F8F8; /* Light Off-White/Krem */
+    --color-background-dark: #587C7C; /* Darker background for contrast sections */
+    
+    /* Warna Aksen */
+    --color-accent: #E0B4B4; /* Lighter Rose for highlights */
+    --color-shadow: rgba(0, 0, 0, 0.1);
+    
+    /* Variabel Khusus Undangan */
+    --netflix-red: var(--color-primary); /* Mengubah 'netflix-red' yang ada di HTML */
+    --netflix-grey: #000000; 
+}
 
-        body {
-            background-color: var(--netflix-black);
-            color: #fff;
-            font-family: var(--font-primary);
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            min-height: 100vh;
-            scroll-behavior: smooth;
-        }
-        
-        /* Utility Classes */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 var(--padding-mobile);
-        }
-        .mr-2 { margin-right: 0.5rem; }
+/* --- Pengaturan Dasar (Reset & Font) --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        /* Scroll Lock for Cover Page */
-        .scroll-locked {
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Ganti dengan font modern yang tersedia */
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    background-color: var(--color-background);
+}
+
+/* Font Kustom */
+/* Asumsi font telah dimuat, misalnya dari Google Fonts: 
+   @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap');
+*/
+.font-great-vibes {
+    font-family: 'Great Vibes', cursive !important;
+}
+
+.font-cursive {
+    font-family: 'Great Vibes', cursive;
+}
+
+.font-quote {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}
+
+/* Container utama untuk membatasi lebar konten */
+.container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 600px;
+    }
+}
+
+   .scroll-locked {
             overflow: hidden;
             height: 100vh;
         }
-        
-        /* ======================================================= */
-        /* COVER PAGE STYLING (THE OPENER) */
-        /* ======================================================= */
-        #cover-page {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            opacity: 1;
-            transition: opacity 1.5s ease-in-out;
-        }
+/* --- Cover Page (Halaman Depan) --- */
+.template-cover-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url('https://res.cloudinary.com/dglfxzjtj/image/upload/v1763126462/invitations/zoscx87cvhpgtla7pwad.png'); /* Pastikan variabel cover berisi URL */
+    background-size: cover;
+    background-position: center;
+    /* background-color: #333; */
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: opacity 1.5s ease-out;
+}
 
-        .template-cover-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            height: 100%;
-            background: url('{{cover}}') center/cover no-repeat;
-        }
+.template-cover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Overlay lembut */
+    /* backdrop-filter: blur(2px); */
+}
 
-        .template-cover-overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-        }
-        
-        .template-cover-content-wrapper {
-            position: relative;
-            z-index: 10;
-            padding: 20px;
-        }
+.template-cover-content-wrapper {
+    position: relative;
+    z-index: 10;
+    padding: 20px;
+}
 
-        .template-cover-guest-name {
-            font-size: 1.5rem;
-            color: #fff;
-            margin: 0.5rem 0 1.5rem;
-            font-weight: bold;
-        }
-        
-        .template-cover-title {
-            font-family: var(--font-cursive);
-            font-size: 3rem;
-            color: var(--netflix-red);
-            line-height: 1;
-        }
-        
-        .cover-open-btn {
-            background-color: var(--netflix-red);
-            color: #fff;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-transform: uppercase;
-        }
-        .cover-open-btn:hover { background-color: #ff3340; }
+.template-cover-guest-name {
+    color: var(--color-accent);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+}
 
-        /* ======================================================= */
-        /* MAIN CONTENT STYLING (NETFLIX UI) */
-        /* ======================================================= */
-        #main-content {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 1.5s ease-in-out;
-        }
-        
-        .section {
-            padding: 40px 0;
-            min-height: 300px;
-        }
-        
-        .section-intro, .section-detail, .section-event, .section-gift {
-            text-align: center;
-            padding-top: 60px; /* Jarak dari atas */
-        }
+.template-cover-title {
+    color: var(--color-text-light);
+    font-size: 3.5rem;
+    font-family: 'Great Vibes', cursive;
+    margin-top: 10px;
+    line-height: 1.1;
+}
 
-        .main-title {
-            font-family: var(--font-cursive);
-            font-size: 3.5rem;
-            color: var(--netflix-red);
-            margin: 0.5rem 0 2rem;
-        }
-        .subtitle-top {
-            font-size: 0.9rem;
-            color: var(--netflix-grey);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        
-        /* --- Section Intro (Logo & Pembukaan) --- */
-        .title-wedding {
-            font-family: var(--font-title);
-            font-size: 3rem;
-            letter-spacing: 3px;
-            color: var(--netflix-red);
-            margin-bottom: 0;
-        }
-        .intro-deco img {
-            max-width: 100px;
-            height: auto;
-            margin: 20px 0;
-        }
-        .section-intro-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-direction: row;
-        }
-        
-        /* --- Section Couple & Detail Pasangan --- */
-        .couple-names {
-            font-family: var(--font-cursive);
-            font-size: 4rem;
-            color: #fff;
-            margin: 20px 0;
-            line-height: 1;
-        }
-        
-        .quote-opening, .quote-closing {
-            color: #ccc;
-            font-size: 1rem;
-            max-width: 600px;
-            margin: 20px auto;
-            line-height: 1.6;
-        }
-        
-        .couple-cards {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin: 30px 0;
-        }
+.cover-open-btn {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border: 2px solid var(--color-text-light);
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 2rem;
+}
 
-        .card {
-            max-width: 180px;
-            text-align: center;
-            opacity: 0; /* Initial state for animation */
-            transform: translateY(20px);
-            transition: opacity 0.8s, transform 0.8s;
-        }
+.cover-open-btn:hover {
+    background-color: var(--color-accent);
+    color: var(--color-text-dark);
+}
 
-        .card.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .card-image-wrapper {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid var(--netflix-red);
-            margin: 0 auto 15px;
-        }
-        .card-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .card-name {
-            font-family: var(--font-title);
-            font-size: 2rem;
-            color: var(--netflix-red);
-            margin: 0;
-        }
-        
-        /* --- Section Event & Countdown (Netflix Style) --- */
-        #countdown-timer {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0 40px;
-        }
+/* --- Main Content & Sections --- */
+#main-content {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
 
-        .time-box {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 10px 15px;
-            border-radius: 8px;
-            min-width: 60px;
-            line-height: 1;
-        }
-        .time-number {
-            font-family: var(--font-title);
-            font-size: 2.5rem;
-            color: #fff;
-            margin: 0;
-        }
-        .time-label {
-            font-size: 0.8rem;
-            color: var(--netflix-red);
-            margin: 5px 0 0;
-            font-weight: bold;
-        }
-        
-        .btn-maps-link {
-            display: inline-block;
-            background-color: var(--netflix-red);
-            color: #fff;
-            padding: 10px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: background-color 0.3s;
-        }
-        .btn-maps-link:hover { background-color: #ff3340; }
-        
-        /* --- Section Gift --- */
-        .bank-accounts-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            max-width: 400px;
-            margin: 20px auto;
-        }
-        .bank-card {
-            background-color: #222;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: left;
-        }
-        .copy-btn {
-            background-color: var(--netflix-grey);
-            color: #fff;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            float: right;
-            font-size: 0.9rem;
-        }
+.section {
+    padding: 80px 0;
+    text-align: center;
+}
 
-        /* --- Section Comments (Guestbook) --- */
-        .section-comments {
-            background-color: #1a1a1a;
-            color: #fff;
-        }
-        .detail-box {
-            background-color: #222;
-            padding: 30px;
-            border-radius: 10px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #ccc;
-        }
-        .form-control, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #333;
-            background-color: #141414;
-            color: #fff;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        textarea { resize: vertical; }
+.subtitle-top {
+    color: var(--color-primary);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 5px;
+    margin-left: 15px;
+}
 
-        .status-btn-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .template-status-btn {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid var(--netflix-grey);
-            background-color: #222;
-            color: var(--netflix-grey);
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .template-status-btn.status-active {
-            background-color: var(--netflix-red);
-            border-color: var(--netflix-red);
-            color: #fff;
-        }
-        .btn-submit {
-            width: 100%;
-            background-color: var(--netflix-red);
-            color: #fff;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .comment-card {
-            background-color: #222;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 10px;
+.main-title {
+    font-size: 2.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 40px;
+    line-height: 1.1;
+    font-weight: 500;
+}
+
+/* Section Intro */
+.section-intro {
+    padding-top: 100px;
+    background-color: var(--color-background);
+}
+
+.title-wedding {
+    font-size: 1.8rem;
+    color: var(--color-text-dark);
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+.section-intro p {
+    color: var(--color-secondary);
+}
+
+/* Section Couple */
+.section-couple {
+    padding-bottom: 40px;
+}
+
+.couple-image-container img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%; /* Membuat gambar cover bulat */
+    border: 3px solid var(--color-primary);
+    box-shadow: 0 5px 15px var(--color-shadow);
+    margin-bottom: 30px;
+}
+
+.couple-names {
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 40px;
+}
+
+/* Section Detail */
+.quote-opening, .quote-closing {
+    font-style: italic;
+    color: var(--color-text-dark);
+    margin: 30px 0;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+}
+
+.quote-closing .font-quote {
+    color: var(--color-secondary);
+}
+
+.couple-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 40px;
+    
+}
+
+@media (min-width: 768px) {
+    .couple-cards {
+        flex-direction: row;         /* sejajar */
+        justify-content: center;
+        align-items: center;
+        gap: 50px;                   /* jarak lebih longgar */
+    }
+}
+@media (min-width: 600px) {
+    .couple-cards {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+.card {
+    background: var(--color-text-light);
+    border-radius: 10px;
+    padding: 30px 20px;
+    box-shadow: 0 4px 12px var(--color-shadow);
+    text-align: center;
+    flex: 1;
+    max-width: 280px;
+    opacity: 0; /* Untuk animasi */
+    transform: translateY(20px); /* Untuk animasi */
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.card.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-image-wrapper img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-accent);
+    margin-bottom: 15px;
+}
+
+.card-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 5px;
+}
+
+.card p:last-child {
+    color: #666;
+}
+
+
+/* Section Event */
+.section-event {
+    background-color: var(--color-background-dark);
+    color: var(--color-text-light);
+    padding: 60px 0;
+}
+
+.section-event p {
+    color: #ccc;
+}
+
+.section-event .main-title {
+    color: var(--color-accent);
+}
+
+#countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0 40px;
+}
+
+.time-box {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--color-primary);
+    border-radius: 5px;
+    padding: 10px 15px;
+    width: 70px;
+    text-align: center;
+}
+
+.time-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+}
+
+.time-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    margin-top: 5px;
+    color: var(--color-text-light);
+}
+
+.couple-date {
+    color: var(--color-accent) !important;
+    font-weight: 600;
+    margin-bottom: 20px !important;
+}
+
+.event-details-box {
+    margin-top: 30px;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.event-details-box h3 {
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.btn-maps-link {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-top: 25px;
+    transition: background-color 0.3s;
+}
+
+.btn-maps-link:hover {
+    background-color: var(--color-accent);
+    color: var(--color-text-dark);
+}
+
+/* Section Gallery */
+.photo-slider-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--color-shadow);
+}
+
+.photo-slider {
+    display: flex;
+    transition: transform 0.8s ease-in-out;
+}
+
+.slider-item {
+    min-width: 100%;
+    flex-shrink: 0;
+}
+
+.slider-item img {
+    width: 100%;
+    height: 400px; /* Atur tinggi gambar */
+    object-fit: cover;
+    display: block;
+}
+
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 5;
+    transition: background 0.3s;
+}
+
+.slider-nav:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.prev-btn {
+    left: 10px;
+    border-radius: 5px;
+}
+
+.next-btn {
+    right: 10px;
+    border-radius: 5px;
+}
+
+/* Section Gift */
+.section-gift {
+    background-color: var(--color-background);
+}
+
+.bank-accounts-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 400px;
+    margin: 30px auto;
+}
+
+.bank-card {
+    background: var(--color-text-light);
+    border: 1px solid var(--color-accent);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px var(--color-shadow);
+    text-align: left;
+}
+
+.bank-card h3 {
+    color: var(--color-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.bank-card p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.copy-btn {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.copy-btn:hover {
+    background-color: var(--color-accent);
+    color: var(--color-text-dark);
+}
+
+/* Section Comments */
+.section-comments {
+    padding-bottom: 100px; /* Ruang untuk bottom nav */
+}
+
+.detail-box {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: var(--color-text-light);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px var(--color-shadow);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--color-secondary);
+}
+
+.form-control, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    resize: vertical;
+}
+
+.status-btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+.template-status-btn {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--color-primary);
+    background-color: transparent;
+    color: var(--color-primary);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.template-status-btn.status-active {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+}
+
+.btn-submit {
+    width: 100%;
+    background-color: var(--color-secondary);
+    color: var(--color-text-light);
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover:not(:disabled) {
+    background-color: #4c6a6a;
+}
+
+.btn-submit:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+/* Comments List Styling */
+ .comment-card {
+       background: var(--color-text-light);
+    border: 1px solid var(--color-accent);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px var(--color-shadow);
+    text-align: left;
         }
 
 
@@ -363,367 +580,111 @@
             text-align: left; /* Contoh posisi */
 
         }
-        /* ======================================================= */
-        /* BOTTOM NAVIGATION (Mobile Fixed Bar) */
-        /* ======================================================= */
-        .bottom-nav-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            background-color: rgba(0, 0, 0, 0.95);
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
-            z-index: 9000;
-            padding: 5px 0;
-        }
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: var(--netflix-grey);
-            font-size: 0.7rem;
-            padding: 5px;
-            transition: color 0.3s;
-        }
-        .nav-item i {
-            font-size: 1.2rem;
-            margin-bottom: 3px;
-        }
-        .nav-item.active {
-            color: var(--netflix-red);
-        }
-        
-        /* ======================================================= */
-        /* TOAST & ANIMATION STYLING */
-        /* ======================================================= */
-        #toast-message {
-            position: fixed;
-            bottom: 70px; /* Di atas nav bar */
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.3s, visibility 0.3s;
-            z-index: 9998;
-        }
-        #toast-message.show {
-            visibility: visible;
-            opacity: 1;
-        }
-        #toast-message.success { background-color: #28a745; }
-        #toast-message.error { background-color: #dc3545; }
 
 
-        /* ======================================================= */
-        /* MEDIA QUERIES (Mobile Adjustments) */
-        /* ======================================================= */
-        @media (max-width: 600px) {
-            .container {
-                padding: 0 var(--padding-mobile);
-            }
-            .template-cover-title {
-                font-size: 2.5rem;
-            }
-            .couple-names {
-                font-size: 3rem;
-            }
-            .main-title {
-                font-size: 2.5rem;
-            }
-            .couple-cards {
-                flex-direction: column;
-                gap: 20px;
-                align-items: center;
-            }
-            .time-box {
-                min-width: 50px;
-                padding: 8px 10px;
-            }
-            .time-number {
-                font-size: 2rem;
-            }
-            .intro-deco {
-                display: none; /* Sembunyikan dekorasi samping di mobile */
-            }
-            .section-intro-content {
-                justify-content: center;
-            }
 
-        }
 
-        /* ======================================================= */
-/* FLOATING MUSIC TOGGLE BUTTON (TOP RIGHT) */
-/* ======================================================= */
+/* --- Floating Elements (Nav & Music) --- */
+.bottom-nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: var(--color-background-dark);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 999;
+}
+
+.nav-item {
+    flex: 1;
+    text-align: center;
+    color: #ccc;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.7rem;
+    padding: 5px 0;
+    transition: color 0.3s;
+}
+
+.nav-item i {
+    font-size: 1.2rem;
+    margin-bottom: 3px;
+}
+
+.nav-item.active {
+    color: var(--color-primary);
+}
+
+.nav-item:hover {
+    color: var(--color-accent);
+}
+
 #floating-music-toggle {
     position: fixed;
-    top: 20px; /* Jarak dari atas */
-    right: 20px; /* Jarak dari kanan */
-    z-index: 9500; /* Pastikan di atas konten utama, di bawah cover page */
-    background-color: rgba(0, 0, 0, 0.7); /* Latar belakang semi-transparan */
-    color: var(--netflix-red);
-    border: 2px solid var(--netflix-red);
-    width: 45px;
-    height: 45px;
+    bottom: 80px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-background-dark);
     border-radius: 50%;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     cursor: pointer;
-    font-size: 1.2rem;
-    transition: background-color 0.3s, transform 0.3s;
-    opacity: 0; /* Sembunyikan dulu */
-    visibility: hidden; /* Sembunyikan dulu */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 998;
+    color: var(--netflix-grey); /* Default (mute) */
+    border: 2px solid var(--netflix-grey);
+    transition: all 0.3s;
+    visibility: hidden; /* Sembunyikan saat cover aktif */
+    opacity: 0;
 }
 
 #floating-music-toggle.visible {
-    opacity: 1;
     visibility: visible;
-    transform: rotate(0deg);
+    opacity: 1;
 }
 
-#floating-music-toggle:hover {
-    background-color: var(--netflix-red);
-    color: #fff;
-    transform: scale(1.1);
+#floating-music-toggle i {
+    font-size: 1rem;
 }
 
-/* Sembunyikan tombol musik saat cover masih aktif (opsional) */
-.scroll-locked #floating-music-toggle {
-    display: none;
-}
-
-
-/* --- Styling Umum untuk Bagian Galeri --- */
-.section-gallery {
-    /* Padding sudah diatur inline, tapi ini untuk memastikan */
-    /* padding: 60px 0; */ 
-
-    color: #333; /* Warna teks utama */
-}
-
-.section-gallery .container {
-    max-width: 1140px; /* Batasi lebar konten agar tidak terlalu lebar di layar besar */
-    margin: 0 auto;
-    padding: 0 15px; /* Sedikit padding horizontal */
-}
-
-/* --- Styling Judul dan Subjudul --- */
-.subtitle-top {
-    font-size: 14px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #a0a0a0; /* Warna lembut untuk subjudul */
-    margin-bottom: 5px;
-}
-
-.main-title.font-cursive {
-    font-family: 'Great Vibes', cursive; /* Contoh font kursif, pastikan font ini dimuat */
-    font-size: 48px;
-    color: #4a4a4a; /* Warna judul yang lebih menonjol */
-    margin-top: 0;
-    margin-bottom: 20px;
-}
-
-.section-gallery p {
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-/* --- Styling untuk Keterangan Trailer --- */
-.section-gallery p[style*="#ccc"] {
-    font-style: italic;
-    color: #999 !important; /* Timpa inline style agar lebih mudah dibaca jika perlu */
-    margin-bottom: 30px;
-    font-size: 15px;
-}
-
-/* --- Styling untuk Wadah Galeri/Video --- */
-.section-gallery > .container > div[style*="background-color: #000"] {
-    background-color: #111 !important; /* Sedikit lebih lembut dari #000 */
-    padding: 30px; /* Tambahkan padding agar konten di dalamnya tidak terlalu mepet */
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Bayangan lembut */
-}
-
-/* --- Styling untuk Konten Galeri/Video ({{galeri}} replacement) --- */
-
-/* Jika {{galeri}} diisi dengan Video Player (misal: Iframe YouTube) */
-.video-responsive-container {
-    position: relative;
-    padding-bottom: 56.25%; /* Rasio 16:9 */
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-    background-color: #000;
-}
-.video-responsive-container iframe,
-.video-responsive-container object,
-.video-responsive-container embed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-/* Jika {{galeri}} diisi dengan Grid Foto */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 kolom di layar desktop */
-    gap: 15px; /* Jarak antar foto */
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 250px; /* Tinggi tetap untuk estetika */
-    object-fit: cover; /* Pastikan gambar mengisi area tanpa terdistorsi */
-    display: block;
-    border-radius: 8px;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    cursor: pointer;
-}
-
-.gallery-item img:hover {
-    transform: scale(1.05); /* Efek zoom saat hover */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-}
-
-
-/* --- Media Queries untuk Responsivitas --- */
-@media (max-width: 768px) {
-    .main-title.font-cursive {
-        font-size: 38px;
-    }
-    
-    /* Ubah grid foto menjadi 2 kolom di tablet */
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 576px) {
-    /* Ubah grid foto menjadi 1 kolom di ponsel */
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .gallery-item img {
-        height: auto; /* Biarkan tinggi menyesuaikan di ponsel */
-    }
-
-    .section-gallery > .container > div[style*="background-color: #000"] {
-        padding: 20px;
-        border-radius: 10px;
-    }
-}
-/* --- Styling Khusus untuk Wadah Slider --- */
-/* CONTAINER SLIDER (VIEWPORT) */
-.photo-slider-container {
-    width: 100%;
-    /* Atur max-width ini sesuai ukuran maksimal galeri yang Anda inginkan (misalnya, 600px) */
-    max-width: 600px; 
-    margin: 0 auto;
-    overflow: hidden; 
-    position: relative; 
-    
-    /* 💡 TIPS PENTING: Untuk menjaga rasio, Anda bisa menggunakan padding-bottom 
-       untuk memastikan container memiliki tinggi yang proporsional
-       Contoh (untuk rasio 16:9): height: 0; padding-bottom: 56.25%; */
-}
-
-/* SLIDER UTAMA (yang digeser) */
-.photo-slider {
-    display: flex; 
-    width: 100%; 
-    transition: transform 0.5s ease-in-out; 
-}
-
-/* SLIDE INDIVIDUAL */
-.slider-item {
-    flex-shrink: 0; 
-    width: 100%; 
-    /* Pastikan slider-item tidak memiliki tinggi tetap yang memotong gambar */
-    height: auto; 
-}
-
-/* 🎯 FOKUS UTAMA: Mengatur Gambar di Dalam Slide */
-.slider-item img {
-    width: 100%; /* Gambar akan memenuhi lebar slider-item */
-    height: auto; /* **PENTING:** Tinggi menyesuaikan otomatis agar rasio aspek terjaga */
-    display: block;
-    object-fit: contain; /* **PENTING:** Memastikan gambar TIDAK terpotong/terdistorsi */
-    max-height: 400px; /* Opsional: Batasi tinggi maksimal agar tidak terlalu besar */
-    margin: 0 auto;
-}
-
-/* Style Tambahan untuk Tombol Navigasi */
-.slider-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
+/* Toast Message */
+#toast-message {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-text-dark);
     color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    z-index: 10;
-    border-radius: 50%; /* Membuat tombol bulat */
-}
-
-.prev-btn {
-    left: 10px;
-}
-
-.next-btn {
-    right: 10px;
-}
-
-/* --- Styling Tombol Navigasi --- */
-
-.slider-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    z-index: 10; /* Pastikan tombol di atas foto */
-    font-size: 24px;
-    line-height: 1;
+    padding: 10px 20px;
     border-radius: 5px;
-    transition: background 0.3s;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.5s;
 }
 
-.slider-nav:hover {
-    background: rgba(0, 0, 0, 0.8);
+#toast-message.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-20px);
 }
 
-.prev-btn {
-    left: 10px;
+#toast-message.error {
+    background-color: #d9534f; /* Merah */
 }
 
-.next-btn {
-    right: 10px;
+#toast-message.success {
+    background-color: var(--color-secondary); /* Hijau Sage */
 }
 
-/* Responsivitas: Sembunyikan tombol kecil di layar sangat kecil */
-@media (max-width: 576px) {
-    .slider-nav {
-        padding: 5px 10px;
-        font-size: 18px;
-    }
-}
-    </style>
+
+</style>
 </head>
 <body class="scroll-locked">
 
@@ -748,8 +709,13 @@
             <div class="container section-intro-content">
                 <div class="intro-main" style="text-align: center;">
                     <h1 class="title-wedding">Undangan Pernikahan</h1>
-                    <p style="color: #ccc; margin-top: 0px;">Dengan memohon rahmat dan ridho Allah SWT</p>
-                    <div class="container" style="text-align: center;">
+                    <p style="color: #1b1b1b; margin-top: 10px;">Dengan memohon rahmat dan ridho Allah SWT</p>
+                </div>
+                </div>
+        </section>
+
+        <section class="section section-couple" style="padding-top: 0;">
+            <div class="container" style="text-align: center;">
                 <div class="couple-details" style="max-width: 500px; margin: 0 auto;">
                     <div class="couple-image-container">
                         <img 
@@ -761,11 +727,7 @@
                     <h1 class="couple-names font-great-vibes">{{nama_pria}} & {{nama_wanita}}</h1>
                 </div>
             </div>
-                </div>
-                </div>
         </section>
-
-
 
         <section class="section section-detail" style="padding-top: 0;">
             <div class="container detail-box">
@@ -819,7 +781,7 @@
                     
                 </p>
                 
-                <a href="{{maps_url}}" target="{{maps_url}}" class="btn-maps-link">
+                <a href="{{maps_url}}" target="_blank" class="btn-maps-link">
                     <i class="fas fa-route"></i> BUKA DI GOOGLE MAPS
                 </a>
             </div>
@@ -1107,7 +1069,7 @@ window.submitComment = async function(event) {
     event.preventDefault();
 
     // Pastikan API_BASE_URL sudah didefinisikan secara global atau diakses di sini
-    const API_BASE_URL = 'http://localhost:8000/api'; // Ulangi definisi di sini jika tidak global
+    const API_BASE_URL = 'https://pureday-invitation.vercel.app/api'; // Ulangi definisi di sini jika tidak global
 
     // ... (kode untuk mendapatkan input name, message, isAttending, invitationId)
     const nameInput = document.getElementById('comment-name-input');
@@ -1158,7 +1120,7 @@ window.submitComment = async function(event) {
             throw new Error(errorData.message || `API call failed with status ${response.status}`);
         }
 
-        // window.showToast("Ucapan Anda berhasil terkirim! Terima kasih.", "success");
+        window.showToast("Ucapan Anda berhasil terkirim! Terima kasih.", "success");
         
         // Reset form
         nameInput.value = '';
@@ -1413,4 +1375,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </script>
 </body>
+</html>
 </html>

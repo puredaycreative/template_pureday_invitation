@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pureday Invitation: {{nama_pria}} & {{nama_wanita}}</title>
     <!-- Google Fonts for Japanese Theme -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Great+Vibes&display=swap" rel="stylesheet">
@@ -164,6 +164,7 @@
             color: var(--jp-taupe-grey);
             letter-spacing: 2px;
             text-transform: uppercase;
+            margin-left: 15px;
         }
         
         /* --- Section Intro (Logo & Pembukaan) --- */
@@ -254,8 +255,8 @@
         #countdown-timer {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin: 20px 0 40px;
+            gap: 1px;
+            margin: 10px 0 40px;
         }
 
         .time-box {
@@ -974,7 +975,7 @@
     </div>
     
     <audio id="background-music" loop> 
-    <source src="../music/{{music}}" type="audio/mpeg"> 
+    <source src="{{music}}" type="audio/mpeg"> 
 </audio>
 
 <div id="floating-music-toggle" onclick="toggleMusic()">
@@ -996,6 +997,7 @@ document.getElementById('guest-name-display').textContent = GUEST_NAME;
 document.getElementById('comment-name-input').value = GUEST_NAME;
 
 // --- Music Toggle Logic ---
+
 
 const music = document.getElementById('background-music');
 const floatingMusicToggle = document.getElementById('floating-music-toggle');
@@ -1107,6 +1109,42 @@ document.getElementById('open-invitation-btn').addEventListener('click', functio
 });
 
 
+
+document.getElementById('open-invitation-btn').addEventListener('click', function() {
+    const cover = document.getElementById('cover-page');
+    const mainContent = document.getElementById('main-content');
+    const body = document.body;
+
+    cover.style.opacity = '0';
+    mainContent.style.visibility = 'visible';
+    mainContent.style.opacity = '1';
+    floatingMusicToggle.classList.add('visible'); // Tampilkan tombol mengambang
+
+    setTimeout(() => {
+        cover.style.display = 'none';
+        body.classList.remove('scroll-locked');
+        initIntersectionObserver();
+    }, 1500); 
+    
+    // Logic untuk memutar musik saat undangan dibuka:
+    const wasPlaying = localStorage.getItem('isMusicPlaying') !== 'false';
+    if (wasPlaying) {
+         // Panggil play secara langsung untuk memulai musik, update icon akan mengikuti
+        music.play().then(() => {
+            updateMusicIcon(true);
+        }).catch(e => {
+            // Jika gagal (autoplay block), tetap tampilkan ikon mute
+            updateMusicIcon(false);
+            console.log("Autoplay blocked, user must click the floating button.");
+        });
+    } else {
+        updateMusicIcon(false); // Pastikan ikon tetap mute jika sebelumnya dimatikan
+    }
+
+    startCountdown();
+});
+
+
 document.addEventListener('DOMContentLoaded', () => {
     // Pastikan status icon disetel berdasarkan Local Storage
     updateMusicIcon(localStorage.getItem('isMusicPlaying') === 'true');
@@ -1138,7 +1176,7 @@ window.submitComment = async function(event) {
     event.preventDefault();
 
     // Pastikan API_BASE_URL sudah didefinisikan secara global atau diakses di sini
-    const API_BASE_URL = 'http://localhost:8000/api'; // Ulangi definisi di sini jika tidak global
+    const API_BASE_URL = 'https://pureday-invitation.vercel.app/api'; // Ulangi definisi di sini jika tidak global
 
     // ... (kode untuk mendapatkan input name, message, isAttending, invitationId)
     const nameInput = document.getElementById('comment-name-input');
@@ -1189,7 +1227,7 @@ window.submitComment = async function(event) {
             throw new Error(errorData.message || `API call failed with status ${response.status}`);
         }
 
-        // window.showToast("Ucapan Anda berhasil terkirim! Terima kasih.", "success");
+        window.showToast("Ucapan Anda berhasil terkirim! Terima kasih.", "success");
         
         // Reset form
         nameInput.value = '';

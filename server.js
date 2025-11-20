@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import cors from 'cors';
 
 const app = express();
+const port = 3003;
 
 // CORS
 app.use(cors({
@@ -32,7 +33,7 @@ app.get('/:name', (req, res) => {
   const { name } = req.params;
 
   res.sendFile(
-    path.join(__dirname, 'templates', `${name}.html`),
+    path.join(__dirname, 'templates',`${name}`, `${name}.html`),
     (err) => {
       if (err) {
         res.status(404).send('File tidak ditemukan!');
@@ -41,5 +42,6 @@ app.get('/:name', (req, res) => {
   );
 });
 
-// **Vercel hanya perlu export app, tidak listen port**
-export default app;
+app.listen(port, () => {
+  console.log(`Server berjalan di http://localhost:${port}`);
+});

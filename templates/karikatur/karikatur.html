@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pureday Invitation: {{nama_pria}} & {{nama_wanita}}</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -99,6 +99,7 @@ h1, h2, h3, .main-title, .title-wedding {
     font-size: 0.8rem;
     display: block;
     margin-bottom: 5px;
+    margin-left: 15px;
 }
 p {
     color: var(--text-light);
@@ -939,14 +940,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 3000); 
         }
 
-        /** Handles the fake submission for demonstration. */
+    
 window.submitComment = async function(event) {
     event.preventDefault();
 
-    // Pastikan API_BASE_URL sudah didefinisikan secara global atau diakses di sini
-    const API_BASE_URL = 'http://localhost:8000/api'; // Ulangi definisi di sini jika tidak global
+    
+    const API_BASE_URL = 'https://pureday-invitation.vercel.app/api';
 
-    // ... (kode untuk mendapatkan input name, message, isAttending, invitationId)
     const nameInput = document.getElementById('comment-name-input');
     const messageInput = document.getElementById('comment-message-input');
     const attendingYes = document.getElementById('status-yes');
@@ -995,7 +995,7 @@ window.submitComment = async function(event) {
             throw new Error(errorData.message || `API call failed with status ${response.status}`);
         }
 
-        // window.showToast("Ucapan Anda berhasil terkirim! Terima kasih.", "success");
+        window.showToast("Ucapan Anda berhasil terkirim! Terima kasih.", "success");
         
         // Reset form
         nameInput.value = '';

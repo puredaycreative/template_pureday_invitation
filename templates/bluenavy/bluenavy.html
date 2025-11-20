@@ -2,828 +2,791 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pureday Invitation: {{nama_pria}} & {{nama_wanita}}</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-<style>
-    /* ==================================== */
-/* 🌸 TEMA: ADAT JAWA KLASIK & ELEGAN  */
-/* ==================================== */
 
-/* --- 0. Variabel Warna dan Font --- */
-:root {
-    /* Warna Dasar Terinspirasi Batik & Emas */
-    --primary-color: #D8B993;      /* Cokelat Tanah/Soga (Batik Cokelat Tua) */
-    --secondary-color: #6D5B4D;    /* Emas (Gold) untuk Aksen Mewah */
-    --background-color: #F8F4E3;   /* Krem Pucat/Broken White (Latar Bersih) */
-    --text-dark: #3A2E2A;          /* Cokelat Tua Kehitaman */
-    --text-light: #6D5B4D;          /* Cokelat Sedang untuk teks */
+       
+    <style>
+        /* ======================================================= */
+        /* CSS CORE & UTILITIES (TEMA BIRU BARU) */
+        /* ======================================================= */
+        
+        :root {
+            /* --- BLUE THEME PALETTE --- */
+            --primary-blue: #3E82F7; /* Bright Blue - Main Accent */
+            --background-dark: #0A1629; /* Deep Ocean Navy - Primary Background */
+            --background-card: #142B4D; /* Midnight Blue - Card/Box Background */
+            --text-muted: #9BB8D4; /* Soft Blue/Grey - Secondary Text */
+            --text-light: #E0E7F1; /* Light Text */
+            
+            /* --- NEW FONTS --- */
+            --font-primary: 'Poppins', sans-serif; /* Teks utama */
+            --font-title: 'Oswald', sans-serif; /* Judul besar, angka */
+            --font-cursive: 'Dancing Script', cursive; /* Nama pasangan */
+            --font-quote: 'Lora', serif; /* Detail/quote */
 
-    /* Warna Elemen Khusus */
-    --card-background: #FFFFFF;    /* Putih Bersih */
-    --accent-green: #D8B993;       /* Hijau Lumut/Army (Aksen Alam) */
-    --ornament-color: #B8860B;     /* Goldenrod untuk ornamen */
+            --padding-mobile: 20px;
+            --padding-desktop: 40px;
+            --transition-speed: 0.5s;
+        }
 
-    /* Font Pilihan (Asumsi sudah diimpor) */
-    --font-heading: 'Playfair Display', serif; /* Elegan, klasik */
-    --font-body: 'Lora', serif;             /* Serif klasik, mudah dibaca */
-    --font-cursive: 'Dancing Script', cursive; /* Tulis tangan anggun */
+        body {
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            font-family: var(--font-primary);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+        
+        /* Utility Classes */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 var(--padding-mobile);
+        }
+        .mr-2 { margin-right: 0.5rem; }
 
-    /* Spasi Konsisten */
-    --section-padding: 80px 20px;
-}
+        /* Scroll Lock for Cover Page */
+        .scroll-locked {
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        /* ======================================================= */
+        /* COVER PAGE STYLING (THE OPENER) */
+        /* ======================================================= */
+        #cover-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 1.5s ease-in-out;
+        }
 
-/* --- 1. Global Reset dan Tata Letak Dasar --- */
-* {
-    box-sizing: border-box;
-}
-body {
-    font-family: var(--font-body);
-    color: var(--text-dark);
-    background-color: var(--background-color);
-    margin: 0;
-    padding: 0;
-    line-height: 1.7; /* Baris lebih lega untuk kesan elegan */
-    overflow-x: hidden;
-}
-a {
-    text-decoration: none;
-    color: var(--primary-color);
-    transition: color 0.3s ease;
-}
-a:hover {
-    color: var(--secondary-color);
-}
-.container {
-    max-width: 960px; /* Lebar container lebih besar untuk kesan grand */
-    margin: 0 auto;
-    padding: 0 15px;
-}
-.section {
-    padding: var(--section-padding);
-    text-align: center;
-    position: relative; /* Untuk ornamen jika ada */
-}
-.detail-box {
-    max-width: 760px;
-    margin: 0 auto;
-    background-color: var(--card-background);
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Bayangan lembut */
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
+        .template-cover-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+            /* Menggunakan placeholder gambar untuk tampilan */
+            background: url('{{cover}}') center/cover no-repeat;
+        }
 
-/* --- 2. Tipografi dan Heading --- */
-h1, h2, h3, .main-title, .title-wedding {
-    font-family: var(--font-heading);
-    color: var(--primary-color);
-    text-transform: none; /* Biarkan casing alami font Playfair */
-    letter-spacing: 1px;
-    margin-top: 0.8em;
-    margin-bottom: 0.6em;
-    font-weight: 700;
-}
-.font-cursive { /* Untuk sub-judul atau penekanan */
-    font-family: var(--font-cursive);
-    text-transform: none;
-    font-size: 2.8rem; /* Ukuran anggun */
-    color: var(--secondary-color);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Bayangan lembut */
-    line-height: 1.2;
-}
-.font-great-vibes { /* Untuk nama pasangan di cover dan intro */
-    font-family: 'Great Vibes', cursive; /* Font yang sudah Anda gunakan */
-    font-size: 4rem; /* Sangat menonjol */
-    color: var(--secondary-color);
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
-    margin: 10px 0;
-}
-.subtitle-top {
-    color: var(--accent-green);
-    font-family: var(--font-body);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-size: 0.9rem;
-    display: block;
-    margin-bottom: 10px;
-}
-p {
-    color: var(--text-light);
-    margin-bottom: 1em;
-}
-/* --- 3. Cover Page (REVISI: FOTO LATAR & TOMBOL FOKUS) --- */
-#cover-page {
-    /* 1. MENGGUNAKAN FOTO LATAR BELAKANG */
-    /* Ganti URL di bawah ini dengan link foto pasangan Anda! */
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                url('https://res.cloudinary.com/dglfxzjtj/image/upload/v1763016405/invitations/jspoqrtfpg52daljscf3.png') center/cover no-repeat fixed;
-    
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-    transition: opacity 1.5s ease-out;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
+        .template-cover-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .template-cover-content-wrapper {
+             margin-left: 30px;
+            margin-right: 30px;
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+            border: 1px solid var(--primary-blue); /* Frame accent */
+            padding: 40px 30px;
+            border-radius: 10px;
+            background: rgba(10, 22, 41, 0.85); /* Semi-transparent dark background */
+        }
 
-.template-cover-content-wrapper {
-    text-align: center;
-    color: var(--card-background); 
-    z-index: 1003;
-    padding: 30px 20px; 
-    max-width: 90%; /* Lebih fleksibel */
-    position: relative; 
-    
-    /* HILANGKAN SEMUA BINGKAI DAN SHADOW ORNAMEN LAMA */
-    box-shadow: none; 
-    background-color: transparent; /* Pastikan tidak ada latar belakang */
-    border-radius: 0; 
-}
+        .template-cover-guest-name {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin: 0.5rem 0 1.5rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .template-cover-title {
+            font-family: var(--font-cursive);
+            font-size: 3.5rem;
+            color: var(--primary-blue);
+            line-height: 1;
+            font-weight: 300;
+        }
+        
+        .cover-open-btn {
+            background-color: var(--primary-blue);
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px; /* Lebih kotak */
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        .cover-open-btn:hover { 
+            background-color: #5d97ff;
+            transform: translateY(-2px); 
+        }
 
-/* HILANGKAN ORNAMEN PSEUDO-ELEMENT PADA COVER */
-.template-cover-content-wrapper::before,
-.template-cover-content-wrapper::after {
-    content: none;
-}
+        /* ======================================================= */
+        /* MAIN CONTENT STYLING */
+        /* ======================================================= */
+        #main-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1.5s ease-in-out;
+        }
+        
+        .section {
+            padding: 60px 0;
+            min-height: 300px;
+        }
+        
+        .section-intro, .section-detail, .section-event, .section-gift {
+            text-align: center;
+            padding-top: 60px;
+        }
 
-/* Penyesuaian Tipografi di Cover agar Kontras di atas Foto Gelap */
-.template-cover-title {
-    color: var(--card-background); /* Putih */
-    font-size: 3.5rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-}
+        .main-title {
+            font-family: var(--font-cursive);
+            font-size: 1rem;
+            color: var(--primary-blue);
+            margin: 0.5rem 0 2rem;
+            font-weight: 400;
+        }
+        .subtitle-top {
+            font-family: var(--font-title);
+            font-size: 1rem;
+            color: var(--text-muted);
+            letter-spacing: 4px; /* Lebih menonjol */
+            text-transform: uppercase;
+            margin-left: 0;
+            margin-bottom: 5px;
+        }
+        
+        /* --- Section Intro (Logo & Pembukaan) --- */
+        .title-wedding {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            letter-spacing: 5px;
+            color: var(--text-light);
+            margin-bottom: 0;
+            text-transform: uppercase;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+        .intro-deco img {
+            max-width: 80px;
+            height: auto;
+            margin: 10px 0;
+            filter: hue-rotate(180deg) brightness(1.5); /* Ubah warna merah ke biru */
+        }
+        .section-intro-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+        }
+        
+        /* --- Section Couple & Detail Pasangan --- */
+        .couple-names {
+            font-family: var(--font-cursive);
+            font-size: 5rem; /* Lebih besar */
+            color: var(--primary-blue);
+            margin: 20px 0;
+            line-height: 1;
+            font-weight: 700;
+        }
+        
+        .quote-opening, .quote-closing {
+            font-family: var(--font-quote);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 30px auto;
+            line-height: 1.8;
+            border-left: 4px solid var(--primary-blue);
+            padding-left: 15px;
+            text-align: left;
+        }
+        
+        .couple-cards {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin: 50px 0;
+        }
 
-.font-great-vibes {
-    color: var(--secondary-color); /* Emas */
-    font-size: 4.5rem; /* Lebih besar dari sebelumnya agar menonjol */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-}
+        .card {
+            max-width: 200px; /* Lebih lebar */
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s, transform 1s;
+        }
 
-#cover-page p {
-    color: rgba(255, 255, 255, 0.9); /* Putih sedikit transparan */
-}
+        .card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .card-image-wrapper {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--primary-blue); /* Border tebal */
+            box-shadow: 0 0 0 5px var(--background-card);
+            margin: 0 auto 15px;
+            transition: transform 0.3s;
+        }
+        .card:hover .card-image-wrapper {
+            transform: scale(1.05);
+        }
+        .card-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card-name {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            color: var(--text-light);
+            margin: 5px 0 0;
+            line-height: 1;
+        }
+        .card-detail {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        /* --- Section Event & Countdown (Blue Style) --- */
+        #countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 25px; /* Jarak lebih luas */
+            margin: 40px 0 50px;
+            flex-wrap: wrap;
+        }
 
-/* ➡️ STYLING TOMBOL BUKA UNDANGAN (Fokus Utama) */
-.cover-open-btn {
-    background-color: var(--secondary-color); /* Emas */
-    color: var(--text-dark); /* Cokelat tua */
-    border: 2px solid var(--card-background); /* Garis Putih tipis */
-    padding: 15px 35px; /* Lebih besar */
-    border-radius: 5px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    
-    /* Efek 3D/Shadow yang Elegan */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), 
-                inset 0 0 0 2px rgba(255, 255, 255, 0.3); /* Inset highlight */
-    
-    transition: all 0.3s ease;
-    cursor: pointer;
-    margin-top: 2.5rem;
-}
+        .time-box {
+            background-color: var(--background-card);
+            padding: 15px 20px;
+            border-radius: 12px;
+            min-width: 80px;
+            line-height: 1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border-bottom: 3px solid var(--primary-blue);
+        }
+        .time-number {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            color: #fff;
+            margin: 0;
+        }
+        .time-label {
+            font-size: 0.9rem;
+            color: var(--primary-blue);
+            margin: 5px 0 0;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .event-box {
+            background-color: var(--background-card);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 30px auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            text-align: left;
+        }
+        
+        .btn-maps-link {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.2s;
+            text-transform: uppercase;
+        }
+        .btn-maps-link:hover { 
+            background-color: #5d97ff; 
+            transform: translateY(-2px);
+        }
+        
+        /* --- Section Gift --- */
+        .bank-accounts-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 450px;
+            margin: 30px auto;
+        }
+        .bank-card {
+            background-color: var(--background-card);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: left;
+            border-left: 5px solid var(--primary-blue);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .bank-card h4 {
+            font-family: var(--font-title);
+            margin-top: 0;
+            color: var(--primary-blue);
+            letter-spacing: 2px;
+        }
+        .bank-card p {
+            margin: 5px 0;
+            color: var(--text-light);
+        }
+        .copy-btn {
+            background-color: var(--text-muted);
+            color: var(--background-dark);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        .copy-btn:hover {
+            background-color: #B2C9E4;
+        }
 
-.cover-open-btn:hover {
-    background-color: var(--ornament-color); /* Emas sedikit gelap */
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-}
-.cover-open-btn:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
+        /* --- Section Comments (Guestbook) --- */
+        .section-comments {
+            background-color: var(--background-card);
+            padding: 60px 0;
+        }
+        .detail-box {
+            background-color: var(--background-dark);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .form-control, textarea {
+            font-family: var(--font-primary);
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--background-card);
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        .form-control:focus, textarea:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+        }
+        textarea { resize: vertical; }
 
-/* --- 11. Media Queries (Mobile Responsiveness) --- */
-@media (max-width: 480px) {
-    /* ... (CSS di bagian ini tetap sama) ... */
-    
-    .font-great-vibes {
-        font-size: 3.5rem; /* Lebih kecil di mobile */
-    }
-    .cover-open-btn {
-        padding: 12px 25px;
-        font-size: 0.9rem;
-    }
-}
-
-
-/* --- 4. Couple Section (Detail Pasangan) --- */
-.section-intro {
-    padding-bottom: 0;
-}
-.section-intro-content {
-    padding-top: 40px;
-}
-.couple-image-container {
-    max-width: 350px; /* Ukuran gambar pasangan lebih besar */
-    margin: 0 auto 30px;
-}
-.couple-image-container img {
-    width: 100%;
-    height: auto;
-    border: 5px solid var(--secondary-color) !important; /* Border emas */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important; /* Bayangan lebih dalam */
-    border-radius: 50% !important; /* Bentuk bulat untuk foto pasangan */
-    object-fit: cover;
-    aspect-ratio: 1 / 1; /* Pastikan gambar bulat sempurna */
-}
-
-/* Card Detail Pasangan */
-.couple-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px; /* Jarak lebih luas */
-    margin-top: 50px;
-}
-.card {
-    flex: 1 1 320px;
-    max-width: 48%; /* 2 kartu per baris di desktop */
-    background: var(--card-background);
-    padding: 30px 20px;
-    border-radius: 10px;
-    border: 1px solid var(--secondary-color); /* Border tipis emas */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-.card.animated {
-    opacity: 1;
-    transform: translateY(0);
-}
-.card-image-wrapper {
-    width: 120px; /* Foto individu lebih besar */
-    height: 120px;
-    margin: 0 auto 20px;
-    overflow: hidden;
-    border-radius: 50%;
-    border: 3px solid var(--primary-color);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-.card-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.card-name {
-    font-family: var(--font-heading);
-    color: var(--primary-color);
-    font-size: 1.8rem;
-    margin: 10px 0 5px;
-}
-.card p {
-    font-size: 0.95rem;
-    color: var(--text-light);
-}
-
-/* Quote Al-Qur'an */
-.quote-opening, .quote-closing {
-    font-family: var(--font-body);
-    font-style: italic;
-    font-size: 1.15rem;
-    color: var(--text-dark);
-    line-height: 1.8;
-}
-.quote-closing .font-quote {
-    color: var(--primary-color) !important;
-    font-weight: 700;
-    font-style: normal; /* Kembali ke normal untuk nama surat */
-    display: block;
-    margin-top: 20px;
-}
-
-/* --- 5. Event Section --- */
-#event-section-id .detail-box {
-    background: linear-gradient(145deg, var(--background-color), #FFFBF0); /* Gradient lembut */
-    border: 1px solid var(--secondary-color);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-}
-#countdown-timer {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Jarak antar box lebih lebar */
-    margin: 40px auto;
-    max-width: 500px;
-    padding: 20px;
-    border-radius: 10px;
-    background: var(--primary-color); /* Latar belakang cokelat tua */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    border: 2px solid var(--secondary-color);
-}
-.time-box {
-    background-color: var(--accent-green); /* Warna hijau lumut */
-    color: var(--card-background);
-    padding: 15px 10px;
-    border-radius: 8px;
-    flex: 1;
-    min-width: 60px;
-    border: 1px solid var(--secondary-color);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-.time-number {
-    font-family: var(--font-heading);
-    font-size: 2.5rem;
-    line-height: 1;
-    margin: 0;
-    font-weight: 700;
-}
-.time-label {
-    font-size: 0.8rem;
-    margin: 5px 0 0;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-.couple-date { /* Untuk tanggal acara baca */
-    font-size: 1.8rem !important;
-    font-family: var(--font-cursive) !important;
-    color: var(--primary-color) !important;
-    margin-top: 30px;
-    margin-bottom: 20px;
-}
-.event-location-address {
-    font-size: 1.05rem;
-    color: var(--text-dark);
-    margin-bottom: 15px;
-}
-.btn-maps-link {
-    display: inline-block;
-    background-color: var(--secondary-color);
-    color: var(--text-dark);
-    padding: 12px 25px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 25px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-}
-.btn-maps-link:hover {
-    background-color: var(--ornament-color);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
-}
-
-/* --- 6. Gallery Section --- */
-.photo-slider-container {
-    position: relative;
-    max-width: 700px; /* Ukuran galeri lebih besar */
-    margin: 0 auto;
-    height: 450px;
-    overflow: hidden;
-    border: 3px solid var(--primary-color); /* Border cokelat */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
-}
-.photo-slider {
-    display: flex;
-    height: 100%;
-    transition: transform 0.5s ease-in-out;
-}
-.slider-item {
-    min-width: 100%;
-    height: 100%;
-    flex-shrink: 0;
-    overflow: hidden;
-}
-.slider-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.slider-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    cursor: pointer;
-    border-radius: 50%;
-    background: rgba(var(--primary-color-rgb), 0.7); /* Transparan */
-    color: white;
-    padding: 12px;
-    border: none;
-    font-size: 1.6rem;
-    transition: background-color 0.3s ease;
-}
-.slider-nav:hover {
-    background: var(--secondary-color);
-}
-.prev-btn { left: 15px; }
-.next-btn { right: 15px; }
-
-
-/* --- 7. Gift Section (Kado) --- */
-.gift-text {
-    font-family: var(--font-body);
-    font-size: 1.1rem !important;
-    color: var(--text-light);
-    margin-bottom: 30px !important;
-    line-height: 1.8;
-}
-.bank-accounts-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
-}
-.bank-card {
-    background: var(--card-background);
-    padding: 25px;
-    border-radius: 10px;
-    /* Bingkai elegan: Cokelat tua dan Emas */
-    border: 1px solid var(--primary-color); 
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.bank-name {
-    font-family: var(--font-heading);
-    font-size: 1.6rem; /* Lebih besar untuk nama bank */
-    color: var(--secondary-color); /* Emas */
-    margin-bottom: 5px;
-}
-.bank-account-holder {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-.bank-number {
-    font-family: 'Playfair Display', serif; /* Font klasik yang kuat */
-    font-size: 1.4rem;
-    color: var(--text-dark);
-    margin: 10px 0 20px;
-    word-break: break-all;
-    font-weight: 700;
-}
-.copy-btn {
-    /* Gaya Tombol Salin: Menonjolkan Warna Emas/Aksen */
-    background-color: var(--accent-green); /* Hijau Lumut untuk aksi */
-    color: var(--card-background); /* Teks Putih */
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    margin-top: 15px;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-    transition: all 0.2s ease;
-}
-.btn-copy:hover {
-    background-color: var(--secondary-color); /* Emas saat disentuh */
-    color: var(--primary-color);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-.btn-copy:active {
-    transform: translateY(1px);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
+        .status-btn-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .template-status-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid var(--text-muted);
+            background-color: var(--background-dark);
+            color: var(--text-muted);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .template-status-btn:hover {
+             border-color: var(--primary-blue);
+             color: var(--primary-blue);
+        }
+        .template-status-btn.status-active {
+            background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: #fff;
+            box-shadow: 0 2px 5px rgba(62, 130, 247, 0.5);
+        }
+        .btn-submit {
+            width: 100%;
+            background-color: var(--primary-blue);
+            color: #fff;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+        }
+        .btn-submit:hover {
+            background-color: #5d97ff;
+        }
+        
+        #comments-list {
+            margin-top: 40px;
+        }
+        .comment-card {
+            background-color: var(--background-dark);
+            padding: 18px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 3px solid var(--text-muted);
+        }
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .comment-user {
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-family: var(--font-title);
+            font-size: 1.2rem;
+        }
+        .comment-status {
+            font-size: 0.8rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+        .status-hadir { background-color: #28a745; color: white; }
+        .status-tidak { background-color: #dc3545; color: white; }
+        .comment-date {
+            font-size: 0.7rem; 
+            color: var(--text-muted);
+            margin-top: 5px;
+            text-align: right;
+            font-style: italic;
+        }
+        .comment-message {
+            margin: 10px 0 0;
+            color: var(--text-light);
+        }
+        
+        /* ======================================================= */
+        /* BOTTOM NAVIGATION (Mobile Fixed Bar) */
+        /* ======================================================= */
+        .bottom-nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: var(--background-card);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.6);
+            z-index: 9000;
+            padding: 10px 0;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            padding: 5px;
+            transition: color 0.3s;
+        }
+        .nav-item i {
+            font-size: 1.3rem;
+            margin-bottom: 3px;
+        }
+        .nav-item.active {
+            color: var(--primary-blue);
+        }
+        
+        /* ======================================================= */
+        /* TOAST & ANIMATION STYLING */
+        /* ======================================================= */
+        #toast-message {
+            position: fixed;
+            bottom: 80px; 
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.4s, bottom 0.4s;
+            z-index: 9998;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            font-weight: 600;
+        }
+        #toast-message.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 100px;
+        }
+        #toast-message.success { background-color: #10B981; } /* Green accent */
+        #toast-message.error { background-color: #EF4444; } /* Red accent */
 
 
-/* --- 10. Toast Message (Notifikasi Copy Berhasil) --- */
-/* Pastikan Anda memiliki elemen HTML <div id="toast-message"></div> di body */
-#toast-message {
-    position: fixed;
-    bottom: 30px; /* Posisi di atas navbar jika ada, atau di bawah layar */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s, bottom 0.4s;
-    
-    background-color: var(--primary-color); /* Cokelat sebagai latar notifikasi */
-    color: var(--card-background); /* Teks Putih */
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-weight: 500;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-#toast-message.show {
-    opacity: 1;
-    visibility: visible;
-    bottom: 50px; /* Naik sedikit saat muncul */
-}
-
-/* --- 8. Comments Section (Ucapan) --- */
-#comment-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    text-align: left;
-}
-.form-group label {
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 8px;
-    display: block;
-    font-family: var(--font-body);
-}
-.form-control, textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--accent-green);
-    border-radius: 5px;
-    background-color: var(--card-background);
-    color: var(--text-dark);
-    resize: vertical;
-    font-family: var(--font-body);
-}
-.status-btn-group {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
-}
-.template-status-btn {
-    flex: 1;
-    background-color: var(--card-background);
-    border: 1px solid var(--text-light);
-    color: var(--text-light);
-    border-radius: 5px;
-    padding: 10px 18px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    font-weight: 500;
-}
-.template-status-btn.status-active {
-    background-color: var(--accent-green);
-    border-color: var(--primary-color);
-    color: var(--card-background);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-.btn-submit {
-    background-color: var(--primary-color);
-    color: var(--card-background);
-    border: none;
-    padding: 14px 30px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-.btn-submit:hover {
-    background-color: var(--ornament-color);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
-}
-.comments-list-container {
-    max-height: 450px;
-    overflow-y: auto;
-    padding: 20px;
-    margin-top: 30px;
-    border: 1px solid var(--accent-green);
-    border-radius: 10px;
-    background-color: var(--card-background);
-    text-align: left;
-}
-.comment-card {
-    background: #FDF9F0; /* Latar komentar lebih terang */
-    border: 1px solid rgba(var(--primary-color-rgb), 0.2);
-    border-radius: 8px;
-    padding: 18px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-.comment-name {
-    color: var(--primary-color);
-    font-weight: 700;
-    font-family: var(--font-heading);
-    margin: 0 0 5px;
-    font-size: 1.2rem;
-}
-.comment-message {
-    color: var(--text-dark);
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-/* --- 9. Bottom Navigation (Fixed Navbar) --- */
-.bottom-nav-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 65px; /* Sedikit lebih tinggi */
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    z-index: 990;
-    background-color: var(--primary-color);
-    border-top: 3px solid var(--secondary-color);
-    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.25);
-}
-.bottom-nav-bar .nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.7); /* Warna sedikit transparan */
-    font-size: 0.8rem;
-    flex: 1;
-    height: 100%;
-    transition: color 0.3s, transform 0.3s;
-}
-.bottom-nav-bar .nav-item i {
-    font-size: 1.4rem;
-    margin-bottom: 3px;
-}
-.bottom-nav-bar .nav-item.active {
-    color: var(--secondary-color); /* Emas untuk aktif */
-    transform: scale(1.1);
-    font-weight: 600;
-}
-.bottom-nav-bar .nav-item:hover {
-    color: var(--secondary-color);
-}
-#floating-music-toggle {
-    position: fixed; /* Penting agar tetap di tempat */
-    bottom: 85px; 
-    right: 25px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    
-    /* GAYA KLASIK: Emas dan Cokelat */
-    background-color: var(--secondary-color); /* Latar belakang Emas */
-    border: 3px solid var(--primary-color); /* Border Cokelat tua */
-    color: var(--primary-color); /* Ikon Cokelat tua */
-    
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Bayangan yang lebih elegan */
-    font-size: 1.4rem; /* Ikon sedikit lebih besar */
-    cursor: pointer;
-    z-index: 999;
-    
-    /* Tambahkan gaya tampilan default (sebelum JavaScript memunculkan) */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0; /* Tersembunyi di awal */
-    transition: all 0.4s ease-in-out; 
-}
-
-#floating-music-toggle.visible {
-    opacity: 1; /* Akan dimunculkan oleh JavaScript */
-}
-
-#floating-music-toggle:hover {
-    background-color: var(--primary-color); /* Hover: Menjadi Cokelat */
-    color: var(--secondary-color); /* Ikon menjadi Emas */
-    border-color: var(--secondary-color); /* Border menjadi Emas */
-    transform: scale(1.1); /* Efek perbesaran yang elegan, menghilangkan rotasi */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-}
-
-#floating-music-toggle:active {
-    transform: scale(0.98);
-}
-
-#toast-message {
-    bottom: 160px;
-    background-color: var(--primary-color);
-    color: white;
-    border-radius: 5px;
-    padding: 10px 25px;
-    font-weight: 500;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-#toast-message.error {
-    background-color: #DC3545; /* Merah untuk error */
-}
-#toast-message.success {
-    background-color: #28A745; /* Hijau untuk sukses */
-}
-
-/* --- 11. Media Queries (Mobile Responsiveness) --- */
-@media (max-width: 768px) {
-    .section {
-        padding: 60px 15px;
-    }
-    .detail-box {
-        padding: 30px 20px;
-    }
-    .font-great-vibes {
-        font-size: 3rem;
-    }
-    .font-cursive {
-        font-size: 2.2rem;
-    }
-    .template-cover-title {
-        font-size: 3rem;
-    }
-    .template-cover-guest-name {
-        font-size: 1.8rem;
-    }
-    .card {
-        max-width: 90%; 
-        flex: 1 1 100%;
-        margin-bottom: 25px;
-    }
-    .couple-cards {
-        gap: 25px;
-    }
-    #countdown-timer {
-        max-width: 400px;
-        gap: 15px;
-        padding: 15px 10px;
-    }
-    .time-number {
-        font-size: 2rem;
-    }
-    .time-label {
-        font-size: 0.75rem;
-    }
-    .couple-date {
-        font-size: 1.5rem !important;
-    }
-    .photo-slider-container {
-        height: 350px;
-        max-width: 95%;
-    }
-    .slider-nav {
-        padding: 10px;
-        font-size: 1.4rem;
-    }
-    .bank-accounts-cards {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    .comments-list-container {
-        max-height: 350px;
-    }
-}
-
-@media (max-width: 480px) {
-    .section {
-        padding: 40px 10px;
-    }
-    .detail-box {
-        padding: 25px 15px;
-    }
-    .font-great-vibes {
-        font-size: 2.5rem;
-    }
-    .font-cursive {
-        font-size: 1.8rem;
-    }
-    .template-cover-title {
-        font-size: 2.5rem;
-    }
-    .template-cover-guest-name {
-        font-size: 1.5rem;
-    }
-    .time-number {
-        font-size: 1.8rem;
-    }
-    .time-label {
-        font-size: 0.65rem;
-    }
-    .photo-slider-container {
-        height: 280px;
-    }
-    .bottom-nav-bar {
-        height: 60px;
-    }
-    .bottom-nav-bar .nav-item {
-        font-size: 0.7rem;
-    }
-    .bottom-nav-bar .nav-item i {
-        font-size: 1.2rem;
-    }
+        /* ======================================================= */
+    /* FLOATING MUSIC TOGGLE BUTTON (TOP RIGHT) */
+    /* ======================================================= */
     #floating-music-toggle {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-        bottom: 75px;
-        right: 15px;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9500;
+        background-color: var(--background-card);
+        color: var(--primary-blue);
+        border: 2px solid var(--primary-blue);
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: all 0.3s;
+        opacity: 0;
+        visibility: hidden;
+        box-shadow: 0 2px 5px rgba(62, 130, 247, 0.5);
     }
-    #toast-message {
-        bottom: 130px;
-        padding: 8px 15px;
-        font-size: 0.9rem;
+
+    #floating-music-toggle.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: rotate(0deg);
     }
-}
-</style>
+
+    #floating-music-toggle:hover {
+        background-color: var(--primary-blue);
+        color: white;
+        transform: scale(1.1) rotate(5deg);
+    }
+
+    /* Sembunyikan tombol musik saat cover masih aktif (opsional) */
+    .scroll-locked #floating-music-toggle {
+        display: none;
+    }
+
+
+    /* --- Styling Umum untuk Bagian Galeri --- */
+    .section-gallery {
+        color: var(--text-light);
+        padding: 60px 0;
+        background-color: var(--background-dark);
+    }
+
+    .section-gallery .container {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+    
+    .section-gallery p[style*="#ccc"] {
+        font-family: var(--font-quote);
+        font-style: italic;
+        color: var(--text-muted) !important;
+        margin-bottom: 30px;
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    .section-gallery > .container > div[style*="background-color: #000"] {
+        background-color: var(--background-card) !important;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+    
+    /* Grid Foto */
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        display: block;
+        border-radius: 8px;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        cursor: pointer;
+        border: 2px solid var(--background-card);
+    }
+
+    .gallery-item img:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 15px rgba(62, 130, 247, 0.4);
+    }
+
+    /* Slider (Photo-album style) */
+    .photo-slider-container {
+        width: 100%;
+        max-width: 650px; 
+        margin: 0 auto;
+        overflow: hidden; 
+        position: relative; 
+        border: 5px solid var(--background-card);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .photo-slider {
+        display: flex; 
+        width: 100%; 
+        transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); /* Efek pergerakan yang lebih mulus */
+    }
+
+    .slider-item {
+        flex-shrink: 0; 
+        width: 100%; 
+        height: auto; 
+    }
+
+    .slider-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+        max-height: 500px;
+        margin: 0 auto;
+    }
+
+    .slider-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(62, 130, 247, 0.8); /* Primary Blue transparent */
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        z-index: 10;
+        font-size: 1.5rem;
+        line-height: 1;
+        border-radius: 5px;
+        transition: background 0.3s;
+    }
+
+    .slider-nav:hover {
+        background: var(--primary-blue);
+    }
+
+    .prev-btn {
+        left: 10px;
+    }
+
+    .next-btn {
+        right: 10px;
+    }
+
+    /* ======================================================= */
+    /* MEDIA QUERIES (Mobile Adjustments) */
+    /* ======================================================= */
+    @media (max-width: 768px) {
+        .main-title {
+            font-size: 3rem;
+        }
+        .couple-names {
+            font-size: 3.5rem;
+        }
+        .title-wedding {
+            font-size: 2.5rem;
+            letter-spacing: 3px;
+        }
+        .couple-cards {
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+        }
+        .card {
+            max-width: 100%;
+        }
+        .card-image-wrapper {
+            width: 150px;
+            height: 150px;
+        }
+        .card-name {
+            font-size: 2rem;
+        }
+        .time-box {
+            min-width: 60px;
+            padding: 10px 15px;
+            gap: 15px;
+        }
+        .time-number {
+            font-size: 2.5rem;
+        }
+        .quote-opening, .quote-closing {
+            padding-left: 10px;
+            margin: 20px auto;
+        }
+        
+        /* Ubah grid foto menjadi 2 kolom di tablet */
+        .gallery-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+    }
+    
+    @media (max-width: 480px) {
+        .time-box {
+            min-width: 45px;
+            padding: 8px;
+            font-size: 0.8rem;
+        }
+        .time-number {
+            font-size: 2rem;
+        }
+        .time-label {
+            font-size: 0.7rem;
+        }
+        .bottom-nav-bar {
+            padding: 5px 0;
+        }
+        .nav-item {
+            font-size: 0.6rem;
+        }
+        /* Ubah grid foto menjadi 1 kolom di ponsel */
+        .gallery-grid {
+            grid-template-columns: 1fr;
+        }
+        .slider-nav {
+            font-size: 1.2rem;
+            padding: 8px 12px;
+        }
+    }
+    </style>
+
 </head>
 <body class="scroll-locked">
 
@@ -848,13 +811,8 @@ p {
             <div class="container section-intro-content">
                 <div class="intro-main" style="text-align: center;">
                     <h1 class="title-wedding">Undangan Pernikahan</h1>
-                    <p style="color: #ccc; margin-top: 10px;">Dengan memohon rahmat dan ridho Allah SWT</p>
-                </div>
-                </div>
-        </section>
-
-        <section class="section section-couple" style="padding-top: 0;">
-            <div class="container" style="text-align: center;">
+                    <p style="color: #ccc; margin-top: 0px;">Dengan memohon rahmat dan ridho Allah SWT</p>
+                    <div class="container" style="text-align: center;">
                 <div class="couple-details" style="max-width: 500px; margin: 0 auto;">
                     <div class="couple-image-container">
                         <img 
@@ -866,7 +824,11 @@ p {
                     <h1 class="couple-names font-great-vibes">{{nama_pria}} & {{nama_wanita}}</h1>
                 </div>
             </div>
+                </div>
+                </div>
         </section>
+
+
 
         <section class="section section-detail" style="padding-top: 0;">
             <div class="container detail-box">
@@ -920,7 +882,7 @@ p {
                     
                 </p>
                 
-                <a href="{{maps_url}}" target="_blank" class="btn-maps-link">
+                <a href="{{maps_url}}" target="{{maps_url}}" class="btn-maps-link">
                     <i class="fas fa-route"></i> BUKA DI GOOGLE MAPS
                 </a>
             </div>
@@ -1044,7 +1006,7 @@ p {
     </div>
     
     <audio id="background-music" loop> 
-    <source src="../music/{{music}}" type="audio/mpeg"> 
+    <source src="{{music}}" type="audio/mpeg"> 
 </audio>
 
 <div id="floating-music-toggle" onclick="toggleMusic()">
@@ -1208,7 +1170,7 @@ window.submitComment = async function(event) {
     event.preventDefault();
 
     // Pastikan API_BASE_URL sudah didefinisikan secara global atau diakses di sini
-    const API_BASE_URL = 'http://localhost:8000/api'; // Ulangi definisi di sini jika tidak global
+    const API_BASE_URL = 'https://pureday-invitation.vercel.app/api'; // Ulangi definisi di sini jika tidak global
 
     // ... (kode untuk mendapatkan input name, message, isAttending, invitationId)
     const nameInput = document.getElementById('comment-name-input');
@@ -1259,7 +1221,7 @@ window.submitComment = async function(event) {
             throw new Error(errorData.message || `API call failed with status ${response.status}`);
         }
 
-        // window.showToast("Ucapan Anda berhasil terkirim! Terima kasih.", "success");
+        window.showToast("Ucapan Anda berhasil terkirim! Terima kasih.", "success");
         
         // Reset form
         nameInput.value = '';
@@ -1298,7 +1260,7 @@ window.submitComment = async function(event) {
                 tempInput.select();
                 try {
                     document.execCommand('copy');
-                     window.showToast(`Nomor rekening ${bankName} berhasil disalin (fallback)!`, "success");
+                     window.showToast(`Nomor rekening ${bankName} berhasil disalin!`, "success");
                 } catch (e) {
                      window.showToast('Gagal menyalin. Silakan salin manual.', "error");
                 }
@@ -1501,18 +1463,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Jeda Autoplay saat kursor berada di atas slider (user sedang melihat)
+    
     sliderWrapper.addEventListener('mouseenter', stopAutoplay);
-    // Lanjutkan Autoplay saat kursor meninggalkan slider
+
     sliderWrapper.addEventListener('mouseleave', startAutoplay);
 
 
-    // --- 6. Inisiasi (Jalankan pertama kali) ---
     showSlide(currentSlide); 
-    startAutoplay(); // **MULAI** Autoplay saat halaman dimuat
+    startAutoplay(); 
 });
 
 </script>
 </body>
-</html>
 </html>
