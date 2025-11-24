@@ -1,0 +1,92 @@
+
+body {
+  	margin: 0;
+  	line-height: normal;
+}
+
+
+:root {
+  	
+  	/* Common Style Variables */
+  	
+  	/* Color */
+  	--color-black: #000;
+  	--color-darkgray-100: #a3a4b0;
+  	--color-darkgray-200: #999;
+  	--color-darkslategray: #333;
+  	--color-dimgray-100: #625b4f;
+  	--color-dimgray-200: #675546;
+  	--color-dimgray-300: #555;
+  	--color-dimgray-400: #4e4f4c;
+  	--color-gainsboro: #d9d9d9;
+  	--color-gray-100: #2d2a2a;
+  	--color-gray-200: #222;
+  	--color-lightgray: #dbd1c0;
+  	--color-linen: #e7ded3;
+  	--color-sienna: #9e683f;
+  	--color-white: #fff;
+  	--color-whitesmoke-100: #f5f5f5;
+  	--color-whitesmoke-200: #f5f2ee;
+  	
+  	/* Gap */
+  	--gap-1: 1px;
+  	--gap-10: 10px;
+  	--gap-12: 12px;
+  	
+  	/* Padding */
+  	--padding-0: 0px;
+  	--padding-1: 1px;
+  	--padding-10: 10px;
+  	--padding-15: 15px;
+  	--padding-18: 18px;
+  	
+  	/* BorderRadius */
+  	--br-0: 0px;
+  	--br-8: 8px;
+  	
+  	/* Font */
+  	--font-cormorant: Cormorant;
+  	--font-cormorant-garamond: Cormorant Garamond;
+  	--font-crimson-pro: Crimson Pro;
+  	--font-dorsa: Dorsa;
+  	--font-inter: Inter;
+  	--font-lato: Lato;
+  	--font-nunito-sans: Nunito Sans;
+  	--font-orbitron: Orbitron;
+  	--font-poppins: Poppins;
+  	--font-roboto: Roboto;
+  	--font-work-sans: Work Sans;
+  	
+  	/* FontSize */
+  	--fs-8: 8px;
+  	--fs-11: 11px;
+  	--fs-12: 12px;
+  	--fs-14: 14px;
+  	--fs-15: 15px;
+  	--fs-20: 20px;
+  	--fs-22: 22px;
+  	--fs-25: 25px;
+  	--fs-32: 32px;
+  	
+  	/* WidthHeights */
+  	--height-16: 16px;
+  	--width-16: 16px;
+  	
+  	/* LineHeights */
+  	--lh-8: 8px;
+  	--lh-12: 12px;
+  	--lh-15: 15px;
+  	--lh-20: 20px;
+  	--lh-22: 22px;
+  	--lh-24: 24px;
+  	--lh-30: 30px;
+  	--lh-22_4: 22.4px;
+  	--lh-38_4: 38.4px;
+  	
+  	/* LetterSpacings */
+  	--ls-6: 6px;
+  	--ls-0_05: 0.05px;
+  	
+
+    
+}

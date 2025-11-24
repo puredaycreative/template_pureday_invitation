@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dorsa:wght@400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" />
+
+<style>
+
+body {
+  	margin: 0;
+  	line-height: normal;
+}
+
+
+:root {
+  	
+  	/* Common Style Variables */
+  	
+  	/* Color */
+  	--color-black: #000;
+  	--color-darkgray-100: #a3a4b0;
+  	--color-darkgray-200: #999;
+  	--color-darkslategray: #333;
+  	--color-dimgray-100: #625b4f;
+  	--color-dimgray-200: #675546;
+  	--color-dimgray-300: #555;
+  	--color-dimgray-400: #4e4f4c;
+  	--color-gainsboro: #d9d9d9;
+  	--color-gray-100: #2d2a2a;
+  	--color-gray-200: #222;
+  	--color-lightgray: #dbd1c0;
+  	--color-linen: #e7ded3;
+  	--color-sienna: #9e683f;
+  	--color-white: #fff;
+  	--color-whitesmoke-100: #f5f5f5;
+  	--color-whitesmoke-200: #f5f2ee;
+  	
+  	/* Gap */
+  	--gap-1: 1px;
+  	--gap-10: 10px;
+  	--gap-12: 12px;
+  	
+  	/* Padding */
+  	--padding-0: 0px;
+  	--padding-1: 1px;
+  	--padding-10: 10px;
+  	--padding-15: 15px;
+  	--padding-18: 18px;
+  	
+  	/* BorderRadius */
+  	--br-0: 0px;
+  	--br-8: 8px;
+  	
+  	/* Font */
+  	--font-cormorant: Cormorant;
+  	--font-cormorant-garamond: Cormorant Garamond;
+  	--font-crimson-pro: Crimson Pro;
+  	--font-dorsa: Dorsa;
+  	--font-inter: Inter;
+  	--font-lato: Lato;
+  	--font-nunito-sans: Nunito Sans;
+  	--font-orbitron: Orbitron;
+  	--font-poppins: Poppins;
+  	--font-roboto: Roboto;
+  	--font-work-sans: Work Sans;
+  	
+  	/* FontSize */
+  	--fs-8: 8px;
+  	--fs-11: 11px;
+  	--fs-12: 12px;
+  	--fs-14: 14px;
+  	--fs-15: 15px;
+  	--fs-20: 20px;
+  	--fs-22: 22px;
+  	--fs-25: 25px;
+  	--fs-32: 32px;
+  	
+  	/* WidthHeights */
+  	--height-16: 16px;
+  	--width-16: 16px;
+  	
+  	/* LineHeights */
+  	--lh-8: 8px;
+  	--lh-12: 12px;
+  	--lh-15: 15px;
+  	--lh-20: 20px;
+  	--lh-22: 22px;
+  	--lh-24: 24px;
+  	--lh-30: 30px;
+  	--lh-22_4: 22.4px;
+  	--lh-38_4: 38.4px;
+  	
+  	/* LetterSpacings */
+  	--ls-6: 6px;
+  	--ls-0_05: 0.05px;
+  	
+
+    
+}
+
+
+body {
+            overflow: hidden; 
+        }
+
+        /* 2. SEMBUNYIKAN KONTEN UTAMA: Sembunyikan semua section kecuali cover saat awal load */
+        #main-invitation-content > div:not(.layout-1) {
+            display: none;
+        }
+        #cover-section {
+    display: block; 
+}
+.invitation-digital-parent {
+  	width: 100%;
+  	position: relative;
+  	display: flex;
+  	align-items: center;
+  	padding: var(--padding-10);
+  	box-sizing: border-box;
+  	text-align: left;
+  	font-size: var(--fs-15);
+  	color: var(--color-dimgray-200);
+  	font-family: var(--font-cormorant);
+}
+.invitation-digital {
+  	height: 4338px;
+  	width: 394px;
+  	background-color: var(--color-white);
+  	overflow: hidden;
+  	flex-shrink: 0;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+}
+.layout-1 {
+  	width: 393px;
+  	height: 732px;
+  	position: relative;
+  	background-color: var(--color-whitesmoke-100);
+  	flex-shrink: 0;
+  	text-align: center;
+  	font-size: 50px;
+  	color: var(--color-dimgray-300);
+  	font-family: var(--font-dorsa);
+}
+.grroom-bride {
+  	position: absolute;
+  	top: 123.56px;
+  	left: 44.5px;
+  	letter-spacing: 10px;
+  	line-height: 50px;
+  	color: var(--color-black);
+  	display: inline-block;
+  	width: 313px;
+}
+.tittle-open-invitation {
+  	position: absolute;
+  	top: 99px;
+  	left: 122px;
+  	font-size: var(--fs-15);
+  	line-height: var(--lh-15);
+  	font-family: var(--font-work-sans);
+}
+.title-open-invitation {
+  	position: absolute;
+  	top: 456px;
+  	left: 29px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 25.6px 71px var(--padding-0);
+  	gap: var(--gap-10);
+  	font-size: 17px;
+  	font-family: var(--font-cormorant-garamond);
+}
+.to {
+  	position: relative;
+  	line-height: 17px;
+}
+.guest {
+  	position: relative;
+  	font-size: var(--fs-20);
+  	line-height: var(--lh-20);
+  	font-weight: 600;
+  	font-family: var(--font-nunito-sans);
+}
+.button-invitation {
+  	align-self: stretch;
+  	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  	border-radius: 2px;
+  	background-color: var(--color-lightgray);
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	padding: var(--padding-10) 59px 12px;
+  	font-size: var(--fs-12);
+  	color: var(--color-dimgray-400);
+  	font-family: var(--font-roboto);
+}
+.buka-undangan {
+  	position: relative;
+  	line-height: var(--lh-12);
+  	font-weight: 500;
+}
+.cover-icon {
+  	position: absolute;
+  	top: 181px;
+  	left: 101px;
+  	border-radius: 10px;
+  	width: 202px;
+  	height: 280px;
+}
+.section-groom-bride {
+  	align-self: stretch;
+  	background-color: var(--color-white);
+  	overflow: hidden;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	padding: var(--padding-0) 94px var(--padding-0) var(--padding-0);
+  	flex-shrink: 0;
+  	font-size: 55px;
+  	font-family: var(--font-work-sans);
+}
+.frame {
+  	width: 393px;
+  	height: 321px;
+  	position: relative;
+  	flex-shrink: 0;
+}
+.text-bride {
+  	position: absolute;
+  	top: 20px;
+  	left: 13px;
+  	height: 184px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: center;
+  	padding: 31px var(--padding-10) 31px var(--padding-0);
+  	box-sizing: border-box;
+  	gap: 29.7px;
+}
+.name-bride {
+  	position: relative;
+  	letter-spacing: var(--ls-6);
+  	line-height: 66px;
+  	font-family: var(--font-dorsa);
+  	flex-shrink: 0;
+}
+.fullname-bride {
+  	position: relative;
+  	font-size: var(--fs-15);
+  	line-height: var(--lh-15);
+  	flex-shrink: 0;
+}
+.parent-bride {
+  	width: 160.5px;
+  	height: 48px;
+  	position: relative;
+  	flex-shrink: 0;
+  	font-size: var(--fs-12);
+}
+.bpk-dilla {
+  	position: absolute;
+  	top: 24.02px;
+  	left: 0px;
+  	line-height: var(--lh-24);
+}
+.img-bride-icon {
+  	position: absolute;
+  	top: 20px;
+  	left: 181px;
+  	width: 201px;
+  	height: 301px;
+}
+.frame2 {
+  	width: 393px;
+  	height: 321px;
+  	position: relative;
+  	flex-shrink: 0;
+  	text-align: right;
+}
+.text-groom {
+  	position: absolute;
+  	top: 0px;
+  	left: 201px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: center;
+  	padding: 23px var(--padding-0) 23.5px var(--padding-10);
+  	gap: 29.8px;
+  	flex-shrink: 0;
+}
+.name-groom {
+  	width: 163px;
+  	position: relative;
+  	letter-spacing: var(--ls-6);
+  	line-height: 66px;
+  	font-family: var(--font-dorsa);
+  	display: inline-block;
+}
+.fullname-groom {
+  	width: 163px;
+  	position: relative;
+  	font-size: var(--fs-15);
+  	line-height: var(--lh-15);
+  	display: inline-block;
+}
+.parent-groom {
+  	width: 160px;
+  	position: relative;
+  	font-size: var(--fs-12);
+  	line-height: var(--lh-24);
+  	display: inline-block;
+}
+.image-groom-icon {
+  	position: absolute;
+  	top: 28px;
+  	left: 9.5px;
+  	width: 201px;
+  	height: 301px;
+  	flex-shrink: 0;
+}
+.time-location {
+  	align-self: stretch;
+  	background-color: var(--color-white);
+  	overflow: hidden;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	flex-shrink: 0;
+  	text-align: center;
+}
+.frame3 {
+  	align-self: stretch;
+  	height: 938px;
+  	background-color: var(--color-white);
+  	overflow: hidden;
+  	flex-shrink: 0;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	padding: var(--padding-0) 79px var(--padding-0) var(--padding-0);
+  	box-sizing: border-box;
+}
+.frame4 {
+  	align-self: stretch;
+  	background-color: var(--color-white);
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	flex-shrink: 0;
+}
+.frame5 {
+  	width: 402px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	padding: var(--padding-10) var(--padding-10) 60.1px;
+  	box-sizing: border-box;
+  	gap: 31.7px;
+  	opacity: 0.71;
+  	flex-shrink: 0;
+}
+.frame6 {
+  	align-self: stretch;
+  	height: 303px;
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	gap: 9.5px;
+}
+.image {
+  	height: 271px;
+  	width: 181px;
+  	position: relative;
+  	box-shadow: 10px -10px 0px var(--color-dimgray-200);
+  	border-radius: var(--br-0) 150px var(--br-0) var(--br-0);
+  	background-color: var(--color-gainsboro);
+}
+.frame7 {
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 34px 9px 34px var(--padding-10);
+  	gap: 23px;
+}
+.akad {
+  	position: relative;
+  	font-size: var(--fs-32);
+  	letter-spacing: var(--ls-0_05);
+  	line-height: var(--lh-38_4);
+}
+.frame8 {
+  	width: 160.5px;
+  	height: 35px;
+  	position: relative;
+  	font-family: var(--font-crimson-pro);
+}
+.sabtu {
+  	position: absolute;
+  	top: 9.31px;
+  	left: 10.5px;
+  	line-height: var(--lh-15);
+}
+.b {
+  	position: absolute;
+  	top: 9.31px;
+  	left: 117.5px;
+  	line-height: var(--lh-15);
+  	text-align: left;
+}
+.frame9 {
+  	position: absolute;
+  	top: 0.31px;
+  	left: 52.5px;
+  	border: 1px solid var(--color-sienna);
+  	box-sizing: border-box;
+  	width: 55px;
+  	height: 35px;
+  	font-size: var(--fs-22);
+}
+.b2 {
+  	position: absolute;
+  	top: -0.49px;
+  	left: 15px;
+  	line-height: var(--lh-22);
+}
+.okt {
+  	position: absolute;
+  	top: 17.51px;
+  	left: 15px;
+  	font-size: var(--fs-15);
+  	line-height: var(--lh-15);
+  	font-weight: 600;
+}
+.wib {
+  	position: relative;
+  	line-height: var(--lh-15);
+  	font-weight: 300;
+  	font-family: var(--font-work-sans);
+}
+.frame10 {
+  	align-self: stretch;
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	gap: 10.5px;
+}
+.frame11 {
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+  	padding: 76px var(--padding-10) 74.9px;
+  	gap: 25px;
+}
+.frame13 {
+  	position: absolute;
+  	top: 0.34px;
+  	left: 53px;
+  	border: 1px solid var(--color-sienna);
+  	box-sizing: border-box;
+  	width: 55px;
+  	height: 35px;
+}
+.okt2 {
+  	position: absolute;
+  	top: 17.29px;
+  	left: 14px;
+  	line-height: var(--lh-15);
+  	font-weight: 600;
+}
+.b3 {
+  	position: absolute;
+  	top: -0.71px;
+  	left: 15px;
+  	font-size: var(--fs-22);
+  	line-height: var(--lh-22);
+}
+.sabtu2 {
+  	position: absolute;
+  	top: 8.64px;
+  	left: 6px;
+  	line-height: var(--lh-15);
+}
+.b4 {
+  	position: absolute;
+  	top: 8.64px;
+  	left: 115px;
+  	line-height: var(--lh-15);
+  	text-align: left;
+}
+.image2 {
+  	height: 271px;
+  	width: 181px;
+  	position: relative;
+  	box-shadow: -10px -10px 0px var(--color-dimgray-200);
+  	border-radius: 150px var(--br-0) var(--br-0) var(--br-0);
+  	background-color: var(--color-gainsboro);
+}
+.frame14 {
+  	width: 361px;
+  	height: 276px;
+  	position: relative;
+  	text-align: left;
+  	font-family: var(--font-work-sans);
+}
+.frame15 {
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: flex-end;
+  	padding: 51.5px var(--padding-10) 51.9px var(--padding-0);
+  	gap: 19.6px;
+}
+.frame16 {
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	padding: var(--padding-0) 1.1px var(--padding-0) var(--padding-0);
+  	gap: 13px;
+}
+.ponyo-resto {
+  	width: 107px;
+  	position: relative;
+  	line-height: var(--lh-15);
+  	display: inline-block;
+}
+.jl-raya-tagog {
+  	width: 158px;
+  	position: relative;
+  	line-height: var(--lh-15);
+  	font-weight: 300;
+  	display: inline-block;
+}
+.frame17 {
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	padding: var(--padding-0) 6px;
+  	text-align: center;
+  	font-size: 13px;
+  	color: var(--color-gray-200);
+  	font-family: var(--font-lato);
+}
+.frame18 {
+  	align-self: stretch;
+  	background-color: var(--color-linen);
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	padding: 9px 40px;
+}
+.open-maps {
+  	position: relative;
+  	line-height: 13px;
+  	font-weight: 500;
+}
+.frame19 {
+  	position: absolute;
+  	top: 0px;
+  	left: 179.08px;
+  	width: 180.5px;
+  	height: 276px;
+  	text-align: center;
+  	font-size: var(--fs-25);
+  	font-family: var(--font-lato);
+}
+.frame20 {
+  	position: absolute;
+  	top: 174.03px;
+  	left: 0.42px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	padding: var(--padding-0) 0.4px 0.1px 0.1px;
+  	flex-shrink: 0;
+}
+.frame21 {
+  	align-self: stretch;
+  	display: flex;
+  	align-items: flex-start;
+  	justify-content: center;
+  	padding: 0.1px var(--padding-0) var(--padding-0);
+  	gap: var(--gap-10);
+}
+.frame22 {
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: flex-end;
+  	padding: var(--padding-18) 9px 25px var(--padding-10);
+  	gap: var(--gap-12);
+}
+.div {
+  	position: relative;
+  	line-height: 25px;
+}
+.hours {
+  	position: relative;
+  	font-size: var(--fs-8);
+  	line-height: var(--lh-8);
+}
+.frame23 {
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-end;
+  	padding: var(--padding-18) var(--padding-10) 25px 9px;
+  	gap: var(--gap-12);
+}
+.frame24 {
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: flex-end;
+  	padding: var(--padding-18) 8px 25px;
+  	gap: var(--gap-12);
+}
+.frame25 {
+  	position: absolute;
+  	top: -19.94px;
+  	left: 9.92px;
+  	width: 181px;
+  	height: 194px;
+  	flex-shrink: 0;
+  	font-size: 130px;
+  	font-family: var(--font-roboto);
+}
+.div4 {
+  	position: absolute;
+  	top: 12px;
+  	left: 18px;
+  	line-height: 130px;
+}
+.days {
+  	position: absolute;
+  	top: 156px;
+  	left: 77px;
+  	font-size: var(--fs-12);
+  	line-height: var(--lh-12);
+  	font-family: var(--font-work-sans);
+}
+.frame26 {
+  	width: 413px;
+  	height: 644px;
+  	background-color: var(--color-white);
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	flex-shrink: 0;
+  	font-size: var(--fs-32);
+}
+.frame27 {
+  	align-self: stretch;
+  	background-color: var(--color-white);
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: flex-end;
+  	padding: var(--padding-10) var(--padding-10) var(--padding-0) var(--padding-0);
+  	gap: 148.7px;
+  	flex-shrink: 0;
+}
+.frame28 {
+  	width: 405px;
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	padding: var(--padding-0) var(--padding-10) var(--padding-0) var(--padding-0);
+  	box-sizing: border-box;
+  	gap: var(--gap-10);
+  	flex-shrink: 0;
+}
+.frame29 {
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-end;
+  	padding: 49.9px 9.6px 51.6px var(--padding-0);
+  	gap: 45.6px;
+}
+.frame30 {
+  	width: 206.6px;
+  	height: 76.8px;
+  	position: relative;
+}
+.moment {
+  	position: absolute;
+  	top: 38.08px;
+  	left: 0px;
+  	letter-spacing: var(--ls-0_05);
+  	line-height: var(--lh-38_4);
+}
+.our {
+  	position: absolute;
+  	top: 0.08px;
+  	left: 0px;
+  	letter-spacing: var(--ls-0_05);
+  	line-height: var(--lh-38_4);
+}
+.image3 {
+  	width: 217px;
+  	height: 144px;
+  	position: relative;
+  	background-color: var(--color-gainsboro);
+}
+.the-man-dreams {
+  	width: 201px;
+  	position: relative;
+  	font-size: var(--fs-15);
+  	letter-spacing: 2.3px;
+  	line-height: 19.5px;
+  	display: inline-block;
+  	color: var(--color-black);
+}
+.frame31 {
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: center;
+  	padding: var(--padding-0) var(--padding-0) 0.6px 0.4px;
+  	gap: 10.3px;
+}
+.image4 {
+  	width: 124px;
+  	height: 124px;
+  	position: relative;
+  	background-color: var(--color-gainsboro);
+}
+.frame32 {
+  	width: 1904.3px;
+  	height: 25.4px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	padding: var(--padding-0) 641.7px 0.5px var(--padding-0);
+  	box-sizing: border-box;
+  	flex-shrink: 0;
+}
+.frame33 {
+  	width: 361px;
+  	height: 148px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	padding: 0.5px var(--padding-0) var(--padding-0);
+  	box-sizing: border-box;
+  	flex-shrink: 0;
+}
+.frame34 {
+  	width: 395px;
+  	height: 1438px;
+  	position: relative;
+  	background-color: var(--color-whitesmoke-200);
+  	flex-shrink: 0;
+  	color: var(--color-black);
+}
+.dilla-rachmat {
+  	position: absolute;
+  	top: 458px;
+  	left: 95px;
+  	font-size: var(--fs-32);
+  	letter-spacing: 8px;
+  	line-height: var(--lh-38_4);
+  	font-family: var(--font-dorsa);
+  	color: var(--color-white);
+  	text-align: center;
+  	display: inline-block;
+  	width: 191px;
+  	flex-shrink: 0;
+}
+.frame35 {
+  	position: absolute;
+  	top: 112.97px;
+  	left: 20px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	padding: var(--padding-1) 83px var(--padding-1) 82px;
+  	flex-shrink: 0;
+  	text-align: center;
+  	font-size: var(--fs-25);
+}
+.wedding-love-gift {
+  	width: 196px;
+  	position: relative;
+  	letter-spacing: var(--ls-0_05);
+  	line-height: var(--lh-30);
+  	display: inline-block;
+}
+.with-love {
+  	position: absolute;
+  	top: 436px;
+  	left: 161px;
+  	line-height: var(--lh-15);
+  	color: var(--color-white);
+  	text-align: center;
+  	flex-shrink: 0;
+}
+.frame36 {
+  	position: absolute;
+  	top: 188.97px;
+  	left: 0px;
+  	width: 402px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	padding: var(--padding-0) 60px;
+  	box-sizing: border-box;
+  	flex-shrink: 0;
+}
+.apabila-tamu-ingin {
+  	width: 285px;
+  	height: 45px;
+  	position: relative;
+  	line-height: var(--lh-15);
+  	display: inline-block;
+  	flex-shrink: 0;
+}
+.frame37 {
+  	position: absolute;
+  	top: 665.97px;
+  	left: -25px;
+  	width: 481px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	padding: var(--padding-0) 90px;
+  	box-sizing: border-box;
+  	flex-shrink: 0;
+  	font-family: var(--font-lato);
+}
+.suatu-kehormatan-jika {
+  	width: 279px;
+  	position: relative;
+  	line-height: var(--lh-15);
+  	font-weight: 300;
+  	display: inline-block;
+}
+.will-you-attend {
+  	position: absolute;
+  	top: 623.97px;
+  	left: 23px;
+  	font-size: var(--fs-25);
+  	letter-spacing: var(--ls-0_05);
+  	line-height: var(--lh-30);
+  	display: inline-block;
+  	text-align: center;
+  	width: 361px;
+  	height: 42px;
+  	flex-shrink: 0;
+}
+
+/* Modifikasi styling untuk form RSVP/Ucapan */
+.form-rsvp {
+    position: absolute;
+    top: 718.97px;
+    left: 53px;
+    width: 291px;
+    height: 250px; /* Disesuaikan agar muat dengan form dan tombol submit */
+    flex-shrink: 0;
+    font-size: var(--fs-11);
+    color: var(--color-darkslategray);
+    font-family: var(--font-roboto);
+}
+
+.input-nama {
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    border-radius: var(--br-8);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-darkgray-100);
+    box-sizing: border-box;
+    width: 281px;
+    height: 33px;
+    padding: 0 17px;
+    font-size: 13px;
+    color: var(--color-darkgray-200);
+}
+
+.textarea-ucapan {
+    position: absolute;
+    top: 43px;
+    left: 5px;
+    border-radius: var(--br-8);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-darkgray-100);
+    box-sizing: border-box;
+    width: 281px;
+    height: 83px;
+    padding: 10px 17px;
+    font-size: 11px;
+    resize: none;
+}
+
+.label-nama {
+    position: absolute;
+    top: 4px;
+    left: 17px;
+    font-size: 13px;
+    color: var(--color-darkgray-200);
+    pointer-events: none; /* Agar tidak menghalangi klik input */
+}
+
+/* Container untuk tombol Hadir/Tidak Hadir */
+.attendance-container {
+    position: absolute;
+    top: 136px;
+    left: 5px;
+    border-radius: var(--br-8);
+    background-color: var(--color-gainsboro);
+    width: 281px;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 5px;
+}
+
+.attendance-button {
+    flex: 1;
+    height: 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--fs-12);
+    font-weight: 500;
+    color: var(--color-black);
+    background-color: transparent;
+    transition: background-color 0.2s;
+}
+
+.attendance-button.status-active {
+    background-color: var(--color-linen); /* Warna aktif */
+    color: var(--color-darkslategray);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button {
+    position: absolute;
+    top: 179px;
+    left: 5px;
+    border-radius: 5px;
+    background-color: var(--color-linen);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 24px var(--padding-15);
+    width: 281px;
+    text-align: center;
+    font-family: var(--font-poppins);
+    font-size: var(--fs-11);
+    line-height: 11px;
+    font-weight: 500;
+    color: var(--color-darkslategray);
+    cursor: pointer;
+    border: none;
+}
+
+
+.frame40 {
+  	position: absolute;
+  	top: 986.97px;
+  	left: 60px;
+  	border: 1px solid var(--color-darkslategray);
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	padding: 9.5px var(--padding-15) 7.7px;
+  	flex-shrink: 0;
+  	font-size: var(--fs-14);
+  	color: var(--color-darkgray-100);
+  	font-family: var(--font-inter);
+}
+.frame41 {
+  	width: 249px;
+  	height: 79.8px;
+  	position: relative;
+}
+.image8 {
+  	position: absolute;
+  	top: 9.45px;
+  	left: 0px;
+  	border-radius: var(--br-8);
+  	background-color: var(--color-gainsboro);
+  	width: var(--width-16);
+  	height: var(--height-16);
+  	flex-shrink: 0;
+}
+.frame42 {
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	justify-content: center;
+  	padding: var(--padding-0) 141px 16.3px var(--padding-0);
+  	gap: var(--gap-1);
+  	flex-shrink: 0;
+}
+.hjn {
+  	position: relative;
+  	line-height: var(--lh-22_4);
+}
+.ghhh {
+  	position: relative;
+  	line-height: var(--lh-22_4);
+  	color: var(--color-dimgray-100);
+}
+.tahun-10-bulan {
+  	position: relative;
+  	font-size: var(--fs-11);
+  	line-height: 18.2px;
+  	color: var(--color-black);
+}
+.frame43 {
+  	position: absolute;
+  	top: 1082.97px;
+  	left: 60px;
+  	border: 1px solid var(--color-darkslategray);
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	padding: 9.8px var(--padding-15) 7.5px;
+  	flex-shrink: 0;
+  	font-size: var(--fs-14);
+  	color: var(--color-darkgray-100);
+  	font-family: var(--font-inter);
+}
+.frame46 {
+  	position: absolute;
+  	top: 1178.97px;
+  	left: 60px;
+  	border: 1px solid var(--color-darkslategray);
+  	display: flex;
+  	flex-direction: column;
+  	align-items: flex-start;
+  	padding: 9.8px var(--padding-15) 7.5px;
+  	flex-shrink: 0;
+  	font-size: var(--fs-14);
+  	color: var(--color-darkgray-100);
+  	font-family: var(--font-inter);
+}
+.image-icon {
+  	position: absolute;
+  	top: 309.97px;
+  	left: 50px;
+  	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.33);
+  	border-radius: 25px;
+  	width: 300px;
+  	height: 187px;
+  	flex-shrink: 0;
+}
+.no-account {
+  	position: absolute;
+  	top: 337.97px;
+  	left: 82px;
+  	font-size: var(--fs-20);
+  	line-height: var(--lh-20);
+  	font-weight: 600;
+  	font-family: var(--font-orbitron);
+  	color: var(--color-gray-100);
+  	display: inline-block;
+  	width: 235px;
+  	height: 17px;
+  	flex-shrink: 0;
+}
+.an {
+  	position: absolute;
+  	top: 430.97px;
+  	left: 83px;
+  	line-height: var(--lh-15);
+  	font-weight: 600;
+  	font-family: var(--font-orbitron);
+  	color: var(--color-gray-200);
+  	display: inline-block;
+  	width: 135px;
+  	height: 13px;
+  	flex-shrink: 0;
+}
+.text-on-a-path {
+  	position: absolute;
+  	top: 429.97px;
+  	left: 218px;
+  	width: 94px;
+  	height: 22px;
+  	flex-shrink: 0;
+}
+.copy {
+  	position: absolute;
+  	top: 428.97px;
+  	left: 253px;
+  	line-height: var(--lh-15);
+  	font-family: var(--font-work-sans);
+  	text-align: center;
+  	display: inline-block;
+  	width: 91px;
+  	height: 13px;
+  	flex-shrink: 0;
+}
+
+/* Styling for Toast Notifications (Required for the JS function to not fail) */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+}
+
+.toast {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: var(--color-white);
+    font-size: 14px;
+    opacity: 0.9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    min-width: 200px;
+}
+
+.toast.success {
+    background-color: #4CAF50;
+}
+
+.toast.error {
+    background-color: #F44336;
+}
+
+
+</style>
+</head>
+
+<body>
+    
+    <div id="toast-container"></div>
+
+    <div class="invitation-digital-parent">
+        <div class="invitation-digital" id="main-invitation-content">
+
+            <div class="layout-1" id="cover-section">
+                <div class="grroom-bride">{{nama_pria}} & {{nama_wanita}}</div>
+                <div class="tittle-open-invitation">Undangan Pernikahan</div>
+                <div class="title-open-invitation">
+                    <div class="to">Kepada:</div>
+                    <div class="guest">Tamu Undangan</div>
+                    <div class="button-invitation" onclick="openInvitation()">
+                        <div class="buka-undangan">Buka Undangan</div>
+                    </div>
+                </div>
+                <img class="cover-icon" alt="">
+            </div>
+            
+            <div class="section-groom-bride" id="groom-bride-section">
+                <div class="frame">
+                    <div class="text-bride">
+                        <div class="name-bride">{{nama_wanita}}</div>
+                        <div class="fullname-bride">{{nama_wanita_lengkap}}</div>
+                        <div class="parent-bride">
+                            <b class="bpk-dilla">Putri dari Bapak {{nama_bapak_wanita}} & Ibu {{nama_ibu_wanita}}</b>
+                        </div>
+                    </div>
+                    <img class="img-bride-icon" src="{{foto_wanita}}" alt="">
+                </div>
+                <div class="frame2">
+                    <div class="text-groom">
+                        <div class="name-groom">{{nama_pria}}</div>
+                        <div class="fullname-groom">{{nama_pria_lengkap}}</div>
+                        <b class="parent-groom">Putra dari Bapak {{nama_bapak_pria}} & Ibu {{nama_ibu_pria}}</b>
+                    </div>
+                    <img class="image-groom-icon" src="{{foto_pria}}" alt="">
+                </div>
+            </div>
+            
+            <div class="time-location" id="time-location-section">
+                <div class="frame3">
+                    <div class="frame4">
+                        <div class="frame5">
+                            <div class="frame6">
+                                <div class="image">
+                                </div>
+                                <div class="frame7">
+                                    <b class="akad">AKAD</b>
+                                    <div class="frame8">
+                                        <b class="sabtu">Sabtu</b>
+                                        <b class="b">2023</b>
+                                        <div class="frame9">
+                                            <b class="b2">01</b>
+                                            <div class="okt">Okt</div>
+                                        </div>
+                                    </div>
+                                    <div class="wib">07.00 WIB</div>
+                                </div>
+                            </div>
+                            <div class="frame10">
+                                <div class="frame11">
+                                    <b class="akad">RESEPSI</b>
+                                    <div class="frame8">
+                                        <div class="frame13">
+                                            <div class="okt2">Okt</div>
+                                            <b class="b3">01</b>
+                                        </div>
+                                        <b class="sabtu2">Sabtu</b>
+                                        <b class="b4">2023</b>
+                                    </div>
+                                    <div class="wib">13.00 WIB - selesai</div>
+                                </div>
+                                <div class="image2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="frame14">
+                            <div class="frame15">
+                                <div class="frame16">
+                                    <b class="ponyo-resto">Ponyo Resto & Wedding</b>
+                                    <div class="jl-raya-tagog">Jl. Raya Tagog Cinunuk No.186, Cinunuk, Kec. Cileunyi, Kabupaten Bandung, Jawa Barat 40624</div>
+                                </div>
+                                <div class="frame17">
+                                    <div class="frame18">
+                                        <div class="open-maps">Open maps</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frame19">
+                                <div class="frame20">
+                                    <div class="frame21">
+                                        <div class="frame22">
+                                            <div class="div">00</div>
+                                            <div class="hours">Hours</div>
+                                        </div>
+                                        <div class="frame23">
+                                            <div class="div">00</div>
+                                            <div class="hours">Minutes</div>
+                                        </div>
+                                        <div class="frame24">
+                                            <div class="div">00</div>
+                                            <div class="hours">Seconds</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="frame25">
+                                    <div class="div4">00</div>
+                                    <div class="days">Days</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="frame26" id="moments-section">
+                <div class="frame27">
+                    <div class="frame28">
+                        <div class="frame29">
+                            <div class="frame30">
+                                <b class="moment">MOMENT</b>
+                                <b class="our">OUR</b>
+                            </div>
+                            <div class="image3">
+                            </div>
+                            <b class="the-man-dreams">The man dreams of a perfect woman and the woman dreams of a perfect man and they dont know that Allah created them to perfect one another</b>
+                        </div>
+                        <div class="frame31">
+                            <div class="image4">
+                            </div>
+                            <div class="image4">
+                            </div>
+                            <div class="image4">
+                            </div>
+                            <div class="image4">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="frame32">
+                    </div>
+                    <div class="frame33">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="frame34" id="gift-and-rsvp-section">
+                <div class="dilla-rachmat">Dilla & Rachmat</div>
+                <div class="frame35">
+                    <b class="wedding-love-gift">WEDDING LOVE GIFT</b>
+                </div>
+                <div class="with-love">with love</div>
+                <div class="frame36">
+                    <div class="apabila-tamu-ingin">Apabila tamu ingin mengirimkan hadiah kepada kedua mempelai dapat melalui Bank account atau e-wallet dibawah ini</div>
+                </div>
+                <div class="frame37">
+                    <div class="suatu-kehormatan-jika">Suatu kehormatan jika kamu bisa hadir diacara pernikahan kami</div>
+                </div>
+                <b class="will-you-attend">WILL YOU ATTEND?</b>
+                
+                <form class="form-rsvp" onsubmit="submitComment(event)">
+                    <input type="text" id="comment-name-input" class="input-nama" placeholder="Nama Anda" />
+                    
+                    <textarea id="comment-message-input" class="textarea-ucapan" placeholder="Berikan Ucapan" rows="3"></textarea>
+                    
+                    <div class="attendance-container">
+                        <div id="status-yes" class="attendance-button status-active" onclick="toggleAttendanceStatus(true)">
+                            <i class="fas fa-check-circle"></i> Hadir
+                        </div>
+                        <div id="status-no" class="attendance-button" onclick="toggleAttendanceStatus(false)">
+                            <i class="fas fa-times-circle"></i> Tidak Hadir
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submit-comment-btn" class="submit-button">
+                        Kirim Ucapan
+                    </button>
+                </form>
+                <div class="frame40">
+                    <div class="frame41">
+                        <div class="image8">
+                        </div>
+                        <div class="frame42">
+                            <b class="hjn">Hjn</b>
+                            <div class="ghhh">Ghhh</div>
+                            <div class="tahun-10-bulan">1 tahun, 10 bulan lalu</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="frame43">
+                    <div class="frame41">
+                        <div class="image8">
+                        </div>
+                        <div class="frame42">
+                            <b class="hjn">Hjn</b>
+                            <div class="ghhh">Ghhh</div>
+                            <div class="tahun-10-bulan">1 tahun, 10 bulan lalu</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="frame46">
+                    <div class="frame41">
+                        <div class="image8">
+                        </div>
+                        <div class="frame42">
+                            <b class="hjn">Hjn</b>
+                            <div class="ghhh">Ghhh</div>
+                            <div class="tahun-10-bulan">1 tahun, 10 bulan lalu</div>
+                        </div>
+                    </div>
+                </div>
+                <img class="image-icon" alt="">
+                
+                <div class="no-account">0012 3456 7890 9870</div>
+                <div class="an">EMBUN PAGI HARI</div>
+                <img class="text-on-a-path" alt="">
+                
+                <div class="copy">Copy<br><br></div>
+            </div>
+        </div>
+    </div>
+    
+   <script>
+        // Placeholder untuk ID undangan dan user ID
+        // Di lingkungan nyata, ini akan diisi dari backend atau URL
+        const MOCK_INVITATION_ID = '12345';
+        const MOCK_USER_ID = 'user1'; 
+        localStorage.setItem('invitationId', MOCK_INVITATION_ID);
+        const userId = MOCK_USER_ID;
+
+        function openInvitation() {
+            // 1. NONAKTIFKAN KUNCI SCROLL: Izinkan halaman untuk di-scroll
+            document.body.style.overflow = 'auto'; 
+
+            // 2. Sembunyikan halaman cover
+            const cover = document.getElementById('cover-section');
+            if (cover) {
+                cover.style.display = 'none';
+            }
+
+            // 3. Tampilkan semua section undangan lainnya
+            const mainContent = document.getElementById('main-invitation-content');
+            if (mainContent) {
+                const sections = mainContent.children;
+                for (let i = 0; i < sections.length; i++) {
+                    const section = sections[i];
+                    // Tampilkan section jika bukan cover
+                    if (section.id !== 'cover-section') {
+                        section.style.display = 'block'; 
+                        // Catatan: Gunakan 'block' atau 'flex' atau display lain yang sesuai 
+                        // dengan styling awal Anda di file CSS.
+                    }
+                }
+            }
+        }
+
+        // --- Toast Notification Functions ---
+        window.showToast = function(message, type = "info") {
+            const container = document.getElementById('toast-container');
+            if (!container) return;
+
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = message;
+
+            container.prepend(toast); // Tambahkan di awal agar yang terbaru di atas
+
+            setTimeout(() => {
+                toast.style.opacity = 0;
+                toast.style.maxHeight = '0';
+                toast.style.padding = '0 20px';
+                toast.style.margin = '0 0 10px';
+                
+                // Hapus toast setelah transisi selesai
+                setTimeout(() => {
+                    toast.remove();
+                }, 500); // Sesuaikan dengan durasi transisi jika ada
+            }, 3000);
+        }
+
+        // --- Attendance Status Toggle ---
+        window.toggleAttendanceStatus = function(isAttending) {
+            const attendingYes = document.getElementById('status-yes');
+            const attendingNo = document.getElementById('status-no');
+
+            if (isAttending) {
+                attendingYes.classList.add('status-active');
+                attendingNo.classList.remove('status-active');
+            } else {
+                attendingYes.classList.remove('status-active');
+                attendingNo.classList.add('status-active');
+            }
+        }
+        
+        // --- Guestbook Logic (As requested) ---
+        window.submitComment = async function(event) {
+            event.preventDefault();
+
+            // Pastikan API_BASE_URL sudah didefinisikan secara global atau diakses di sini
+            const API_BASE_URL = 'https://pureday-invitation.vercel.app/api'; 
+
+            // ... (kode untuk mendapatkan input name, message, isAttending, invitationId)
+            const nameInput = document.getElementById('comment-name-input');
+            const messageInput = document.getElementById('comment-message-input');
+            const attendingYes = document.getElementById('status-yes');
+            const submitBtn = document.getElementById('submit-comment-btn');
+
+            const name = nameInput.value.trim() || `Tamu (${userId ? userId.substring(0, 4) : 'Guest'})`;
+            const message = messageInput.value.trim();
+            const isAttending = attendingYes.classList.contains('status-active');
+            const willAttendStatus = isAttending ? "yes" : "no";
+            
+            if (!message) {
+                window.showToast("Pesan ucapan tidak boleh kosong.", "error");
+                return;
+            }
+
+            const invitationId = localStorage.getItem('invitationId'); 
+            if (!invitationId) {
+                console.error("invitationId not found in localStorage.");
+                window.showToast("Gagal: ID undangan tidak ditemukan.", "error");
+                return;
+            }
+            
+            const newCommentPayload = {
+                guest_name: name,
+                message: message,
+                will_attend: willAttendStatus,
+                invitation_id: invitationId,
+            };
+
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+
+            try {
+                // PERUBAHAN KRUSIAL ADA DI SINI: Menggunakan URL Absolut
+                const response = await fetch(`${API_BASE_URL}/comments`, { 
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newCommentPayload)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.message || `API call failed with status ${response.status}`);
+                }
+
+                window.showToast("Ucapan Anda berhasil terkirim! Terima kasih.", "success");
+                
+                // Reset form
+                nameInput.value = '';
+                messageInput.value = '';
+                document.getElementById('status-no').classList.add('status-active');
+                attendingYes.classList.remove('status-active');
+
+            } catch (e) {
+                console.error("Error submitting comment: ", e);
+                window.showToast("Gagal mengirim ucapan. Coba lagi. " + (e.message || ''), "error");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Kirim Ucapan';
+            }
+        }
+        // --- End Guestbook Logic ---
+    </script>
+</body>
+</html>
