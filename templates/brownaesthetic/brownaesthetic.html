@@ -333,20 +333,12 @@
 .section-gallery {
     padding: 60px 20px;
 }
-
 .photo-slider-container {
     position: relative;
     max-width: 450px; 
     margin: 30px auto;
     overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    
-    /* TETAPKAN BORDER PADA CONTAINER INI */
-    border: 3px solid var(--color-bg-dark); 
-    
-    /* 🔴 PERUBAHAN UTAMA: RASIO 1:1 (KOTAK SEMPURNA) */
-    /* Tinggi/Lebar * 100 = 100% */
+    /* Teknik rasio aspek 1:1 */
     padding-bottom: 100%; 
     height: 0; 
 }
@@ -359,20 +351,35 @@
     left: 0;
     width: 100%;
     height: 100%;
+    /* Tambahan: Pastikan tidak ada celah antar item flex */
+    line-height: 0; 
+    font-size: 0; 
 }
+
 .slider-item {
+    /* Pastikan lebar minimum 100% dari wadah parent */
     min-width: 100%; 
     flex-shrink: 0;
+    /* Penting: Pastikan tidak ada margin/padding yang dapat menyebabkan celah */
+    margin: 0; 
+    padding: 0;
+    /* Tambahan untuk mengatasi kemungkinan celah sub-piksel/font */
+    vertical-align: top;
+    line-height: 0; 
 }
 
 .slider-item img {
     width: 100%;
     height: 100%;
-    /* object-fit: cover akan memastikan foto mengisi penuh kotak 1:1 */
+    /* Gunakan object-fit: cover untuk rasio 1:1 tanpa distorsi */
     object-fit: cover; 
+    /* Penting: Hapus border dan pastikan tampilan solid */
     border: none; 
     border-radius: 0; 
+    display: block; /* Penting untuk menghilangkan celah bawah pada gambar (image bottom gap) */
 }
+
+/* --- CSS Navigasi (tidak diubah, disertakan untuk kelengkapan) --- */
 
 .slider-nav {
     position: absolute;
@@ -394,19 +401,15 @@
 .prev-btn { left: 0; border-radius: 0 5px 5px 0; }
 .next-btn { right: 0; border-radius: 5px 0 0 5px; }
 
-/* Tambahan: Penyesuaian untuk layar sangat kecil */
+/* --- Media Queries (diubah) --- */
+
+/* Penyesuaian untuk layar sangat kecil */
 @media (max-width: 380px) {
     .photo-slider-container {
         max-width: 100%;
-        padding-bottom: 100%; /* Rasio tetap 1:1 */
-        height: 0;
-    }
-}
-/* Tambahan: Penyesuaian untuk layar sangat kecil */
-@media (max-width: 380px) {
-    .photo-slider-container {
-        max-width: 100%; /* Lebar penuh pada layar sangat kecil */
-        height: 250px; /* Tinggi lebih kecil */
+        /* Kembali ke rasio 1:1 dengan teknik padding-bottom */
+        padding-bottom: 100%; 
+        height: 0; 
     }
 }
     /* --- Section Gift --- */
@@ -753,7 +756,7 @@
         <p class="subtitle-top">OUR SWEET MEMORY</p>
         <h2 class="main-title font-cursive">Photo Gallery</h2>
         
-        <div class="photo-slider-container animate-on-scroll">
+        <div class="photo-slider-container">
             
             <div class="photo-slider">
                 
