@@ -582,6 +582,7 @@ h1, h2, h3 {
 
 /* --- Perubahan Utama untuk Desain Kartu --- */
 .bank-card {
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     /* Mengubah background menjadi gradien khas kartu */
     background-color: var(--primary-color);
     color: white; /* Mengubah warna teks default menjadi putih */
@@ -682,6 +683,7 @@ label {
     font-family: var(--font-body);
     font-size: 1rem;
     transition: border-color 0.3s;
+    box-sizing: border-box;
 }
 
 .form-control:focus, textarea:focus {
@@ -725,8 +727,8 @@ textarea {
     color: white;
     border: none;
     border-radius: 0;
-    font-size: 1rem;
-    font-weight: 300;
+    font-size: 0.9rem;
+    font-weight: 200;
     cursor: pointer;
     transition: background-color 0.3s;
     margin-top: 15px;
@@ -741,12 +743,15 @@ textarea {
     opacity: 0.6;
     cursor: not-allowed;
 }
-
 /* Comments List */
 .comments-list-container {
     max-width: 800px;
     margin: 40px auto 0;
     text-align: left;
+    /* --- Tambahan untuk Scroll --- */
+    max-height: 400px; /* Atur tinggi maksimum yang diinginkan */
+    overflow-y: auto;  /* Scroll bar vertikal akan muncul jika konten melebihi max-height */
+    /* --------------------------- */
 }
 
 .comment-card {
@@ -788,7 +793,6 @@ textarea {
     color: var(--text-dark);
     font-size: 0.95rem;
 }
-
 /* --- 10. MUSIC TOGGLE & TOAST --- */
 #floating-music-toggle {
     /* Mengubah posisi dari 'bottom' dan 'right' menjadi 'top' dan 'right' */

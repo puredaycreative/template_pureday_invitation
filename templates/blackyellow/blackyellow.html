@@ -6,739 +6,457 @@
     <title>Pureday Invitation: {{nama_pria}} & {{nama_wanita}}</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rosemary&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+    /* 1. Impor Font Google (Montserrat: Thin, Cinzel: Light/Normal, Tangerine: Script) */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&family=Cinzel:wght@400..700&family=Tangerine:wght@400;700&display=swap');
+
+    /* --- Variabel Warna --- */
+    :root {
+        --color-dark-bg: #1C1C1C; 
+        --color-dark-surface: #252525;
+        --color-dark-border: #3A3A3A;
+        --color-text-light: #E0E0E0;
+        --color-text-accent: #FFFFFF;
+        --color-gold-accent: #B8860B; 
+        --color-gold-light: #FFD700; 
+        
+        /* Variabel Font */
+        --font-modern-sans: 'Montserrat', sans-serif;
+        --font-luxury-serif: 'Cinzel', serif; 
+        --font-script-accent: 'Tangerine', cursive; 
+    }
+
+    /* --- Animasi Khusus Tambahan --- */
+    @keyframes moveGradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    @keyframes movePattern {
+        from { background-position: 0 0; }
+        to { background-position: 100px 100px; }
+    }
+    @keyframes pulseShadow {
+        0% { box-shadow: 0 0 8px rgba(184, 134, 11, 0.5); }
+        50% { box-shadow: 0 0 20px rgba(184, 134, 11, 0.8); }
+        100% { box-shadow: 0 0 8px rgba(184, 134, 11, 0.5); }
+    }
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px); 
+        transition: opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1), transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .animated-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    @keyframes fadeInLeft {
+        from { opacity: 0; transform: translateX(-50px) translateY(10px); }
+        to { opacity: 1; transform: translateX(-20px) translateY(10px); }
+    }
+    @keyframes fadeInRight {
+        from { opacity: 0; transform: translateX(50px) translateY(-10px); }
+        to { opacity: 1; transform: translateX(20px) translateY(-10px); }
+    }
     
-    <style>
-        /* ======================================================= */
-        /* CSS CORE & UTILITIES */
-        /* ======================================================= */
-        
-        :root {
-            --netflix-red: #E50914;
-            --netflix-black: #141414;
-            --netflix-grey: #808080;
-            --font-primary: 'Montserrat', sans-serif;
-            --font-title: 'Bebas Neue', cursive;
-            --font-cursive: 'Great Vibes', cursive; /* Untuk nama pasangan */
-            --font-quote: 'Playfair Display', serif; /* Untuk detail/quote */
-            --padding-mobile: 20px;
-            --padding-desktop: 40px;
-            --transition-speed: 0.5s;
-        }
+    /* --- Pengaturan Umum & Body --- */
+    body {
+        font-family: var(--font-modern-sans);
+        color: var(--color-text-light);
+        margin: 0; padding: 0;
+        background: linear-gradient(270deg, var(--color-dark-bg), var(--color-dark-surface));
+        background-size: 400% 400%;
+        animation: moveGradient 30s ease infinite; 
+        text-align: center;
+        overflow-x: hidden;
+        font-weight: 300; 
+    }
+         .scroll-locked {
+        overflow: hidden !important;
+    }
 
-        body {
-            background-color: var(--netflix-black);
-            color: #fff;
-            font-family: var(--font-primary);
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            min-height: 100vh;
-            scroll-behavior: smooth;
-        }
-        
-        /* Utility Classes */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 var(--padding-mobile);
-        }
-        .mr-2 { margin-right: 0.5rem; }
+    .container { max-width: 850px; margin: 0 auto; padding: 0 20px; }
+    .section { padding: 100px 20px; position: relative; overflow: hidden; }
 
-        /* Scroll Lock for Cover Page */
-        .scroll-locked {
-            overflow: hidden;
-            height: 100vh;
-        }
-        
-        /* ======================================================= */
-        /* COVER PAGE STYLING (THE OPENER) */
-        /* ======================================================= */
-        #cover-page {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            opacity: 1;
-            transition: opacity 1.5s ease-in-out;
-        }
+    /* --- Tipografi Sangat Tipis (Thin/Light) --- */
+    .script-text { font-family: var(--font-script-accent); font-weight: 400; color: var(--color-gold-light); font-size: 2.5rem; text-shadow: 0 0 5px rgba(255, 215, 0, 0.7); }
+    .title-wedding { font-family: var(--font-luxury-serif); font-size: 1.2rem; color: var(--color-gold-accent); letter-spacing: 8px; font-weight: 300; text-transform: uppercase; }
+    .main-title { font-family: var(--font-luxury-serif); font-size: 2.8rem; color: var(--color-gold-accent); font-weight: 400; letter-spacing: 2px; line-height: 1.1; }
+    .title-wedding::after { background-color: var(--color-gold-accent); }
+    .title-wedding::before { background-color: var(--color-gold-accent); opacity: 0.5; }
 
-        .template-cover-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            height: 100%;
-            background: url('{{cover}}') center/cover no-repeat;
-        }
-
-        .template-cover-overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-        }
-        
-        .template-cover-content-wrapper {
-            position: relative;
-            z-index: 10;
-            padding: 20px;
-        }
-
-        .template-cover-guest-name {
-            font-size: 1.5rem;
-            color: #fff;
-            margin: 0.5rem 0 1.5rem;
-            font-weight: bold;
-        }
-        
-        .template-cover-title {
-            font-family: var(--font-cursive);
-            font-size: 3rem;
-            color: var(--netflix-red);
-            line-height: 1;
-        }
-        
-        .cover-open-btn {
-            background-color: var(--netflix-red);
-            color: #fff;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-transform: uppercase;
-        }
-        .cover-open-btn:hover { background-color: #ff3340; }
-
-        /* ======================================================= */
-        /* MAIN CONTENT STYLING (NETFLIX UI) */
-        /* ======================================================= */
-        #main-content {
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 1.5s ease-in-out;
-        }
-        
-        .section {
-            padding: 40px 0;
-            min-height: 300px;
-        }
-        
-        .section-intro, .section-detail, .section-event, .section-gift {
-            text-align: center;
-            padding-top: 60px; /* Jarak dari atas */
-        }
-
-        .main-title {
-            font-family: var(--font-cursive);
-            font-size: 3.5rem;
-            color: var(--netflix-red);
-            margin: 0.5rem 0 2rem;
-        }
-        .subtitle-top {
-            font-size: 0.9rem;
-            color: var(--netflix-grey);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-left: 15px;
-        }
-        
-        /* --- Section Intro (Logo & Pembukaan) --- */
-        .title-wedding {
-            font-family: var(--font-title);
-            font-size: 3rem;
-            letter-spacing: 3px;
-            color: var(--netflix-red);
-            margin-bottom: 0;
-        }
-        .intro-deco img {
-            max-width: 100px;
-            height: auto;
-            margin: 20px 0;
-        }
-        .section-intro-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-direction: row;
-        }
-        
-        /* --- Section Couple & Detail Pasangan --- */
-        .couple-names {
-            font-family: var(--font-cursive);
-            font-size: 4rem;
-            color: #fff;
-            margin: 20px 0;
-            line-height: 1;
-        }
-        
-        .quote-opening, .quote-closing {
-            color: #ccc;
-            font-size: 1rem;
-            max-width: 600px;
-            margin: 20px auto;
-            line-height: 1.6;
-        }
-        
-        .couple-cards {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin: 30px 0;
-        }
-
-        .card {
-            max-width: 180px;
-            text-align: center;
-            opacity: 0; /* Initial state for animation */
-            transform: translateY(20px);
-            transition: opacity 0.8s, transform 0.8s;
-        }
-
-        .card.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .card-image-wrapper {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid var(--netflix-red);
-            margin: 0 auto 15px;
-        }
-        .card-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .card-name {
-            font-family: var(--font-title);
-            font-size: 2rem;
-            color: var(--netflix-red);
-            margin: 0;
-        }
-        
-        /* --- Section Event & Countdown (Netflix Style) --- */
-        #countdown-timer {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0 40px;
-        }
-
-        .time-box {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 10px 15px;
-            border-radius: 8px;
-            min-width: 60px;
-            line-height: 1;
-        }
-        .time-number {
-            font-family: var(--font-title);
-            font-size: 2.5rem;
-            color: #fff;
-            margin: 0;
-        }
-        .time-label {
-            font-size: 0.8rem;
-            color: var(--netflix-red);
-            margin: 5px 0 0;
-            font-weight: bold;
-        }
-        
-        .btn-maps-link {
-            display: inline-block;
-            background-color: var(--netflix-red);
-            color: #fff;
-            padding: 10px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: background-color 0.3s;
-        }
-        .btn-maps-link:hover { background-color: #ff3340; }
-        
-        /* --- Section Gift --- */
-        .bank-accounts-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            max-width: 400px;
-            margin: 20px auto;
-        }
-        .bank-card {
-            background-color: #222;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: left;
-        }
-        .copy-btn {
-            background-color: var(--netflix-grey);
-            color: #fff;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            float: right;
-            font-size: 0.9rem;
-        }
-
-        /* --- Section Comments (Guestbook) --- */
-        .section-comments {
-            background-color: #1a1a1a;
-            color: #fff;
-        }
-        .detail-box {
-            background-color: #222;
-            padding: 30px;
-            border-radius: 10px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #ccc;
-        }
-        .form-control, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #333;
-            background-color: #141414;
-            color: #fff;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        textarea { resize: vertical; }
-
-        .status-btn-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .template-status-btn {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid var(--netflix-grey);
-            background-color: #222;
-            color: var(--netflix-grey);
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .template-status-btn.status-active {
-            background-color: var(--netflix-red);
-            border-color: var(--netflix-red);
-            color: #fff;
-        }
-        .btn-submit {
-            width: 100%;
-            background-color: var(--netflix-red);
-            color: #fff;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .comment-card {
-            background-color: #222;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 10px;
-        }
-
-
-        /* Pastikan class ini ada di file CSS Anda. */
-        .comment-date {
-            /* Atur ukuran font di sini, misalnya menjadi 0.7rem atau 10px */
-            font-size: 0.7rem; 
-            color: #999; /* Contoh warna abu-abu */
-            margin-top: 5px; /* Contoh margin */
-            text-align: left; /* Contoh posisi */
-
-        }
-        /* ======================================================= */
-        /* BOTTOM NAVIGATION (Mobile Fixed Bar) */
-        /* ======================================================= */
-        .bottom-nav-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            background-color: rgba(0, 0, 0, 0.95);
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
-            z-index: 9000;
-            padding: 5px 0;
-        }
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: var(--netflix-grey);
-            font-size: 0.7rem;
-            padding: 5px;
-            transition: color 0.3s;
-        }
-        .nav-item i {
-            font-size: 1.2rem;
-            margin-bottom: 3px;
-        }
-        .nav-item.active {
-            color: var(--netflix-red);
-        }
-        
-        /* ======================================================= */
-        /* TOAST & ANIMATION STYLING */
-        /* ======================================================= */
-        #toast-message {
-            position: fixed;
-            bottom: 70px; /* Di atas nav bar */
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.3s, visibility 0.3s;
-            z-index: 9998;
-        }
-        #toast-message.show {
-            visibility: visible;
-            opacity: 1;
-        }
-        #toast-message.success { background-color: #28a745; }
-        #toast-message.error { background-color: #dc3545; }
-
-
-        /* ======================================================= */
-        /* MEDIA QUERIES (Mobile Adjustments) */
-        /* ======================================================= */
-        @media (max-width: 600px) {
-            .container {
-                padding: 0 var(--padding-mobile);
-            }
-            .template-cover-title {
-                font-size: 2.5rem;
-            }
-            .couple-names {
-                font-size: 3rem;
-            }
-            .main-title {
-                font-size: 2.5rem;
-            }
-            .couple-cards {
-                flex-direction: column;
-                gap: 20px;
-                align-items: center;
-            }
-            .time-box {
-                min-width: 50px;
-                padding: 8px 10px;
-            }
-            .time-number {
-                font-size: 2rem;
-            }
-            .intro-deco {
-                display: none; /* Sembunyikan dekorasi samping di mobile */
-            }
-            .section-intro-content {
-                justify-content: center;
-            }
-
-        }
-
-        /* ======================================================= */
-/* FLOATING MUSIC TOGGLE BUTTON (TOP RIGHT) */
-/* ======================================================= */
-#floating-music-toggle {
-    position: fixed;
-    top: 20px; /* Jarak dari atas */
-    right: 20px; /* Jarak dari kanan */
-    z-index: 9500; /* Pastikan di atas konten utama, di bawah cover page */
-    background-color: rgba(0, 0, 0, 0.7); /* Latar belakang semi-transparan */
-    color: var(--netflix-grey);
-    border: 2px solid var(--netflix-red);
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: background-color 0.3s, transform 0.3s;
-    opacity: 0; /* Sembunyikan dulu */
-    visibility: hidden; /* Sembunyikan dulu */
+    /* Tombol Aksi */
+    .btn-maps-link, .btn-submit, .cover-open-btn {
+        display: inline-flex;
+        font-family: var(--font-button, var(--font-body));
+        align-items: center;
+        padding: 12px 30px;
+        margin-top: 30px;
+        border: 1px solid var(--color-gold-accent); 
+        border-radius: 50px;
+        background-color: transparent;
+        color: var(--color-gold-accent);
+        font-weight: 300;
+        text-decoration: none;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        /* text-transform: uppercase; */
+        letter-spacing: 1px;
+    }
+    .btn-maps-link:hover, .btn-submit:hover, .cover-open-btn:hover {
+        background: linear-gradient(45deg, var(--color-gold-accent), #FFD700);
+        border-color: #FFD700;
+        transform: translateY(-3px) scale(1.02); 
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); 
+        color: var(--color-text-light);
+    }
+    /* --- COVER SECTION --- */
+   #cover-page {
+        background: 
+            linear-gradient(180deg, rgba(28, 28, 28, 0.95), rgba(0, 0, 0, 0.8)), 
+            url('{{cover}}') center/cover no-repeat fixed;
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 999;
+        display: flex; flex-direction: column; justify-content: center; align-items: center;
+        transition: opacity 1.5s ease-out, transform 1.5s ease-out; 
+        animation: scaleInTransition 1.5s ease-out;
+    }
+    
+    .template-cover-content-wrapper {
+        z-index: 2; padding: 70px 50px; background: rgba(0, 0, 0, 0.7); 
+        border: 1px solid var(--color-gold-accent); 
+        border-radius: 0; 
+        box-shadow: 0 0 50px rgba(184, 134, 11, 0.4);
+        width: 85%; max-width: 200px;
+        position: relative;
+        overflow: hidden;
+        /* Garis diagonal dekoratif */
+        /* border-image-slice: 1; */
+        /* border-image-source: linear-gradient(45deg, var(--color-gold-light), var(--color-gold-accent)); */
+        /* border-width: 2px; */
+    }
+    
+    .template-cover-guest-name {
+        font-size: 1.5rem; font-family: var(--font-modern-sans); color: var(--color-text-light);
+        margin: 0px 0 10px; letter-spacing: 3px; font-weight: 300;
+    }
+    
+    .template-cover-title {
+        font-family: var(--font-script-accent); /* Ganti ke Cinzel untuk cover title */
+        font-size: 5rem; 
+        color: var(--color-gold-accent);
+        margin: 15px 0; font-weight: 300; line-height: 1; 
+        text-shadow: var(--color-gold-light);
+        animation: fadeInUp 1.5s ease-out 0.5s forwards; 
+        opacity: 0; 
+    }
+    @keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-#floating-music-toggle.visible {
-    opacity: 1;
-    visibility: visible;
-    transform: rotate(0deg);
+    /* --- KONTEN UTAMA --- */
+/* Section Intro (Pasangan) */
+    .couple-names {
+        font-family: var(--font-script-accent); font-size: 4rem; 
+        font-weight: 400; 
+    }
+    /* PERBAIKAN BORDER GAMBAR: couple-image-container */
+    .couple-image-container {
+        display: inline-block; margin: 60px auto; position: relative;
+        padding: 0; /* Hapus padding yang menyebabkan border aneh */
+        background: none; /* Hapus background dari container */
+        box-shadow: none; /* Hapus shadow dari container */
+        clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%);
+        transform: rotate(5deg);
+        border: 2px solid var(--color-gold-accent); /* Border langsung pada container, di luar clip-path */
+        transition: all 0.5s ease-in-out; 
+    }
+    .couple-image-container:hover { transform: rotate(0deg) scale(1.05); box-shadow: 0 0 30px rgba(184, 134, 11, 0.5); } /* Tambahkan shadow di hover */
+    .couple-image-container img {
+        width: 100%; height: 100%; max-width: 320px; max-height: 420px; display: block; object-fit: cover;
+        /* Clip-path diterapkan di sini juga agar gambar sesuai bentuk container */
+        clip-path: polygon(50% 0%, 90% 20%, 90% 80%, 50% 100%, 10% 80%, 10% 20%); 
+        border: none; /* Pastikan tidak ada border di gambar itu sendiri */
+        transition: filter 0.5s;
+    }
+    .couple-image-container:hover img { filter: brightness(1.2) contrast(1.1); }
+    
+    /* Blockquote INOVATIF: Parallax Window Effect */
+    .quote-wrapper-container { display: flex; flex-wrap: wrap; justify-content: center; }
+    .quote-opening, .quote-closing {
+        font-size: 0.95rem; font-weight: 300; line-height: 1.9; padding: 25px; 
+        border: 1px solid var(--color-gold-accent);
+        background: linear-gradient(135deg, var(--color-dark-surface), #202020);
+        background-size: 200% 200%;
+        animation: moveGradient 20s ease infinite reverse;
+    }
+    .quote-closing { 
+        background: linear-gradient(45deg, var(--color-dark-surface) 0%, var(--color-dark-surface) 50%, var(--color-gold-accent) 50.5%, var(--color-gold-accent) 51%, var(--color-dark-surface) 51.5%, var(--color-dark-surface) 100%);
+        background-size: 200% 200%;
+        animation: moveGradient 20s ease infinite reverse;
+    }
+    .quote-opening::before { content: '///'; font-size: 1.5rem; top: 10px; left: 15px; }
+    .quote-closing::after { content: '\25B6'; font-size: 2rem; bottom: 5px; right: 15px; }
+    .parallax-quote-bg { background-attachment: fixed; opacity: 0.1; }
+
+    /* --- Section Detail (Couple Cards) --- */
+    .couple-cards { gap: 30px; }
+    .card { 
+        padding: 30px 25px; transform: skewY(0.5deg); 
+        border: 1px solid var(--color-dark-border); /* Border standar untuk card */
+    }
+    .card:nth-child(odd) { transform: skewY(-0.5deg); }
+    .card:hover { transform: skewY(0deg) scale(1.03); box-shadow: 0 10px 30px rgba(184, 134, 11, 0.4); }
+
+    /* PERBAIKAN BORDER GAMBAR: card-image-wrapper */
+    .card-image-wrapper { 
+        position: relative; width: 180px; height: 180px; margin: 0 auto 30px; display: block; overflow: hidden; 
+        background: none; /* Hapus background dari wrapper */
+        border: none; /* Hapus border dari wrapper */
+    }
+    /* Border dengan pseudo-element untuk efek lebih baik */
+    .card-image-wrapper::before {
+        content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+        border: 2px solid var(--color-gold-accent); /* Border emas di sini */
+        z-index: 1; /* Di atas gambar, di bawah overlay */
+        transition: border-color 0.3s;
+    }
+    .card:nth-child(1) .card-image-wrapper::before { 
+        clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%); 
+    }
+    .card:nth-child(2) .card-image-wrapper::before { 
+        clip-path: polygon(50% 0%, 100% 30%, 80% 100%, 20% 100%, 0% 30%); 
+    }
+    .card-image-wrapper img { 
+        width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease-in-out, filter 0.4s; 
+        /* Pastikan gambar di-clip dengan bentuk yang sama */
+        clip-path: inherit; /* Akan mewarisi clip-path dari parent .card-image-wrapper */
+    }
+    .card-image-wrapper:hover::before { border-color: var(--color-gold-light); } /* Efek hover pada border */
+
+    .card-name { font-family: var(--font-luxury-serif); font-size: 1.5rem; font-weight: 400; letter-spacing: 2px; }
+    .card-title-label { font-weight: 300; font-size: 0.9rem; letter-spacing: 3px; }
+    /* --- Section Event --- */
+    .section-event { 
+        background-color: var(--color-dark-surface);
+        background-image: radial-gradient(circle, var(--color-dark-border) 1px, transparent 1px);
+        background-size: 30px 30px;
+        animation: movePattern 120s linear infinite reverse; 
+    }
+
+    /* COUNTDOWN TIMER - PERBAIKAN ALIGNMENT */
+    #countdown-timer { 
+        display: flex; /* WAJIB: Atur sebagai Flex Container */
+        justify-content: center; 
+        gap: 20px; /* Kurangi gap untuk mobile */
+        margin: 50px auto 0; 
+        padding: 15px 10px; /* Padding lebih kecil */
+        z-index: 2; 
+        position: relative; 
+        background-color: rgba(28, 28, 28, 0.8);
+        border-radius: 8px; 
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.7), 0 0 5px var(--color-gold-accent) inset;
+        max-width: 600px; /* Batasi lebar agar tidak terlalu panjang */
+    }
+    .time-box { 
+        background-color: transparent; 
+        padding: 5px; /* Padding minimal */
+        width: 20%; /* Beri lebar proporsional */
+        transition: transform 0.4s ease-out; 
+    }
+    .time-number { 
+        font-family: monospace; font-size: 4rem; font-weight: 300; 
+        letter-spacing: -1px; text-shadow: 0 0 10px var(--color-gold-accent);
+        line-height: 1; /* Pastikan angka tidak terlalu tinggi */
+    }
+    .time-label { 
+        font-weight: 300; font-size: 2rem; 
+        line-height: 1.2; /* Pastikan label tidak terlalu tinggi */
+    }
+
+    /* --- SECTION GALLERY - PERBAIKAN UKURAN PROPORSIONAL --- */
+        .section-gallery {
+    padding: 60px 20px;
 }
-
-#floating-music-toggle:hover {
-    background-color: var(--netflix-black);
-    color: #fff;
-    transform: scale(1.1);
-}
-
-/* Sembunyikan tombol musik saat cover masih aktif (opsional) */
-.scroll-locked #floating-music-toggle {
-    display: none;
-}
-
-
-/* --- Styling Umum untuk Bagian Galeri --- */
-.section-gallery {
-    /* Padding sudah diatur inline, tapi ini untuk memastikan */
-    /* padding: 60px 0; */ 
-
-    color: #333; /* Warna teks utama */
-}
-
-.section-gallery .container {
-    max-width: 1140px; /* Batasi lebar konten agar tidak terlalu lebar di layar besar */
-    margin: 0 auto;
-    padding: 0 15px; /* Sedikit padding horizontal */
-}
-
-/* --- Styling Judul dan Subjudul --- */
-.subtitle-top {
-    font-size: 14px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #a0a0a0; /* Warna lembut untuk subjudul */
-    margin-bottom: 5px;
-}
-
-.main-title.font-cursive {
-    font-family: 'Great Vibes', cursive; /* Contoh font kursif, pastikan font ini dimuat */
-    font-size: 48px;
-    color: #4a4a4a; /* Warna judul yang lebih menonjol */
-    margin-top: 0;
-    margin-bottom: 20px;
-}
-
-.section-gallery p {
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-/* --- Styling untuk Keterangan Trailer --- */
-.section-gallery p[style*="#ccc"] {
-    font-style: italic;
-    color: #999 !important; /* Timpa inline style agar lebih mudah dibaca jika perlu */
-    margin-bottom: 30px;
-    font-size: 15px;
-}
-
-/* --- Styling untuk Wadah Galeri/Video --- */
-.section-gallery > .container > div[style*="background-color: #000"] {
-    background-color: #111 !important; /* Sedikit lebih lembut dari #000 */
-    padding: 30px; /* Tambahkan padding agar konten di dalamnya tidak terlalu mepet */
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Bayangan lembut */
-}
-
-/* --- Styling untuk Konten Galeri/Video ({{galeri}} replacement) --- */
-
-/* Jika {{galeri}} diisi dengan Video Player (misal: Iframe YouTube) */
-.video-responsive-container {
+.photo-slider-container {
     position: relative;
-    padding-bottom: 56.25%; /* Rasio 16:9 */
-    height: 0;
+    max-width: 450px; 
+    margin: 30px auto;
     overflow: hidden;
-    max-width: 100%;
-    background-color: #000;
+    /* Teknik rasio aspek 1:1 */
+    padding-bottom: 100%; 
+    height: 0; 
 }
-.video-responsive-container iframe,
-.video-responsive-container object,
-.video-responsive-container embed {
-    position: absolute;
+
+.photo-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    position: absolute; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    border: 0;
+    /* Tambahan: Pastikan tidak ada celah antar item flex */
+    line-height: 0; 
+    font-size: 0; 
 }
 
-/* Jika {{galeri}} diisi dengan Grid Foto */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 kolom di layar desktop */
-    gap: 15px; /* Jarak antar foto */
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 250px; /* Tinggi tetap untuk estetika */
-    object-fit: cover; /* Pastikan gambar mengisi area tanpa terdistorsi */
-    display: block;
-    border-radius: 8px;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    cursor: pointer;
-}
-
-.gallery-item img:hover {
-    transform: scale(1.05); /* Efek zoom saat hover */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-}
-
-
-/* --- Media Queries untuk Responsivitas --- */
-@media (max-width: 768px) {
-    .main-title.font-cursive {
-        font-size: 38px;
-    }
-    
-    /* Ubah grid foto menjadi 2 kolom di tablet */
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 576px) {
-    /* Ubah grid foto menjadi 1 kolom di ponsel */
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .gallery-item img {
-        height: auto; /* Biarkan tinggi menyesuaikan di ponsel */
-    }
-
-    .section-gallery > .container > div[style*="background-color: #000"] {
-        padding: 20px;
-        border-radius: 10px;
-    }
-}
-/* --- Styling Khusus untuk Wadah Slider --- */
-/* CONTAINER SLIDER (VIEWPORT) */
-.photo-slider-container {
-    width: 100%;
-    /* Atur max-width ini sesuai ukuran maksimal galeri yang Anda inginkan (misalnya, 600px) */
-    max-width: 600px; 
-    margin: 0 auto;
-    overflow: hidden; 
-    position: relative; 
-    
-    /* 💡 TIPS PENTING: Untuk menjaga rasio, Anda bisa menggunakan padding-bottom 
-       untuk memastikan container memiliki tinggi yang proporsional
-       Contoh (untuk rasio 16:9): height: 0; padding-bottom: 56.25%; */
-}
-
-/* SLIDER UTAMA (yang digeser) */
-.photo-slider {
-    display: flex; 
-    width: 100%; 
-    transition: transform 0.5s ease-in-out; 
-}
-
-/* SLIDE INDIVIDUAL */
 .slider-item {
-    flex-shrink: 0; 
-    width: 100%; 
-    /* Pastikan slider-item tidak memiliki tinggi tetap yang memotong gambar */
-    height: auto; 
+    /* Pastikan lebar minimum 100% dari wadah parent */
+    min-width: 100%; 
+    flex-shrink: 0;
+    /* Penting: Pastikan tidak ada margin/padding yang dapat menyebabkan celah */
+    margin: 0; 
+    padding: 0;
+    /* Tambahan untuk mengatasi kemungkinan celah sub-piksel/font */
+    vertical-align: top;
+    line-height: 0; 
 }
 
-/* 🎯 FOKUS UTAMA: Mengatur Gambar di Dalam Slide */
 .slider-item img {
-    width: 100%; /* Gambar akan memenuhi lebar slider-item */
-    height: auto; /* **PENTING:** Tinggi menyesuaikan otomatis agar rasio aspek terjaga */
-    display: block;
-    object-fit: contain; /* **PENTING:** Memastikan gambar TIDAK terpotong/terdistorsi */
-    max-height: 400px; /* Opsional: Batasi tinggi maksimal agar tidak terlalu besar */
-    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    /* Gunakan object-fit: cover untuk rasio 1:1 tanpa distorsi */
+    object-fit: cover; 
+    /* Penting: Hapus border dan pastikan tampilan solid */
+    border: none; 
+    border-radius: 0; 
+    display: block; /* Penting untuk menghilangkan celah bawah pada gambar (image bottom gap) */
 }
-
-/* Style Tambahan untuk Tombol Navigasi */
-.slider-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    z-index: 10;
-    border-radius: 50%; /* Membuat tombol bulat */
-}
-
-.prev-btn {
-    left: 10px;
-}
-
-.next-btn {
-    right: 10px;
-}
-
-/* --- Styling Tombol Navigasi --- */
 
 .slider-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    z-index: 10; /* Pastikan tombol di atas foto */
-    font-size: 24px;
-    line-height: 1;
-    border-radius: 5px;
-    transition: background 0.3s;
-}
-
-.slider-nav:hover {
-    background: rgba(0, 0, 0, 0.8);
-}
-
-.prev-btn {
-    left: 10px;
-}
-
-.next-btn {
-    right: 10px;
-}
-
-/* Responsivitas: Sembunyikan tombol kecil di layar sangat kecil */
-@media (max-width: 576px) {
-    .slider-nav {
-        padding: 5px 10px;
-        font-size: 18px;
+        position: absolute; top: 50%; transform: translateY(-50%); background: rgba(248, 242, 233, 0);
+        color: var(--color-gold-accent); border: none; padding: 12px 18px; cursor: pointer; z-index: 10;
+        font-size: 0.8rem; opacity: 0.7; transition: opacity 0.3s, background 0.3s, transform 0.3s; border-radius: 50%;
     }
-}
-    </style>
+    .prev-btn { left: 5px; } .next-btn { right: 5px; }
+    .slider-nav:hover {opacity: 1; transform: translateY(-50%) scale(1.1); }
+    /* --- Section Gift (Bank Transfer) --- */
+    .bank-card {
+        padding: 40px; background: linear-gradient(135deg, #2B2B2B, #1B1B1B);
+        background-size: 200% 200%; animation: moveGradient 25s ease infinite;
+    }
+    .bank-name{ font-family: var(--font-luxury-serif); font-weight: 400; font-size: 1.1rem; }
+    .account-number-text { font-size: 1.6rem; font-weight: 400; }
+    .copy-btn { font-weight: 300; padding: 12px 25px; }
+
+    /* --- Section Comments (Ucapan) --- */
+    .section-comments { 
+        background-color: var(--color-dark-surface); 
+        background-image: linear-gradient(45deg, var(--color-dark-surface), var(--color-dark-bg));
+        background-size: 200% 200%;
+        animation: moveGradient 40s ease infinite;
+    }
+    .detail-box { padding: 40px; background-color: rgba(28, 28, 28, 0.9); border-radius: 8px; border: 1px solid var(--color-dark-border); }
+    .form-group { margin-bottom: 25px; text-align: left; } 
+    .form-group label { color: var(--color-gold-accent); font-size: 1rem; font-weight: 300; }
+    #comment-form input[type="text"], #comment-form textarea {
+        width: calc(100% - 30px); padding: 15px; border: 1px solid var(--color-dark-border);
+        background-color: var(--color-dark-border); color: var(--color-text-light);
+        font-weight: 300; font-size: 0.95rem; 
+    }
+    .template-status-buttons { display: flex; justify-content: center; margin-bottom: 20px; }
+    .template-status-btn {
+        flex: 1; padding: 12px; border: 1px solid var(--color-gold-accent); border-radius: 20px; 
+        background-color: var(--color-dark-surface); color: var(--color-gold-accent);
+        font-weight: 400; margin: 0 5px; font-size: 0.9rem;
+    }
+    .template-status-btn.status-active { background: var(--color-gold-accent); color: var(--color-dark-bg); border-color: var(--color-gold-light); }
+    .comments-list-container { max-height: 500px; overflow-y: auto; padding: 20px; margin-top: 30px; border: 1px solid var(--color-dark-border); background-color: var(--color-dark-bg); }
+    .comment-card { border: none; border-bottom: 1px dashed var(--color-dark-border); padding: 20px 0; }
+    .comment-name { font-weight: 500; font-family: var(--font-luxury-serif); font-size: 1.1rem; }
+    .comment-text { font-weight: 300; font-size: 0.95rem; }
+
+    /* --- Bottom Navigation Bar --- */
+    .bottom-nav-bar { background-color: rgba(37, 37, 37, 0.9); border-top: 1px solid var(--color-dark-border); height: 70px; }
+    .nav-item span { font-weight: 300; font-size: 0.7rem; letter-spacing: 2px; }
+    .nav-item.active, .nav-item:hover { transform: scale(1.1) translateY(-5px); }
+
+    /* --- Media Queries (Responsif) --- */
+    @media (min-width: 769px) {
+        /* Desktop: Event Cards Asimetris */
+        .event-card:nth-child(1).animated-visible { animation: fadeInLeft 1s ease-out forwards; }
+        .event-card:nth-child(2).animated-visible { animation: fadeInRight 1s ease-out forwards; animation-delay: 0.3s; }
+        .event-card:nth-child(1) { transform: translateX(-20px) translateY(10px); margin-right: -20px; }
+        .event-card:nth-child(2) { transform: translateX(20px) translateY(-10px); margin-left: -20px; }
+    }
+
+    @media (max-width: 768px) {
+        /* Tablet/Mobile: Countdown Timer */
+        #countdown-timer { gap: 10px; }
+        .time-box { width: 22%; } /* Sesuaikan agar pas 4 kolom */
+        .time-number { font-size: 1.8rem; }
+        .time-label { font-size: 0.6rem; }
+        /* Tata Letak Standar */
+        .event-cards-container { grid-template-columns: 1fr; gap: 25px; }
+        .quote-opening, .quote-closing { max-width: 95%; margin: 15px auto; transform: translateX(0); }
+        .template-status-buttons { flex-direction: column; }
+        .template-status-btn { margin: 5px 0; }
+    }
+    
+    @media (max-width: 450px) {
+        /* Small Mobile */
+        .photo-slider-container { padding-bottom: 75%; } /* Ubah ke rasio 4:3 untuk layar sempit */
+        .template-cover-title { font-size: 3.5rem; }
+        .couple-names { font-size: 3rem; }
+        .main-title { font-size: 2.2rem; }
+        #countdown-timer { gap: 5px; padding: 10px 5px; }
+        .time-number { font-size: 1.5rem; }
+        .time-label { font-size: 0.5rem; }
+    }
+
+        /* --- Floating Music Toggle --- */
+    #floating-music-toggle {
+        position: fixed; top: 20px; right: 20px; width: 25px; height: 25px; border-radius: 50%;
+        background-color: var(--color-dark-border); border: 2px solid var(--color-gold-accent);
+        color: var(--color-text-light); display: flex; justify-content: center; align-items: center;
+        cursor: pointer; z-index: 950; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        opacity: 0; transition: opacity 0.5s, transform 0.3s, background 0.3s;
+        animation: spinToggle 2s infinite linear; /* Animasi berputar halus */
+    }
+    @keyframes spinToggle {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    #floating-music-toggle.visible { opacity: 1; }
+    #floating-music-toggle:hover { transform: scale(1.1); background-color: var(--color-dark-border); color: var(--color-dark-border); border-color: var(--color-gold-light); }
+    
+    /* --- Toast Message --- */
+    #toast-message {
+        position: fixed; bottom: 150px; left: 50%; transform: translateX(-50%);
+        background-color: var(--color-lavender-dark); color: white; padding: 12px 25px;
+        border-radius: 50px; z-index: 1000; opacity: 0; transition: opacity 0.5s ease-in-out;
+        font-size: 0.9rem; pointer-events: none; min-width: 250px;
+    }
+    #toast-message.show { opacity: 1; }
+    #toast-message.success { background-color: #5CB85C; }
+    #toast-message.error { background-color: #D9534F; }
+
+</style>
 </head>
 <body class="scroll-locked">
 
     <div id="cover-page" class="template-cover-container">
         <div class="template-cover-overlay"></div>
         <div class="template-cover-content-wrapper">
-            <p style="color: white; font-size: 1.1rem;">Kepada Yth:</p>
+            <p style="color: var(--color-text-accent); font-size: 0.8rem;">Kepada Yth:</p>
             <h3 class="template-cover-guest-name" id="guest-name-display"></h3>
             
             <h1 class="template-cover-title">{{nama_pria}} & {{nama_wanita}}</h1>
-            <p style="color: #E0E0E0; margin-bottom: 2rem;">{{tanggal_acara_baca}}</p>
+            <p style="color: var(--color-text-accent); margin-bottom: 5 rem;">{{tanggal_acara_baca}}</p>
             
             <button id="open-invitation-btn" class="cover-open-btn">
-                <i class="fas fa-envelope-open mr-2"></i> BUKA UNDANGAN
+                <i class="fas fa-envelope-open mr-2"></i> Buka Undangan
             </button>
         </div>
     </div>
@@ -746,20 +464,19 @@
     <div id="main-content">
         
         <section id="intro-section-id" class="section section-intro">
-            <div class="container section-intro-content">
+            <div class="container section-intro-content animate-on-scroll">
                 <div class="intro-main" style="text-align: center;">
                     <h1 class="title-wedding">Undangan Pernikahan</h1>
-                    <p style="color: #ccc; margin-top: 0px;">Dengan memohon rahmat dan ridho Allah SWT</p>
+                    <p class="quote-opening">Dengan memohon rahmat dan ridho Allah SWT</p>
                     <div class="container" style="text-align: center;">
-                <div class="couple-details" style="max-width: 500px; margin: 0 auto;">
+                <div class="couple-details">
                     <div class="couple-image-container">
                         <img 
                             src="{{cover}}"
-                            alt="Foto Pasangan" 
-                            style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); border: 2px solid var(--netflix-red);"
+                            alt="Foto Pasangan"          
                         >
                     </div>
-                    <h1 class="couple-names font-great-vibes">{{nama_pria}} & {{nama_wanita}}</h1>
+                    <h3 class="couple-names">{{nama_pria}} & {{nama_wanita}}</h3>
                 </div>
             </div>
                 </div>
@@ -769,7 +486,7 @@
 
 
         <section class="section section-detail" style="padding-top: 0;">
-            <div class="container detail-box">
+            <div class="container detail-box animate-on-scroll">
                 <p class="quote-opening">
                     Tanpa mengurangi rasa hormat, kami mengundang Anda untuk berkenan menghadiri acara pernikahan kami:
                 </p>
@@ -794,13 +511,13 @@
 
                 <p class="quote-closing">
                     Segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat (kebesaran Allah).<br>
-                    <span class="font-quote" style="display: block; margin-top: 15px; font-style: italic; color: var(--netflix-red);">~ Al-Qur'an Adz-Dzariyat: 49</span>
+                   ~ QS Adz-Dzariyat: 49
                 </p>
             </div>
         </section>
 
         <section id="event-section-id" class="section section-event">
-            <div class="container detail-box">
+            <div class="container detail-box animate-on-scroll">
                 <p class="subtitle-top">OUR SPECIAL</p>
                 <h2 class="main-title font-cursive">Wedding Event</h2>
 
@@ -813,15 +530,13 @@
                 
                 <p class="couple-date font-quote" style="font-size: 1.5rem;">{{tanggal_acara_baca}}</p>
                 
-                {{event_times}}
+                <p class="event-times"> {{event_times}}</p>               
                 <i class="fas fa-map-marker-alt mr-2"></i> 
-                    <p class="event-location-address" style="margin-bottom: 10px;">
-                    <p style="font-size: 0.9rem; color: #ccc;">{{lokasi_acara}}</p>
+                    <p class="event-location-address" style="margin-bottom: 10px;">{{lokasi_acara}}</p>
                     
-                </p>
                 
                 <a href="{{maps_url}}" target="{{maps_url}}" class="btn-maps-link">
-                    <i class="fas fa-route"></i> BUKA DI GOOGLE MAPS
+                    <i class="fas fa-route"></i> Buka di Google Maps
                 </a>
             </div>
         </section>
@@ -851,11 +566,11 @@
                 <p class="subtitle-top">WEDDING GIFT</p>
                 <h2 class="main-title font-cursive">Kirim Hadiah</h2>
 
-                <p class="gift-text" style="font-size: 1rem; color: #ccc; margin-bottom: 30px; max-width: 600px; margin: 0 auto 30px;">
+                <p class="gift-text" >
                     Do'a restu dari Anda merupakan karunia yang sangat berarti. Jika Anda ingin memberikan hadiah, Anda dapat mengirimkannya melalui:
                 </p>
 
-                <div id="bank-accounts-cards" class="bank-accounts-cards">
+    <div id="bank-accounts-cards" class="bank-accounts-cards">
                   {{bank_details_table}} 
                     </div>
          <tbody>
@@ -871,14 +586,14 @@
                 <p class="subtitle-top">UCAPAN & DO'A</p>
                 <h2 class="main-title font-cursive">Kirimkan Ucapan Terbaik</h2>
                 
-                <div class="detail-box" style="margin-bottom: 40px;">
+                <div class="detail-box animate-on-scroll">
                     <form id="comment-form" onsubmit="submitComment(event)">
                         <div class="form-group">
                             <label for="comment-name-input">Nama Anda (Wajib):</label>
                             <input 
                                 type="text" 
                                 id="comment-name-input" 
-                                class="form-control" 
+                                
                                 value="[Nama Tamu]"
                                 required
                             >
@@ -909,14 +624,15 @@
 
                 
         </section>
-                     <p class="subtitle-top">KOMENTAR TERBARU</p>
-<div class="comments-list-container">
+                     <p class="subtitle-top"></p>
+                     <h2 class="main-title font-cursive">Komentar Terbaru</h2>
+<div class="comments-list-container animate-on-scroll">
     {{comments}} 
 </div>
 
 
 
-        <div style="height: 60px;"></div>
+        <!-- <div style="height: 60px;"></div>
 
         <div class="bottom-nav-bar">
             <a href="#intro-section-id" class="nav-item active" data-section="intro-section-id">
@@ -941,7 +657,7 @@
             </a>
         </div>
         
-    </div>
+    </div> -->
     
     <audio id="background-music" loop> 
     <source src="{{music}}" type="audio/mpeg"> 
@@ -955,7 +671,49 @@
 
     <script>
     
-        
+        /* Skrip ini harus ditambahkan di tag <script> di HTML Anda */
+document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1 // Elemen muncul saat 10% terlihat
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Menerapkan observer ke semua elemen yang perlu dianimasikan saat scroll
+    // Menggunakan nama kelas yang Anda minta
+    document.querySelectorAll('.section, .card, .bank-card, .detail-box').forEach(element => {
+        element.classList.add('animate-on-scroll');
+        observer.observe(element);
+    });
+
+    // Logika Fade-out Cover Page
+    const coverPage = document.getElementById('cover-page');
+    const openBtn = document.querySelector('.cover-open-btn');
+    const mainContent = document.getElementById('main-content');
+    
+    if (openBtn) {
+        openBtn.addEventListener('click', () => {
+            // Mulai fade-out dan zoom-out halus
+            coverPage.style.opacity = '0';
+            coverPage.style.transform = 'scale(1.05)'; 
+            
+            setTimeout(() => {
+                coverPage.style.display = 'none';
+                mainContent.style.visibility = 'visible';
+                mainContent.style.opacity = '1';
+            }, 2000); // Sesuai dengan transisi 2s di CSS
+        });
+    }
+});
         // Data Pernikahan
 const WEDDING_DATE = new Date("{{tanggal_acara}}").getTime(); 
 const urlParams = new URLSearchParams(window.location.search);
@@ -1189,7 +947,7 @@ window.submitComment = async function(event) {
             
             // Simplified copy logic for modern browsers
             navigator.clipboard.writeText(textToCopy).then(() => {
-                window.showToast(`Nomor rekening ${bankName} berhasil disalin!`, "success");
+                window.showToast(`Nomor rekening ${bankName} berhasil disalin!`);
             }).catch(err => {
                 // Fallback for older browsers
                 const tempInput = document.createElement('textarea');
@@ -1198,7 +956,7 @@ window.submitComment = async function(event) {
                 tempInput.select();
                 try {
                     document.execCommand('copy');
-                     window.showToast(`Nomor rekening ${bankName} berhasil disalin!`, "success");
+                     window.showToast(`Nomor rekening ${bankName} berhasil disalin!`);
                 } catch (e) {
                      window.showToast('Gagal menyalin. Silakan salin manual.', "error");
                 }
@@ -1263,16 +1021,17 @@ window.submitComment = async function(event) {
             const interval = setInterval(updateCountdown, 1000);
         }
         
-        /** Intersection Observer for scroll-based animations (for couple cards) */
+        /** Intersection Observer for scroll-based animations (for couple cards and sections) */
         function initIntersectionObserver() {
-            const observer = new IntersectionObserver((entries, observer) => {
+            // Observer untuk kartu pasangan (yang sudah ada)
+            const cardObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const element = entry.target;
                         const delay = parseFloat(element.getAttribute('data-delay') || '0');
                         
                         element.classList.add('animated');
-                        element.style.transitionDelay = delay + 's'; // Use transition-delay with CSS transition
+                        element.style.transitionDelay = delay + 's'; 
                         
                         observer.unobserve(element);
                     }
@@ -1282,9 +1041,26 @@ window.submitComment = async function(event) {
                 rootMargin: '0px',
                 threshold: 0.2
             });
-
             document.querySelectorAll('.card.animate-up').forEach(card => {
-                observer.observe(card);
+                cardObserver.observe(card);
+            });
+            
+            // Observer BARU untuk elemen-elemen utama
+            const mainContentObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Pemicu lebih cepat
+            });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(element => {
+                mainContentObserver.observe(element);
             });
         }
                 document.querySelectorAll('.nav-item').forEach(link => {
