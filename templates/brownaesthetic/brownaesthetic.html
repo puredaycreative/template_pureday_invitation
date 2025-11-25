@@ -6,9 +6,9 @@
     <title>Pureday Invitation: {{nama_pria}} & {{nama_wanita}}</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.cdnfonts.com/css/rosemary" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rosemary&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <style>
     /* --- General Styling --- */
@@ -268,6 +268,11 @@
         border-radius: 50%;
         border: 4px solid var(--color-accent);
         margin-bottom: 15px;
+        transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+    
+    /* Anda juga bisa menggunakan shorthand untuk semua properti yang bisa di-transisi: */
+    /* transition: all 0.3s ease-in-out; */
+    border-radius: 50% 50% 0 0;
     }
     
     .card-name {
@@ -417,37 +422,146 @@
         background-color: var(--color-bg-light);
     }
     
-    .bank-card-item {
-        background-color: var(--color-bg-mid);
-        padding: 20px;
-        border-radius: 10px;
-        border: 1px solid var(--color-border-subtle);
-        max-width: 300px;
-        margin: 10px auto;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
+  /* Variabel Warna (Asumsi Anda sudah mendefinisikannya) */
+/*
+:root {
+    --color-bg-mid: #333642; 
+    --color-bg-dark: #1e1f26; 
+    --color-text-light: #f0f0f0; 
+    --color-accent: #00bcd4; 
+    --color-border-subtle: #444;
+}
+*/
+.bank-accounts-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px; /* Tambahkan padding agar tidak terlalu mepet */
     
-    .account-number-text {
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: var(--color-accent);
-        margin: 10px 0;
-    }
-    
-    .copy-btn {
-        padding: 8px 15px;
-        background-color: var(--color-bg-dark);
-        color: var(--color-text-light);
-        border: none;
-        border-radius: 5px;
-        margin-top: 10px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-    .copy-btn:hover {
-        background-color: var(--color-accent);
-    }
+}
 
+/* --- Perubahan Utama untuk Desain Kartu --- */
+.bank-card {
+    /* Mengubah background menjadi gradien khas kartu */
+    background-color: var(--color-bg-dark);
+    color: white; /* Mengubah warna teks default menjadi putih */
+    padding: 25px; /* Sedikit lebih tebal */
+    border-radius: 12px; /* Lebih membulat seperti kartu */
+    min-height: 150px; /* Memberi tinggi minimal agar terlihat proporsional */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); /* Shadow yang lebih kuat */
+    border: none; /* Hilangkan border */
+    position: relative; /* Penting untuk elemen absolut (chip/logo) */
+    text-align: left;
+    overflow: hidden;
+}
+.account-number-text {
+    /* Properti yang sudah ada: */
+    font-size: 1.5rem; /* Ukuran lebih besar */
+    font-weight: 700;
+    color: var(--color-text-light); /* Diubah agar kontras */
+    margin: 10px 0 15px 0; /* Margin disesuaikan */
+
+    /* Perubahan untuk Dekorasi Kartu: */
+    font-family: 'Consolas', 'Courier New', monospace; /* Font teknis */
+    letter-spacing: 2px; /* Spasi antar angka khas kartu */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+.bank-name{
+     font-family: 'Consolas', 'Courier New', monospace; /* Font teknis */
+}
+
+.bank-info {
+    font-weight: 400; /* Sedikit lebih tipis */
+    margin: 5px 0 15px 0;
+    color: rgba(255, 255, 255, 0.85); /* Teks putih transparan */
+    text-transform: uppercase; /* Contoh: Nama bank */
+    font-size: 0.85rem;
+}
+
+
+
+/* Penambahan: Placeholder untuk Chip */
+.bank-card::before {
+    
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 2em;
+    opacity: 0.8;
+}
+
+/* --- Tombol Salin --- */
+.copy-btn {
+    /* Sesuaikan tombol agar kontras dengan kartu gelap */
+    background-color: var(--accent-color);
+    color: white; /* Menggunakan warna gelap untuk teks */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px; /* Perbaiki radius */
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 0.9rem;
+    font-weight: 100;
+    letter-spacing: 0.5px;
+    /* Posisikan di luar kartu atau di dalam dengan layout yang sesuai */
+    float: right; /* Contoh posisi */
+}
+
+.copy-btn:hover {
+    background-color: var(--accent-color);
+}
+
+
+
+/* --- CLASS BARU UNTUK ELEMEN DEKORASI --- */
+
+/* Pengaturan tata letak di bagian atas kartu (chip dan logo) */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Elemen Chip Kartu ATM */
+.card-chip {
+    width: 40px;
+    height: 30px;
+    background: linear-gradient(to right, #ffd700, #ffb800); /* Gradien emas */
+    border-radius: 5px;
+    border: 1px solid #ccad00;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo Bank Fiktif */
+.bank-logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--color-accent);
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Informasi Pemegang dan Kedaluwarsa di bagian bawah */
+.card-info-group {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.card-label {
+    font-size: 0.7rem;
+    opacity: 0.7;
+    margin-bottom: 2px;
+}
+
+.card-value {
+    font-weight: 600;
+}
     /* --- Section Comments (Ucapan) --- */
     .section-comments {
         background-color: var(--color-bg-mid);
@@ -631,7 +745,13 @@
     #toast-message.show {
         opacity: 1;
     }
+#toast-message.error {
+    background-color: #d9534f;
+}
 
+#toast-message.success {
+    background-color: #5cb85c;
+}
 
 
     /* --- Media Queries --- */
@@ -781,7 +901,7 @@
                     Do'a restu dari Anda merupakan karunia yang sangat berarti. Jika Anda ingin memberikan hadiah, Anda dapat mengirimkannya melalui:
                 </p>
 
-                <div id="bank-accounts-cards" class="bank-accounts-cards animate-on-scroll">
+    <div id="bank-accounts-cards" class="bank-accounts-cards">
                   {{bank_details_table}} 
                     </div>
          <tbody>
