@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hujan Salju JavaScript</title>
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden; 
+            background: #222831; /* Latar belakang gelap lainnya */
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .wadah-salju {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .butir-salju {
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50%;
+            /* Animasi murni dikendalikan JS, jadi tidak perlu transition */
+        }
+    </style>
+</head>
+<body>
+    <div class="wadah-salju" id="wadahSalju">
+        </div>
+
+    <h1>Efek Hujan Salju JavaScript Aktif!</h1>
+    <p>Ini adalah metode yang lebih pasti untuk animasi kompleks.</p>
+
+    <script>
+        const wadah = document.getElementById('wadahSalju');
+        const jumlahSalju = 75; // Tambah jumlah butir salju
+        const tinggiLayar = window.innerHeight;
+        const lebarLayar = window.innerWidth;
+        const saljuArray = [];
+
+        function buatButirSalju() {
+            const butir = document.createElement('div');
+            butir.className = 'butir-salju';
+
+            // Ukuran acak antara 1px sampai 4px
+            const ukuran = Math.random() * 3 + 1; 
+            butir.style.width = ukuran + 'px';
+            butir.style.height = ukuran + 'px';
+            butir.style.opacity = Math.random() * 0.5 + 0.5; // Opacity acak
+
+            // Posisi, kecepatan, dan goyangan awal
+            butir.x = Math.random() * lebarLayar;
+            butir.y = Math.random() * tinggiLayar; 
+            butir.kecepatan = Math.random() * 1.5 + 0.5; 
+            butir.goyangan = Math.random() * 0.05 + 0.02;
+
+            butir.style.left = butir.x + 'px';
+            butir.style.top = butir.y + 'px';
+
+            wadah.appendChild(butir);
+            return butir;
+        }
+
+        // Buat semua butiran salju
+        for (let i = 0; i < jumlahSalju; i++) {
+            saljuArray.push(buatButirSalju());
+        }
+
+        // --- Fungsi Utama Animasi ---
+        function animasikanSalju() {
+            for (let i = 0; i < saljuArray.length; i++) {
+                const butir = saljuArray[i];
+
+                // 1. Jatuhkan salju (perubahan pada Y)
+                butir.y += butir.kecepatan;
+                
+                // 2. Tambahkan goyangan horizontal (X) menggunakan sinus
+                // Math.sin(butir.y * butir.goyangan) membuat butir bergerak bolak-balik
+                butir.x += Math.sin(butir.y * butir.goyangan) * 0.7; 
+
+                // 3. Reset jika sudah jatuh melewati batas bawah
+                if (butir.y > tinggiLayar) {
+                    butir.y = -butir.kecepatan * 5; // Mulai jauh di atas
+                    butir.x = Math.random() * lebarLayar; // Posisi X acak baru
+                }
+                
+                // Terapkan posisi baru menggunakan transform (lebih efisien)
+                butir.style.transform = `translate(${butir.x}px, ${butir.y}px)`;
+            }
+
+            // Panggil fungsi ini lagi untuk loop animasi berikutnya
+            requestAnimationFrame(animasikanSalju);
+        }
+
+        // Mulai animasi
+        animasikanSalju();
+    </script>
+</body>
+</html>
