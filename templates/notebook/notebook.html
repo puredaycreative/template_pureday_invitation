@@ -183,23 +183,24 @@
     }
 
     .couple-image-container {
-        border: 4px double var(--color-ink-dark);
-        padding: 5px; 
-        display: inline-block;
-        margin: 20px auto;
-        box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
-        background-color: white;
-        transition: all 0.3s ease-in-out;
-         overflow: hidden; 
+          width: 100%;
+    max-width: 350px;        /* batas maksimal agar tidak terlalu besar */
+    aspect-ratio: 3 / 4;     /* bentuk kotak foto — 3x4 */
+    border: 2px solid var(--color-ink-dark); 
+    padding: 8px; 
+    margin: 30px auto;
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.1); 
+    background-color: var(--color-paper-light);
+    transform: rotate(2deg);
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;  
     }
 
     .couple-image-container img {
-        max-width: 100%; height: 100%;
-        display: block;
-        border: none;
-        object-fit: cover;
-        box-shadow: none;
-        border-radius: 0; 
+         width: 100%;
+    height: 100%;
+    object-fit: cover;       /* bikin foto penuh tapi tidak gepeng */
+    display: block;
     }
 
 
