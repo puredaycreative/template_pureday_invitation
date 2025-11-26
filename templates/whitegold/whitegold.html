@@ -211,7 +211,6 @@
 }
 
 
-
     /* Blockquote Gaya Modern Minimalis dengan Aksen Emas */
     .quote-opening, .quote-closing {
         max-width: 90%;
@@ -245,60 +244,38 @@
         flex-wrap: wrap;
     }
 
- .card {
-    background-color: var(--color-paper-light);
-    border-radius: 8px;
-    padding: 30px 20px;
-    position: relative;
-    width: 150px;
-    height: 150px; /* Selalu persegi */
-    clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
-    border: 1px solid var(--color-border-thin);
-    transition: transform 0.3s ease-in-out;
-    overflow: hidden; /* Penting: biar gambar ikut bentuk */
-}
+    .card {
+        background-color: var(--color-paper-light);
+        border-radius: 8px;
+        padding: 30px 20px;
+        width: 100%;
+        max-width: 250px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
+        border: 1px solid var(--color-border-thin);
+        transition: transform 0.3s ease-in-out;
+        position: relative;
+        overflow: hidden;
 
-/* Card kedua bentuk miring terbalik */
-.card:nth-child(2) { 
-    transform: translateY(20px);
-    clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
-}
-
-/* Hover effect */
-.card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
-    z-index: 10;
-    clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
-}
-
-/* Animasi awal */
-.card.animate-up,
-.animate-on-scroll {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-.card.animated,
-.animated-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ============================== */
-/*      FIX FOTO ANTI GEPENG      */
-/* ============================== */
-.card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;          /* Gambar tidak akan gepeng */
-    -webkit-object-fit: cover;  /* Fix Safari iPhone */
-    object-position: center;
-    position: absolute;
-    inset: 0;
-    border-radius: 8px;
-    clip-path: inherit;         /* Ikuti bentuk polygon card */
-}
+        /* Variasi Tata Letak Vertikal Asimetris */
+        &:nth-child(2) { 
+            transform: translateY(20px); /* Card kedua bergeser ke bawah */
+        }
+    }
+    .card:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+        z-index: 10;
+    }
+    
+    .card.animate-up, .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .card.animated, .animated-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
     .card-image-wrapper {
         position: relative;
