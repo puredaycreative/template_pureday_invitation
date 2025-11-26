@@ -185,28 +185,31 @@
     }
 
     .couple-image-container {
-        /* Desain Foto Utama: Persegi Panjang dengan Efek Bayangan Kuat & Rotasi */
-        border: 2px solid var(--color-ink-dark); 
-        padding: 8px; 
-        display: inline-block;
-        margin: 30px auto;
-        box-shadow: 10px 10px 0px rgba(0,0,0,0.1); 
-        background-color: var(--color-paper-light);
-        transform: rotate(2deg); /* Rotasi halus */
-        transition: all 0.5s ease-in-out;
-    }
-    .couple-image-container:hover {
-        transform: rotate(0deg) scale(1.03);
-        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-    }
+    width: 100%;
+    max-width: 350px;        /* batas maksimal agar tidak terlalu besar */
+    aspect-ratio: 3 / 4;     /* bentuk kotak foto — 3x4 */
+    border: 2px solid var(--color-ink-dark); 
+    padding: 8px; 
+    margin: 30px auto;
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.1); 
+    background-color: var(--color-paper-light);
+    transform: rotate(2deg);
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;        /* penting biar foto tidak keluar */
+}
 
-    .couple-image-container img {
-        max-width: 100%; height: 100%;
-        display: block;
-        border: none;
-        box-shadow: none;
-        border-radius: 0; 
-    }
+.couple-image-container:hover {
+    transform: rotate(0deg) scale(1.03);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.couple-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;       /* bikin foto penuh tapi tidak gepeng */
+    display: block;
+}
+
 
 
     /* Blockquote Gaya Modern Minimalis dengan Aksen Emas */
