@@ -246,25 +246,24 @@
         background-color: var(--color-paper-light);
         border-radius: 8px;
         padding: 30px 20px;
-        height: 250px; /* agar persegi */
-        width: 100%;
-        max-width: 250px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
+        height: auto;
+        clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%); 
         border: 1px solid var(--color-border-thin);
          aspect-ratio: 1 / 1;     /* selalu persegi */
         transition: transform 0.3s ease-in-out;
-        position: relative;
         overflow: hidden;
 
         /* Variasi Tata Letak Vertikal Asimetris */
         &:nth-child(2) { 
             transform: translateY(20px); /* Card kedua bergeser ke bawah */
+            clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
         }
     }
     .card:hover {
         transform: translateY(-5px) scale(1.02);
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
         z-index: 10;
+        clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
     }
     
     .card.animate-up, .animate-on-scroll {
@@ -275,6 +274,7 @@
     .card.animated, .animated-visible {
         opacity: 1;
         transform: translateY(0);
+        
     }
 
     .card-image-wrapper {
