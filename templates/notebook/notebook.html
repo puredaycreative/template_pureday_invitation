@@ -214,7 +214,7 @@
         border: 1px solid var(--color-border-thin);
         box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1); 
         position: relative;
-        text-align: justify;
+        text-align: center;
     }
 
     .quote-opening::before, .quote-closing::before {
@@ -250,15 +250,17 @@
         flex-wrap: wrap;
     }
 
-    .card {
-        background-color: var(--color-paper-mid);
-        border-radius: 0;
-        padding: 20px;
-        width: 100%;
-        max-width: 250px;
-        box-shadow: 5px 5px 0 var(--color-border-strong); 
-        border: 1px solid var(--color-ink-mid);
-    }
+.card {
+    background-color: var(--color-paper-mid);
+    border-radius: 0;
+    padding: 20px;
+    width: 100%;
+    max-width: 250px;
+    height: 250px; /* agar persegi */
+    box-shadow: 5px 5px 0 var(--color-border-strong); 
+    border: 1px solid var(--color-ink-mid);
+}
+
     
     .card.animate-up, .animate-on-scroll {
         opacity: 0;
