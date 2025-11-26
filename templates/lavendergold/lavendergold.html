@@ -580,6 +580,7 @@
             position: absolute;
             background: var(--color-lavender-dark);
             border-radius: 50%;
+            
             /* Animasi murni dikendalikan JS, jadi tidak perlu transition */
         }
 </style>
@@ -812,68 +813,69 @@
 <div id="toast-message"></div>
 
     <script>
-     const wadah = document.getElementById('wadahSalju');
-        const jumlahSalju = 100; // Tambah jumlah butir salju
-        const tinggiLayar = window.innerHeight;
-        const lebarLayar = window.innerWidth;
-        const saljuArray = [];
+    const wadah = document.getElementById('wadahSalju');
+const jumlahSalju = 100; // Tambah jumlah butir salju
+const tinggiLayar = window.innerHeight;
+const lebarLayar = window.innerWidth;
+const saljuArray = [];
 
-        function buatButirSalju() {
-            const butir = document.createElement('div');
-            butir.className = 'butir-salju';
+function buatButirSalju() {
+    const butir = document.createElement('div');
+    butir.className = 'butir-salju';
 
-            // Ukuran acak antara 1px sampai 4px
-            const ukuran = Math.random() * 3 + 1; 
-            butir.style.width = ukuran + 'px';
-            butir.style.height = ukuran + 'px';
-            butir.style.opacity = Math.random() * 0.5 + 0.5; // Opacity acak
+    // ➡️ PERUBAHAN DI SINI: Ukuran acak antara 3px sampai 8px
+    // Math.random() * 5 menghasilkan nilai antara 0 sampai ~4.99
+    // + 3 menghasilkan nilai antara 3 sampai ~7.99
+    const ukuran = Math.random() * 15 + 10; 
+    butir.style.width = ukuran + 'px';
+    butir.style.height = ukuran + 'px';
+    butir.style.opacity = Math.random() * 0.5 + 0.5; // Opacity acak
 
-            // Posisi, kecepatan, dan goyangan awal
-            butir.x = Math.random() * lebarLayar;
-            butir.y = Math.random() * tinggiLayar; 
-            butir.kecepatan = Math.random() * 1.5 + 0.5; 
-            butir.goyangan = Math.random() * 0.05 + 0.02;
+    // Posisi, kecepatan, dan goyangan awal
+    butir.x = Math.random() * lebarLayar;
+    butir.y = Math.random() * tinggiLayar; 
+    butir.kecepatan = Math.random() * 1.5 + 0.5; 
+    butir.goyangan = Math.random() * 0.05 + 0.02;
 
-            butir.style.left = butir.x + 'px';
-            butir.style.top = butir.y + 'px';
+    butir.style.left = butir.x + 'px';
+    butir.style.top = butir.y + 'px';
 
-            wadah.appendChild(butir);
-            return butir;
+    wadah.appendChild(butir);
+    return butir;
+}
+
+// Buat semua butiran salju
+for (let i = 0; i < jumlahSalju; i++) {
+    saljuArray.push(buatButirSalju());
+}
+
+// --- Fungsi Utama Animasi ---
+function animasikanSalju() {
+    for (let i = 0; i < saljuArray.length; i++) {
+        const butir = saljuArray[i];
+
+        // 1. Jatuhkan salju (perubahan pada Y)
+        butir.y += butir.kecepatan;
+        
+        // 2. Tambahkan goyangan horizontal (X) menggunakan sinus
+        butir.x += Math.sin(butir.y * butir.goyangan) * 0.7; 
+
+        // 3. Reset jika sudah jatuh melewati batas bawah
+        if (butir.y > tinggiLayar) {
+            butir.y = -butir.kecepatan * 5; // Mulai jauh di atas
+            butir.x = Math.random() * lebarLayar; // Posisi X acak baru
         }
+        
+        // Terapkan posisi baru menggunakan transform (lebih efisien)
+        butir.style.transform = `translate(${butir.x}px, ${butir.y}px)`;
+    }
 
-        // Buat semua butiran salju
-        for (let i = 0; i < jumlahSalju; i++) {
-            saljuArray.push(buatButirSalju());
-        }
+    // Panggil fungsi ini lagi untuk loop animasi berikutnya
+    requestAnimationFrame(animasikanSalju);
+}
 
-        // --- Fungsi Utama Animasi ---
-        function animasikanSalju() {
-            for (let i = 0; i < saljuArray.length; i++) {
-                const butir = saljuArray[i];
-
-                // 1. Jatuhkan salju (perubahan pada Y)
-                butir.y += butir.kecepatan;
-                
-                // 2. Tambahkan goyangan horizontal (X) menggunakan sinus
-                // Math.sin(butir.y * butir.goyangan) membuat butir bergerak bolak-balik
-                butir.x += Math.sin(butir.y * butir.goyangan) * 0.7; 
-
-                // 3. Reset jika sudah jatuh melewati batas bawah
-                if (butir.y > tinggiLayar) {
-                    butir.y = -butir.kecepatan * 5; // Mulai jauh di atas
-                    butir.x = Math.random() * lebarLayar; // Posisi X acak baru
-                }
-                
-                // Terapkan posisi baru menggunakan transform (lebih efisien)
-                butir.style.transform = `translate(${butir.x}px, ${butir.y}px)`;
-            }
-
-            // Panggil fungsi ini lagi untuk loop animasi berikutnya
-            requestAnimationFrame(animasikanSalju);
-        }
-
-        // Mulai animasi
-        animasikanSalju();
+// Mulai animasi
+animasikanSalju();
         /* Skrip ini harus ditambahkan di tag <script> di HTML Anda */
 document.addEventListener('DOMContentLoaded', () => {
     const observerOptions = {
