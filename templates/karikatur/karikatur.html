@@ -201,7 +201,7 @@ p {
     height: 100px;
     margin: 0 auto 15px;
     overflow: hidden;
-    border-radius: 50%;
+border-radius: 45% 55% 50% 50% / 40% 60% 50% 50%; 
     border: 3px solid var(--primary-color);
 }
 .card-image-wrapper img {
@@ -263,19 +263,25 @@ p {
 
 /* --- 6. Gallery Section --- */
 .photo-slider-container {
-    position: relative;
-    max-width: 600px;
-    margin: 0 auto;
-    height: 400px; /* Tinggi tetap untuk konsistensi */
+      position: relative;
+    max-width: 450px; 
+    margin: 30px auto;
     overflow: hidden;
-    border: 5px double var(--primary-color);
-    box-shadow: 8px 8px 0px var(--secondary-color);
-    border-radius: 15px;
+    /* Teknik rasio aspek 1:1 */
+    padding-bottom: 100%; 
+    height: 0; 
 }
 .photo-slider {
-    display: flex; 
-    height: 100%;
+    display: flex;
     transition: transform 0.5s ease-in-out;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Tambahan: Pastikan tidak ada celah antar item flex */
+    line-height: 0; 
+    font-size: 0; 
 }
 .slider-item {
     min-width: 100%;
@@ -462,10 +468,10 @@ p {
 /* --- 10. Music Toggle & Toast Message --- */
 #floating-music-toggle {
     position: fixed;
-    bottom: 80px; /* Di atas navbar */
+   top: 25px;
     right: 20px;
-    width: 45px;
-    height: 45px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     background-color: var(--card-background);
     display: flex;
@@ -476,7 +482,7 @@ p {
     border: 3px solid var(--secondary-color);
     color: var(--primary-color);
     box-shadow: 3px 3px 0px var(--text-dark);
-    font-size: 1.1rem;
+    font-size: 1rem;
     transition: all 0.3s ease;
     opacity: 0; /* Tersembunyi di awal */
 }
@@ -660,7 +666,7 @@ p {
                 {{event_times}}
                 <i class="fas fa-map-marker-alt mr-2"></i> 
                     <p class="event-location-address" style="margin-bottom: 10px;">
-                    <p style="font-size: 0.9rem; color: #ccc;">{{lokasi_acara}}</p>
+                    <p style="font-size: 0.9rem; color:var(--text-dark)">{{lokasi_acara}}</p>
                     
                 </p>
                 
@@ -695,7 +701,7 @@ p {
                 <p class="subtitle-top">WEDDING GIFT</p>
                 <h2 class="main-title font-cursive">Kirim Hadiah</h2>
 
-                <p class="gift-text" style="font-size: 1rem; color: #ccc; margin-bottom: 30px; max-width: 600px; margin: 0 auto 30px;">
+                <p class="gift-text" style="font-size: 1rem; color:var(--text-dark); margin-bottom: 30px; max-width: 600px; margin: 0 auto 30px;">
                     Do'a restu dari Anda merupakan karunia yang sangat berarti. Jika Anda ingin memberikan hadiah, Anda dapat mengirimkannya melalui:
                 </p>
 
@@ -760,7 +766,7 @@ p {
 
 
 
-        <div style="height: 60px;"></div>
+        <!-- <div style="height: 60px;"></div>
 
         <div class="bottom-nav-bar">
             <a href="#intro-section-id" class="nav-item active" data-section="intro-section-id">
@@ -783,7 +789,7 @@ p {
                 <i class="fas fa-comment-dots"></i>
                 <span>Ucapan</span>
             </a>
-        </div>
+        </div> -->
         
     </div>
     
