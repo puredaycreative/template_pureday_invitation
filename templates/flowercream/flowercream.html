@@ -778,51 +778,58 @@ body {
     margin-bottom: 40px;
     text-align: center;
 }
-
-/* --- SCRAPBOOK WRAPPER (Tempat Foto Menumpuk) --- */
-/* --- SCRAPBOOK WRAPPER --- */
+/* --- SCRAPBOOK WRAPPER (Area Foto Menumpuk) --- */
 .scrapbook-wrapper {
-    position: relative;
-    width: 100%;
-    /* Gunakan min-height yang besar agar foto absolute punya ruang */
-    min-height: 800px; 
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    padding-bottom: 100px; /* Ruang agar foto terakhir tidak terpotong daun */
 }
 
-/* Item Foto (Polaroid) */
-/* Selector ini harus menangani tag <img> yang keluar dari {{galeri}} */
+/* Item Foto Polaroid */
 .scrapbook-wrapper img {
-    position: absolute;
-    width: 250px; /* Ukuran tetap agar konsisten ala polaroid */
-    height: auto;
-    padding: 10px 10px 40px 10px; /* Area bawah lebih lebar untuk tulisan */
-    background: white;
+    position: relative; /* Gunakan relative agar container otomatis memanjang */
+    width: 85%; /* Ukuran foto lebih besar agar memenuhi area */
+    max-width: 320px;
+    background: #fff;
+    padding: 10px 10px 40px 10px; /* Frame putih ala polaroid */
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    border-radius: 4px;
-    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin-bottom: -50px; /* INI KUNCINYA: Membuat foto saling menumpuk ke bawah */
     transition: transform 0.3s ease;
+    z-index: 1;
 }
 
-/* Logika agar foto otomatis miring-miring tanpa tertutup semua */
+/* Memberikan variasi tumpukan agar estetik */
 .scrapbook-wrapper img:nth-child(odd) {
-    transform: rotate(-4deg);
-    margin-left: -40px;
+    transform: rotate(-3deg) translateX(-10px);
+    z-index: 2;
 }
 
 .scrapbook-wrapper img:nth-child(even) {
-    transform: rotate(4deg);
-    margin-right: -40px;
-    top: 50px; /* Geser sedikit ke bawah agar tidak menumpuk pas */
+    transform: rotate(3deg) translateX(15px);
+    z-index: 3;
 }
 
-/* Tambahkan margin antar foto jika banyak */
-.scrapbook-wrapper img + img {
-    margin-top: 150px; /* Jarak tumpukan antar foto */
+/* Efek Hover (Opsional) */
+.scrapbook-wrapper img:hover {
+    z-index: 10;
+    transform: scale(1.05) rotate(0deg);
 }
 
+/* --- ORNAMEN STIKER BUNGA --- */
+.scrapbook-wrapper img:nth-child(1)::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 60px;
+    height: 60px;
+    background: url('https://template-pureday-invitation.vercel.app/flowercream/stiker-bunga.png') no-repeat center/contain;
+    z-index: 5;
+}
 
 
 
