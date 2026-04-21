@@ -875,120 +875,111 @@ body {
     justify-content: center;
     overflow: hidden;
 }
+/* --- PANEL KONTEN KANAN --- */
+.gift-container {
+    width: 100%;
+    max-width: 450px; 
+    min-height: 100vh;
+    /* Padding bawah 350px agar kartu terakhir tidak terpotong bunga */
+    padding: 120px 25px 350px 25px; 
+    position: relative;
+    z-index: 10;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05); /* Bayangan di sisi kiri panel */
+}
 
-/* --- DEKORASI BUNGA 4 SUDUT --- */
-.section-gift::before { /* Bunga Kiri Atas */
+/* --- DEKORASI BUNGA (Sesuai Gambar) --- */
+.gift-container::before { /* Kiri Atas */
     content: "";
     position: absolute;
     top: 0; left: 0;
     width: 180px; height: 180px;
     background: url('https://template-pureday-invitation.vercel.app/flowercream/kiri-atas.png') no-repeat top left / cover;
-    z-index: 5;
 }
 
-.gift-container::after { /* Bunga Kanan Atas */
+.gift-container::after { /* Kanan Atas */
     content: "";
     position: absolute;
     top: 0; right: 0;
     width: 180px; height: 180px;
     background: url('https://template-pureday-invitation.vercel.app/flowercream/kanan-atas.png') no-repeat top right / cover;
-    z-index: 5;
 }
 
-.flower-bottom-gift { /* Bunga Bawah Menempel Pol */
+.flower-bottom-gift { /* Bunga Bawah Menempel Dasar */
     position: absolute;
-    bottom: -10px;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 280px;
+    height: 300px;
     background: url('https://template-pureday-invitation.vercel.app/flowercream/bunga-bawah.png') no-repeat bottom center / cover;
     z-index: 20;
     pointer-events: none;
 }
 
-/* --- STYLING KARTU BANK DINAMIS --- */
+/* --- KARTU BANK (Gaya Gambar 3 & 4) --- */
 .bank-accounts-cards {
     display: flex;
     flex-direction: column;
     gap: 20px;
     margin-top: 30px;
-    padding-bottom: 300px; /* Ruang agar tidak tertutup bunga bawah */
-    position: relative;
-    z-index: 15;
 }
-/* Container Utama Kartu Dinamis */
+
 .bank-accounts-cards > div {
     background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
     border-radius: 20px;
     padding: 25px;
     color: #fff;
     position: relative;
-    margin-bottom: 20px;
     min-height: 200px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* INI KUNCINYA: Memisahkan baris atas dan bawah */
+    justify-content: space-between; /* Nama/Bank di atas, Nomor/Copy di bawah */
     box-sizing: border-box;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: left;
 }
 
-/* 1. BARIS ATAS: Nama Pemilik & Nama Bank */
+/* Baris Atas */
 .card-top-row {
     display: flex;
-    justify-content: space-between; /* Nama di kiri, Bank di kanan */
-    align-items: flex-start;
+    justify-content: space-between;
     width: 100%;
 }
 
-.holder-name {
-    font-size: 0.9rem;
-    font-weight: 400;
-    opacity: 0.9;
-    margin: 0;
-}
+.holder-name { font-size: 0.9rem; opacity: 0.9; text-transform: uppercase; }
+.bank-name { font-weight: bold; }
 
-.bank-name {
-    font-size: 0.9rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin: 0;
-}
-
-/* 2. CHIP (TENGAH) */
+/* Chip Kartu */
 .bank-accounts-cards > div::after {
     content: "";
     display: block;
-    width: 45px;
-    height: 35px;
+    width: 45px; height: 35px;
     background: url('https://template-pureday-invitation.vercel.app/flowercream/pin-card.png') no-repeat center / contain;
-    margin: 15px 0; /* Memberi jarak antara nama dan nomor */
+    margin: 15px 0;
 }
 
-/* 3. BARIS BAWAH: Nomor Rekening & Tombol Copy */
+/* Baris Bawah */
 .card-bottom-row {
     display: flex;
-    justify-content: space-between; /* Nomor di kiri, Tombol di kanan */
+    justify-content: space-between;
     align-items: flex-end;
     width: 100%;
-    margin-top: auto; /* Memaksa elemen tetap di dasar kartu */
+    margin-top: auto;
 }
 
-.account-number {
-    font-size: 1.4rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
+.account-number { font-size: 1.4rem; font-weight: bold; letter-spacing: 2px; }
 
 .btn-copy {
     background: rgba(255, 255, 255, 0.9);
     color: #000;
     border: none;
-    padding: 5px 15px;
-    border-radius: 6px;
+    padding: 5px 12px;
+    border-radius: 5px;
     font-size: 0.7rem;
     font-weight: bold;
     cursor: pointer;
-    text-transform: lowercase;
 }
 
 
