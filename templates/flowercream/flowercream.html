@@ -849,153 +849,138 @@ body {
 
 
 
+
 /* --- Section Gift --- */
- /* --- CONTAINER UTAMA --- */
 .section-gift {
     position: relative;
     width: 100%;
-    max-width: 450px; /* Ukuran HP */
+    max-width: 450px;
     min-height: 100vh;
     margin-left: auto;
     margin-right: 0;
-    background-image: url('https://template-pureday-invitation.vercel.app/flowercream/bg.png');
-    background-size: cover;
-    background-color: #fdf6e9;
+    background: url('https://template-pureday-invitation.vercel.app/flowercream/bg.png') center/cover no-repeat #fdf6e9;
     box-shadow: -10px 0 30px rgba(0,0,0,0.05);
     overflow: hidden;
-    padding: 80px 20px 180px 20px;
+    padding: 80px 20px 0 20px; /* Padding bawah 0 agar bunga nempel pol */
     text-align: center;
     box-sizing: border-box;
-    
 }
 
-/* --- DEKORASI BUNGA KIRI & KANAN ATAS --- */
+/* --- DEKORASI BUNGA --- */
 .section-gift::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 180px;
-    height: 180px;
-    background: url('https://template-pureday-invitation.vercel.app/flowercream/kiri-atas.png') no-repeat top left ;
-    animation: fadeInUp 4s ease-out forwards;
+    top: 0; left: 0;
+    width: 180px; height: 180px;
+    background: url('https://template-pureday-invitation.vercel.app/flowercream/kiri-atas.png') no-repeat top left / contain;
     z-index: 5;
-    pointer-events: none;
-    background-size: cover;
 }
 
-/* Bunga Kanan Atas menggunakan elemen kontainer karena ::before sudah dipakai */
 .gift-container::after {
     content: "";
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 180px;
-    height: 180px;
-    background: url('https://template-pureday-invitation.vercel.app/flowercream/kanan-atas.png') no-repeat top right ;
-    animation: fadeInUp 4s ease-out forwards;
+    top: 0; right: 0;
+    width: 180px; height: 180px;
+    background: url('https://template-pureday-invitation.vercel.app/flowercream/kanan-atas.png') no-repeat top right / contain;
     z-index: 5;
-    pointer-events: none;
-     background-size: cover;
 }
 
-/* --- DEKORASI BUNGA BAWAH --- */
-#gift-section-id .container::before {
-    content: "";
+/* Bunga Bawah Menempel Pol */
+.flower-bottom-gift {
     position: absolute;
-    bottom: -10px;
+    bottom: -15px;
     left: 0;
     width: 100%;
     height: 250px;
-    background: url('https://template-pureday-invitation.vercel.app/flowercream/bunga-bawah.png') no-repeat bottom center ;
-    animation: fadeInUp 4s ease-out forwards;
-    z-index: 10;
+    background: url('https://template-pureday-invitation.vercel.app/flowercream/bunga-bawah.png') no-repeat bottom center / contain;
+    z-index: 20;
     pointer-events: none;
-     background-size: cover;
 }
 
-/* --- KARTU BANK (STYLING {{bank_details_table}}) --- */
-/* Kita asumsikan output bank_details_table berada di dalam div ini */
+/* --- KARTU BANK --- */
 .bank-accounts-cards {
     display: flex;
     flex-direction: column;
     gap: 20px;
     margin-top: 30px;
+    padding-bottom: 250px; /* Ruang agar kartu tidak tertutup bunga bawah */
     position: relative;
     z-index: 15;
 }
 
-/* Styling setiap kartu bank */
-.bank-accounts-cards .bank-item, /* Gunakan class ini jika anda bisa modifikasi output */
 .bank-accounts-cards > div { 
     background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
     border-radius: 15px;
-    padding: 25px;
+    padding: 20px;
     color: #fff;
     text-align: left;
     position: relative;
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    min-height: 160px;
+    min-height: 180px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    box-sizing: border-box;
 }
 
-/* Chip Kartu (PNG Chip) */
+/* Chip Kartu */
 .bank-accounts-cards > div::before {
     content: "";
     position: absolute;
-    top: 60px;
-    left: 25px;
+    top: 65px;
+    left: 20px;
     width: 45px;
     height: 35px;
-    background: url('https://template-pureday-invitation.vercel.app/flowercream/pin-card.png') no-repeat center ;
+    background: url('https://template-pureday-invitation.vercel.app/flowercream/pin-card.png') no-repeat center / contain;
+    z-index: 2;
 }
 
-/* Nama Pemilik di Pojok Kiri Atas */
-.bank-accounts-cards .holder-name {
-    font-size: 0.9rem;
-    font-weight: 300;
-    opacity: 0.9;
-}
-
-/* Nomor Rekening (Besar & Putih) */
-.bank-accounts-cards .account-number {
-    font-size: 1.4rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin-top: 50px;
-}
-
-/* Nama Bank di Pojok Kanan Atas */
-.bank-accounts-cards .bank-name {
+/* Nama Bank di Kanan Atas */
+.bank-name {
     position: absolute;
-    top: 25px;
-    right: 25px;
+    top: 20px;
+    right: 20px;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
     text-transform: uppercase;
 }
 
-/* --- TYPOGRAPHY --- */
-.subtitle-top {
-    font-size: 0.8rem;
-    letter-spacing: 3px;
-    color: #666;
-    margin-bottom: 5px;
+/* Nama Pemilik */
+.holder-name {
+    font-size: 0.85rem;
+    font-weight: 300;
+    opacity: 0.8;
+    margin-bottom: 50px; /* Ruang untuk chip */
+    width: 70%; /* Agar tidak tabrakan dengan nama bank */
 }
 
-.main-title {
-    font-size: 2.5rem;
-    color: #444;
-    margin-bottom: 20px;
+/* Nomor Rekening */
+.account-number {
+    font-size: 1.3rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
 }
 
-.gift-text {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: #555;
-    padding: 0 10px;
+/* --- TOMBOL SALIN (COPY BUTTON) --- */
+.btn-copy {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    transition: 0.3s;
+    backdrop-filter: blur(5px);
+}
+
+.btn-copy:hover {
+    background: rgba(255, 255, 255, 0.25);
 }
     /* --- Section Comments (Ucapan) --- */
    /* --- CONTAINER UTAMA --- */
