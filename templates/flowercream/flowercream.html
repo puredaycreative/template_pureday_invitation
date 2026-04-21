@@ -916,78 +916,80 @@ body {
     position: relative;
     z-index: 15;
 }
-
-/* Menangkap elemen div dinamis dari {{bank_details_table}} */
+/* Container Utama Kartu Dinamis */
 .bank-accounts-cards > div {
     background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
     border-radius: 20px;
     padding: 25px;
     color: #fff;
-    text-align: left;
     position: relative;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    margin-bottom: 20px;
     min-height: 200px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between; /* INI KUNCINYA: Memisahkan baris atas dan bawah */
     box-sizing: border-box;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-/* Nama Bank (Pojok Kanan Atas) */
-.bank-name {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    font-size: 0.9rem;
-    font-weight: 300;
-    text-transform: uppercase;
-    opacity: 0.8;
+/* 1. BARIS ATAS: Nama Pemilik & Nama Bank */
+.card-top-row {
+    display: flex;
+    justify-content: space-between; /* Nama di kiri, Bank di kanan */
+    align-items: flex-start;
+    width: 100%;
 }
 
-/* Nama Pemilik (Kiri Atas) */
 .holder-name {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 400;
-    margin-bottom: 10px;
-    width: 70%;
+    opacity: 0.9;
+    margin: 0;
 }
 
-/* Chip Kartu */
-.bank-accounts-cards > div::before {
+.bank-name {
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* 2. CHIP (TENGAH) */
+.bank-accounts-cards > div::after {
     content: "";
     display: block;
     width: 45px;
     height: 35px;
     background: url('https://template-pureday-invitation.vercel.app/flowercream/pin-card.png') no-repeat center / contain;
-    margin: 15px 0;
+    margin: 15px 0; /* Memberi jarak antara nama dan nomor */
 }
 
-/* Baris Bawah: Nomor Rekening & Tombol Copy */
-.account-footer {
+/* 3. BARIS BAWAH: Nomor Rekening & Tombol Copy */
+.card-bottom-row {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto; /* Memaksa ke bagian paling bawah kartu */
+    justify-content: space-between; /* Nomor di kiri, Tombol di kanan */
+    align-items: flex-end;
+    width: 100%;
+    margin-top: auto; /* Memaksa elemen tetap di dasar kartu */
 }
 
 .account-number {
     font-size: 1.4rem;
     font-weight: bold;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
 }
 
 .btn-copy {
-    background: rgba(255, 255, 255, 0.85);
-    color: #333;
+    background: rgba(255, 255, 255, 0.9);
+    color: #000;
     border: none;
-    padding: 4px 12px;
-    border-radius: 5px;
+    padding: 5px 15px;
+    border-radius: 6px;
     font-size: 0.7rem;
     font-weight: bold;
     cursor: pointer;
     text-transform: lowercase;
 }
-
-
 
 
 
@@ -1498,6 +1500,7 @@ body {
        
 <section id="gift-section-id" class="section-gift">
     <div class="container gift-container">
+        <br>
         <p class="subtitle-top">WEDDING GIFT</p>
         <h2 class="main-title font-cursive">Kirim Hadiah</h2>
 
