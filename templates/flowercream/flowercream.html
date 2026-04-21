@@ -712,7 +712,6 @@ body {
  
     
 /* --- Section Gallery --- */
-/* --- CONTAINER UTAMA --- */
 .section-gallery {
     position: relative;
     width: 100%;
@@ -781,71 +780,48 @@ body {
 }
 
 /* --- SCRAPBOOK WRAPPER (Tempat Foto Menumpuk) --- */
+/* --- SCRAPBOOK WRAPPER --- */
 .scrapbook-wrapper {
     position: relative;
     width: 100%;
-    height: 600px; /* Sesuaikan tinggi berdasarkan jumlah foto */
+    /* Gunakan min-height yang besar agar foto absolute punya ruang */
+    min-height: 800px; 
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Item Foto (Efek Polaroid/Scrapbook) */
-/* Asumsi {{galeri}} menghasilkan <img class="photo-item"> atau <div> */
-.photo-item, .scrapbook-wrapper img {
+/* Item Foto (Polaroid) */
+/* Selector ini harus menangani tag <img> yang keluar dari {{galeri}} */
+.scrapbook-wrapper img {
     position: absolute;
-    width: 60%; /* Ukuran foto relatif terhadap container */
-    padding: 10px 10px 30px 10px; /* Padding bawah lebih lebar ala polaroid */
+    width: 250px; /* Ukuran tetap agar konsisten ala polaroid */
+    height: auto;
+    padding: 10px 10px 40px 10px; /* Area bawah lebih lebar untuk tulisan */
     background: white;
-    box-shadow: 5px 10px 20px rgba(0,0,0,0.15);
-    border-radius: 2px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border-radius: 4px;
+    border: 1px solid #ddd;
     transition: transform 0.3s ease;
-    z-index: 2;
 }
 
-/* --- LOGIKA POSISI OTOMATIS (Miring-miring Estetik) --- */
-/* Foto ke-1 (Kiri Atas) */
-.scrapbook-wrapper img:nth-child(1) {
-    top: 0;
-    left: 10px;
-    transform: rotate(-5deg);
+/* Logika agar foto otomatis miring-miring tanpa tertutup semua */
+.scrapbook-wrapper img:nth-child(odd) {
+    transform: rotate(-4deg);
+    margin-left: -40px;
 }
 
-/* Foto ke-2 (Kanan Atas) */
-.scrapbook-wrapper img:nth-child(2) {
-    top: 40px;
-    right: 10px;
-    transform: rotate(3deg);
-    z-index: 3;
-}
-
-/* Foto ke-3 (Tengah) */
-.scrapbook-wrapper img:nth-child(3) {
-    top: 200px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-2deg);
-    width: 75%; /* Foto tengah dibuat agak besar */
-    z-index: 4;
-}
-
-/* Foto ke-4 (Bawah Kiri) */
-.scrapbook-wrapper img:nth-child(4) {
-    bottom: 50px;
-    left: 15px;
+.scrapbook-wrapper img:nth-child(even) {
     transform: rotate(4deg);
+    margin-right: -40px;
+    top: 50px; /* Geser sedikit ke bawah agar tidak menumpuk pas */
 }
 
-/* Ornamen Bunga Kecil (Sticky Note/Sticker) */
-/* Anda bisa menambahkan elemen <span> kecil jika ingin ada stiker bunga di pojok foto */
-.scrapbook-wrapper::before {
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    width: 60px;
-    height: 60px;
-    background: url('stiker-bunga.png') no-repeat center ;
-    z-index: 10;
+/* Tambahkan margin antar foto jika banyak */
+.scrapbook-wrapper img + img {
+    margin-top: 150px; /* Jarak tumpukan antar foto */
 }
-
 
 
 
