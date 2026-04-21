@@ -1,0 +1,2071 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pureday Invitation: {{nama_pria}} & {{nama_wanita}}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rosemary&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+    /* Animasi Fade In dari Bawah ke Atas */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px); /* Mulai dari 50px di bawah posisi asli */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Selesai di posisi asli */
+    }
+}
+
+/* Animasi Fade In dari Atas ke Bawah */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px); /* Mulai dari 50px di ATAS posisi asli */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Selesai di posisi asli */
+    }
+}
+    /* --- General Styling --- */
+    :root {
+        --color-bg-light: #F0EDE5; /* Krem Sangat Muda */
+        --color-bg-mid: #D3C7B2; /* Cokelat Muda Tengah */
+        --color-bg-dark: #A5947C; /* Cokelat Agak Tua */
+        --color-text-dark: #4C4B4C; /* Abu-abu Gelap */
+        --color-text-light: #FFFFFF;
+        --color-accent: #907658; /* Warna Aksen (Cokelat Emas) */
+        --color-border-subtle: #C3B7A1; /* Border tipis */
+        --countdown-bg: #A5947C;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Playfair Display', serif;
+        color: var(--color-text-dark);
+        margin: 0;
+        padding: 0;
+        background-color: var(--color-bg-light);
+        text-align: center;
+        /* overflow-x: hidden; */
+        /* Menyembunyikan scrollbar awal */
+        /* overflow-y: hidden; */
+        transition: background-color 0.5s;
+    }
+    
+    .scroll-locked {
+        overflow: hidden !important;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .section {
+        padding: 80px 20px;
+        position: relative;
+    }
+
+    h1, h2, h3, p {
+        margin: 0 0 10px 0;
+    }
+
+    .script-text {
+        font-family: 'Dancing Script', cursive;
+        font-weight: 700;
+        color: var(--color-accent);
+    }
+    
+    .title-wedding {
+        font-family: 'Dancing Script', cursive;
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+        color: var(--color-text-dark);
+        /* text-transform: uppercase; */
+        letter-spacing: 2px;
+    }
+
+    /* Tombol Aksi Umum */
+    .btn-maps-link, .btn-submit, .cover-open-btn {
+        display: inline-flex;
+      font-family: 'Rosemary', cursive;
+        align-items: center;
+        padding: 12px 25px;
+        margin-top: 20px;
+        border: 2px solid var(--color-accent);
+        border-radius: 8px;
+        background-color: var(--color-accent);
+        color: black;
+        /* font-weight: bold; */
+        text-decoration: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .btn-maps-link:hover, .btn-submit:hover, .cover-open-btn:hover {
+        background-color: var(--color-bg-dark);
+        border-color: var(--color-bg-dark);
+        transform: translateY(-1px);
+    }
+    
+    /* --- COVER SECTION --- */
+#cover-page {
+    position: relative;
+    /* Tetap set lebar maksimal seukuran HP */
+    width: 100%;
+    max-width: 450px; 
+    
+    /* UBAH DI SINI: margin-left set ke auto, margin-right ke 0 */
+    margin-left: auto;
+    margin-right: 0;
+    
+    height: 100vh;
+    
+    /* Background & Dekorasi */
+    background-image: url('bg.png'); 
+    background-size: cover;
+    background-position: center;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05); /* Bayangan di sisi kiri saja */
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Pastikan Body punya background untuk area kosong di sebelah kiri */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* Warna area kosong di kiri */
+    /* Atau bisa pakai gambar wedding di sisi kiri yang lebar */
+    background-image: url('bg-samping.jpg'); 
+    background-size: cover;
+    background-position: left;
+}
+
+/* Dekorasi Bunga Kiri Atas (PNG) */
+#cover-page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 280px; /* Sesuaikan ukuran bunga */
+    height: 280px;
+    background-image: url('kiri-atas.png');
+
+    background-repeat: no-repeat;
+    background-position: top left;
+     background-size: cover;
+    z-index: 2;
+     animation: fadeInUp 4s ease-out forwards;
+}
+
+/* Dekorasi Bunga Kanan Atas (PNG) */
+.template-cover-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 280px;
+    background-image: url('kanan-atas.png');
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: cover;
+    z-index: 2;
+    pointer-events: none;
+    animation: fadeInUp 4s ease-out forwards;
+}
+
+/* Dekorasi Bunga Bawah (PNG) */
+#cover-page::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Gunakan height yang lebih kecil, atau ganti dengan px agar konsisten */
+    height: 45vh; 
+    max-height: 400px; /* BATASI tinggi maksimal agar tidak naik terlalu jauh di monitor besar */
+    
+    background-image: url('bunga-bawah.png');
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    
+    /* Gunakan 'contain' agar gambar tidak terpotong, atau '100% auto' agar lebar penuh */
+    background-size: cover; 
+    
+    z-index: 3;
+    animation: fadeInUp 1.5s ease-out forwards;
+    pointer-events: none; /* Penting agar bunga tidak menghalangi klik tombol */
+}
+
+/* Konten Teks */
+.template-cover-content-wrapper {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    /* Tambahan bayangan halus agar teks terbaca di atas tekstur */
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+}
+
+/* Styling Teks */
+.template-cover-guest-name {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.template-cover-title {
+    font-family: 'Cursive', 'Great Vibes', cursive; /* Gunakan font sambung */
+    font-size: 3.5rem;
+    margin: 20px 0;
+    color: #2c2c2c;
+    line-height: 1.2;
+}
+
+/* Tombol Buka */
+.cover-open-btn {
+    background-color: white;
+    border: 1px dashed #ccc;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.cover-open-btn:hover {
+    transform: scale(1.05);
+    background-color: #fafafa;
+}
+  /* --- Section Intro (Pasangan) --- */
+/* --- GLOBAL & BODY RESET --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Serif', 'Palatino Linotype', serif; /* Font default klasik */
+}
+
+/* --- SECTION UTAMA (Seukuran HP, Menepi ke Kanan) --- */
+#intro-section-id.section-intro {
+    position: relative;
+    width: 100%;
+    max-width: 450px; /* Ukuran lebar standar layar HP */
+    min-height: 100vh; /* Tinggi satu layar penuh */
+    margin-left: auto; /* Dorong container ke sisi kanan layar laptop */
+    margin-right: 0;
+    
+    /* BACKGROUND: Tekstur Cat Air Krem */
+    background-image: url('bg.png'); 
+    background-size: cover;
+    background-position: center;
+    background-color: #fdf6e9; /* Warna dasar krem jika bg gagal load */
+    
+    /* Efek Bayangan di Kiri (Hanya muncul di laptop) */
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Konten di tengah secara vertikal */
+    overflow: hidden; /* Supaya dekorasi tidak tembus keluar kotak */
+    padding: 0; /* Reset padding total agar bunga bisa nempel presisi */
+    box-sizing: border-box;
+}
+
+/* --- DEKORASI BUNGA KERING ATAS (Presisi di Pojok) --- */
+/* Bunga Kiri Atas */
+#intro-section-id::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 220px; /* Sesuaikan besar bunga */
+    height: 220px;
+    background-image: url('kiri-atas.png'); /* Ganti dengan nama file PNG Anda */
+    animation: fadeInUp 4s ease-out forwards;
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: cover;
+    z-index: 2; /* Di atas background */
+    pointer-events: none; /* Agar tidak menghalangi klik pada konten */
+}
+
+/* Bunga Kanan Atas (Gunakan div tambahan atau pseudo elemen elemen dalam) */
+.intro-content::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 220px;
+    height: 220px;
+    background-image: url('kanan-atas.png');
+    animation: fadeInUp 4s ease-out forwards;
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: cover;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* --- AREA KONTEN TENGAH --- */
+.intro-content {
+    position: relative;
+    z-index: 10; /* Pastikan teks paling depan */
+    text-align: center;
+    width: 100%;
+    padding: 100px 0 50px 0; /* Beri jarak atas agar teks tidak tertutup bunga */
+}
+
+/* --- TYPOGRAPHY (SESUAI GAMBAR) --- */
+/* Judul "Undangan Pernikahan" */
+.wedding-title {
+    font-family: 'Great Vibes', cursive; /* Gunakan Google Fonts 'Great Vibes' */
+    font-size: 2.8rem;
+    color: #5d5d4d; /* Warna coklat tua keabuan sesuai tema boho */
+    margin-bottom: 5px;
+}
+
+/* Teks Pembuka */
+.opening-quote {
+    font-family: 'Cormorant Garamond', serif; /* Font serif elegan halus */
+    font-size: 0.95rem;
+    color: #444;
+    margin-top: 5px;
+    margin-bottom: 40px;
+}
+
+/* Nama Pasangan di Bawah */
+.couple-names {
+    font-family: 'Dancing Script', cursive; /* Font sambung tipis elegan */
+    font-size: 2.5rem;
+    color: #333;
+    margin-top: 30px;
+    letter-spacing: 1px;
+}
+
+/* --- FOTO PASANGAN DENGAN FRAME LONJONG (SANGAT PENTING) --- */
+.couple-photo-container {
+    position: relative;
+    width: 270px; /* Lebar frame */
+    height: 400px; /* Tinggi frame */
+    margin: 0 auto; /* Tengah secara horizontal */
+    
+    /* MEMBUAT BENTUK OVAL MELENGKUNG (KAPSUL) */
+    border-radius: 150px 150px 150px 150px; 
+    
+    border: 1px solid #bc9c78; /* Warna garis frame emas/coklat tipis */
+    padding: 12px; /* Jarak antara garis ke foto */
+    box-sizing: border-box; /* Agar padding tidak menambah ukuran frame */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Bayangan halus */
+}
+
+.couple-photo-container img.couple-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Agar foto tidak gepeng, kelebihannya di-crop otomatis */
+    
+    /* BENTUK FOTO MENGIKUTI FRAME */
+    border-radius: 140px 140px 140px 140px; 
+}
+
+/* --- ORNAMEN DIAMOND KECIL DI SAMPING FRAME --- */
+.couple-photo-container::before, 
+.couple-photo-container::after {
+    content: "♦"; /* Gunakan karakter wajik kecil */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #bc9c78;
+    font-size: 18px;
+}
+.couple-photo-container::before { left: -18px; }
+.couple-photo-container::after { right: -18px; }
+
+/* --- RESPONSIVITAS MOBILE ASLI --- */
+@media (max-width: 450px) {
+    #intro-section-id.section-intro {
+        box-shadow: none; /* Hilangkan shadow jika di HP asli agar clean */
+    }
+    
+    .wedding-title {
+        font-size: 2.2rem; /* Kecilkan sedikit judul di layar kecil */
+    }
+}
+
+
+
+
+/* --- CONTAINER UTAMA SECTION DETAIL --- */
+.section-detail {
+    position: relative;
+    width: 100%;
+    max-width: 450px; /* Konsisten seukuran HP */
+    min-height: 100vh;
+    margin-left: auto; /* Menempel ke kanan di laptop */
+    margin-right: 0;
+    
+    background-image: url('bg.png'); /* Samakan dengan halaman sebelumnya */
+    background-size: cover;
+    background-position: center;
+    /* background-color: #fdf6e9; */
+    
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+    overflow: hidden;
+    padding: 60px 20px 150px 20px; /* Padding bawah besar agar tidak tertutup bunga */
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* --- DEKORASI BUNGA KIRI & KANAN BAWAH --- */
+/* Bunga Kiri Bawah */
+.section-detail::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 220px;
+    height: 220px;
+    background-image: url('kiri-bawah.png'); /* Ganti dengan file Anda */
+    animation: fadeInUp 4s ease-out forwards;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-size: cover;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Bunga Kanan Bawah */
+.section-detail::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 220px;
+    height: 220px;
+    background-image: url('kanan-bawah.png'); /* Ganti dengan file Anda */
+    animation: fadeInUp 4s ease-out forwards;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: cover;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* --- TYPOGRAPHY --- */
+.quote-opening, .quote-closing {
+    font-size: 0.9rem;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.card-name {
+    font-family: 'Cormorant Garamond', serif; /* Font elegan tebal */
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 10px 0 5px 0;
+    color: #333;
+}
+
+/* --- FRAME FOTO MELENGKUNG (OVAL) --- */
+.card-image-wrapper {
+    position: relative;
+    width: 120x; /* Ukuran frame lebih kecil karena ada dua foto */
+    height: 280px;
+    margin: 0 auto;
+    
+    border: 1px solid #bc9c78; /* Garis frame emas */
+    border-radius: 120px 120px 120px 120px; /* Bentuk lonjong */
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 110px 110px 110px 110px; /* Mengikuti frame */
+}
+
+/* Diamond Ornamen Samping */
+.card-image-wrapper::before, 
+.card-image-wrapper::after {
+    content: "♦";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #bc9c78;
+    font-size: 14px;
+}
+.card-image-wrapper::before { left: -12px; }
+.card-image-wrapper::after { right: -12px; }
+
+/* Spasi antar kartu pasangan */
+.couple-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 50px; /* Jarak antara Groom dan Bride */
+    margin-bottom: 50px;
+}
+
+/* --- ANIMASI --- */
+.animate-up {
+    animation: fadeInUp 1.2s ease-out both;
+}
+
+
+
+
+    /* --- Section Event (Countdown) --- */
+
+/* --- CONTAINER EVENT --- */
+#event-section-id.section-event {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    min-height: 100vh;
+    margin-left: auto;
+    margin-right: 0;
+    background-image: url('bg.png'); /* Background utama */
+    background-size: cover;
+    background-color: #fdf6e9;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+    overflow: hidden;
+    padding: 80px 20px 180px 20px; /* Padding bawah lebih besar untuk bunga */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* --- BUNGA KANAN & KIRI ATAS --- */
+#event-section-id::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 180px; height: 180px;
+    /* background: url('kiri-atas.png') no-repeat top left ; */
+    z-index: 5;
+    background-size: cover;
+}
+
+.section-event::after {
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    width: 180px; height: 180px;
+    /* background: url('kanan-atas.png') no-repeat top right ; */
+    z-index: 5;
+    background-size: cover;
+}
+
+/* --- BUNGA BAWAH (MENUTUPI BAWAH) --- */
+.section-event .container::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    background: url('bunga-bawah.png') no-repeat bottom center ;
+    animation: fadeInUp 4s ease-out forwards;
+    z-index: 0;
+    pointer-events: none;
+    background-size: cover;
+}
+
+/* --- COUNTDOWN (BENTUK GERIGI/AWAN) --- */
+#countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 30px 0;
+}
+
+.time-box {
+    width: 70px;
+    height: 70px;
+    background: #fff;
+    border: 1px dashed #bc9c78;
+    border-radius: 50%; /* Membuat lingkaran */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    /* Efek Gerigi (opsional menggunakan mask atau border-image) */
+}
+
+.time-number {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+}
+
+.time-label {
+    font-size: 0.7rem;
+    margin: 0;
+    color: #888;
+}
+
+/* --- CARD ACARA (RIBBON & LIST) --- */
+.event-card-wrapper {
+    background: rgba(255, 255, 255, 0.4); /* Transparan halus */
+    padding: 20px;
+    width: 100%;
+    position: relative;
+    z-index: 15;
+}
+
+.ribbon-date {
+    background-color: #f5e6d3; /* Warna krem pastel sesuai gambar */
+    padding: 10px 20px;
+    display: inline-block;
+    width: 90%;
+    clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%);
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.event-item-list {
+    border-top: 2px dashed #bc9c78;
+    border-bottom: 2px dashed #bc9c78;
+    padding: 15px 0;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Mengatur style isi dari {{event_times}} */
+.event-row {
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.event-row b {
+    color: #333;
+}
+
+/* --- TOMBOL MAPS --- */
+.btn-maps-link {
+    background-color: #f5e6d3;
+    color: #333;
+    text-decoration: none;
+    padding: 10px 25px;
+    display: inline-block;
+    width: 80%;
+    font-weight: bold;
+    clip-path: polygon(5% 0, 95% 0, 100% 50%, 95% 100%, 5% 100%, 0 50%);
+    transition: 0.3s;
+}
+
+.btn-maps-link:hover {
+    background-color: #bc9c78;
+    color: white;
+}
+
+/* --- TYPOGRAPHY --- */
+.subtitle-top {
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    margin-bottom: 0;
+    color: #666;
+}
+
+.main-title {
+    font-size: 2.5rem;
+    margin-top: 5px;
+    color: #444;
+}
+
+
+
+
+
+ 
+    
+/* --- Section Gallery --- */
+/* --- CONTAINER UTAMA --- */
+.section-gallery {
+    position: relative;
+    width: 100%;
+    max-width: 450px; /* Tetap seukuran HP */
+    min-height: 100vh;
+    margin-left: auto; /* Menepi ke kanan di laptop */
+    margin-right: 0;
+    
+    /* Background Tekstur Kertas Lecek sesuai gambar */
+    background-image: url('bg-kertas.png'); 
+    background-size: cover;
+    background-position: center;
+    background-color: #e5dec9;
+    
+    padding: 80px 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+}
+
+/* --- DEKORASI PNG (POJOK) --- */
+/* Bunga/Daun Kanan Atas */
+.section-gallery::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: url('daun-kanan-atas.png') no-repeat top right ;
+    animation: fadeInUp 4s ease-out forwards;
+    z-index: 5;
+    background-size: cover;
+    pointer-events: none;
+}
+
+/* Daun Kiri Bawah */
+.section-gallery::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 180px;
+    height: 180px;
+    background: url('daun-kiri-bawah.png') no-repeat bottom left ;
+    animation: fadeInUp 4s ease-out forwards;
+    z-index: 5;
+    background-size: cover;
+    pointer-events: none;
+}
+
+/* --- TYPOGRAPHY --- */
+.subtitle-top {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: #666;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 2.5rem;
+    color: #444;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* --- SCRAPBOOK WRAPPER (Tempat Foto Menumpuk) --- */
+.scrapbook-wrapper {
+    position: relative;
+    width: 100%;
+    height: 600px; /* Sesuaikan tinggi berdasarkan jumlah foto */
+    margin-top: 20px;
+}
+
+/* Item Foto (Efek Polaroid/Scrapbook) */
+/* Asumsi {{galeri}} menghasilkan <img class="photo-item"> atau <div> */
+.photo-item, .scrapbook-wrapper img {
+    position: absolute;
+    width: 60%; /* Ukuran foto relatif terhadap container */
+    padding: 10px 10px 30px 10px; /* Padding bawah lebih lebar ala polaroid */
+    background: white;
+    box-shadow: 5px 10px 20px rgba(0,0,0,0.15);
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+    z-index: 2;
+}
+
+/* --- LOGIKA POSISI OTOMATIS (Miring-miring Estetik) --- */
+/* Foto ke-1 (Kiri Atas) */
+.scrapbook-wrapper img:nth-child(1) {
+    top: 0;
+    left: 10px;
+    transform: rotate(-5deg);
+}
+
+/* Foto ke-2 (Kanan Atas) */
+.scrapbook-wrapper img:nth-child(2) {
+    top: 40px;
+    right: 10px;
+    transform: rotate(3deg);
+    z-index: 3;
+}
+
+/* Foto ke-3 (Tengah) */
+.scrapbook-wrapper img:nth-child(3) {
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 75%; /* Foto tengah dibuat agak besar */
+    z-index: 4;
+}
+
+/* Foto ke-4 (Bawah Kiri) */
+.scrapbook-wrapper img:nth-child(4) {
+    bottom: 50px;
+    left: 15px;
+    transform: rotate(4deg);
+}
+
+/* Ornamen Bunga Kecil (Sticky Note/Sticker) */
+/* Anda bisa menambahkan elemen <span> kecil jika ingin ada stiker bunga di pojok foto */
+.scrapbook-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 60px;
+    height: 60px;
+    background: url('stiker-bunga.png') no-repeat center ;
+    z-index: 10;
+}
+
+
+
+
+/* --- Section Gift --- */
+ /* --- CONTAINER UTAMA --- */
+.section-gift {
+    position: relative;
+    width: 100%;
+    max-width: 450px; /* Ukuran HP */
+    min-height: 100vh;
+    margin-left: auto;
+    margin-right: 0;
+    background-image: url('bg.png');
+    background-size: cover;
+    background-color: #fdf6e9;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+    overflow: hidden;
+    padding: 80px 20px 180px 20px;
+    text-align: center;
+    box-sizing: border-box;
+    
+}
+
+/* --- DEKORASI BUNGA KIRI & KANAN ATAS --- */
+.section-gift::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 180px;
+    background: url('kiri-atas.png') no-repeat top left ;
+    animation: fadeInUp 4s ease-out forwards;
+    z-index: 5;
+    pointer-events: none;
+    background-size: cover;
+}
+
+/* Bunga Kanan Atas menggunakan elemen kontainer karena ::before sudah dipakai */
+.gift-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 180px;
+    height: 180px;
+    background: url('kanan-atas.png') no-repeat top right ;
+    animation: fadeInUp 4s ease-out forwards;
+    z-index: 5;
+    pointer-events: none;
+     background-size: cover;
+}
+
+/* --- DEKORASI BUNGA BAWAH --- */
+#gift-section-id .container::before {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    background: url('bunga-bawah.png') no-repeat bottom center ;
+    animation: fadeInUp 4s ease-out forwards;
+    z-index: 10;
+    pointer-events: none;
+     background-size: cover;
+}
+
+/* --- KARTU BANK (STYLING {{bank_details_table}}) --- */
+/* Kita asumsikan output bank_details_table berada di dalam div ini */
+.bank-accounts-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+    position: relative;
+    z-index: 15;
+}
+
+/* Styling setiap kartu bank */
+.bank-accounts-cards .bank-item, /* Gunakan class ini jika anda bisa modifikasi output */
+.bank-accounts-cards > div { 
+    background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+    border-radius: 15px;
+    padding: 25px;
+    color: #fff;
+    text-align: left;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Chip Kartu (PNG Chip) */
+.bank-accounts-cards > div::before {
+    content: "";
+    position: absolute;
+    top: 60px;
+    left: 25px;
+    width: 45px;
+    height: 35px;
+    background: url('pin-card.png') no-repeat center ;
+}
+
+/* Nama Pemilik di Pojok Kiri Atas */
+.bank-accounts-cards .holder-name {
+    font-size: 0.9rem;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+/* Nomor Rekening (Besar & Putih) */
+.bank-accounts-cards .account-number {
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-top: 50px;
+}
+
+/* Nama Bank di Pojok Kanan Atas */
+.bank-accounts-cards .bank-name {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+/* --- TYPOGRAPHY --- */
+.subtitle-top {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.main-title {
+    font-size: 2.5rem;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.gift-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #555;
+    padding: 0 10px;
+}
+    /* --- Section Comments (Ucapan) --- */
+   /* --- CONTAINER UTAMA --- */
+#comments-section-id.section-comments {
+    position: relative;
+    width: 100%;
+    max-width: 450px; /* Konsisten seukuran HP */
+    min-height: 100vh;
+    margin-left: auto; /* Dorong ke kanan di laptop */
+    margin-right: 0;
+    
+    /* BACKGROUND: Tekstur Cat Air */
+    background-image: url('bg.png');
+    background-size: cover;
+    background-position: center;
+    background-color: #fdf6e9;
+    
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+    overflow: hidden;
+    padding: 80px 20px 180px 20px; /* Padding bawah untuk dekorasi bunga */
+    box-sizing: border-box;
+}
+
+/* --- DEKORASI BUNGA POJOK ATAS --- */
+/* Bunga Kiri Atas */
+#comments-section-id::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 180px;
+    background: url('kiri-atas.png') no-repeat top left ;
+    animation: fadeInUp 4s ease-out forwards;
+    background-size: cover;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* Bunga Kanan Atas */
+#comments-section-id .container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 180px;
+    height: 180px;
+    background: url('kanan-atas.png') no-repeat top right ;
+    animation: fadeInUp 4s ease-out forwards;
+    background-size: cover;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* --- DEKORASI BUNGA BAWAH (PRESISI) --- */
+.section-comments .container::before {
+    content: "";
+    position: absolute;
+    bottom: -10px; /* Tempel ke bawah */
+    left: 0;
+    width: 100%;
+    height: 280px;
+    /* background: url('bunga-bawah.png') no-repeat bottom center ; */
+    background-size: cover;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* --- FORM & INPUT STYLING --- */
+.detail-box {
+    position: relative;
+    z-index: 15;
+    text-align: left;
+}
+
+#comment-form .form-group {
+    margin-bottom: 20px;
+}
+
+#comment-form label {
+    display: block;
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+/* Input & Textarea sesuai gambar */
+#comment-name-input, 
+#comment-message-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+#comment-message-input {
+    min-height: 120px;
+    resize: none;
+}
+
+/* --- BUTTON GRUP KEHADIRAN --- */
+.status-btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+.template-status-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    color: #666;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.template-status-btn.status-active {
+    background: #bc9c78; /* Warna coklat tema */
+    color: white;
+}
+
+/* --- TOMBOL KIRIM --- */
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    background-color: #bc9c78; /* Sesuai gambar referensi */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(188, 156, 120, 0.3);
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #a38768;
+    transform: translateY(-2px);
+}
+
+/* --- TYPOGRAPHY --- */
+.subtitle-top {
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 2rem;
+    color: #444;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+
+
+
+
+
+/* --- CONTAINER UTAMA SECTION --- */
+.section-comments-list {
+    position: relative;
+    width: 100%;
+    max-width: 450px; /* Konsisten ukuran HP */
+    min-height: 100vh;
+    margin-left: auto;
+    margin-right: 0;
+    background-image: url('bg.png');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    padding: 80px 20px 180px 20px; /* Padding bawah untuk dekorasi bunga */
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* --- DEKORASI BUNGA ATAS & BAWAH --- */
+/* Pastikan Section Komentar List memiliki tinggi minimal layar penuh */
+.section-comments-list {
+    position: relative;
+    min-height: 100vh; /* Wajib agar section memenuhi layar */
+    padding-bottom: 0 !important; /* Hapus padding agar tidak menggantung */
+    margin-bottom: 0 !important;
+    overflow: hidden;
+}
+
+/* Dekorasi Bunga Bawah */
+.section-comments-list::after {
+    content: "";
+    position: absolute;
+    
+    /* Paksa ke dasar paling bawah */
+    bottom: 0 !important; 
+    left: 0;
+    
+    width: 100%;
+    height: 350px; /* Tinggikan sedikit agar tidak terlihat terpotong */
+    
+    /* Gunakan properti background yang tepat */
+    background: url('bunga-bawah.png') no-repeat bottom center;
+    animation: fadeInUp 4s ease-out forwards;
+    background-size: cover; 
+    
+    z-index: 99; /* Pastikan paling depan */
+    pointer-events: none;
+    
+    /* Hilangkan kemungkinan margin transparan pada file gambar */
+    margin-bottom: -2px; 
+}
+
+/* Beri jarak pada list komentar agar tidak tertutup bunga yang sudah di bawah */
+.comments-list-container {
+    padding-bottom: 250px !important; 
+}
+/* Gaya Scrollbar untuk Chrome/Safari */
+.comments-list-container::-webkit-scrollbar {
+    width: 5px;
+}
+.comments-list-container::-webkit-scrollbar-thumb {
+    background: #bc9c78;
+    border-radius: 10px;
+}
+
+/* --- KARTU KOMENTAR (Isi dari {{comments}}) --- */
+/* Pastikan output {{comments}} menghasilkan struktur div seperti di bawah */
+.comment-item {
+    background: #fdfaf5; /* Warna krem sangat muda */
+    border: 2px solid #e2d5c5; /* Border warna coklat muda lembut */
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.comment-header {
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.comment-header span {
+    font-weight: normal;
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.comment-text {
+    font-size: 0.9rem;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.comment-date {
+    font-size: 0.75rem;
+    color: #888;
+    text-align: right;
+    display: block;
+}
+
+
+
+
+    /* --- Floating Music Toggle --- */
+#floating-music-toggle {
+    /* Posisi di kanan atas */
+    position: fixed;
+    top: 20px; /* Jarak dari atas */
+    right: 20px; /* Jarak dari kanan */
+    bottom: auto; /* Memastikan properti bottom tidak berlaku */
+    
+    /* Ukuran yang lebih kecil */
+    width: 25px; /* Lebar lebih kecil */
+    height: 25px; /* Tinggi lebih kecil */
+    
+    /* Properti tampilan lainnya (dipertahankan atau disesuaikan) */
+    border-radius: 50%;
+    background-color: var(--color-bg-mid);
+    border: 2px solid var(--color-border-subtle);
+    color: var(--color-bg-dark); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 950;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Bayangan disesuaikan untuk ukuran kecil */
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.3s, border-color 0.3s, color 0.3s;
+}
+
+#floating-music-toggle.visible {
+    opacity: 1;
+}
+
+#floating-music-toggle:hover {
+    transform: scale(1.1);
+}
+
+    /* --- Toast Message (Notifikasi) --- */
+    #toast-message {
+        position: fixed;
+        bottom: 150px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--color-bg-dark);
+        color: var(--color-text-light);
+        padding: 10px 20px;
+        border-radius: 5px;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+        font-size: 0.9rem;
+        pointer-events: none;
+        min-width: 250px;
+    }
+
+    #toast-message.show {
+        opacity: 1;
+    }
+#toast-message.error {
+    background-color: #d9534f;
+}
+
+#toast-message.success {
+    background-color: #5cb85c;
+}
+
+
+    /* --- Media Queries --- */
+    @media (min-width: 600px) {
+        .couple-cards {
+            flex-direction: row;
+        }
+        .card {
+            width: 45%;
+        }
+    }
+    
+    @media (max-width: 400px) {
+        .time-number {
+            font-size: 1.8rem;
+        }
+        .time-box {
+            padding: 8px 3px;
+        }
+    }
+</style>
+</head>
+<body class="scroll-locked">
+
+   <div id="cover-page" class="template-cover-container">
+    <div class="template-cover-overlay"></div>
+    <div class="template-cover-content-wrapper">
+        <p style="color: #555; font-size: 1.1rem; margin-bottom: 5px;">Kepada Yth:</p>
+        <h3 class="template-cover-guest-name" id="guest-name-display">TAMU UNDANGAN</h3>
+        
+        <h1 class="template-cover-title">{{nama_pria}} & {{nama_wanita}}</h1>
+        
+        <p style="color: #777; margin-top: 20px;">{{tanggal_acara_baca}}</p>
+        
+        <button id="open-invitation-btn" class="cover-open-btn">
+            Buka
+        </button>
+    </div>
+</div>
+    <div id="main-content">
+        
+       <section id="intro-section-id" class="section-intro">
+    <div class="intro-content">
+        <h1 class="wedding-title">Undangan Pernikahan</h1>
+        <p class="opening-quote">Dengan memohon rahmat dan ridho Allah SWT</p>
+
+        <div class="couple-photo-container">
+            <img 
+                src="{{cover}}" 
+                alt="Foto Pasangan" 
+                class="couple-photo"
+            >
+        </div>
+
+        <h3 class="couple-names">{{nama_pria}} & {{nama_wanita}}</h3>
+    </div>
+</section>
+
+
+        <section class="section section-detail" style="padding-top: 0;">
+            <div><br>
+                <p class="quote-opening">
+                    Tanpa mengurangi rasa hormat, kami mengundang Anda untuk berkenan menghadiri acara pernikahan kami:
+                </p>
+
+                <div class="couple-cards">
+                    <div class="card groom-card animate-up" data-delay="0.0s">
+                        <div class="card-image-wrapper">
+                            <img src="{{foto_pria}}" alt="Foto Pria">
+                        </div>
+                        <p class="card-name">{{nama_pria_lengkap}}</p>
+                        <p style="font-size: 0.8rem;">Putra dari Bapak {{nama_bapak_pria}} & Ibu {{nama_ibu_pria}}</p>
+                    </div>
+                    
+                    <div class="card bride-card animate-up" data-delay="0.3s">
+                        <div class="card-image-wrapper">
+                            <img src="{{foto_wanita}}" alt="Foto Wanita">
+                        </div>
+                        <p class="card-name">{{nama_wanita_lengkap}}</p>
+                        <p style="font-size: 0.8rem;">Putri dari Bapak {{nama_bapak_wanita}} & Ibu {{nama_ibu_wanita}}</p>
+                    </div>
+                </div>
+
+                <p class="quote-closing">
+                    Segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat (kebesaran Allah).<br>
+                   ~ QS Adz-Dzariyat: 49
+                </p>
+            </div>
+        </section>
+
+     <section id="event-section-id" class="section section-event">
+    <div >
+        <p class="subtitle-top">Our Special</p>
+        <h2 class="main-title font-cursive">Wedding Event</h2>
+
+        <div id="countdown-timer">
+            <div class="time-box"><p id="days" class="time-number">00</p><p class="time-label">Hari</p></div>
+            <div class="time-box"><p id="hours" class="time-number">00</p><p class="time-label">Jam</p></div>
+            <div class="time-box"><p id="minutes" class="time-number">00</p><p class="time-label">Menit</p></div>
+            <div class="time-box"><p id="seconds" class="time-number">00</p><p class="time-label">Detik</p></div>
+        </div>
+        
+        <div class="event-card-wrapper">
+             <div class="ribbon-date">{{tanggal_acara_baca}}</div>
+             
+             <div class="event-item-list">
+                 {{event_times}} 
+                 </div>
+
+             <div class="location-wrapper">
+                 <p class="event-location-address">{{lokasi_acara}}</p>
+             </div>
+             
+             <a href="{{maps_url}}" class="btn-maps-link">
+                Buka di Google Maps
+             </a>
+        </div>
+    </div>
+</section>
+
+
+
+
+     <section id="gallery-section-id" class="section-gallery">
+    <div class="gallery-container">
+        <p class="subtitle-top">OUR SWEET MEMORY</p>
+        <h2 class="main-title font-cursive">Photo Gallery</h2>
+        
+        <div class="scrapbook-wrapper">
+            {{galeri}}
+        </div>
+    </div>
+</section>
+        
+       
+<section id="gift-section-id" class="section section-gift">
+    <div class="container gift-container">
+        <p class="subtitle-top">WEDDING GIFT</p>
+        <h2 class="main-title font-cursive">Kirim Hadiah</h2>
+
+        <p class="gift-text">
+            Do'a restu dari Anda merupakan karunia yang sangat berarti. Jika Anda ingin memberikan hadiah, Anda dapat mengirimkannya melalui:
+        </p>
+
+        <div id="bank-accounts-cards" class="bank-accounts-cards">
+            {{bank_details_table}} 
+        </div>
+    </div>
+</section>
+
+
+        <section id="comments-section-id" class="section section-comments">
+            <div class="container">
+                <p class="subtitle-top">UCAPAN & DO'A</p>
+                <h2 class="main-title font-cursive">Kirimkan Ucapan Terbaik</h2>
+                
+                <div class="detail-box animate-on-scroll" style="margin-bottom: 40px;">
+                    <form id="comment-form" onsubmit="submitComment(event)">
+                        <div class="form-group">
+                            <label for="comment-name-input">Nama Anda (Wajib):</label>
+                            <input 
+                                type="text" 
+                                id="comment-name-input" 
+                                class="form-control" 
+                                value="[Nama Tamu]"
+                                required
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="comment-message-input">Pesan Ucapan:</label>
+                            <textarea id="comment-message-input" placeholder="Tuliskan ucapan dan doa terbaik Anda..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Konfirmasi Kehadiran:</label>
+                            <div class="status-btn-group">
+                                <button type="button" id="status-yes" class="template-status-btn status-active" onclick="toggleStatus(this, 'yes')">
+                                    <i class="fas fa-check-circle"></i> Hadir
+                                </button>
+                                <button type="button" id="status-no" class="template-status-btn" onclick="toggleStatus(this, 'no')">
+                                    <i class="fas fa-times-circle"></i> Tidak Hadir
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="submit-comment-btn" class="btn-submit">
+                            Kirim Ucapan
+                        </button>
+                    </form>
+                </div>
+                
+
+                
+        </section>
+        
+        <section id="comments-list-section" class="section section-comments-list">
+    <div class="container">
+        
+        <div class="comments-header-wrapper">
+            <p class="subtitle-top">UCAPAN TAMU</p>
+            <h2 class="main-title font-cursive">Komentar Terbaru</h2>
+        </div>
+
+        <div class="comments-list-container animate-on-scroll">
+            
+            <div class="comments-scroll-box">
+                {{comments}}
+            </div>
+            
+        </div>
+
+    </div>
+</section>
+
+
+
+        <!-- <div style="height: 60px;"></div>
+
+        <div class="bottom-nav-bar">
+            <a href="#intro-section-id" class="nav-item active" data-section="intro-section-id">
+                <i class="fas fa-heart"></i>
+                <span>Home</span>
+            </a>
+            <a href="#event-section-id" class="nav-item" data-section="event-section-id">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Event</span>
+            </a>
+            <a href="#gallery-section-id" class="nav-item" data-section="gallery-section-id">
+                <i class="fas fa-images"></i>
+                <span>Galeri</span>
+            </a>
+            <a href="#gift-section-id" class="nav-item" data-section="gift-section-id">
+                <i class="fas fa-gifts"></i>
+                <span>Kado</span>
+            </a>
+            <a href="#comments-section-id" class="nav-item" data-section="comments-section-id">
+                <i class="fas fa-comment-dots"></i>
+                <span>Ucapan</span>
+            </a>
+        </div>
+        
+    </div> -->
+    
+    <audio id="background-music" loop> 
+    <source src="{{music}}" type="audio/mpeg"> 
+</audio>
+
+<div id="floating-music-toggle" onclick="toggleMusic()">
+    <i class="fas fa-volume-mute"></i> 
+</div>
+
+<div id="toast-message"></div>
+
+    <script>
+    
+        
+        // Data Pernikahan
+const WEDDING_DATE = new Date("{{tanggal_acara}}").getTime(); 
+const urlParams = new URLSearchParams(window.location.search);
+const guestNameParam = urlParams.get('to');
+const GUEST_NAME = guestNameParam ? decodeURIComponent(guestNameParam) : "{{nama_tamu}}";
+
+document.getElementById('guest-name-display').textContent = GUEST_NAME;
+document.getElementById('comment-name-input').value = GUEST_NAME;
+
+// --- Music Toggle Logic ---
+
+const music = document.getElementById('background-music');
+const floatingMusicToggle = document.getElementById('floating-music-toggle');
+const musicIconClass = 'fas fa-volume-up';
+const muteIconClass = 'fas fa-volume-mute';
+
+/** Function to update the floating music icon */
+function updateMusicIcon(isPlaying) {
+    if (floatingMusicToggle) {
+        const iconElement = floatingMusicToggle.querySelector('i');
+        
+        // Ikon Volume-Up hanya jika sedang diputar
+        const isVolumeOnDisplay = isPlaying; 
+        
+        if (iconElement) {
+            iconElement.className = isVolumeOnDisplay ? musicIconClass : muteIconClass;
+        }
+        
+        // Warna merah (aktif) jika sedang play
+        floatingMusicToggle.style.color = isPlaying ? 'var(--netflix-red)' : 'var(--netflix-grey)';
+        floatingMusicToggle.style.borderColor = isPlaying ? 'var(--netflix-red)' : 'var(--netflix-grey)';
+    }
+}
+
+
+/** Function to handle play/pause logic */
+window.toggleMusic = function() {
+    const isPlaying = !music.paused;
+
+    if (isPlaying) { 
+        // Jeda musik
+        music.pause();
+        localStorage.setItem('isMusicPlaying', 'false');
+        updateMusicIcon(false); 
+        // window.showToast("Musik Latar Dijeda", 'error');
+    } else { 
+        // Coba play (Klik pertama pengguna)
+        music.muted = false; // Pastikan tidak bisu
+        
+        music.play().then(() => {
+            
+            localStorage.setItem('isMusicPlaying', 'true');
+            updateMusicIcon(true); 
+            // window.showToast("Musik Latar Diputar", 'success');
+        }).catch(error => {
+        
+            console.log("Music play failed:", error);
+            localStorage.setItem('isMusicPlaying', 'false');
+            updateMusicIcon(false);
+            // window.showToast("Gagal memutar musik.", 'error');
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const isMusicShouldPlay = localStorage.getItem('isMusicPlaying') === 'true';
+    if (isMusicShouldPlay) {
+        music.muted = false;
+        
+        music.play().then(() => {
+            
+            updateMusicIcon(true);
+        }).catch(error => {
+            
+            // console.log("Autoplay blocked on load.", error);
+            localStorage.setItem('isMusicPlaying', 'false');
+            updateMusicIcon(false);
+            
+        });
+    } else {
+        // Tampilkan status PAUSED (ikon mute)
+        updateMusicIcon(false);
+    }
+});
+
+document.getElementById('open-invitation-btn').addEventListener('click', function() {
+    const cover = document.getElementById('cover-page');
+    const mainContent = document.getElementById('main-content');
+    const body = document.body;
+
+    cover.style.opacity = '0';
+    mainContent.style.visibility = 'visible';
+    mainContent.style.opacity = '1';
+    floatingMusicToggle.classList.add('visible'); // Tampilkan tombol mengambang
+
+    setTimeout(() => {
+        cover.style.display = 'none';
+        body.classList.remove('scroll-locked');
+        initIntersectionObserver();
+    }, 1500); 
+    
+    // Logic untuk memutar musik saat undangan dibuka:
+    const wasPlaying = localStorage.getItem('isMusicPlaying') !== 'false';
+    if (wasPlaying) {
+         // Panggil play secara langsung untuk memulai musik, update icon akan mengikuti
+        music.play().then(() => {
+            updateMusicIcon(true);
+        }).catch(e => {
+            // Jika gagal (autoplay block), tetap tampilkan ikon mute
+            updateMusicIcon(false);
+            console.log("Autoplay blocked, user must click the floating button.");
+        });
+    } else {
+        updateMusicIcon(false); // Pastikan ikon tetap mute jika sebelumnya dimatikan
+    }
+
+    startCountdown();
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Pastikan status icon disetel berdasarkan Local Storage
+    updateMusicIcon(localStorage.getItem('isMusicPlaying') === 'true');
+});
+
+        /** Toggles the active status button for attendance confirmation. */
+        window.toggleStatus = function(clickedButton, status) {
+            const statusBtns = document.querySelectorAll('.template-status-btn');
+            statusBtns.forEach(btn => btn.classList.remove('status-active'));
+            clickedButton.classList.add('status-active');
+        }
+        
+        /** Displays a temporary notification message. */
+        window.showToast = function(message, type = 'success') {
+            const toast = document.getElementById('toast-message');
+            if (!toast) return;
+            
+            toast.textContent = message;
+            toast.className = ``; // Reset classes
+            toast.classList.add('show', type);
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000); 
+        }
+
+        /** Handles the fake submission for demonstration. */
+window.submitComment = async function(event) {
+    event.preventDefault();
+
+    // Pastikan API_BASE_URL sudah didefinisikan secara global atau diakses di sini
+    const API_BASE_URL = 'https://pureday-invitation.vercel.app/api'; // Ulangi definisi di sini jika tidak global
+
+    // ... (kode untuk mendapatkan input name, message, isAttending, invitationId)
+    const nameInput = document.getElementById('comment-name-input');
+    const messageInput = document.getElementById('comment-message-input');
+    const attendingYes = document.getElementById('status-yes');
+    const submitBtn = document.getElementById('submit-comment-btn');
+
+    const name = nameInput.value.trim() || `Tamu (${userId ? userId.substring(0, 4) : 'Guest'})`;
+    const message = messageInput.value.trim();
+    const isAttending = attendingYes.classList.contains('status-active');
+    const willAttendStatus = isAttending ? "yes" : "no";
+    
+    if (!message) {
+        window.showToast("Pesan ucapan tidak boleh kosong.", "error");
+        return;
+    }
+
+    const invitationId = localStorage.getItem('invitationId'); 
+    if (!invitationId) {
+        console.error("invitationId not found in localStorage.");
+        window.showToast("Gagal: ID undangan tidak ditemukan.", "error");
+        return;
+    }
+    
+    const newCommentPayload = {
+        guest_name: name,
+        message: message,
+        will_attend: willAttendStatus,
+        invitation_id: invitationId,
+    };
+
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+
+    try {
+        // PERUBAHAN KRUSIAL ADA DI SINI: Menggunakan URL Absolut
+        const response = await fetch(`${API_BASE_URL}/comments`, { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newCommentPayload)
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.message || `API call failed with status ${response.status}`);
+        }
+
+        window.showToast("Ucapan Anda berhasil terkirim! Terima kasih.", "success");
+        
+        // Reset form
+        nameInput.value = '';
+        messageInput.value = '';
+        document.getElementById('status-no').classList.add('status-active');
+        attendingYes.classList.remove('status-active');
+
+    } catch (e) {
+        console.error("Error submitting comment: ", e);
+        window.showToast("Gagal mengirim ucapan. Coba lagi. " + (e.message || ''), "error");
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Kirim Ucapan';
+    }
+}
+        // --- End Guestbook Logic ---
+
+        /** Copies text from a specific ID to the clipboard. */
+        window.copyText = function(elementId, bankName = '') {
+            const element = document.getElementById(elementId);
+            if (!element) {
+                 window.showToast('Gagal menyalin.', "error");
+                 return;
+            }
+            
+            const textToCopy = element.textContent;
+            
+            // Simplified copy logic for modern browsers
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                window.showToast(`Nomor rekening ${bankName} berhasil disalin!`);
+            }).catch(err => {
+                // Fallback for older browsers
+                const tempInput = document.createElement('textarea');
+                tempInput.value = textToCopy;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                try {
+                    document.execCommand('copy');
+                     window.showToast(`Nomor rekening ${bankName} berhasil disalin!`);
+                } catch (e) {
+                     window.showToast('Gagal menyalin. Silakan salin manual.', "error");
+                }
+                document.body.removeChild(tempInput);
+            });
+        }
+
+        // --- Core Application Logic ---
+
+        /** Handles the cover page opening transition. */
+        document.getElementById('open-invitation-btn').addEventListener('click', function() {
+            const cover = document.getElementById('cover-page');
+            const mainContent = document.getElementById('main-content');
+            const body = document.body;
+
+            // 1. Start Fade-out
+            cover.style.opacity = '0';
+            
+            // 2. Start Main Content Fade-in (make it visible before fade-in)
+            mainContent.style.visibility = 'visible';
+            mainContent.style.opacity = '1';
+
+            setTimeout(() => {
+           
+                cover.style.display = 'none';
+                body.classList.remove('scroll-locked');
+                
+        
+                initIntersectionObserver();
+            }, 1500); 
+            
+
+            startCountdown();
+        });
+
+        /** Countdown Timer Logic */
+        function startCountdown() {
+            const elements = ['days', 'hours', 'minutes', 'seconds'].map(id => document.getElementById(id));
+            const [daysEl, hoursEl, minutesEl, secondsEl] = elements;
+
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const distance = WEDDING_DATE - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    document.getElementById('countdown-timer').innerHTML = '<h2 style="color: var(--netflix-red);">ACARA SEDANG BERLANGSUNG!</h2>';
+                } else {
+                    daysEl.textContent = String(days).padStart(2, '0');
+                    hoursEl.textContent = String(hours).padStart(2, '0');
+                    minutesEl.textContent = String(minutes).padStart(2, '0');
+                    secondsEl.textContent = String(seconds).padStart(2, '0');
+                }
+            }
+
+            updateCountdown();
+            const interval = setInterval(updateCountdown, 1000);
+        }
+        
+        /** Intersection Observer for scroll-based animations (for couple cards and sections) */
+        function initIntersectionObserver() {
+            // Observer untuk kartu pasangan (yang sudah ada)
+            const cardObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const delay = parseFloat(element.getAttribute('data-delay') || '0');
+                        
+                        element.classList.add('animated');
+                        element.style.transitionDelay = delay + 's'; 
+                        
+                        observer.unobserve(element);
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2
+            });
+            document.querySelectorAll('.card.animate-up').forEach(card => {
+                cardObserver.observe(card);
+            });
+            
+            // Observer BARU untuk elemen-elemen utama
+            const mainContentObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Pemicu lebih cepat
+            });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(element => {
+                mainContentObserver.observe(element);
+            });
+        }
+                document.querySelectorAll('.nav-item').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                this.classList.add('active');
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // Update Nav Active state on scroll
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            document.querySelectorAll('.section').forEach(section => {
+                if (section.offsetTop <= scrollPosition && section.offsetTop + section.offsetHeight > scrollPosition) {
+                    const id = section.getAttribute('id');
+                    document.querySelectorAll('.nav-item').forEach(nav => {
+                        nav.classList.remove('active');
+                        if (nav.getAttribute('href') === `#${id}`) {
+                            nav.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // --- 1. Ambil elemen slider yang akan dimanipulasi ---
+    const sliderContainer = document.querySelector('.photo-slider');
+    const sliderWrapper = document.querySelector('.photo-slider-container'); // Ambil container utama untuk fitur hover
+    const slides = document.querySelectorAll('.slider-item');
+    const nextButton = document.querySelector('.next-btn');
+    const prevButton = document.querySelector('.prev-btn');
+
+    if (!sliderContainer || slides.length === 0 || !sliderWrapper) {
+        console.error("Slider container atau slide tidak ditemukan.");
+        return; 
+    }
+
+    let currentSlide = 0; 
+    const totalSlides = slides.length;
+    const intervalTime = 5000; // 5000 ms = 5 detik (Atur kecepatan di sini)
+    let slideInterval; 
+
+    
+    // --- 2. Fungsi untuk menampilkan slide tertentu ---
+    function showSlide(index) {
+        // Logika Looping
+        if (index >= totalSlides) {
+            index = 0; 
+        } else if (index < 0) {
+            index = totalSlides - 1; 
+        }
+
+        currentSlide = index;
+
+        // Transformasi CSS (Geser)
+        const offset = -currentSlide * 100;
+        sliderContainer.style.transform = `translateX(${offset}%)`;
+    }
+
+    // --- 3. Fungsi untuk pindah ke slide berikutnya/sebelumnya ---
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+    
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+
+    // ----------------------------------------------------
+    // --- 5. FUNGSI AUTOPLAY (OTOMATIS) ---
+    // ----------------------------------------------------
+    
+    // Fungsi untuk memulai interval otomatis
+    function startAutoplay() {
+        // Hentikan interval lama jika ada
+        clearInterval(slideInterval); 
+        // Mulai interval baru
+        slideInterval = setInterval(nextSlide, intervalTime);
+    }
+
+    // Fungsi untuk menghentikan interval otomatis
+    function stopAutoplay() {
+        clearInterval(slideInterval);
+    }
+
+
+    // --- 4. Hubungkan Interaksi Pengguna & Tombol Navigasi ---
+    
+    // Tombol Next
+    if (nextButton) {
+        nextButton.addEventListener('click', () => {
+            stopAutoplay(); // Hentikan autoplay saat user klik
+            nextSlide();
+            startAutoplay(); // Mulai lagi setelah klik
+        });
+    }
+    
+    // Tombol Prev
+    if (prevButton) {
+        prevButton.addEventListener('click', () => {
+            stopAutoplay(); // Hentikan autoplay saat user klik
+            prevSlide();
+            startAutoplay(); // Mulai lagi setelah klik
+        });
+    }
+
+    
+    sliderWrapper.addEventListener('mouseenter', stopAutoplay);
+
+    sliderWrapper.addEventListener('mouseleave', startAutoplay);
+
+
+    showSlide(currentSlide); 
+    startAutoplay(); 
+});
+
+</script>
+</body>
+</html>
