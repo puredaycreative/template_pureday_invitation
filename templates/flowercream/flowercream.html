@@ -851,6 +851,7 @@ body {
 
 
 /* --- Section Gift --- */
+/* --- BACKGROUND & CONTAINER --- */
 .section-gift {
     position: relative;
     width: 100%;
@@ -859,14 +860,13 @@ body {
     margin-left: auto;
     margin-right: 0;
     background: url('https://template-pureday-invitation.vercel.app/flowercream/bg.png') center/cover no-repeat #fdf6e9;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
     overflow: hidden;
-    padding: 80px 20px 0 20px; /* Padding bawah 0 agar bunga nempel pol */
-    text-align: center;
+    padding: 100px 20px 0 20px;
     box-sizing: border-box;
 }
 
-/* --- DEKORASI BUNGA --- */
+/* --- DEKORASI BUNGA 4 SUDUT --- */
+/* Atas Kiri & Kanan */
 .section-gift::before {
     content: "";
     position: absolute;
@@ -885,103 +885,108 @@ body {
     z-index: 5;
 }
 
-/* Bunga Bawah Menempel Pol */
+/* Bawah Menempel Dasar */
 .flower-bottom-gift {
     position: absolute;
     bottom: -15px;
     left: 0;
     width: 100%;
-    height: 250px;
+    height: 280px;
     background: url('https://template-pureday-invitation.vercel.app/flowercream/bunga-bawah.png') no-repeat bottom center / contain;
     z-index: 20;
     pointer-events: none;
 }
 
-/* --- KARTU BANK --- */
+/* --- KARTU BANK DINAMIS --- */
 .bank-accounts-cards {
     display: flex;
     flex-direction: column;
     gap: 20px;
     margin-top: 30px;
-    padding-bottom: 250px; /* Ruang agar kartu tidak tertutup bunga bawah */
-    position: relative;
+    padding-bottom: 280px; /* Ruang agar kartu tidak tertutup bunga */
     z-index: 15;
+    position: relative;
 }
 
+/* Menargetkan elemen apa pun yang keluar dari {{bank_details_table}} */
 .bank-accounts-cards > div { 
-    background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+    background: linear-gradient(135deg, rgba(40, 40, 40, 0.95) 0%, rgba(20, 20, 20, 0.95) 100%);
     border-radius: 15px;
-    padding: 20px;
+    padding: 25px;
     color: #fff;
     text-align: left;
     position: relative;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     min-height: 180px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
 }
 
-/* Chip Kartu */
+/* Dekorasi Chip Kartu */
 .bank-accounts-cards > div::before {
     content: "";
     position: absolute;
-    top: 65px;
-    left: 20px;
+    top: 70px;
+    left: 25px;
     width: 45px;
     height: 35px;
     background: url('https://template-pureday-invitation.vercel.app/flowercream/pin-card.png') no-repeat center / contain;
     z-index: 2;
 }
 
-/* Nama Bank di Kanan Atas */
+/* Memperbaiki posisi Nama Bank & Nama Akun agar tidak tabrakan */
 .bank-name {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    font-weight: bold;
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.9);
+    top: 25px;
+    right: 25px;
+    font-size: 0.9rem;
+    opacity: 0.8;
     text-transform: uppercase;
 }
 
-/* Nama Pemilik */
 .holder-name {
-    font-size: 0.85rem;
-    font-weight: 300;
-    opacity: 0.8;
-    margin-bottom: 50px; /* Ruang untuk chip */
-    width: 70%; /* Agar tidak tabrakan dengan nama bank */
+    font-size: 0.95rem;
+    margin-bottom: 60px; /* Jarak untuk chip */
+    width: 70%;
 }
 
-/* Nomor Rekening */
-.account-number {
-    font-size: 1.3rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-}
-
-/* --- TOMBOL SALIN (COPY BUTTON) --- */
-.btn-copy {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff;
-    padding: 6px 15px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    cursor: pointer;
-    display: inline-flex;
+/* Baris Nomor Rekening & Tombol */
+.account-footer {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 8px;
-    width: fit-content;
+    margin-top: auto;
+}
+
+.account-number {
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+/* Tombol Copy Kecil di Kanan */
+.btn-copy {
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    cursor: pointer;
     transition: 0.3s;
-    backdrop-filter: blur(5px);
 }
 
 .btn-copy:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: #ffffff;
 }
+
+
+
+
+
+
     /* --- Section Comments (Ucapan) --- */
    /* --- CONTAINER UTAMA --- */
 #comments-section-id.section-comments {
