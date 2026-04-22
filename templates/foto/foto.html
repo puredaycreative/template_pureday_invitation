@@ -650,15 +650,28 @@ body {
 /* --- TEKS GALLERY VERTIKAL --- */
 .gallery-vertical-title {
     position: absolute;
-    left: 20px;
+    /* Kondisi Awal: Tersembunyi lebih jauh ke kiri */
+    left: -70px; 
     top: 50px;
+    opacity: 0;
+    
     font-family: 'Playfair Display', serif;
-    font-size: 4rem;
+    font-size: 3rem;
     color: rgba(255, 255, 255, 0.9);
     writing-mode: vertical-lr;
     transform: rotate(180deg);
     z-index: 5;
     letter-spacing: 10px;
+    white-space: nowrap;
+    
+    /* Transisi Halus */
+    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* --- KONDISI SAAT MUNCUL (Aktif via JS) --- */
+.gallery-vertical-title.visible {
+    left: -20px; /* Posisi ideal di samping box 450px */
+    opacity: 1;
 }
 
 /* --- KONTEN 450px --- */
@@ -694,7 +707,7 @@ body {
 .scrapbook-wrapper > * {
     display: none !important; /* Matikan semua foto dulu */
    
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    /* box-shadow: 0 10px 25px rgba(0,0,0,0.5); */
     position: relative;
     transform: none !important; /* Paksa tegak lurus */
 }
@@ -1383,12 +1396,13 @@ body {
 
 
 <section id="gallery-section-id" class="section-gallery">
-    <div class="gallery-vertical-title">GALLERY</div>
-
     <div class="gallery-inner-container">
-        <div class="scrapbook-wrapper">
-            {{galeri}} 
-            </div>
+        <div class="gallery-vertical-title">GALLERY</div>
+        
+     
+        <div class="scrapbook-wrapper animate-gallery">
+            {{galeri}}
+        </div>
     </div>
 </section>
         
@@ -1541,7 +1555,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }, observerOptions);
 
     // KUNCINYA DI SINI: Daftarkan semua class pemicu animasi kamu
-    const targets = document.querySelectorAll('.section-intro, .animate-up, .opening-quote, .card, .animate-left,.animate-fade, .animate-left, .event-item-list');
+    const targets = document.querySelectorAll('.section-intro, .animate-up, .opening-quote, .card, .animate-left,.animate-fade, .animate-left, .event-item-list, .gallery-vertical-title');
     
     targets.forEach(el => {
         universalObserver.observe(el);
