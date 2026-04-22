@@ -1525,6 +1525,38 @@ document.addEventListener("DOMContentLoaded", function() {
         universalObserver.observe(el);
     });
 });
+//slider otomatis galeri
+document.addEventListener("DOMContentLoaded", function() {
+    const wrapper = document.querySelector('.scrapbook-wrapper');
+    const photos = wrapper.querySelectorAll('img');
+
+    // Jika foto lebih dari 3, jalankan slider otomatis
+    if (photos.length > 3) {
+        let scrollAmount = 0;
+        const slideTimer = setInterval(() => {
+            wrapper.scrollLeft += 2; // Kecepatan slide
+            scrollAmount += 2;
+            
+            // Loop balik ke awal jika sudah mentok
+            if (wrapper.scrollLeft >= (wrapper.scrollWidth - wrapper.clientWidth)) {
+                wrapper.scrollLeft = 0;
+            }
+        }, 30); // Smoothness
+    }
+
+    // Observer untuk Animasi Muncul
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    observer.observe(wrapper);
+});
 
 // --- Music Toggle Logic ---
 
