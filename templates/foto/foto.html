@@ -636,18 +636,18 @@ body {
  
     
 /* --- Section Gallery --- */
-/* --- SECTION UTAMA (FULL SCREEN) --- */
+/* --- CONTAINER UTAMA (KANAN) --- */
 .section-gallery {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background: #1a1a1a; /* Warna dasar area kosong */
+    background: #1a1a1a;
     display: flex;
-    justify-content: flex-end; /* Paksa container ke KANAN saat landscape */
+    justify-content: flex-end; /* Pojok kanan monitor */
     overflow: hidden;
 }
 
-/* --- TULISAN GALLERY VERTIKAL (REQUEST) --- */
+/* --- TEKS GALLERY VERTIKAL --- */
 .gallery-vertical-title {
     position: absolute;
     left: 20px;
@@ -661,73 +661,66 @@ body {
     letter-spacing: 10px;
 }
 
-/* --- CONTAINER 450px --- */
+/* --- KONTEN 450px --- */
 .gallery-inner-container {
     width: 100%;
     max-width: 450px;
     min-height: 100vh;
     padding: 60px 30px;
-    /* BACKGROUND JPG (REQUEST) */
     background: url('https://ulemanti.id/wp-content/uploads/2022/08/IMG_1878.jpg') center/cover no-repeat;
     position: relative;
     color: #fff;
-    display: flex;
-    flex-direction: column;
 }
 
-/* Overlay agar teks & foto tumpuk tetap kontras */
 .gallery-inner-container::before {
     content: "";
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Gelap transparan */
+    top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.6);
     z-index: 1;
 }
 
 .gallery-inner-container > * { position: relative; z-index: 10; }
 
-/* --- LOGIKA SCRAPBOOK (FOTO 1 & 2) --- */
+/* --- SCRAPBOOK (FOTO 1 & 2 SAJA) --- */
 .scrapbook-wrapper {
     display: flex;
     flex-direction: column;
     margin-top: 30px;
 }
 
-/* Foto ke-1 (Miring Kiri) */
+/* Base style untuk semua item dari {{galeri}} */
+.scrapbook-wrapper > * {
+    border: 5px solid #fff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    display: block !important;
+}
+
+.scrapbook-wrapper > * img { width: 100%; height: auto; display: block; }
+
+/* FOTO 1 (Tegak Lurus, Rata Kanan) */
 .scrapbook-wrapper > *:nth-child(1) {
-    width: 85% !important;
-    display: block !important;
-    transform: rotate(-4deg);
-    border: 4px solid #fff;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-}
-
-/* Foto ke-2 (Miring Kanan & Menumpuk) */
-.scrapbook-wrapper > *:nth-child(2) {
-    width: 85% !important;
-    display: block !important;
-    margin-top: -60px; 
+    width: 80% !important;
     align-self: flex-end;
-    transform: rotate(4deg);
-    border: 4px solid #fff;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    z-index: 2;
 }
 
-/* Pastikan gambar di dalam elemen dinamis lebar 100% */
-.scrapbook-wrapper > * img {
-    width: 100%;
-    height: auto;
-    display: block;
+/* FOTO 2 (Tegak Lurus, Rata Kiri, Menumpuk di Depan) */
+.scrapbook-wrapper > *:nth-child(2) {
+    width: 75% !important;
+    align-self: flex-start;
+    margin-top: -100px; /* Efek numpuk */
+    z-index: 3 !important; /* Di depan foto 1 */
 }
 
-/* Sembunyikan foto ke-3 dst (untuk dipindahkan ke slider oleh JS) */
+/* SEMBUNYIKAN FOTO 3 DST DI BAGIAN ATAS */
 .scrapbook-wrapper > *:nth-child(n+3) {
     display: none;
 }
 
-/* --- STYLE SLIDER OTOMATIS (FOTO 3 DST) --- */
+/* --- SLIDER OTOMATIS (SEMUA FOTO) --- */
 .auto-slider-container {
-    margin-top: 40px;
+    margin-top: 50px;
     width: 100%;
     overflow: hidden;
 }
@@ -739,8 +732,8 @@ body {
 }
 
 .slider-track img {
-    width: 130px;
-    height: 180px;
+    width: 140px;
+    height: 190px;
     object-fit: cover;
     border-radius: 4px;
     flex-shrink: 0;
@@ -750,7 +743,6 @@ body {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
 }
-
 /* --- Section Gift --- */
 .section-gift {
       position: relative;
@@ -1548,16 +1540,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
 document.addEventListener("DOMContentLoaded", function() {
     const wrapper = document.querySelector('.scrapbook-wrapper');
-    const items = Array.from(wrapper.children);
+    const allItems = Array.from(wrapper.children);
     
-    if (items.length > 2) {
+    if (allItems.length > 0) {
         const sliderDiv = document.createElement('div');
         sliderDiv.className = 'auto-slider-container';
         const track = document.createElement('div');
         track.className = 'slider-track';
 
-        // Ambil elemen ke-3 dan seterusnya
-        items.slice(2).forEach(item => {
+        // Masukkan SEMUA foto ke slider agar lengkap
+        allItems.forEach(item => {
             const img = item.querySelector('img') || (item.tagName === 'IMG' ? item : null);
             if (img) {
                 const newImg = document.createElement('img');
@@ -1572,7 +1564,6 @@ document.addEventListener("DOMContentLoaded", function() {
         wrapper.after(sliderDiv);
     }
 });
-
 
 // --- Music Toggle Logic ---
 
