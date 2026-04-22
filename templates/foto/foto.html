@@ -638,20 +638,24 @@ body {
 /* --- Section Gallery --- */
 /* --- CONTAINER 450px DI KANAN --- */
 .section-gallery {
-    display: flex;
-    justify-content: flex-end; /* Tetap di kanan */
+    position: relative;
     width: 100%;
     min-height: 100vh;
-    background: #1a1a1a;
+    background: #1a1a1a; /* Background dasar */
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-end; /* Pojok Kanan saat Landscape */
 }
 
 .gallery-inner-container {
     width: 100%;
-    max-width: 450px;
-    padding: 40px 20px;
-    background: #222;
+    max-width: 450px; /* Kunci 450px */
+    padding: 60px 30px;
+    background: url('https://ulemanti.id/wp-content/uploads/2022/08/IMG_1878.jpg') center/cover no-repeat;
     position: relative;
+    color: #fff;
 }
+
 
 /* --- LOGIKA SCRAPBOOK (FOTO 1 & 2) --- */
 .scrapbook-wrapper {
@@ -716,6 +720,18 @@ body {
 @keyframes scrollSlider {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
+}
+.gallery-vertical-title {
+    position: absolute;
+    left: 20px;
+    top: 50px;
+    font-family: 'Playfair Display', serif; /* Atau font elegan pilihanmu */
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    z-index: 5;
+    letter-spacing: 10px;
 }
 
 
@@ -1514,36 +1530,45 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 //slider otomatis galeri
-
 document.addEventListener("DOMContentLoaded", function() {
     const wrapper = document.querySelector('.scrapbook-wrapper');
-    // Ambil semua elemen (bisa div atau img) di dalam galeri
-    const items = Array.from(wrapper.children);
+    const allPhotos = wrapper.querySelectorAll('.gallery-item img');
     
-    if (items.length > 2) {
-        const sliderContainer = document.createElement('div');
-        sliderContainer.className = 'auto-slider-container';
-        
+    if (allPhotos.length > 2) {
+        // Buat elemen slider
+        const sliderDiv = document.createElement('div');
+        sliderDiv.className = 'auto-slider-container';
         const track = document.createElement('div');
         track.className = 'slider-track';
-
-        // Ambil dari item ke-3 (index 2)
-        items.slice(2).forEach(item => {
-            const imgInside = item.querySelector('img') || (item.tagName === 'IMG' ? item : null);
-            if (imgInside) {
-                const newImg = document.createElement('img');
-                newImg.src = imgInside.src;
-                track.appendChild(newImg);
+        
+        // Ambil foto ke-3 dan seterusnya
+        for (let i = 2; i < allPhotos.length; i++) {
+            const imgClone = allPhotos[i].cloneNode(true);
+            track.appendChild(imgClone);
+        }
+        
+        // Clone lagi buat efek looping tanpa putus
+        const trackClone = track.innerHTML;
+        track.innerHTML += trackClone;
+        
+        sliderDiv.appendChild(track);
+        wrapper.after(sliderDiv);
+    }
+    
+    // Observer untuk transisi muncul
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateX(0)";
             }
         });
+    }, { threshold: 0.1 });
 
-        // Duplikasi untuk infinite loop
-        const clones = track.innerHTML;
-        track.innerHTML += clones;
-        
-        sliderContainer.appendChild(track);
-        wrapper.after(sliderContainer);
-    }
+    wrapper.style.transition = "all 1s ease";
+    wrapper.style.opacity = "0";
+    wrapper.style.transform = "translateX(50px)";
+    observer.observe(wrapper);
 });
 
 // --- Music Toggle Logic ---
