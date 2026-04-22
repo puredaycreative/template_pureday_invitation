@@ -335,7 +335,7 @@ body {
 .opening-quote {
     font-family: 'Baloo Bhaina 2', cursive;
     font-size: 14px;
-    letter-spacing: 0.7pt;
+    letter-spacing: 0.3pt;
     position: absolute;
     top: 15%;
     width: 100%;
@@ -350,7 +350,7 @@ body {
     transition: opacity 1s ease 1s;
 }
 
-.section-intro.active .opening-quote {
+.section-intro.active .opening-quote  {
     opacity: 1;
 }
 
@@ -785,7 +785,7 @@ body {
     height: 100vh;
     
     /* Background & Dekorasi */
-    background-image: url('https://template-pureday-invitation.vercel.app/flowercream/bg.png'); 
+    background-image: url('https://ulemanti.id/wp-content/uploads/2022/08/IMG_1902.jpg'); 
     background-size: cover;
     background-position: center;
     box-shadow: -10px 0 30px rgba(0,0,0,0.05); /* Bayangan di sisi kiri saja */
@@ -812,33 +812,9 @@ body {
     box-shadow: -10px 0 30px rgba(0,0,0,0.05); /* Bayangan di sisi kiri panel */
 }
 
-/* --- DEKORASI BUNGA (Sesuai Gambar) --- */
-.gift-container::before { /* Kiri Atas */
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 180px; height: 180px;
-    background: url('https://template-pureday-invitation.vercel.app/flowercream/kiri-atas.png') no-repeat top left / cover;
-}
 
-.gift-container::after { /* Kanan Atas */
-    content: "";
-    position: absolute;
-    top: 0; right: 0;
-    width: 180px; height: 180px;
-    background: url('https://template-pureday-invitation.vercel.app/flowercream/kanan-atas.png') no-repeat top right / cover;
-}
 
-.flower-bottom-gift { /* Bunga Bawah Menempel Dasar */
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 300px;
-    background: url('https://template-pureday-invitation.vercel.app/flowercream/bunga-bawah.png') no-repeat bottom center / cover;
-    z-index: 20;
-    pointer-events: none;
-}
+
 
 /* --- KARTU BANK (Gaya Gambar 3 & 4) --- */
 .bank-accounts-cards {
@@ -870,8 +846,18 @@ body {
     width: 100%;
 }
 
-.holder-name { font-size: 0.9rem; opacity: 0.9; text-transform: uppercase; }
-.bank-name { font-weight: bold; }
+.holder-name { 
+    font-family: 'OCR-B', 'Roboto Mono', monospace;
+    font-size: 0.9rem; opacity: 0.9; text-transform: uppercase; }
+.bank-name { 
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffffff;
+    
+}
 
 /* Chip Kartu */
 .bank-accounts-cards > div::after {
@@ -891,7 +877,9 @@ body {
     margin-top: auto;
 }
 
-.account-number { font-size: 1.4rem; font-weight: bold; letter-spacing: 2px; }
+.account-number { 
+    font-family: 'OCR A Std', 'Courier New', monospace;
+    font-size: 1.4rem; font-weight: bold; letter-spacing: 2px; }
 
 .copy-btn {
     background: rgba(255, 255, 255, 0.9);
@@ -902,6 +890,25 @@ body {
     font-size: 0.7rem;
     font-weight: bold;
     cursor: pointer;
+}
+.gift-text{
+     font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 15px;
+    letter-spacing: 0.3pt;
+    position: absolute;
+    top: 15%;
+    width: 100%;
+    left: -7px;
+    
+    /* Tambahkan Padding & Box Sizing */
+    padding: 0 40px; /* Semakin besar angkanya (misal 50px atau 60px), teks semakin sempit ke tengah */
+    /* box-sizing: border-box;  */
+    
+    text-align: center;
+    color: white;
+  
+    transition: opacity 1s ease 1s;
+
 }
 
 
@@ -1038,7 +1045,7 @@ body {
 .btn-submit {
     width: 100%;
     padding: 15px;
-    background-color: #bc9c78; /* Sesuai gambar referensi */
+    background-color: #ffffff5e; /* Sesuai gambar referensi */
     color: white;
     border: none;
     border-radius: 10px;
@@ -1051,7 +1058,7 @@ body {
 }
 
 .btn-submit:hover {
-    background-color: #a38768;
+    background-color: #ebe9e90c;
     transform: translateY(-2px);
 }
 
@@ -1059,16 +1066,17 @@ body {
 .subtitle-top {
     letter-spacing: 3px;
     font-size: 0.8rem;
-    color: #888;
+    color: #ebe9e9;
     margin-bottom: 5px;
     text-align: center;
 }
 
 .main-title {
     font-size: 2rem;
-    color: #444;
+    color: #ebe9e9;
     margin-bottom: 30px;
     text-align: center;
+     font-family: 'Baloo Bhaina 2', cursive;
 }
 
 
@@ -1197,18 +1205,12 @@ body {
     margin-top: 10px;
 }
 
-/* --- TYPOGRAPHY --- */
-.main-title {
-    font-size: 2.2rem;
-    color: #444;
-    margin-bottom: 10px;
-    text-align: center;
-}
+
 
 .subtitle-top {
     letter-spacing: 3px;
     font-size: 0.8rem;
-    color: #888;
+    color: #ebe9e9;
     text-align: center;
 }
 
@@ -1414,7 +1416,7 @@ body {
 <section id="gift-section-id" class="section-gift">
     <div class="container gift-container">
         <br>
-        <p class="subtitle-top">WEDDING GIFT</p>
+        <!-- <p class="subtitle-top">WEDDING GIFT</p> -->
         <h2 class="main-title font-cursive">Kirim Hadiah</h2>
 
         <p class="gift-text">
