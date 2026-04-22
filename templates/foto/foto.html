@@ -695,53 +695,44 @@ body {
 
 .gallery-inner-container > * { position: relative; z-index: 10; }
 /* --- SCRAPBOOK (FOTO 1 & 2 SAJA) --- */
-/* --- SCRAPBOOK (GAYA TUMPUKAN FOTO/BUKU) --- */
+
 .scrapbook-wrapper {
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 0; /* Ubah jadi 0 agar sejajar dengan top tulisan gallery */
     position: relative;
     width: 100%;
 }
 
-/* 1. Reset & Style Dasar (Frame Putih) */
+/* 1. Reset Style Dasar (Frame Putih) */
 .scrapbook-wrapper > * {
     display: none !important;
-    background: #fff; /* Warna kertas/frame putih */
-    padding: 8px; /* Jarak antara foto dan pinggiran putih */
-    box-shadow: 5px 15px 30px rgba(0,0,0,0.4); /* Shadow lebih berasa tumpukannya */
+    background: #fff;
+    padding: 6px; /* Ukuran frame sedikit lebih tipis agar lebih compact */
+    box-shadow: 5px 15px 30px rgba(0,0,0,0.4);
     position: relative;
     transform: none !important;
 }
 
-/* 2. Pastikan gambar di dalamnya pas */
-.scrapbook-wrapper > * img { 
-    width: 100%; 
-    height: auto; 
-    display: block; 
-    object-fit: cover;
-}
-
-/* 3. FOTO 1 (UKURAN LEBIH KECIL - RATA KANAN) */
+/* 2. FOTO 1 (SEJAJAR DENGAN TULISAN) */
 .scrapbook-wrapper > *:nth-child(1) {
     display: block !important;
-    width: 65% !important; /* Ukuran dikecilkan */
+    width: 60% !important; /* Ukuran diperkecil sesuai request */
     align-self: flex-end; 
     z-index: 1; 
+    margin-top: 0; /* Foto 1 sekarang nempel ke atas sejajar tulisan */
 }
 
-/* 4. FOTO 2 (UKURAN LEBIH KECIL - RATA KIRI - NUMPUK) */
+/* 3. FOTO 2 (TUMPUKAN ZIGZAG) */
 .scrapbook-wrapper > *:nth-child(2) {
     display: block !important;
-    width: 65% !important; /* Ukuran dikecilkan */
+    width: 60% !important;
     align-self: flex-start; 
-    margin-top: -140px; /* Tarik lebih naik agar tumpukan buku makin kerasa */
-    z-index: 10 !important; /* Di depan foto 1 */
+    margin-top: -100px; /* Menumpuk ke atas */
+    z-index: 10 !important;
 }
 
-
-
-/* 5. JAMINAN FOTO 3 DST MATI DI AREA ATAS */
+/* Sembunyikan sisanya */
 .scrapbook-wrapper > *:nth-child(n+3) {
     display: none !important;
 }
