@@ -772,51 +772,6 @@ body {
     to { transform: translateX(-50%); }
 }
 /* --- Section Gift --- */
-.section-gift {
-      position: relative;
-    /* Tetap set lebar maksimal seukuran HP */
-    width: 100%;
-    max-width: 450px; 
-    
-    /* UBAH DI SINI: margin-left set ke auto, margin-right ke 0 */
-    margin-left: auto;
-    margin-right: 0;
-    
-    height: 100vh;
-    
-    /* Background & Dekorasi */
-    background-image: url('https://ulemanti.id/wp-content/uploads/2022/08/IMG_1902.jpg'); 
-    background-size: cover;
-    background-position: center;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05); /* Bayangan di sisi kiri saja */
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-/* --- PANEL KONTEN KANAN --- */
-.gift-container {
-    width: 100%;
-    max-width: 450px; 
-    min-height: 100vh;
-    /* Padding bawah 350px agar kartu terakhir tidak terpotong bunga */
-  /* Dari 30px, ubah ke 10px atau 0 */
-    padding: 10px 25px 350px 25px;
-    position: relative;
-    z-index: 10;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05); /* Bayangan di sisi kiri panel */
-}
-
-
-
-
-
-/* --- KARTU BANK (Gaya Gambar 3 & 4) --- */
 .bank-accounts-cards {
     display: flex;
     flex-direction: column;
@@ -825,75 +780,91 @@ body {
 }
 
 .bank-accounts-cards > div {
-    background: url('https://ulemanti.id/wp-content/uploads/2024/04/card.png');
-    border-radius: 20px;
-    padding: 25px;
+    background: url('https://ulemanti.id/wp-content/uploads/2024/04/card.png') center/cover no-repeat;
+    border-radius: 15px; /* Radius kartu ATM standar tidak terlalu bulat */
+    padding: 20px;
     color: #fff;
     position: relative;
-    min-height: 200px;
+    min-height: 220px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Nama/Bank di atas, Nomor/Copy di bawah */
     box-sizing: border-box;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
     text-align: left;
 }
 
-/* Baris Atas */
+/* Baris Atas: Biasanya cuma ada Nama Bank */
 .card-top-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end; /* Bank biasanya di pojok kanan atas */
     width: 100%;
 }
 
-.holder-name { 
-    font-family: 'OCR-B', 'Roboto Mono', monospace;
-    font-size: 0.9rem; opacity: 0.9; text-transform: uppercase; }
 .bank-name { 
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
+    font-weight: 800; /* Lebih tebal biar tegas */
+    font-size: 14px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: #ffffff;
-    
+    font-style: italic; /* Beberapa logo bank pakai style miring */
 }
 
-/* Chip Kartu */
+/* Chip Kartu: Posisinya harus di tengah kiri */
 .bank-accounts-cards > div::after {
     content: "";
-    display: block;
-    width: 45px; height: 35px;
+    width: 50px; 
+    height: 40px;
     background: url('https://template-pureday-invitation.vercel.app/flowercream/pin-card.png') no-repeat center / contain;
-    margin: 15px 0;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    filter: brightness(1.2); /* Biar chip lebih 'nyala' */
 }
 
-/* Baris Bawah */
+/* Nomor Rekening: Elemen Utama */
+.account-number { 
+    font-family: 'OCR A Std', 'Courier New', monospace; /* OCR A lebih kerasa kartu bank */
+    font-size: 1.3rem; 
+    font-weight: bold; 
+    letter-spacing: 3px; 
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.5);
+    background: transparent; /* Hilangkan background hitam transparan agar lebih bersih */
+}
+
+/* Baris Bawah: Nama Pemilik & Tombol Copy */
 .card-bottom-row {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     width: 100%;
-    margin-top: auto;
+    margin-top: auto; /* Paksa ke paling bawah kartu */
 }
 
-.account-number { 
-    font-family: 'Courier New', monospace;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8), 
-                 -1px -1px 1px rgba(255,255,255,0.2);
-                 
-    background: rgba(0, 0, 0, 0.2);
-    font-size: 1.4rem; font-weight: bold; letter-spacing: 2px; }
+.holder-name { 
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem; 
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
 
 .copy-btn {
-    background: rgba(255, 255, 255, 0.9);
-    color: #000;
-    border: none;
-    padding: 5px 12px;
-    border-radius: 5px;
-    font-size: 0.7rem;
-    font-weight: bold;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    text-transform: uppercase;
     cursor: pointer;
+    transition: 0.3s;
+    backdrop-filter: blur(5px); /* Efek kaca kekinian */
+}
+
+.copy-btn:hover {
+    background: #fff;
+    color: #000;
 }
 .gift-text{
      font-family: 'Baloo Bhaina 2', cursive;
