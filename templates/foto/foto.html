@@ -814,93 +814,63 @@ body {
 
 
 .bank-accounts-cards {
+ padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    margin-top: 30px;
+    justify-content: flex-start; /* Ubah ke flex-start agar kita kontrol manual jaraknya */
 }
 
-.bank-accounts-cards > div {
-    background: url('https://ulemanti.id/wp-content/uploads/2024/04/card.png') center/cover no-repeat;
-    border-radius: 15px; /* Radius kartu ATM standar tidak terlalu bulat */
-    padding: 20px;
-    color: #fff;
-    position: relative;
-    min-height: 220px;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-    text-align: left;
-}
-
-/* Baris Atas: Biasanya cuma ada Nama Bank */
-.card-top-row {
-    display: flex;
-    justify-content: flex-end; /* Bank biasanya di pojok kanan atas */
-    width: 100%;
-}
-
-.bank-name { 
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800; /* Lebih tebal biar tegas */
-    font-size: 14px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-style: italic; /* Beberapa logo bank pakai style miring */
-}
-
-/* Chip Kartu: Posisinya harus di tengah kiri */
+/* Chip Kartu: Kita naikkan posisinya */
 .bank-accounts-cards > div::after {
     content: "";
-    width: 50px; 
-    height: 40px;
+    width: 48px; 
+    height: 38px;
     background: url('https://template-pureday-invitation.vercel.app/flowercream/pin-card.png') no-repeat center / contain;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    filter: brightness(1.2); /* Biar chip lebih 'nyala' */
+    display: block;
+    margin-top: -5px;    /* KUNCI: Angka minus buat narik cip ke atas sejajar bank name */
+    margin-bottom: 25px; /* Jarak cip ke nomor rekening */
+    filter: brightness(1.1) contrast(1.1);
 }
 
-/* Nomor Rekening: Elemen Utama */
+/* Nomor Rekening: Di tengah kartu */
 .account-number { 
-    font-family: 'OCR A Std', 'Courier New', monospace; /* OCR A lebih kerasa kartu bank */
-    font-size: 1.3rem; 
+    font-family: 'OCR A Std', 'Courier New', monospace;
+    font-size: 1.35rem; 
     font-weight: bold; 
     letter-spacing: 3px; 
-    margin-bottom: 20px;
-    color: #fff;
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.5);
-    background: transparent; /* Hilangkan background hitam transparan agar lebih bersih */
+    margin-bottom: 10px; /* Jarak ke nama pemilik */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
 }
 
-/* Baris Bawah: Nama Pemilik & Tombol Copy */
+/* Baris Bawah: Nama & Tombol */
 .card-bottom-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Nama di kiri, Tombol di kanan */
     align-items: flex-end;
     width: 100%;
-    margin-top: auto; /* Paksa ke paling bawah kartu */
+    margin-top: auto; /* Paksa baris ini ke paling bawah kartu */
 }
 
 .holder-name { 
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.85rem; 
-    letter-spacing: 1px;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    opacity: 0.9;
+    padding-bottom: 5px; /* Biar sejajar estetik dengan tombol */
 }
 
 .copy-btn {
     background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
     color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    padding: 4px 70px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 5px 12px;
     border-radius: 4px;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     text-transform: uppercase;
+    letter-spacing: 1px;
     cursor: pointer;
     transition: 0.3s;
-    backdrop-filter: blur(5px); /* Efek kaca kekinian */
+    /* Tombol ini otomatis di kanan bawah karena parent-nya space-between */
 }
 
 .copy-btn:hover {
