@@ -636,113 +636,86 @@ body {
  
     
 /* --- Section Gallery --- */
-/* --- CONTAINER UTAMA --- */
+/* --- CONTAINER 450px DI KANAN --- */
 .section-gallery {
-    position: relative;
+    display: flex;
+    justify-content: flex-end; /* Tetap di kanan */
     width: 100%;
     min-height: 100vh;
-    background: #1a1a1a; /* Warna gelap sisa layar */
-    display: flex;
-    justify-content: flex-end; /* Paksa konten ke KANAN saat landscape */
-    overflow: hidden;
+    background: #1a1a1a;
 }
 
-/* --- TEKS GALLERY VERTIKAL --- */
-.gallery-vertical-title {
-    position: absolute;
-    left: 20px;
-    top: 50px;
-    font-family: 'Playfair Display', serif; /* Atau font elegan pilihanmu */
-    font-size: 5rem;
-    color: rgba(255, 255, 255, 0.9);
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
-    z-index: 5;
-    letter-spacing: 10px;
-}
-
-/* --- KONTEN 450px --- */
 .gallery-inner-container {
     width: 100%;
     max-width: 450px;
-    min-height: 100vh;
     padding: 40px 20px;
-    background: #222; /* Background area gallery */
+    background: #222;
     position: relative;
+}
+
+/* --- LOGIKA SCRAPBOOK (FOTO 1 & 2) --- */
+.scrapbook-wrapper {
     display: flex;
     flex-direction: column;
-}
-
-/* --- LOGIKA SCRAPBOOK DINAMIS --- */
-.scrapbook-wrapper {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
     position: relative;
 }
 
-/* Foto 1 (Besar & Agak ke Atas) */
-.gallery-item:nth-child(1) {
-    grid-column: span 2;
-    width: 90%;
+/* Kita tembak elemen ke-1 apa pun bentuknya (img/div/figure) */
+.scrapbook-wrapper > *:nth-child(1) {
+    width: 90% !important;
+    display: block !important;
     margin-left: auto;
-    z-index: 3;
     transform: rotate(2deg);
     border: 5px solid #fff;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 3;
 }
 
-/* Foto 2 (Menumpuk di bawah Foto 1) */
-.gallery-item:nth-child(2) {
-    grid-column: span 2;
-    width: 75%;
-    margin-top: -80px; /* Efek menumpuk */
-    margin-left: 0;
-    z-index: 4;
+/* Kita tembak elemen ke-2 */
+.scrapbook-wrapper > *:nth-child(2) {
+    width: 75% !important;
+    display: block !important;
+    margin-top: -80px; 
     transform: rotate(-3deg);
     border: 5px solid #fff;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 4;
 }
 
-/* --- LOGIKA SLIDER (FOTO 3 DAN SETERUSNYA) --- */
-/* Kita buat container slider otomatis setelah foto ke-2 */
-.scrapbook-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+/* Pastikan gambar di dalamnya ngikut */
+.scrapbook-wrapper > * img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-/* Sembunyikan semua foto setelah item ke-2 dari layout utama, 
-   nanti kita handle pakai JS untuk dipindah ke slider bawah */
-.gallery-item:nth-child(n+3) {
-    display: none; 
+/* SEMBUNYIKAN SISANYA (Akan dipindah ke slider oleh JS) */
+.scrapbook-wrapper > *:nth-child(n+3) {
+    display: none;
 }
 
-/* Wadah Slider Otomatis di Bawah */
+/* --- STYLE SLIDER BAWAH --- */
 .auto-slider-container {
-    margin-top: 40px;
+    margin-top: 30px;
     width: 100%;
     overflow: hidden;
-    white-space: nowrap;
-    position: relative;
 }
 
 .slider-track {
-    display: inline-flex;
+    display: flex;
     gap: 10px;
-    animation: scrollSlider 20s linear infinite;
+    animation: scrollSlider 15s linear infinite;
 }
 
 .slider-track img {
-    width: 150px;
-    height: 200px;
+    width: 120px;
+    height: 160px;
     object-fit: cover;
     border-radius: 4px;
+    flex-shrink: 0;
 }
 
 @keyframes scrollSlider {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
 }
 
 
@@ -1541,45 +1514,36 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 //slider otomatis galeri
+
 document.addEventListener("DOMContentLoaded", function() {
     const wrapper = document.querySelector('.scrapbook-wrapper');
-    const allPhotos = wrapper.querySelectorAll('.gallery-item img');
+    // Ambil semua elemen (bisa div atau img) di dalam galeri
+    const items = Array.from(wrapper.children);
     
-    if (allPhotos.length > 2) {
-        // Buat elemen slider
-        const sliderDiv = document.createElement('div');
-        sliderDiv.className = 'auto-slider-container';
+    if (items.length > 2) {
+        const sliderContainer = document.createElement('div');
+        sliderContainer.className = 'auto-slider-container';
+        
         const track = document.createElement('div');
         track.className = 'slider-track';
-        
-        // Ambil foto ke-3 dan seterusnya
-        for (let i = 2; i < allPhotos.length; i++) {
-            const imgClone = allPhotos[i].cloneNode(true);
-            track.appendChild(imgClone);
-        }
-        
-        // Clone lagi buat efek looping tanpa putus
-        const trackClone = track.innerHTML;
-        track.innerHTML += trackClone;
-        
-        sliderDiv.appendChild(track);
-        wrapper.after(sliderDiv);
-    }
-    
-    // Observer untuk transisi muncul
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = "1";
-                entry.target.style.transform = "translateX(0)";
+
+        // Ambil dari item ke-3 (index 2)
+        items.slice(2).forEach(item => {
+            const imgInside = item.querySelector('img') || (item.tagName === 'IMG' ? item : null);
+            if (imgInside) {
+                const newImg = document.createElement('img');
+                newImg.src = imgInside.src;
+                track.appendChild(newImg);
             }
         });
-    }, { threshold: 0.1 });
 
-    wrapper.style.transition = "all 1s ease";
-    wrapper.style.opacity = "0";
-    wrapper.style.transform = "translateX(50px)";
-    observer.observe(wrapper);
+        // Duplikasi untuk infinite loop
+        const clones = track.innerHTML;
+        track.innerHTML += clones;
+        
+        sliderContainer.appendChild(track);
+        wrapper.after(sliderContainer);
+    }
 });
 
 // --- Music Toggle Logic ---
