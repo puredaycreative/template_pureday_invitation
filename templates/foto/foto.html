@@ -681,41 +681,52 @@ body {
 }
 
 .gallery-inner-container > * { position: relative; z-index: 10; }
-
 /* --- SCRAPBOOK (FOTO 1 & 2 SAJA) --- */
 .scrapbook-wrapper {
     display: flex;
     flex-direction: column;
     margin-top: 30px;
+    position: relative;
+    width: 100%;
 }
 
-/* Base style untuk semua item dari {{galeri}} */
+/* 1. Reset SEMUA elemen di dalam wrapper agar tidak bocor */
 .scrapbook-wrapper > * {
-    border: 5px solid #fff;
+    display: none !important; /* Matikan semua foto dulu */
+   
     box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    display: block !important;
+    position: relative;
+    transform: none !important; /* Paksa tegak lurus */
 }
 
-.scrapbook-wrapper > * img { width: 100%; height: auto; display: block; }
+/* 2. Pastikan gambar di dalamnya presisi */
+.scrapbook-wrapper > * img { 
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    object-fit: cover;
+}
 
-/* FOTO 1 (Tegak Lurus, Rata Kanan) */
+/* 3. FOTO 1 (Tegak Lurus, Rata Kanan) */
 .scrapbook-wrapper > *:nth-child(1) {
-    width: 80% !important;
-    align-self: flex-end;
-    z-index: 2;
-}
-
-/* FOTO 2 (Tegak Lurus, Rata Kiri, Menumpuk di Depan) */
-.scrapbook-wrapper > *:nth-child(2) {
+    display: block !important; /* Munculkan hanya foto 1 */
     width: 75% !important;
-    align-self: flex-start;
-    margin-top: -100px; /* Efek numpuk */
-    z-index: 3 !important; /* Di depan foto 1 */
+    align-self: flex-end; /* Geser ke kanan */
+    z-index: 1; /* Di lapisan bawah */
 }
 
-/* SEMBUNYIKAN FOTO 3 DST DI BAGIAN ATAS */
+/* 4. FOTO 2 (Tegak Lurus, Rata Kiri, Menumpuk di Depan) */
+.scrapbook-wrapper > *:nth-child(2) {
+    display: block !important; /* Munculkan hanya foto 2 */
+    width: 75% !important;
+    align-self: flex-start; /* Geser ke kiri (ZIG-ZAG) */
+    margin-top: -120px; /* EFEK NUMPUK: Tarik paksa ke atas menutupi foto 1 */
+    z-index: 10 !important; /* Di lapisan paling depan */
+}
+
+/* 5. JAMINAN FOTO 3 DST MATI DI AREA ATAS */
 .scrapbook-wrapper > *:nth-child(n+3) {
-    display: none;
+    display: none !important;
 }
 
 /* --- SLIDER OTOMATIS (SEMUA FOTO) --- */
