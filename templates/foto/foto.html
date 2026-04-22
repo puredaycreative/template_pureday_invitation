@@ -917,19 +917,17 @@ body {
 .gift-text {
     font-family: 'Baloo Bhaina 2', cursive;
     font-size: 15px;
-    letter-spacing: 0.3pt;
-    
-    /* UBAH DI SINI: Jangan pakai absolute */
-    position: relative; 
-    margin-top: 20px;   /* Atur jarak dari judul "Kirim Hadiah" */
-    margin-bottom: 20px; /* Atur jarak ke kartu bank di bawahnya */
-    
-    width: 100%;
-    padding: 0 20px;    /* Sesuaikan padding agar manis */
+    line-height: 1.5;
     text-align: center;
     color: white;
-    box-sizing: border-box; /* Wajib ada kalau pakai padding agar tidak luber */
+    position: relative;
     
+    /* JARAK ATAS DAN BAWAH */
+    margin-top: 30px;    /* Jarak dari Judul "Kirim Hadiah" */
+    margin-bottom: 40px; /* Jarak ke Kartu Bank (Mencegah Tabrakan) */
+    
+    padding: 0 10px;
+    box-sizing: border-box;
     transition: opacity 1s ease 1s;
 }
 
