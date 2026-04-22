@@ -866,15 +866,16 @@ body {
 
 /* Nomor Rekening: Elemen Utama */
 .account-number { 
-  font-family: 'Baloo Bhaina 2', cursive;
+    /* GANTI KE SINI */
+    font-family: 'Roboto Mono', monospace !important;
+    
     font-size: 1.35rem; 
-    font-weight: 700; /* Sesuai dengan wght yang diimport */
+    font-weight: 700; 
     letter-spacing: 3px; 
     color: #ffffff !important;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
-    
-    /* Tambahan agar render font lebih tajam di Chrome/Safari */
-    -webkit-font-smoothing: antialiased;
+    display: block;
+    margin: 10px 0; /* Tambah sedikit space biar nggak nempel cip */
 }
 
 /* Baris Bawah: Nama Pemilik & Tombol Copy */
@@ -913,24 +914,23 @@ body {
     background: #ffffff94;
     color: #000;
 }
-.gift-text{
-     font-family: 'Baloo Bhaina 2', cursive;
+.gift-text {
+    font-family: 'Baloo Bhaina 2', cursive;
     font-size: 15px;
     letter-spacing: 0.3pt;
-    position: absolute;
-    top: 15%;
+    
+    /* UBAH DI SINI: Jangan pakai absolute */
+    position: relative; 
+    margin-top: 20px;   /* Atur jarak dari judul "Kirim Hadiah" */
+    margin-bottom: 20px; /* Atur jarak ke kartu bank di bawahnya */
+    
     width: 100%;
-    left: -7px;
-    
-    /* Tambahkan Padding & Box Sizing */
-    padding: 0 40px; /* Semakin besar angkanya (misal 50px atau 60px), teks semakin sempit ke tengah */
-    /* box-sizing: border-box;  */
-    
+    padding: 0 20px;    /* Sesuaikan padding agar manis */
     text-align: center;
     color: white;
-  
+    box-sizing: border-box; /* Wajib ada kalau pakai padding agar tidak luber */
+    
     transition: opacity 1s ease 1s;
-
 }
 
 
