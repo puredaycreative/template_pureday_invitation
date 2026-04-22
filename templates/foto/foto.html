@@ -772,6 +772,47 @@ body {
     to { transform: translateX(-50%); }
 }
 /* --- Section Gift --- */
+.section-gift {
+      position: relative;
+    /* Tetap set lebar maksimal seukuran HP */
+    width: 100%;
+    max-width: 450px; 
+    
+    /* UBAH DI SINI: margin-left set ke auto, margin-right ke 0 */
+    margin-left: auto;
+    margin-right: 0;
+    
+    height: 100vh;
+    
+    /* Background & Dekorasi */
+    background-image: url('https://ulemanti.id/wp-content/uploads/2022/08/IMG_1902.jpg'); 
+    background-size: cover;
+    background-position: center;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05); /* Bayangan di sisi kiri saja */
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+/* --- PANEL KONTEN KANAN --- */
+.gift-container {
+    width: 100%;
+    max-width: 450px; 
+    min-height: 100vh;
+    /* Padding bawah 350px agar kartu terakhir tidak terpotong bunga */
+  /* Dari 30px, ubah ke 10px atau 0 */
+    padding: 10px 25px 350px 25px;
+    position: relative;
+    z-index: 10;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05); /* Bayangan di sisi kiri panel */
+}
+
+
 .bank-accounts-cards {
     display: flex;
     flex-direction: column;
