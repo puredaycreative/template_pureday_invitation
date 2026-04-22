@@ -636,38 +636,21 @@ body {
  
     
 /* --- Section Gallery --- */
-/* --- SECTION UTAMA (FULL SCREEN) --- */
+/* --- CONTAINER 450px DI KANAN --- */
 .section-gallery {
-    position: relative;
+    display: flex;
+    justify-content: flex-end; /* Tetap di kanan monitor saat landscape */
     width: 100%;
     min-height: 100vh;
-    background: #1a1a1a; /* Warna dasar area kosong */
-    display: flex;
-    justify-content: flex-end; /* Paksa container ke KANAN saat landscape */
+    background: #1a1a1a;
     overflow: hidden;
 }
 
-/* --- TULISAN GALLERY VERTIKAL (REQUEST) --- */
-.gallery-vertical-title {
-    position: absolute;
-    left: 20px;
-    top: 50px;
-    font-family: 'Playfair Display', serif;
-    font-size: 4rem;
-    color: rgba(255, 255, 255, 0.9);
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
-    z-index: 5;
-    letter-spacing: 10px;
-}
-
-/* --- CONTAINER 450px --- */
 .gallery-inner-container {
     width: 100%;
-    max-width: 450px;
+    max-width: 450px; /* Ukuran HP */
     min-height: 100vh;
     padding: 60px 30px;
-    /* BACKGROUND JPG (REQUEST) */
     background: url('https://ulemanti.id/wp-content/uploads/2022/08/IMG_1878.jpg') center/cover no-repeat;
     position: relative;
     color: #fff;
@@ -680,54 +663,61 @@ body {
     content: "";
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Gelap transparan */
+    background: rgba(0, 0, 0, 0.5); 
     z-index: 1;
 }
 
 .gallery-inner-container > * { position: relative; z-index: 10; }
 
-/* --- LOGIKA SCRAPBOOK (FOTO 1 & 2) --- */
+/* --- LOGIKA SCRAPBOOK (TEGAK LURUS & MENUMPUK) --- */
 .scrapbook-wrapper {
     display: flex;
     flex-direction: column;
     margin-top: 30px;
+    position: relative;
 }
 
-/* Foto ke-1 (Miring Kiri) */
-.scrapbook-wrapper > *:nth-child(1) {
-    width: 85% !important;
+/* Selector universal untuk handle data dinamis apa pun bentuknya */
+.scrapbook-wrapper > * {
     display: block !important;
-    transform: rotate(-4deg);
-    border: 4px solid #fff;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    border: 5px solid #fff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    transition: all 0.5s ease;
 }
 
-/* Foto ke-2 (Miring Kanan & Menumpuk) */
-.scrapbook-wrapper > *:nth-child(2) {
-    width: 85% !important;
-    display: block !important;
-    margin-top: -60px; 
-    align-self: flex-end;
-    transform: rotate(4deg);
-    border: 4px solid #fff;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-}
-
-/* Pastikan gambar di dalam elemen dinamis lebar 100% */
+/* Pastikan gambar di dalamnya lebar 100% */
 .scrapbook-wrapper > * img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-/* Sembunyikan foto ke-3 dst (untuk dipindahkan ke slider oleh JS) */
+/* FOTO 1 (REQUEST: TEGAK LURUS, MELEKAT KE KANAN) */
+.scrapbook-wrapper > *:nth-child(1) {
+    width: 80% !important;
+    align-self: flex-end; /* Nempel kanan */
+    z-index: 2;
+    transform: none !important; /* Hilangkan rotasi */
+}
+
+/* FOTO 2 (REQUEST: TEGAK LURUS, MELEKAT KE KIRI, NUMPUK DI DEPAN) */
+.scrapbook-wrapper > *:nth-child(2) {
+    width: 75% !important;
+    align-self: flex-start; /* Nempel kiri */
+    margin-top: -100px; /* Jarak menumpuk yang dalam */
+    z-index: 3 !important; /* Harus lebih besar dari Foto 1 agar di depan */
+    transform: none !important; /* Hilangkan rotasi */
+}
+
+/* SEMBUNYIKAN SEMUA FOTO DI SCRAPBOOK AREA (Handle by JS) */
 .scrapbook-wrapper > *:nth-child(n+3) {
     display: none;
 }
 
-/* --- STYLE SLIDER OTOMATIS (FOTO 3 DST) --- */
+/* --- STYLE SLIDER BAWAH (OKE) --- */
+/* Slider ini nanti dibuat oleh JS agar isinya lengkap mulai dari Foto 1 */
 .auto-slider-container {
-    margin-top: 40px;
+    margin-top: 50px;
     width: 100%;
     overflow: hidden;
 }
@@ -735,12 +725,12 @@ body {
 .slider-track {
     display: flex;
     gap: 12px;
-    animation: scrollGallery 20s linear infinite;
+    animation: scrollGallery 25s linear infinite;
 }
 
 .slider-track img {
-    width: 130px;
-    height: 180px;
+    width: 140px; /* Sedikit lebih besar agar detail terlihat */
+    height: 190px;
     object-fit: cover;
     border-radius: 4px;
     flex-shrink: 0;
@@ -748,8 +738,11 @@ body {
 
 @keyframes scrollGallery {
     from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    to { transform: translateX(-50%); } /* Bergeser sejauh setengah panjang trek asli */
 }
+
+
+
 
 /* --- Section Gift --- */
 .section-gift {
@@ -1548,31 +1541,41 @@ document.addEventListener("DOMContentLoaded", function() {
 
 document.addEventListener("DOMContentLoaded", function() {
     const wrapper = document.querySelector('.scrapbook-wrapper');
-    const items = Array.from(wrapper.children);
+    // Ambil semua elemen (img atau div pembungkus) di dalam galeri asli
+    const originalItems = Array.from(wrapper.children);
     
-    if (items.length > 2) {
+    // 1. Logika untuk Slider Bawah (Lengkap Mulai Foto 1)
+    if (originalItems.length > 0) {
         const sliderDiv = document.createElement('div');
         sliderDiv.className = 'auto-slider-container';
         const track = document.createElement('div');
         track.className = 'slider-track';
 
-        // Ambil elemen ke-3 dan seterusnya
-        items.slice(2).forEach(item => {
-            const img = item.querySelector('img') || (item.tagName === 'IMG' ? item : null);
-            if (img) {
+        // Duplikasi SEMUA foto asli ke slider track
+        originalItems.forEach(item => {
+            // Temukan tag img di dalam elemen asli
+            const imgInside = item.querySelector('img') || (item.tagName === 'IMG' ? item : null);
+            if (imgInside) {
                 const newImg = document.createElement('img');
-                newImg.src = img.src;
+                newImg.src = imgInside.src;
+                newImg.alt = "Foto Galeri";
                 track.appendChild(newImg);
             }
         });
 
-        // Clone untuk looping infinite
-        track.innerHTML += track.innerHTML;
+        // Duplikasi untuk efek looping tanpa putus
+        const trackContent = track.innerHTML;
+        track.innerHTML += trackContent;
+        
         sliderDiv.appendChild(track);
+        // Taruh slider baru tepat di bawah scrapbook area
         wrapper.after(sliderDiv);
     }
+    
+    // 2. Logika untuk Scrapbook Atas (Menumpuk 1 & 2, Sisanya Sembunyikan)
+    // Bagian ini sudah ditangani oleh CSS selector :nth-child(n+3) { display: none }
+    // di dalam .scrapbook-wrapper asli.
 });
-
 
 // --- Music Toggle Logic ---
 
