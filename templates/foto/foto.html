@@ -7,6 +7,9 @@
     <link href="https://fonts.googleapis.com/css?family=Average" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rouge+Script" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina+2" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Rosemary&display=swap" rel="stylesheet">
@@ -814,48 +817,81 @@ body {
 
 
 .bank-accounts-cards {
- padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Ubah ke flex-start agar kita kontrol manual jaraknya */
+    gap: 20px;
+    margin-top: 30px;
 }
 
-/* Chip Kartu: Kita naikkan posisinya */
+.bank-accounts-cards > div {
+    background: url('https://ulemanti.id/wp-content/uploads/2024/04/card.png') center/cover no-repeat;
+    border-radius: 15px; /* Radius kartu ATM standar tidak terlalu bulat */
+    padding: 20px;
+    color: #fff;
+    position: relative;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    text-align: left;
+}
+
+/* Baris Atas: Biasanya cuma ada Nama Bank */
+.card-top-row {
+    display: flex;
+    justify-content: flex-end; /* Bank biasanya di pojok kanan atas */
+    width: 100%;
+}
+
+.bank-name { 
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800; /* Lebih tebal biar tegas */
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-style: italic; /* Beberapa logo bank pakai style miring */
+}
+
+/* Chip Kartu: Posisinya harus di tengah kiri */
 .bank-accounts-cards > div::after {
     content: "";
-    width: 48px; 
-    height: 38px;
+    width: 50px; 
+    height: 40px;
     background: url('https://template-pureday-invitation.vercel.app/flowercream/pin-card.png') no-repeat center / contain;
-    display: block;
-    margin-top: -5px;    /* KUNCI: Angka minus buat narik cip ke atas sejajar bank name */
-    margin-bottom: 25px; /* Jarak cip ke nomor rekening */
-    filter: brightness(1.1) contrast(1.1);
+    margin-top: 10px;
+    margin-bottom: 20px;
+    filter: brightness(1.2); /* Biar chip lebih 'nyala' */
 }
 
-/* Nomor Rekening: Di tengah kartu */
+/* Nomor Rekening: Elemen Utama */
 .account-number { 
-    font-family: 'OCR A Std', 'Courier New', monospace;
+    font-family: 'Roboto Mono', monospace !important;
     font-size: 1.35rem; 
-    font-weight: bold; 
+    font-weight: 700; /* Sesuai dengan wght yang diimport */
     letter-spacing: 3px; 
-    margin-bottom: 10px; /* Jarak ke nama pemilik */
+    color: #ffffff !important;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+    
+    /* Tambahan agar render font lebih tajam di Chrome/Safari */
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Baris Bawah: Nama & Tombol */
+/* Baris Bawah: Nama Pemilik & Tombol Copy */
 .card-bottom-row {
     display: flex;
-    justify-content: space-between; /* Nama di kiri, Tombol di kanan */
+    justify-content: space-between;
     align-items: flex-end;
     width: 100%;
-    margin-top: auto; /* Paksa baris ini ke paling bawah kartu */
+    margin-top: auto; /* Paksa ke paling bawah kartu */
 }
 
 .holder-name { 
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.8rem;
+    font-size: 0.85rem; 
+    letter-spacing: 1px;
     text-transform: uppercase;
-    padding-bottom: 5px; /* Biar sejajar estetik dengan tombol */
+    opacity: 0.9;
 }
 
 .copy-btn {
