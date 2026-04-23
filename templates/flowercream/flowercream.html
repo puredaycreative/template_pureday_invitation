@@ -874,14 +874,15 @@ opacity: 0;
     margin-bottom: 40px;
     text-align: center;
 }
-/* --- SCRAPBOOK WRAPPER (Grid 2 Kolom) --- */
+
+/* --- SCRAPBOOK WRAPPER (Satu Kolom Besar) --- */
 .scrapbook-wrapper {
-    display: grid;
-    /* Bagi layar menjadi 2 kolom sama rata */
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 15px; /* Jarak antar foto */
+    display: flex;
+    flex-direction: column; /* Menyusun foto ke bawah */
+    align-items: center;    /* Memastikan foto berada di tengah (Center) */
+    gap: 30px;              /* Jarak antar foto agar tidak terlalu rapat */
     width: 100%;
-    max-width: 450px;
+    max-width: 450px; 
     margin: 20px auto;
     padding: 15px;
     box-sizing: border-box;
@@ -889,28 +890,19 @@ opacity: 0;
 
 /* Item Foto Polaroid */
 .scrapbook-wrapper img {
-    width: 100%;
+    width: 90%;             /* Ukuran foto besar (90% dari lebar container) */
+    max-width: 380px;       /* Batas maksimal agar tidak pecah */
     height: auto;
     background: #fff;
-    /* Border putih ditipiskan: atas/samping 5px, bawah 15px untuk space estetik */
-    padding: 5px 5px 15px 5px; 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border-radius: 2px;
+    /* Border putih tipis yang elegan */
+    padding: 8px 8px 25px 8px; 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    border-radius: 4px;
     box-sizing: border-box;
     transition: transform 0.3s ease;
-    
-    /* Default: Masuk ke dalam grid 2 kolom */
-    grid-column: span 1; 
 }
 
-/* --- LOGIKA FOTO LANDSCAPE (FULL KE BAWAH) --- */
-.scrapbook-wrapper img.landscape {
-    /* Paksa ambil 2 kolom sekaligus agar tampil besar sendiri */
-    grid-column: span 2; 
-    padding: 6px 6px 20px 6px; /* Sedikit lebih tebal saat full agar proporsional */
-}
-
-/* Variasi Rotasi Tipis */
+/* Variasi Rotasi: Tetap pakai gaya scrapbook agar tidak kaku */
 .scrapbook-wrapper img:nth-child(odd) { 
     transform: rotate(-1.5deg); 
 }
@@ -918,21 +910,18 @@ opacity: 0;
     transform: rotate(1.5deg); 
 }
 
-/* Hover Efek */
+/* Efek Hover */
 .scrapbook-wrapper img:hover {
     z-index: 10;
-    transform: scale(1.03) rotate(0deg);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transform: scale(1.02) rotate(0deg); /* Membesar sedikit saat disentuh */
+    box-shadow: 0 12px 25px rgba(0,0,0,0.18);
 }
 
-/* Perbaikan untuk HP layar kecil agar border tetap manis */
+/* Penyesuaian untuk layar HP kecil */
 @media (max-width: 380px) {
-    .scrapbook-wrapper {
-        gap: 10px;
-        padding: 10px;
-    }
     .scrapbook-wrapper img {
-        padding: 4px 4px 12px 4px;
+        width: 100%; /* Full di layar yang sangat kecil */
+        padding: 6px 6px 20px 6px;
     }
 }
 
