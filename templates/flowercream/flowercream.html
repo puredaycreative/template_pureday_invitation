@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kreon" rel="stylesheet">
 <style>
     /* Animasi Fade In dari Bawah ke Atas */
 /* --- ANIMASI TEKS --- */
@@ -134,7 +136,7 @@
         border-radius: 8px;
         background-color: var(--color-accent);
         color: black;
-        /* font-weight: bold; */
+        font-weight: bold;
         text-decoration: none;
         transition: all 0.3s ease;
         cursor: pointer;
@@ -151,7 +153,7 @@
     position: relative;
     /* Tetap set lebar maksimal seukuran HP */
     width: 100%;
-    max-width: 450px; 
+    max-width: 1200px; 
     
     /* UBAH DI SINI: margin-left set ke auto, margin-right ke 0 */
     margin-left: auto;
@@ -312,7 +314,7 @@ body {
     min-height: 100vh;
     position: relative;
     width: 100%;
-    max-width: 450px; /* Standar layar HP */
+    max-width: 1200px; /* Standar layar HP */
     margin-left: auto; 
     margin-right: 0;
     
@@ -390,9 +392,9 @@ body {
 
 /* --- TYPOGRAPHY --- */
 .wedding-title {
-    font-family: 'Rouge Script', cursive;
+   font-family: Kreon, serif;
     font-size: 2.8rem;
-    color: #5d5d4d;
+    color: #333;
     margin-bottom: 5px;
 }
 
@@ -450,20 +452,30 @@ body {
 .couple-photo-container::after { right: -18px; }
 
 /* --- RESPONSIVITAS MOBILE (PERBAIKAN UKURAN) --- */
-@media (max-width: 450px) {
+@media (max-width: 1200px) {
     #intro-section-id.section-intro {
         box-shadow: none;
     }
 
     /* Kecilkan bunga agar tidak menutupi seluruh layar HP */
     #intro-section-id::before {
-        width: 250px;
-        height: 250px;
+        width: 500px;
+        height: 500px;
     }
+  #cover-page::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Gunakan height yang lebih kecil, atau ganti dengan px agar konsisten */
+    height: 40vh; 
+    max-height: 1000px; /* BATASI tinggi maksimal agar tidak naik terlalu jauh di monitor besar */
+  }
 
     #intro-section-id::after {
-        width: 220px;
-        height: 220px;
+        width: 500px;
+        height: 500px;
     }
     
     .wedding-title {
@@ -482,7 +494,7 @@ body {
 .section-detail {
     position: relative;
     width: 100%;
-    max-width: 450px; /* Konsisten seukuran HP */
+    max-width: 1200px; /* Konsisten seukuran HP */
     min-height: 100vh;
     margin-left: auto; /* Menempel ke kanan di laptop */
     margin-right: 0;
@@ -621,7 +633,7 @@ opacity: 0;
 #event-section-id.section-event {
     position: relative;
     width: 100%;
-    max-width: 450px;
+    max-width: 1200px;
     min-height: 100vh;
     margin-left: auto;
     margin-right: 0;
@@ -685,7 +697,7 @@ opacity: 0;
 .time-box {
     width: 70px;
     height: 70px;
-    background: #fff;
+    background: #ffffff00;
     border: 1px dashed #bc9c78;
     border-radius: 50%; /* Membuat lingkaran */
     display: flex;
@@ -697,6 +709,7 @@ opacity: 0;
 }
 
 .time-number {
+    font-family: 'Baloo Bhaina 2', cursive;
     font-size: 1.2rem;
     font-weight: bold;
     margin: 0;
@@ -704,6 +717,7 @@ opacity: 0;
 }
 
 .time-label {
+    font-family: 'Baloo Bhaina 2', cursive;
     font-size: 0.7rem;
     margin: 0;
     color: #888;
@@ -719,6 +733,7 @@ opacity: 0;
 }
 
 .ribbon-date {
+    font-family: 'Baloo Bhaina 2', cursive;
     background-color: #f5e6d3; /* Warna krem pastel sesuai gambar */
     padding: 10px 20px;
     display: inline-block;
@@ -729,6 +744,7 @@ opacity: 0;
 }
 
 .event-item-list {
+    font-family: 'Baloo Bhaina 2', cursive;
     border-top: 2px dashed #bc9c78;
     border-bottom: 2px dashed #bc9c78;
     padding: 15px 0;
@@ -740,6 +756,7 @@ opacity: 0;
 
 /* Mengatur style isi dari {{event_times}} */
 .event-row {
+    font-family: 'Baloo Bhaina 2', cursive;
     font-size: 1rem;
     display: block;
     margin-bottom: 5px;
@@ -751,7 +768,8 @@ opacity: 0;
 
 /* --- TOMBOL MAPS --- */
 .btn-maps-link {
-    background-color: #f5e6d3;
+    font-family: 'Baloo Bhaina 2', cursive;
+    background-color: #f5e6d300;
     color: #333;
     text-decoration: none;
     padding: 10px 25px;
@@ -769,6 +787,7 @@ opacity: 0;
 
 /* --- TYPOGRAPHY --- */
 .subtitle-top {
+      font-family: Abel, sans-serif;
     letter-spacing: 3px;
     font-size: 0.8rem;
     margin-bottom: 0;
@@ -776,6 +795,7 @@ opacity: 0;
 }
 
 .main-title {
+    font-family: Kreon, serif;
     font-size: 2.5rem;
     margin-top: 5px;
     color: #333;
@@ -791,7 +811,7 @@ opacity: 0;
 .section-gallery {
     position: relative;
     width: 100%;
-    max-width: 450px; /* Tetap seukuran HP */
+    max-width: 1200px; /* Tetap seukuran HP */
     min-height: 100vh;
     margin-left: auto; /* Menepi ke kanan di laptop */
     margin-right: 0;
@@ -914,7 +934,7 @@ opacity: 0;
       position: relative;
     /* Tetap set lebar maksimal seukuran HP */
     width: 100%;
-    max-width: 450px; 
+    max-width: 1200px; 
     
     /* UBAH DI SINI: margin-left set ke auto, margin-right ke 0 */
     margin-left: auto;
@@ -937,7 +957,7 @@ opacity: 0;
 /* --- PANEL KONTEN KANAN --- */
 .gift-container {
     width: 100%;
-    max-width: 450px; 
+    max-width: 12000px; 
     min-height: 100vh;
     /* Padding bawah 350px agar kartu terakhir tidak terpotong bunga */
   /* Dari 30px, ubah ke 10px atau 0 */
@@ -950,96 +970,121 @@ opacity: 0;
     box-shadow: -10px 0 30px rgba(0,0,0,0.05); /* Bayangan di sisi kiri panel */
 }
 
-/* --- DEKORASI BUNGA (Sesuai Gambar) --- */
-.gift-container::before { /* Kiri Atas */
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 180px; height: 180px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kiri-atas.png') no-repeat top left / cover;
-}
 
-.gift-container::after { /* Kanan Atas */
-    content: "";
-    position: absolute;
-    top: 0; right: 0;
-    width: 180px; height: 180px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kanan-atas.png') no-repeat top right / cover;
-}
 
-.flower-bottom-gift { /* Bunga Bawah Menempel Dasar */
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 300px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bunga-bawah.png') no-repeat bottom center / cover;
-    z-index: 20;
-    pointer-events: none;
-}
-
-/* --- KARTU BANK (Gaya Gambar 3 & 4) --- */
 .bank-accounts-cards {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin-top: 30px;
+    margin-top: -10px;
 }
 
 .bank-accounts-cards > div {
-    background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
-    border-radius: 20px;
-    padding: 25px;
+    background: url('https://ulemanti.id/wp-content/uploads/2024/04/card.png') center/cover no-repeat;
+    border-radius: 15px; /* Radius kartu ATM standar tidak terlalu bulat */
+    padding: 20px;
     color: #fff;
     position: relative;
-    min-height: 200px;
+    min-height: 220px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Nama/Bank di atas, Nomor/Copy di bawah */
     box-sizing: border-box;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
     text-align: left;
 }
 
-/* Baris Atas */
+/* Baris Atas: Biasanya cuma ada Nama Bank */
 .card-top-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end; /* Bank biasanya di pojok kanan atas */
     width: 100%;
 }
 
-.holder-name { font-size: 0.9rem; opacity: 0.9; text-transform: uppercase; }
-.bank-name { font-weight: bold; }
-
-/* Chip Kartu */
-.bank-accounts-cards > div::after {
-    content: "";
-    display: block;
-    width: 45px; height: 35px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/pin-card.png') no-repeat center / contain;
-    margin: 15px 0;
+.bank-name { 
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800; /* Lebih tebal biar tegas */
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-style: italic; /* Beberapa logo bank pakai style miring */
 }
 
-/* Baris Bawah */
+/* Chip Kartu: Posisinya harus di tengah kiri */
+.bank-accounts-cards > div::after {
+    content: "";
+    width: 50px; 
+    height: 40px;
+    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bunga-bawah.png') no-repeat center / contain;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    filter: brightness(1.2); /* Biar chip lebih 'nyala' */
+}
+
+/* Nomor Rekening: Elemen Utama */
+.account-number { 
+    /* GANTI KE SINI */
+    font-family: 'Roboto Mono', monospace !important;
+    
+    font-size: 1.35rem; 
+    font-weight: 700; 
+    letter-spacing: 3px; 
+    color: #ffffff !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+    display: block;
+    margin: 10px 0; /* Tambah sedikit space biar nggak nempel cip */
+}
+
+/* Baris Bawah: Nama Pemilik & Tombol Copy */
 .card-bottom-row {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     width: 100%;
-    margin-top: auto;
+    margin-top: auto; /* Paksa ke paling bawah kartu */
 }
 
-.account-number { font-size: 1.4rem; font-weight: bold; letter-spacing: 2px; }
+.holder-name { 
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem; 
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
 
-.btn-copy {
-    background: rgba(255, 255, 255, 0.9);
-    color: #000;
-    border: none;
+.copy-btn {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 5px 12px;
-    border-radius: 5px;
-    font-size: 0.7rem;
-    font-weight: bold;
+    border-radius: 4px;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     cursor: pointer;
+    transition: 0.3s;
+    /* Tombol ini otomatis di kanan bawah karena parent-nya space-between */
+}
+
+.copy-btn:hover {
+    background: #ffffff94;
+    color: #000;
+}
+.gift-text {
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 15px;
+    line-height: 1.5;
+    text-align: center;
+    color: #333;
+    position: relative;
+    
+    /* JARAK ATAS DAN BAWAH */
+    margin-top: 0px;    /* Jarak dari Judul "Kirim Hadiah" */
+    margin-bottom: 40px; /* Jarak ke Kartu Bank (Mencegah Tabrakan) */
+    
+    padding: 0 10px;
+    box-sizing: border-box;
+    transition: opacity 1s ease 1s;
 }
 
 
@@ -1049,7 +1094,7 @@ opacity: 0;
 #comments-section-id.section-comments {
     position: relative;
     width: 100%;
-    max-width: 450px; /* Konsisten seukuran HP */
+    max-width: 1200px; /* Konsisten seukuran HP */
     min-height: 100vh;
     margin-left: auto; /* Dorong ke kanan di laptop */
     margin-right: 0;
@@ -1217,7 +1262,7 @@ opacity: 0;
 #comments-list-section.section-comments-list {
     position: relative;
     width: 100%;
-    max-width: 450px; /* Ukuran HP */
+    max-width: 1200px; /* Ukuran HP */
     min-height: 100vh; /* Wajib layar penuh */
     margin-left: auto; /* Paksa ke kanan pada landscape */
     margin-right: 0;
@@ -1506,30 +1551,30 @@ opacity: 0;
 
      <section id="event-section-id" class="section section-event">
     <div >
-        <p class="subtitle-top">Our Special</p>
-        <h2 class="main-title font-cursive">Wedding Event</h2>
+        <p class="subtitle-top animate-up">Our Special</p>
+        <h2 class="main-title font-cursive animate-up">Wedding Event</h2>
 
         <div id="countdown-timer">
-            <div class="time-box"><p id="days" class="time-number">00</p><p class="time-label">Hari</p></div>
-            <div class="time-box"><p id="hours" class="time-number">00</p><p class="time-label">Jam</p></div>
-            <div class="time-box"><p id="minutes" class="time-number">00</p><p class="time-label">Menit</p></div>
-            <div class="time-box"><p id="seconds" class="time-number">00</p><p class="time-label">Detik</p></div>
+            <div class="time-box animate-up"><p id="days" class="time-number">00</p><p class="time-label">Hari</p></div>
+            <div class="time-box animate-up"><p id="hours" class="time-number">00</p><p class="time-label">Jam</p></div>
+            <div class="time-box animate-up"><p id="minutes" class="time-number">00</p><p class="time-label">Menit</p></div>
+            <div class="time-box animate-up"><p id="seconds" class="time-number">00</p><p class="time-label">Detik</p></div>
         </div>
         
-        <div class="event-card-wrapper">
+        <div class="event-card-wrappe animate-up">
              <div class="ribbon-date">{{tanggal_acara_baca}}</div>
              
-             <div class="event-item-list">
+             <div class="event-item-list animate-up">
                  {{event_times}} 
                  </div>
 
-             <div class="location-wrapper">
-                 <p class="event-location-address">{{lokasi_acara}}</p>
+             <div class="location-wrapper animate-up">
+                 <p class="event-row font-family: 'Baloo Bhaina 2', cursive; animate-up">{{lokasi_acara}}</p>
              </div>
              
-             <a href="{{maps_url}}" class="btn-maps-link">
-                Buka di Google Maps
-             </a>
+            <a href="https://{{maps_url}}" class="cover-open-btn animate-up" target="_blank" rel="noopener noreferrer">
+    Buka di Google Maps
+</a>
         </div>
     </div>
 </section>
