@@ -306,73 +306,75 @@ body {
     transform: translateX(0);
 }
 
+/*
+/* --- CONTAINER UTAMA --- */
 #intro-section-id.section-intro {
     min-height: 100vh;
     position: relative;
     width: 100%;
-    max-width: 450px; /* Ukuran lebar standar layar HP */
-    min-height: 100vh; /* Tinggi satu layar penuh */
-    margin-left: auto; /* Dorong container ke sisi kanan layar laptop */
+    max-width: 450px; /* Standar layar HP */
+    margin-left: auto; 
     margin-right: 0;
     
-    /* BACKGROUND: Tekstur Cat Air Krem */
+    /* BACKGROUND */
     background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bg.png'); 
     background-size: cover;
     background-position: center;
-    background-color: #fdf6e9; /* Warna dasar krem jika bg gagal load */
+    background-color: #fdf6e9;
     
-    /* Efek Bayangan di Kiri (Hanya muncul di laptop) */
     box-shadow: -10px 0 30px rgba(0,0,0,0.05);
     
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Konten di tengah secara vertikal */
-    overflow: hidden; /* Supaya dekorasi tidak tembus keluar kotak */
-    padding: 0; /* Reset padding total agar bunga bisa nempel presisi */
+    justify-content: center;
+    overflow: hidden; /* Supaya dekorasi tidak bocor keluar */
+    padding: 0;
     box-sizing: border-box;
 }
 
-/* --- DEKORASI BUNGA KERING ATAS (Presisi di Pojok) --- */
-/* Bunga Kiri Atas */
-/* --- 1. POSISI DIAM (SEMBUNYI) --- */
+/* --- 1. DEKORASI BUNGA (POSISI AWAL/DIAM) --- */
+
 /* Bunga Kiri Atas */
 #intro-section-id::before {
     content: "";
     position: absolute;
-    top: 0; left: 0;
-    width: 500px; height: 500px;
+    top: 0; 
+    left: 0;
+    width: 500px; 
+    height: 500px;
     background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kiri-atas.png') no-repeat top left / contain;
     z-index: 5;
     pointer-events: none;
 
-    /* Kondisi awal sebelum discroll */
+    /* Animasi Keluar */
     opacity: 0;
-    transform: translate(-40px, -40px); /* Keluar ke pojok kiri atas */
-    transition: all 1.2s ease-out; /* Durasi gerak */
+    transform: translate(-40px, -40px);
+    transition: all 1.2s ease-out;
 }
 
-/* Bunga Kanan Atas */
-.intro-content::after {
+/* Bunga Kanan Atas (Sekarang menempel ke Container Utama) */
+#intro-section-id::after {
     content: "";
     position: absolute;
-    top: 0; right: 0;
-   width: 400px; height: 400px;
+    top: 0; 
+    right: 0;
+    width: 500px; 
+    height: 500px;
     background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kanan-atas.png') no-repeat top right / contain;
     z-index: 5;
     pointer-events: none;
 
-    /* Kondisi awal sebelum discroll */
+    /* Animasi Keluar */
     opacity: 0;
-    transform: translate(40px, -40px); /* Keluar ke pojok kanan atas */
+    transform: translate(40px, -40px);
     transition: all 1.2s ease-out;
-    transition-delay: 0.2s; /* Biar munculnya gantian, lebih elegan */
+    transition-delay: 0.2s;
 }
 
-/* --- 2. POSISI GERAK (MUNCUL SAAT DISCOLL) --- */
-/* Begitu #intro-section-id dapet class .visible dari JS, bunga langsung bereaksi */
+/* --- 2. ANIMASI SAAT SCROLL (VISIBLE) --- */
 #intro-section-id.visible::before,
-#intro-section-id.visible .intro-content::after {
+#intro-section-id.visible::after {
     opacity: 1 !important;
     transform: translate(0, 0) !important;
 }
@@ -380,93 +382,99 @@ body {
 /* --- AREA KONTEN TENGAH --- */
 .intro-content {
     position: relative;
-    z-index: 10; /* Pastikan teks paling depan */
+    z-index: 10;
     text-align: center;
     width: 100%;
-    padding: 100px 0 50px 0; /* Beri jarak atas agar teks tidak tertutup bunga */
+    padding: 100px 0 50px 0;
 }
 
-/* --- TYPOGRAPHY (SESUAI GAMBAR) --- */
-/* Judul "Undangan Pernikahan" */
+/* --- TYPOGRAPHY --- */
 .wedding-title {
-    font-family: 'Rouge Script', cursive; /* Gunakan Google Fonts 'Great Vibes' */
+    font-family: 'Rouge Script', cursive;
     font-size: 2.8rem;
-    color: #5d5d4d; /* Warna coklat tua keabuan sesuai tema boho */
+    color: #5d5d4d;
     margin-bottom: 5px;
 }
 
-/* Teks Pembuka */
 .opening-quote {
-    font-family: 'Cormorant Garamond', serif; /* Font serif elegan halus */
+    font-family: 'Baloo Bhaina 2', cursive;
     font-size: 0.95rem;
     color: #333;
     margin-top: 5px;
     margin-bottom: 40px;
-    font-family: 'Baloo Bhaina 2', cursive;
 }
 
-/* Nama Pasangan di Bawah */
 .couple-names {
-    font-family: 'Rouge Script', cursive; /* Font sambung tipis elegan */
+    font-family: 'Rouge Script', cursive;
     font-size: 2.5rem;
     color: #333;
     margin-top: 30px;
     letter-spacing: 1px;
 }
 
-/* --- FOTO PASANGAN DENGAN FRAME LONJONG (SANGAT PENTING) --- */
+/* --- FRAME FOTO --- */
 .couple-photo-container {
     position: relative;
-    width: 270px; /* Lebar frame */
-    height: 400px; /* Tinggi frame */
-    margin: 0 auto; /* Tengah secara horizontal */
-    
-    /* MEMBUAT BENTUK OVAL MELENGKUNG (KAPSUL) */
-    border-radius: 150px 150px 150px 150px; 
-    
-    border: 1px solid #bc9c78; /* Warna garis frame emas/coklat tipis */
-    padding: 12px; /* Jarak antara garis ke foto */
-    box-sizing: border-box; /* Agar padding tidak menambah ukuran frame */
-    
+    width: 270px;
+    height: 400px;
+    margin: 0 auto;
+    border-radius: 150px; 
+    border: 1px solid #bc9c78;
+    padding: 12px;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Bayangan halus */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
 .couple-photo-container img.couple-photo {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Agar foto tidak gepeng, kelebihannya di-crop otomatis */
-    
-    /* BENTUK FOTO MENGIKUTI FRAME */
-    border-radius: 140px 140px 140px 140px; 
+    object-fit: cover;
+    border-radius: 140px; 
 }
 
-/* --- ORNAMEN DIAMOND KECIL DI SAMPING FRAME --- */
+/* ORNAMEN DIAMOND */
 .couple-photo-container::before, 
 .couple-photo-container::after {
-    content: "♦"; /* Gunakan karakter wajik kecil */
+    content: "♦";
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     color: #bc9c78;
     font-size: 18px;
+    z-index: 11;
 }
 .couple-photo-container::before { left: -18px; }
 .couple-photo-container::after { right: -18px; }
 
-/* --- RESPONSIVITAS MOBILE ASLI --- */
+/* --- RESPONSIVITAS MOBILE (PERBAIKAN UKURAN) --- */
 @media (max-width: 450px) {
     #intro-section-id.section-intro {
-        box-shadow: none; /* Hilangkan shadow jika di HP asli agar clean */
+        box-shadow: none;
+    }
+
+    /* Kecilkan bunga agar tidak menutupi seluruh layar HP */
+    #intro-section-id::before {
+        width: 250px;
+        height: 250px;
+    }
+
+    #intro-section-id::after {
+        width: 220px;
+        height: 220px;
     }
     
     .wedding-title {
-        font-size: 2.2rem; /* Kecilkan sedikit judul di layar kecil */
+        font-size: 2.2rem;
+    }
+
+    .couple-photo-container {
+        width: 220px;
+        height: 330px;
     }
 }
-
 
 
 
