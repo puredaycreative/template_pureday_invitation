@@ -1122,58 +1122,87 @@ opacity: 0;
 
 
     /* --- Section Comments (Ucapan) --- */
-   /* --- CONTAINER UTAMA --- */
+/* 1. KEYFRAMES: Fokus ke gerakan turun dari pojok luar */
+@keyframes turunKiri {
+    from { 
+        transform: translate(-100px, -100px); 
+        opacity: 0; 
+    }
+    to { 
+        transform: translate(0, 0); 
+        opacity: 1; 
+    }
+}
+
+@keyframes turunKanan {
+    from { 
+        transform: translate(100px, -100px); 
+        opacity: 0; 
+    }
+    to { 
+        transform: translate(0, 0); 
+        opacity: 1; 
+    }
+}
+
+/* 2. CONTAINER UTAMA */
 #comments-section-id.section-comments {
-    position: relative;
+    position: relative !important;
     width: 100%;
-    max-width: 1200px; /* Konsisten seukuran HP */
+    max-width: 1200px;
     min-height: 100vh;
-    margin-left: auto; /* Dorong ke kanan di laptop */
+    margin-left: auto;
     margin-right: 0;
-    
-    /* BACKGROUND: Tekstur Cat Air */
     background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bg.png');
     background-size: cover;
     background-position: center;
     background-color: #fdf6e9;
-    
     box-shadow: -10px 0 30px rgba(0,0,0,0.05);
-    overflow: hidden;
-    padding: 80px 20px 180px 20px; /* Padding bawah untuk dekorasi bunga */
+    padding: 80px 20px 180px 20px;
     box-sizing: border-box;
+
+    /* WAJIB ADA UNTUK SCROLL ANIMATION */
+    overflow: hidden; 
+    view-timeline-name: --comments-scroll;
+    view-timeline-axis: block;
 }
 
-/* --- DEKORASI BUNGA POJOK ATAS --- */
-/* Bunga Kiri Atas */
+/* 3. BUNGA KIRI ATAS */
 #comments-section-id::before {
     content: "";
     position: absolute;
-    top: 0;
+    top: 0; 
     left: 0;
-    width: 180px;
-    height: 180px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kiri-atas.png') no-repeat top left ;
-    animation: fadeInUp 2s ease-out forwards;
-    background-size: cover;
+    width: 400px; /* Ukuran saya sesuaikan dikit biar gak terlalu nutupin teks */
+    height: 400px;
+    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kiri-atas.png') no-repeat top left / contain;
     z-index: 5;
     pointer-events: none;
+
+    /* SETTING ANIMASI SCROLL (Tanpa Transition!) */
+    animation: turunKiri linear forwards;
+    animation-timeline: --comments-scroll;
+    /* Mulai gerak pas bagian atas section muncul di layar */
+    animation-range: entry 0% entry 40%;
 }
 
-/* Bunga Kanan Atas */
-#comments-section-id .container::after {
+/* 4. BUNGA KANAN ATAS */
+#comments-section-id::after {
     content: "";
     position: absolute;
-    top: 0;
+    top: 0; 
     right: 0;
-    width: 180px;
-    height: 180px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kanan-atas.png') no-repeat top right ;
-    animation: fadeInUp 2s ease-out forwards;
-    background-size: cover;
+    width: 400px; 
+    height: 400px;
+    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kanan-atas.png') no-repeat top right / contain;
     z-index: 5;
     pointer-events: none;
-}
 
+    /* SETTING ANIMASI SCROLL (Tanpa Transition!) */
+    animation: turunKanan linear forwards;
+    animation-timeline: --comments-scroll;
+    animation-range: entry 0% entry 40%;
+}
 /* --- DEKORASI BUNGA BAWAH (PRESISI) --- */
 .section-comments .container::before {
     content: "";
@@ -1186,6 +1215,12 @@ opacity: 0;
     background-size: cover;
     z-index: 10;
     pointer-events: none;
+}
+
+#comments-section-id.visible::before,
+#comments-section-id.visible::after {
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
 }
 
 /* --- FORM & INPUT STYLING --- */
@@ -1291,49 +1326,89 @@ opacity: 0;
 
 
 /* --- SECTION UTAMA --- */
+/* 1. KEYFRAMES: Gerakan bunga turun dari luar layar */
+@keyframes bungaTurunKiri {
+    from { 
+        transform: translate(-50px, -100px); /* Keluar pojok kiri atas */
+        opacity: 0; 
+    }
+    to { 
+        transform: translate(0, 0); 
+        opacity: 1; 
+    }
+}
+
+@keyframes bungaTurunKanan {
+    from { 
+        transform: translate(50px, -100px); /* Keluar pojok kanan atas */
+        opacity: 0; 
+    }
+    to { 
+        transform: translate(0, 0); 
+        opacity: 1; 
+    }
+}
+
+/* 2. SECTION UTAMA */
 #comments-list-section.section-comments-list {
     position: relative;
     width: 100%;
-    max-width: 1200px; /* Ukuran HP */
-    min-height: 100vh; /* Wajib layar penuh */
-    margin-left: auto; /* Paksa ke kanan pada landscape */
+    max-width: 1200px;
+    min-height: 100vh;
+    margin-left: auto;
     margin-right: 0;
     background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bg.png');
     background-size: cover;
     background-position: center;
     background-color: #fdf6e9;
-    overflow: hidden;
-    padding: 80px 20px 0 20px; /* Padding bawah 0 agar bunga nempel pol */
+    padding: 80px 20px 0 20px;
     box-sizing: border-box;
     display: block;
+
+    /* AKTIFKAN RADAR SCROLL */
+    overflow: hidden; 
+    view-timeline-name: --list-comments-scroll;
+    view-timeline-axis: block;
 }
 
-/* --- DEKORASI BUNGA ATAS --- */
-/* Bunga Kiri Atas */
+/* 3. BUNGA KIRI ATAS */
 #comments-list-section::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
-    width: 180px;
-    height: 180px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kiri-atas.png') no-repeat top left / cover;
+    width: 500px;
+    height: 500px;
+    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kiri-atas.png') no-repeat top left / contain;
     z-index: 5;
     pointer-events: none;
+
+    /* HUBUNGKAN KE SCROLL */
+    animation: bungaTurunKiri linear forwards;
+    animation-timeline: --list-comments-scroll;
+    /* Mulai gerak pas bagian atas section masuk layar 5%, selesai di 40% */
+    animation-range: entry 5% entry 40%;
 }
 
-/* Bunga Kanan Atas */
-.section-comments-list .container::after {
+/* 4. BUNGA KANAN ATAS */
+/* Saya ganti selektornya ke ::after section langsung biar gak nabrak container */
+#comments-list-section::after {
     content: "";
     position: absolute;
     top: 0;
     right: 0;
-    width: 180px;
-    height: 180px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kanan-atas.png') no-repeat top right / cover;
+    width: 500px;
+    height: 500px;
+    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kanan-atas.png') no-repeat top right / contain;
     z-index: 5;
     pointer-events: none;
+
+    /* HUBUNGKAN KE SCROLL */
+    animation: bungaTurunKanan linear forwards;
+    animation-timeline: --list-comments-scroll;
+    animation-range: entry 5% entry 40%;
 }
+
 
 /* --- DEKORASI BUNGA BAWAH (MENEMPEL POL) --- */
 #comments-list-section .flower-bottom {
@@ -1804,7 +1879,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }, observerOptions);
 
-    document.querySelectorAll('#intro-section-id, .section-detail, .section-gallery').forEach(el => {
+    document.querySelectorAll('#intro-section-id, .section-detail, .section-gallery, .comments-section').forEach(el => {
         scrollObserver.observe(el);
     });
 });
