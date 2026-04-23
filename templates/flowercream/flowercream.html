@@ -874,13 +874,12 @@ opacity: 0;
     margin-bottom: 40px;
     text-align: center;
 }
-/* --- SCRAPBOOK WRAPPER (Area Foto Menumpuk) --- */
-/* --- SCRAPBOOK WRAPPER --- */
+/* --- SCRAPBOOK WRAPPER (Grid 2 Kolom) --- */
 .scrapbook-wrapper {
     display: grid;
-    /* Kita buat sistem 6 kolom kecil agar pembagian 2 dan 3 lebih mudah */
-    grid-template-columns: repeat(6, 1fr); 
-    gap: 12px;
+    /* Bagi layar menjadi 2 kolom sama rata */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 15px; /* Jarak antar foto */
     width: 100%;
     max-width: 450px;
     margin: 20px auto;
@@ -888,42 +887,53 @@ opacity: 0;
     box-sizing: border-box;
 }
 
-/* Base style foto polaroid */
+/* Item Foto Polaroid */
 .scrapbook-wrapper img {
     width: 100%;
     height: auto;
     background: #fff;
-    padding: 6px 6px 25px 6px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    /* Border putih ditipiskan: atas/samping 5px, bawah 15px untuk space estetik */
+    padding: 5px 5px 15px 5px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     border-radius: 2px;
     box-sizing: border-box;
     transition: transform 0.3s ease;
     
-    /* DEFAULT: 3 Kolom (Mengambil 2 dari 6 jatah kolom) */
-    grid-column: span 2; 
+    /* Default: Masuk ke dalam grid 2 kolom */
+    grid-column: span 1; 
 }
 
-/* --- LOGIKA KHUSUS --- */
-
-/* 1. Jika ingin 2 kolom (Misal untuk Portrait yang ingin agak besar) */
-/* Kamu bisa ganti span 2 jadi span 3 jika ingin 2 kolom saja */
-.scrapbook-wrapper img.dua-kolom {
-    grid-column: span 3;
-}
-
-/* 2. Jika Landscape (1 Kolom Penuh / Full Width) */
+/* --- LOGIKA FOTO LANDSCAPE (FULL KE BAWAH) --- */
 .scrapbook-wrapper img.landscape {
-    grid-column: span 6; /* Mengambil semua (6) jatah kolom */
-    padding: 8px 8px 30px 8px; /* Frame lebih tebal sedikit agar proporsional */
+    /* Paksa ambil 2 kolom sekaligus agar tampil besar sendiri */
+    grid-column: span 2; 
+    padding: 6px 6px 20px 6px; /* Sedikit lebih tebal saat full agar proporsional */
 }
 
-/* Variasi Rotasi */
-.scrapbook-wrapper img:nth-child(odd) { transform: rotate(-2deg); }
-.scrapbook-wrapper img:nth-child(even) { transform: rotate(2deg); }
+/* Variasi Rotasi Tipis */
+.scrapbook-wrapper img:nth-child(odd) { 
+    transform: rotate(-1.5deg); 
+}
+.scrapbook-wrapper img:nth-child(even) { 
+    transform: rotate(1.5deg); 
+}
 
+/* Hover Efek */
 .scrapbook-wrapper img:hover {
     z-index: 10;
-    transform: scale(1.05) rotate(0deg);
+    transform: scale(1.03) rotate(0deg);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Perbaikan untuk HP layar kecil agar border tetap manis */
+@media (max-width: 380px) {
+    .scrapbook-wrapper {
+        gap: 10px;
+        padding: 10px;
+    }
+    .scrapbook-wrapper img {
+        padding: 4px 4px 12px 4px;
+    }
 }
 
 
