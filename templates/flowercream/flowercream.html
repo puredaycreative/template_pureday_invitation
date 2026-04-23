@@ -808,8 +808,38 @@ opacity: 0;
  
     
 /* --- Section Gallery --- */
+/* 1. KEYFRAMES: Fokus ke gerakan menyamping (X) */
+@keyframes daunKananMasuk {
+    from { 
+        transform: translateX(100px); /* Mulai dari luar kanan layar */
+        opacity: 0; 
+    }
+    to { 
+        transform: translateX(0); /* Berakhir di posisi aslinya */
+        opacity: 1; 
+    }
+}
+
+@keyframes daunKiriMasuk {
+  from { 
+        transform: translateX(-150px) rotate(-10deg); /* Mulai dari luar kiri */
+        opacity: 0; 
+    }
+    to { 
+        transform: translateX(0) rotate(0deg); 
+        opacity: 1; 
+    }
+}
+
+/* 2. CONTAINER GALLERY */
 .section-gallery {
-    position: relative;
+    
+    position: relative !important;
+    overflow: hidden; /* PENTING: Supaya daun pas di luar layar gak bikin scroll horizontal */
+    view-timeline-name: --gallery-scroll;
+    view-timeline-axis: block;
+
+    
     width: 100%;
     max-width: 1200px; /* Tetap seukuran HP */
     min-height: 100vh;
@@ -824,39 +854,44 @@ opacity: 0;
     
     padding: 80px 20px;
     box-sizing: border-box;
-    overflow: hidden;
+   
     box-shadow: -10px 0 30px rgba(0,0,0,0.05);
 }
 
-/* --- DEKORASI PNG (POJOK) --- */
-/* Bunga/Daun Kanan Atas */
+/* 3. DAUN KANAN ATAS (Kanan ke Kiri) */
 .section-gallery::before {
     content: "";
     position: absolute;
     top: 0;
     right: 0;
-    width: 200px;
-    height: 200px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/daun-kanan-atas.png') no-repeat top right ;
-    animation: fadeInUp 2s ease-out forwards;
+    width: 400px;
+    height: 400px;
+    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/daun-kanan-atas.png') no-repeat top right / contain;
     z-index: 5;
-    background-size: cover;
     pointer-events: none;
+
+    /* Hubungkan ke Scroll */
+    animation: daunKananMasuk linear forwards;
+    animation-timeline: --gallery-scroll;
+    animation-range: entry 10% entry 60%;
 }
 
-/* Daun Kiri Bawah */
+/* 4. DAUN KIRI BAWAH (Kiri ke Kanan) */
 .section-gallery::after {
     content: "";
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 180px;
-    height: 180px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/daun-kiri-bawah.png') no-repeat bottom left ;
-    animation: fadeInUp 2s ease-out forwards;
+    width: 400px;
+    height: 400px;
+    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/daun-kiri-bawah.png') no-repeat bottom left / contain;
     z-index: 5;
-    background-size: cover;
     pointer-events: none;
+
+    /* Hubungkan ke Scroll */
+    animation: daunKiriMasuk linear forwards;
+    animation-timeline: --gallery-scroll;
+    animation-range: entry 10% entry 60%;
 }
 
 /* --- TYPOGRAPHY --- */
