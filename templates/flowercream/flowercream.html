@@ -875,58 +875,56 @@ opacity: 0;
     text-align: center;
 }
 /* --- SCRAPBOOK WRAPPER (Area Foto Menumpuk) --- */
+/* --- SCRAPBOOK WRAPPER --- */
 .scrapbook-wrapper {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap; /* Supaya kalau tidak muat, otomatis pindah ke bawah */
+    gap: 15px;
     width: 100%;
-    margin-top: 20px;
-    padding-bottom: 100px; /* Ruang agar foto terakhir tidak terpotong daun */
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 15px;
+    box-sizing: border-box;
+    justify-content: center;
 }
 
-/* Item Foto Polaroid */
+/* Base style untuk foto polaroid */
 .scrapbook-wrapper img {
-    position: relative; /* Gunakan relative agar container otomatis memanjang */
-    width: 85%; /* Ukuran foto lebih besar agar memenuhi area */
-    max-width: 320px;
     background: #fff;
-    padding: 10px 10px 40px 10px; /* Frame putih ala polaroid */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 8px 8px 30px 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     border-radius: 2px;
-    margin-bottom: -50px; /* INI KUNCINYA: Membuat foto saling menumpuk ke bawah */
+    box-sizing: border-box;
     transition: transform 0.3s ease;
-    z-index: 1;
+    height: auto;
 }
 
-/* Memberikan variasi tumpukan agar estetik */
-.scrapbook-wrapper img:nth-child(odd) {
-    transform: rotate(-3deg) translateX(-10px);
-    z-index: 2;
+/* --- LOGIKA OTOMATIS BERDASARKAN ORIENTASI --- */
+
+/* 1. Jika foto Portrait (Tinggi > Lebar) */
+/* Kita asumsikan default adalah portrait agar bisa berjejer 2 atau 3 */
+.scrapbook-wrapper img {
+    flex: 1 1 30%; /* Akan mencoba berjejer 3 kolom (30% x 3 = 90%) */
+    max-width: 45% ; /* Jika hanya berdua, mereka akan bagi rata */
 }
 
-.scrapbook-wrapper img:nth-child(even) {
-    transform: rotate(3deg) translateX(15px);
-    z-index: 3;
+/* 2. Jika foto Landscape (Lebar > Tinggi) */
+/* Di CSS, kita bisa menandai gambar landscape dengan atribut manual atau class */
+/* Jika kamu bisa menambahkan class 'landscape' dari backend/WordPress: */
+.scrapbook-wrapper img.landscape {
+    flex: 1 1 100%; /* Paksa ambil 1 baris penuh (1 kolom) */
+    max-width: 100%;
 }
 
-/* Efek Hover (Opsional) */
+/* 3. Efek Rotasi agar tetap estetik Scrapbook */
+.scrapbook-wrapper img:nth-child(odd) { transform: rotate(-2deg); }
+.scrapbook-wrapper img:nth-child(even) { transform: rotate(2deg); }
+
+/* Hover Efek */
 .scrapbook-wrapper img:hover {
     z-index: 10;
     transform: scale(1.05) rotate(0deg);
 }
-
-/* --- ORNAMEN STIKER BUNGA --- */
-.scrapbook-wrapper img:nth-child(1)::before {
-    content: "";
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    width: 60px;
-    height: 60px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/stiker-bunga.png') no-repeat center/contain;
-    z-index: 5;
-}
-
 
 
 /* --- Section Gift --- */
