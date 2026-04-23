@@ -1251,7 +1251,7 @@ opacity: 0;
     border: 1px solid transparent;
     border-radius: 10px;
     background: rgba(255, 255, 255, 0);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+  font-family: 'Baloo Bhaina 2', cursive;
     font-family: inherit;
     box-sizing: border-box;
 }
@@ -1418,18 +1418,6 @@ opacity: 0;
 }
 
 
-/* --- DEKORASI BUNGA BAWAH (MENEMPEL POL) --- */
-#comments-list-section .flower-bottom {
-    content: "";
-    position: absolute;
-    bottom: -15px; /* Nilai negatif untuk narik jika PNG ada ruang kosong */
-    left: 0;
-    width: 100%;
-    height: 280px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bunga-bawah.png') no-repeat bottom center / cover;
-    z-index: 20;
-    pointer-events: none;
-}
 
 /* --- CONTAINER LIST KOMENTAR (AREA SKROL) --- */
 .comments-list-container {
@@ -1456,7 +1444,7 @@ opacity: 0;
 /* Targetkan div yang muncul dari data {{comments}} */
 .comments-scroll-box > div, 
 .comment-item {
-    background: #ffffff;
+    background: #ffffff00;
     border: 2px solid #e2d5c5; /* Border coklat muda sesuai tema */
     border-radius: 15px;
     padding: 18px;
@@ -1471,7 +1459,8 @@ opacity: 0;
 .comments-scroll-box strong, 
 .comment-name {
     display: block;
-    font-size: 0.95rem;
+    font-size: 1rem;
+    font-family: 'Baloo Bhaina 2', cursive;
     color: #333;
     font-weight: 700;
     margin-bottom: 5px;
@@ -1481,6 +1470,7 @@ opacity: 0;
 .comments-scroll-box p,
 .comment-text {
     font-size: 0.9rem;
+    font-family: 'Baloo Bhaina 2', cursive;
     color: #555;
     line-height: 1.5;
     margin: 5px 0;
@@ -1492,6 +1482,7 @@ opacity: 0;
     text-align: right;
     font-size: 0.75rem;
     color: #a0a0a0;
+    font-family: 'Baloo Bhaina 2', cursive;
     margin-top: 10px;
 }
 
