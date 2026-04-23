@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pureday Invitation: {{nama_pria}} & {{nama_wanita}}</title>
+        <link href="https://fonts.googleapis.com/css?family=Rouge+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina+2" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Rosemary&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
 <style>
     /* Animasi Fade In dari Bawah ke Atas */
+/* --- ANIMASI TEKS --- */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -34,6 +37,29 @@
         transform: translateY(0); /* Selesai di posisi asli */
     }
 }
+
+.animate-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Class ini akan ditambahkan oleh JS */
+.animate-up.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+.animate-down {
+    opacity: 0;
+    transform: translateY(-30px); 
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-down.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
     /* --- General Styling --- */
     :root {
         --color-bg-light: #F0EDE5; /* Krem Sangat Muda */
@@ -83,13 +109,13 @@
     }
 
     .script-text {
-        font-family: 'Dancing Script', cursive;
+        font-family: 'Rouge Script', cursive;
         font-weight: 700;
         color: var(--color-accent);
     }
     
     .title-wedding {
-        font-family: 'Dancing Script', cursive;
+        font-family: 'Rouge Script', cursive;
         font-size: 1.8rem;
         margin-bottom: 5px;
         color: var(--color-text-dark);
@@ -171,7 +197,7 @@ body {
     background-position: top left;
      background-size: cover;
     z-index: 2;
-     animation: fadeInUp 4s ease-out forwards;
+     animation: fadeInDown 2s ease-out forwards;
 }
 
 /* Dekorasi Bunga Kanan Atas (PNG) */
@@ -187,7 +213,7 @@ body {
     background-size: cover;
     z-index: 2;
     pointer-events: none;
-    animation: fadeInUp 4s ease-out forwards;
+    animation: fadeInDown 2s ease-out forwards;
 }
 
 /* Dekorasi Bunga Bawah (PNG) */
@@ -229,10 +255,12 @@ body {
     letter-spacing: 2px;
     margin-bottom: 40px;
     color: #333;
+     font-family: 'Baloo Bhaina 2', cursive;
+
 }
 
 .template-cover-title {
-    font-family: 'Cursive', 'Great Vibes', cursive; /* Gunakan font sambung */
+     font-family: 'Rouge Script', cursive; /* Gunakan font sambung */
     font-size: 3.5rem;
     margin: 20px 0;
     color: #2c2c2c;
@@ -241,7 +269,8 @@ body {
 
 /* Tombol Buka */
 .cover-open-btn {
-    background-color: white;
+      font-family: 'Baloo Bhaina 2', cursive;
+    background-color: rgba(255, 255, 255, 0);
     border: 1px dashed #ccc;
     padding: 10px 25px;
     border-radius: 50px;
@@ -265,6 +294,18 @@ body {
 }
 
 /* --- SECTION UTAMA (Seukuran HP, Menepi ke Kanan) --- */
+/* --- ANIMASI TRANSISI TEKS --- */
+.animate-fade {
+    opacity: 0;
+    transform: translateX(-40px); /* Muncul geser dari kiri */
+    transition: all 1s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.animate-fade.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 #intro-section-id.section-intro {
     position: relative;
     width: 100%;
@@ -293,37 +334,46 @@ body {
 
 /* --- DEKORASI BUNGA KERING ATAS (Presisi di Pojok) --- */
 /* Bunga Kiri Atas */
+/* --- 1. POSISI DIAM (SEMBUNYI) --- */
+/* Bunga Kiri Atas */
 #intro-section-id::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 220px; /* Sesuaikan besar bunga */
-    height: 220px;
-    background-image: url('https://template-pureday-invitation.vercel.app/flowercream/kiri-atas.png'); /* Ganti dengan nama file PNG Anda */
-    animation: fadeInUp 4s ease-out forwards;
-    background-repeat: no-repeat;
-    background-position: top left;
-    background-size: cover;
-    z-index: 2; /* Di atas background */
-    pointer-events: none; /* Agar tidak menghalangi klik pada konten */
+    top: 0; left: 0;
+    width: 500px; height: 500px;
+    background: url('https://template-pureday-invitation.vercel.app/flowercream/kiri-atas.png') no-repeat top left / contain;
+    z-index: 5;
+    pointer-events: none;
+
+    /* Kondisi awal sebelum discroll */
+    opacity: 0;
+    transform: translate(-40px, -40px); /* Keluar ke pojok kiri atas */
+    transition: all 1.2s ease-out; /* Durasi gerak */
 }
 
-/* Bunga Kanan Atas (Gunakan div tambahan atau pseudo elemen elemen dalam) */
+/* Bunga Kanan Atas */
 .intro-content::after {
     content: "";
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 220px;
-    height: 220px;
-    background-image: url('https://template-pureday-invitation.vercel.app/flowercream/kanan-atas.png');
-    animation: fadeInUp 4s ease-out forwards;
-    background-repeat: no-repeat;
-    background-position: top right;
-    background-size: cover;
-    z-index: 2;
+    top: 0; right: 0;
+   width: 500px; height: 500px;
+    background: url('https://template-pureday-invitation.vercel.app/flowercream/kanan-atas.png') no-repeat top right / contain;
+    z-index: 5;
     pointer-events: none;
+
+    /* Kondisi awal sebelum discroll */
+    opacity: 0;
+    transform: translate(40px, -40px); /* Keluar ke pojok kanan atas */
+    transition: all 1.2s ease-out;
+    transition-delay: 0.2s; /* Biar munculnya gantian, lebih elegan */
+}
+
+/* --- 2. POSISI GERAK (MUNCUL SAAT DISCOLL) --- */
+/* Begitu #intro-section-id dapet class .visible dari JS, bunga langsung bereaksi */
+#intro-section-id.visible::before,
+#intro-section-id.visible .intro-content::after {
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
 }
 
 /* --- AREA KONTEN TENGAH --- */
@@ -338,7 +388,7 @@ body {
 /* --- TYPOGRAPHY (SESUAI GAMBAR) --- */
 /* Judul "Undangan Pernikahan" */
 .wedding-title {
-    font-family: 'Great Vibes', cursive; /* Gunakan Google Fonts 'Great Vibes' */
+    font-family: 'Rouge Script', cursive; /* Gunakan Google Fonts 'Great Vibes' */
     font-size: 2.8rem;
     color: #5d5d4d; /* Warna coklat tua keabuan sesuai tema boho */
     margin-bottom: 5px;
@@ -348,14 +398,15 @@ body {
 .opening-quote {
     font-family: 'Cormorant Garamond', serif; /* Font serif elegan halus */
     font-size: 0.95rem;
-    color: #444;
+    color: #333;
     margin-top: 5px;
     margin-bottom: 40px;
+    font-family: 'Baloo Bhaina 2', cursive;
 }
 
 /* Nama Pasangan di Bawah */
 .couple-names {
-    font-family: 'Dancing Script', cursive; /* Font sambung tipis elegan */
+    font-family: 'Rouge Script', cursive; /* Font sambung tipis elegan */
     font-size: 2.5rem;
     color: #333;
     margin-top: 30px;
@@ -440,54 +491,75 @@ body {
 }
 
 /* --- DEKORASI BUNGA KIRI & KANAN BAWAH --- */
-/* Bunga Kiri Bawah */
-.section-detail::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 220px;
-    height: 220px;
-    background-image: url('https://template-pureday-invitation.vercel.app/flowercream/kiri-bawah.png'); /* Ganti dengan file Anda */
-    animation: fadeInUp 4s ease-out forwards;
-    background-repeat: no-repeat;
-    background-position: bottom left;
-    background-size: cover;
-    z-index: 2;
-    pointer-events: none;
-}
-
-/* Bunga Kanan Bawah */
+/* --- 1. KONDISI DIAM (NGUMPET DI BAWAH) --- */
+.section-detail::before,
 .section-detail::after {
     content: "";
     position: absolute;
     bottom: 0;
-    right: 0;
-    width: 220px;
-    height: 220px;
-    background-image: url('https://template-pureday-invitation.vercel.app/flowercream/kanan-bawah.png'); /* Ganti dengan file Anda */
-    animation: fadeInUp 4s ease-out forwards;
-    background-repeat: no-repeat;
-    background-position: bottom right;
-    background-size: cover;
-    z-index: 2;
+    width: 500px; /* Ukuran sudah diperbesar biar mantap */
+    height: 500px;
+    z-index: 5;
     pointer-events: none;
+    background-repeat: no-repeat;
+    background-size: contain !important;
+
+    /* EFEK TRANSISI */
+    opacity: 0;
+
+   
+opacity: 0;
+    transform: translate(40px, -40px); /* Keluar ke pojok kanan atas */
+    transition: all 1.2s ease-out;
+    transition-delay: 0.2s; /* Biar munculnya gantian, lebih elegan */
+    
+}
+
+/* Bunga Kiri Bawah - Posisi Awal */
+.section-detail::before {
+    left: 0;
+    background-image: url('https://template-pureday-invitation.vercel.app/flowercream/kiri-bawah.png');
+    background-position: bottom left;
+    /* Ngumpet ke pojok kiri bawah luar */
+    transform: translate(-50px, 50px); 
+}
+
+/* Bunga Kanan Bawah - Posisi Awal */
+.section-detail::after {
+    right: 0;
+    background-image: url('https://template-pureday-invitation.vercel.app/flowercream/kanan-bawah.png');
+    background-position: bottom right;
+    /* Ngumpet ke pojok kanan bawah luar */
+    transform: translate(50px, 50px);
+    transition-delay: 0.2s; /* Biar gantian munculnya */
+}
+
+/* --- 2. KONDISI AKTIF (MUNCUL SAAT DISCOLL) --- */
+/* Begitu .section-detail dapet class .visible atau .active dari JS */
+.section-detail.visible::before,
+.section-detail.visible::after,
+.section-detail.active::before,
+.section-detail.active::after {
+     opacity: 1 !important;
+    transform: translate(0, 0) !important;
 }
 
 /* --- TYPOGRAPHY --- */
 .quote-opening, .quote-closing {
+    margin-top: 50px;
+    font-family: 'Baloo Bhaina 2', cursive;
     font-size: 0.9rem;
-    color: #444;
-    line-height: 1.6;
-    margin-bottom: 10px;
+    color: #333;
+    line-height: 1.4;
+    margin-bottom: 20px;
 }
 
 .card-name {
-    font-family: 'Cormorant Garamond', serif; /* Font elegan tebal */
+    font-family: 'Source Code Pro', monospace;
     font-weight: bold;
     font-size: 1rem;
     margin: 10px 0 5px 0;
-    color: #333;
+    color: #232323;
 }
 
 /* --- FRAME FOTO MELENGKUNG (OVAL) --- */
@@ -529,11 +601,6 @@ body {
     flex-direction: column;
     gap: 50px; /* Jarak antara Groom dan Bride */
     margin-bottom: 50px;
-}
-
-/* --- ANIMASI --- */
-.animate-up {
-    animation: fadeInUp 1.2s ease-out both;
 }
 
 
@@ -592,7 +659,7 @@ body {
     width: 100%;
     height: 250px;
     background: url('https://template-pureday-invitation.vercel.app/flowercream/bunga-bawah.png') no-repeat bottom center ;
-    animation: fadeInUp 4s ease-out forwards;
+    animation: fadeInUp 2s ease-out forwards;
     z-index: 0;
     pointer-events: none;
     background-size: cover;
@@ -702,7 +769,7 @@ body {
 .main-title {
     font-size: 2.5rem;
     margin-top: 5px;
-    color: #444;
+    color: #333;
 }
 
 
@@ -742,7 +809,7 @@ body {
     width: 200px;
     height: 200px;
     background: url('https://template-pureday-invitation.vercel.app/flowercream/daun-kanan-atas.png') no-repeat top right ;
-    animation: fadeInUp 4s ease-out forwards;
+    animation: fadeInUp 2s ease-out forwards;
     z-index: 5;
     background-size: cover;
     pointer-events: none;
@@ -757,7 +824,7 @@ body {
     width: 180px;
     height: 180px;
     background: url('https://template-pureday-invitation.vercel.app/flowercream/daun-kiri-bawah.png') no-repeat bottom left ;
-    animation: fadeInUp 4s ease-out forwards;
+    animation: fadeInUp 2s ease-out forwards;
     z-index: 5;
     background-size: cover;
     pointer-events: none;
@@ -774,7 +841,7 @@ body {
 
 .main-title {
     font-size: 2.5rem;
-    color: #444;
+    color: #333;
     margin-bottom: 40px;
     text-align: center;
 }
@@ -1000,7 +1067,7 @@ body {
     width: 180px;
     height: 180px;
     background: url('https://template-pureday-invitation.vercel.app/flowercream/kiri-atas.png') no-repeat top left ;
-    animation: fadeInUp 4s ease-out forwards;
+    animation: fadeInUp 2s ease-out forwards;
     background-size: cover;
     z-index: 5;
     pointer-events: none;
@@ -1015,7 +1082,7 @@ body {
     width: 180px;
     height: 180px;
     background: url('https://template-pureday-invitation.vercel.app/flowercream/kanan-atas.png') no-repeat top right ;
-    animation: fadeInUp 4s ease-out forwards;
+    animation: fadeInUp 2s ease-out forwards;
     background-size: cover;
     z-index: 5;
     pointer-events: none;
@@ -1049,7 +1116,7 @@ body {
 #comment-form label {
     display: block;
     font-size: 0.9rem;
-    color: #444;
+    color: #333;
     margin-bottom: 8px;
     font-weight: 500;
 }
@@ -1128,7 +1195,7 @@ body {
 
 .main-title {
     font-size: 2rem;
-    color: #444;
+    color: #333;
     margin-bottom: 30px;
     text-align: center;
 }
@@ -1236,7 +1303,7 @@ body {
 .comment-name {
     display: block;
     font-size: 0.95rem;
-    color: #444;
+    color: #333;
     font-weight: 700;
     margin-bottom: 5px;
 }
@@ -1262,7 +1329,7 @@ body {
 /* --- TYPOGRAPHY --- */
 .main-title {
     font-size: 2.2rem;
-    color: #444;
+    color: #333;
     margin-bottom: 10px;
     text-align: center;
 }
@@ -1364,13 +1431,13 @@ body {
 
    <div id="cover-page" class="template-cover-container">
     <div class="template-cover-overlay"></div>
-    <div class="template-cover-content-wrapper">
-        <p style="color: #555; font-size: 1.1rem; margin-bottom: 5px;">Kepada Yth:</p>
+    <div class="template-cover-content-wrapper animate-down">
+        <p style="color: #555; font-size: 1.1rem; margin-bottom: 5px;  font-family: 'Baloo Bhaina 2', cursive;">Kepada Yth:</p>
         <h3 class="template-cover-guest-name" id="guest-name-display">TAMU UNDANGAN</h3>
         
         <h1 class="template-cover-title">{{nama_pria}} & {{nama_wanita}}</h1>
         
-        <p style="color: #777; margin-top: 20px;">{{tanggal_acara_baca}}</p>
+        <p style="color: #777; margin-top: 20px;  font-family: 'Baloo Bhaina 2', cursive;">{{tanggal_acara_baca}}</p>
         
         <button id="open-invitation-btn" class="cover-open-btn">
             Buka
@@ -1381,35 +1448,35 @@ body {
         
        <section id="intro-section-id" class="section-intro">
     <div class="intro-content">
-        <h1 class="wedding-title">Undangan Pernikahan</h1>
-        <p class="opening-quote">Dengan memohon rahmat dan ridho Allah SWT</p>
+        <h1 class="wedding-title animate-up">Undangan Pernikahan</h1>
+        <p class="opening-quote animate-up">Dengan memohon rahmat dan ridho Allah SWT</p>
 
-        <div class="couple-photo-container">
+        <div class="couple-photo-container animate-up">
             <img 
                 src="{{cover}}" 
                 alt="Foto Pasangan" 
-                class="couple-photo"
+                class="couple-photo animate-up"
             >
         </div>
 
-        <h3 class="couple-names">{{nama_pria}} & {{nama_wanita}}</h3>
+        <h3 class="couple-names animate-up">{{nama_pria}} & {{nama_wanita}}</h3>
     </div>
 </section>
 
 
         <section class="section section-detail" style="padding-top: 0;">
             <div><br>
-                <p class="quote-opening">
+                <p class="quote-opening animate-up">
                     Tanpa mengurangi rasa hormat, kami mengundang Anda untuk berkenan menghadiri acara pernikahan kami:
                 </p>
 
-                <div class="couple-cards">
+                <div class="couple-cards animate-up">
                     <div class="card groom-card animate-up" data-delay="0.0s">
                         <div class="card-image-wrapper">
                             <img src="{{foto_pria}}" alt="Foto Pria">
                         </div>
                         <p class="card-name">{{nama_pria_lengkap}}</p>
-                        <p style="font-size: 0.8rem;">Putra dari Bapak {{nama_bapak_pria}} & Ibu {{nama_ibu_pria}}</p>
+                        <p style="font-size: 0.9rem; font-family: 'Baloo Bhaina 2', cursive;">Putra dari Bapak {{nama_bapak_pria}} & Ibu {{nama_ibu_pria}}</p>
                     </div>
                     
                     <div class="card bride-card animate-up" data-delay="0.3s">
@@ -1417,11 +1484,11 @@ body {
                             <img src="{{foto_wanita}}" alt="Foto Wanita">
                         </div>
                         <p class="card-name">{{nama_wanita_lengkap}}</p>
-                        <p style="font-size: 0.8rem;">Putri dari Bapak {{nama_bapak_wanita}} & Ibu {{nama_ibu_wanita}}</p>
+                        <p style="font-size: 0.9rem; font-family: 'Baloo Bhaina 2', cursive;">Putri dari Bapak {{nama_bapak_wanita}} & Ibu {{nama_ibu_wanita}}</p>
                     </div>
                 </div>
 
-                <p class="quote-closing">
+                <p class="quote-closing animate-up">
                     Segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat (kebesaran Allah).<br>
                    ~ QS Adz-Dzariyat: 49
                 </p>
@@ -1597,8 +1664,64 @@ const urlParams = new URLSearchParams(window.location.search);
 const guestNameParam = urlParams.get('to');
 const GUEST_NAME = guestNameParam ? decodeURIComponent(guestNameParam) : "{{nama_tamu}}";
 
+document.addEventListener("DOMContentLoaded", function() {
+    const observerOptions = {
+        threshold: 0.15 // Jalankan animasi saat 15% elemen terlihat
+    };
+
+    const universalObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // SAAT MASUK LAYAR
+                entry.target.classList.add('active'); // Untuk memicu CSS .section-intro.active
+                entry.target.classList.add('visible'); // Untuk memicu CSS .animate-up.visible
+            } else {
+                // SAAT KELUAR LAYAR (Reset supaya bisa gerak lagi)
+                entry.target.classList.remove('active');
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, observerOptions);
+
+    // KUNCINYA DI SINI: Daftarkan semua class pemicu animasi kamu
+    const targets = document.querySelectorAll('.section-intro, .animate-up, .animate-down, .opening-quote, .card, .animate-left,.animate-fade, .animate-left, .event-item-list, .gallery-vertical-title');
+    
+    targets.forEach(el => {
+        universalObserver.observe(el);
+    });
+});
+
+
 document.getElementById('guest-name-display').textContent = GUEST_NAME;
 document.getElementById('comment-name-input').value = GUEST_NAME;
+
+
+//transisi png
+document.addEventListener("DOMContentLoaded", function() {
+    const observerOptions = {
+        root: null,
+        // -45% artinya radar pemicunya ada di hampir tengah layar.
+        // Jadi biarpun scroll lambat, dia GAK AKAN gerak sampai 
+        // section-nya naik hampir ke tengah.
+        rootMargin: "0px 0px -45% 0px", 
+        threshold: 0 
+    };
+
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                // Biar pas discroll balik ke atas dia ngumpet lagi
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('#intro-section-id, .section-detail').forEach(el => {
+        scrollObserver.observe(el);
+    });
+});
 
 // --- Music Toggle Logic ---
 
