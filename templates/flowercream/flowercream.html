@@ -877,50 +877,50 @@ opacity: 0;
 /* --- SCRAPBOOK WRAPPER (Area Foto Menumpuk) --- */
 /* --- SCRAPBOOK WRAPPER --- */
 .scrapbook-wrapper {
-    display: flex;
-    flex-wrap: wrap; /* Supaya kalau tidak muat, otomatis pindah ke bawah */
-    gap: 15px;
+    display: grid;
+    /* Kita buat sistem 6 kolom kecil agar pembagian 2 dan 3 lebih mudah */
+    grid-template-columns: repeat(6, 1fr); 
+    gap: 12px;
     width: 100%;
     max-width: 450px;
     margin: 20px auto;
     padding: 15px;
     box-sizing: border-box;
-    justify-content: center;
 }
 
-/* Base style untuk foto polaroid */
+/* Base style foto polaroid */
 .scrapbook-wrapper img {
+    width: 100%;
+    height: auto;
     background: #fff;
-    padding: 8px 8px 30px 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 6px 6px 25px 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     border-radius: 2px;
     box-sizing: border-box;
     transition: transform 0.3s ease;
-    height: auto;
+    
+    /* DEFAULT: 3 Kolom (Mengambil 2 dari 6 jatah kolom) */
+    grid-column: span 2; 
 }
 
-/* --- LOGIKA OTOMATIS BERDASARKAN ORIENTASI --- */
+/* --- LOGIKA KHUSUS --- */
 
-/* 1. Jika foto Portrait (Tinggi > Lebar) */
-/* Kita asumsikan default adalah portrait agar bisa berjejer 2 atau 3 */
-.scrapbook-wrapper img {
-    flex: 1 1 30%; /* Akan mencoba berjejer 3 kolom (30% x 3 = 90%) */
-    max-width: 45% ; /* Jika hanya berdua, mereka akan bagi rata */
+/* 1. Jika ingin 2 kolom (Misal untuk Portrait yang ingin agak besar) */
+/* Kamu bisa ganti span 2 jadi span 3 jika ingin 2 kolom saja */
+.scrapbook-wrapper img.dua-kolom {
+    grid-column: span 3;
 }
 
-/* 2. Jika foto Landscape (Lebar > Tinggi) */
-/* Di CSS, kita bisa menandai gambar landscape dengan atribut manual atau class */
-/* Jika kamu bisa menambahkan class 'landscape' dari backend/WordPress: */
+/* 2. Jika Landscape (1 Kolom Penuh / Full Width) */
 .scrapbook-wrapper img.landscape {
-    flex: 1 1 100%; /* Paksa ambil 1 baris penuh (1 kolom) */
-    max-width: 100%;
+    grid-column: span 6; /* Mengambil semua (6) jatah kolom */
+    padding: 8px 8px 30px 8px; /* Frame lebih tebal sedikit agar proporsional */
 }
 
-/* 3. Efek Rotasi agar tetap estetik Scrapbook */
+/* Variasi Rotasi */
 .scrapbook-wrapper img:nth-child(odd) { transform: rotate(-2deg); }
 .scrapbook-wrapper img:nth-child(even) { transform: rotate(2deg); }
 
-/* Hover Efek */
 .scrapbook-wrapper img:hover {
     z-index: 10;
     transform: scale(1.05) rotate(0deg);
@@ -1052,7 +1052,7 @@ opacity: 0;
 .copy-btn {
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(4px);
-    color: #ffffffc8;
+    color: #333;
     border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 5px 12px;
     border-radius: 4px;
