@@ -1169,8 +1169,8 @@ filter: blur(2px); /* Turunkan angka ini untuk mengurangi blur */
 /* Targetkan div yang muncul dari data {{comments}} */
 .comments-scroll-box > div, 
 .comment-item {
-    background: #ffffff;
-    border: 2px solid #e2d5c5; /* Border coklat muda sesuai tema */
+    background: #ffffff00;
+    border: 2px solid #ffffff; /* Border coklat muda sesuai tema */
     border-radius: 15px;
     padding: 18px;
     text-align: left;
@@ -1183,9 +1183,10 @@ filter: blur(2px); /* Turunkan angka ini untuk mengurangi blur */
 /* Nama & Status Hadir */
 .comments-scroll-box strong, 
 .comment-name {
+    font-family: 'Baloo Bhaina 2', cursive;
     display: block;
     font-size: 0.95rem;
-    color: #444;
+    color: white;
     font-weight: 700;
     margin-bottom: 5px;
 }
@@ -1193,18 +1194,20 @@ filter: blur(2px); /* Turunkan angka ini untuk mengurangi blur */
 /* Isi Pesan */
 .comments-scroll-box p,
 .comment-text {
+    font-family: 'Baloo Bhaina 2', cursive;
     font-size: 0.9rem;
-    color: #555;
+    color: white;
     line-height: 1.5;
     margin: 5px 0;
 }
 
 /* Tanggal Komentar */
 .comment-date {
+    font-family: 'Baloo Bhaina 2', cursive;
     display: block;
     text-align: right;
     font-size: 0.75rem;
-    color: #a0a0a0;
+    color: white;
     margin-top: 10px;
 }
 
@@ -1417,7 +1420,7 @@ filter: blur(2px); /* Turunkan angka ini untuk mengurangi blur */
         
        
 <section id="gift-section-id" class="section-gift">
-    <div class="container gift-container">
+    <div class="container gift-container animate-up">
         <br>
         <!-- <p class="subtitle-top">WEDDING GIFT</p> -->
         <h2 class="main-title font-cursive">Kirim Hadiah</h2>
@@ -1434,7 +1437,7 @@ filter: blur(2px); /* Turunkan angka ini untuk mengurangi blur */
 
 
         <section id="comments-section-id" class="section section-comments">
-            <div class="container">
+            <div class="container animate-up">
                 <!-- <p class="subtitle-top">UCAPAN & DO'A</p> -->
                 <h2 class="main-title font-cursive">Kirimkan Ucapan Terbaik</h2>
                 
@@ -1478,8 +1481,8 @@ filter: blur(2px); /* Turunkan angka ini untuk mengurangi blur */
         </section>
         
      <section id="comments-list-section" class="section-comments-list">
-    <div class="container">
-        <p class="subtitle-top">UCAPAN TAMU</p>
+    <div class="container animate-up">
+        <!-- <p class="subtitle-top">UCAPAN TAMU</p> -->
         <h2 class="main-title font-cursive">Komentar Terbaru</h2>
         
         <div class="comments-list-container">
