@@ -15,7 +15,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Rosemary&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+<link href="https://fonts.googleapis.com/css?family=Aclonica" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
 <style>
     /* Animasi Fade In dari Bawah ke Atas */
 @keyframes fadeInUp {
@@ -146,7 +147,7 @@
     height: 100vh;
     
     /* BACKGROUND HANYA DI PANEL INI */
-    background: url('https://ulemanti.id/wp-content/uploads/2022/08/IMG_1885.jpg') center/cover no-repeat;
+    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/cover.jpg') center/cover no-repeat;
     
     display: flex;
     flex-direction: column;
@@ -260,7 +261,7 @@ body {
     height: 100vh;
     
     /* Background JPG diam, tidak dikasih animasi geser */
-    background: url('https://ulemanti.id/wp-content/uploads/2022/08/IMG_1885.jpg') center/cover no-repeat;
+    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/cover.jpg') center/cover no-repeat;
     
     display: flex;
     flex-direction: row; 
@@ -416,10 +417,10 @@ body {
 
 /* Background tetap dipasang di sini */
 .groom-card { 
-    background-image: url('https://ulemanti.id/wp-content/uploads/2022/08/Profile-Groom.jpg'); 
+    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/cowok.jpg'); 
 }
 .bride-card { 
-    background-image: url('https://ulemanti.id/wp-content/uploads/2022/08/Profile-Bride.jpg'); 
+    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/cewek.jpg'); 
 }
 
 /* Overlay transparan agar foto di kiri tetap terlihat tapi teks di kanan terbaca */
@@ -482,7 +483,7 @@ body {
 
 /* TIPOGRAFI */
 .card-name {
-    font-family: 'Cinzel', serif;
+    font-family: 'Baloo Bhaina 2', cursive;
     font-size: 1.4rem;
     color: #ffffff;
     letter-spacing: 2px;
@@ -491,7 +492,7 @@ body {
 }
 
 .parent-info {
-     font-family: Average, serif;
+  font-family: 'Baloo Bhaina 2', cursive;
     font-size: 0.85rem;
     color: rgba(255,255,255,0.9);
     margin: 0;
@@ -534,7 +535,7 @@ body {
     
     /* BACKGROUND PINDAH KE SINI */
     /* Kita buang 'fixed' supaya gambar pas di kotak 450px */
-    background: url('https://ulemanti.id/wp-content/uploads/2022/08/IMG_1878.jpg') center/cover no-repeat;
+    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/galeri1.jpg') center/cover no-repeat;
     
     display: flex;
     flex-direction: column;
@@ -683,7 +684,7 @@ body {
     max-width: 450px;
     min-height: 100vh;
     padding: 60px 30px;
-    background: url('https://ulemanti.id/wp-content/uploads/2022/08/IMG_1878.jpg') center/cover no-repeat;
+    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/galeri3.jpg') center/cover no-repeat;
     position: relative;
     color: #fff;
 }
@@ -788,7 +789,7 @@ body {
     height: 100vh;
     
     /* Background & Dekorasi */
-    background-image: url('https://ulemanti.id/wp-content/uploads/2022/08/IMG_1902.jpg'); 
+    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/galeri2.jpg'); 
     background-size: cover;
     background-position: center;
     box-shadow: -10px 0 30px rgba(0,0,0,0.05); /* Bayangan di sisi kiri saja */
@@ -938,67 +939,44 @@ body {
 #comments-section-id.section-comments {
     position: relative;
     width: 100%;
-    max-width: 450px; /* Konsisten seukuran HP */
+    max-width: 450px;
     min-height: 100vh;
-    margin-left: auto; /* Dorong ke kanan di laptop */
+    margin-left: auto;
     margin-right: 0;
     
-    /* BACKGROUND: Tekstur Cat Air */
-    background-image: url('https://template-pureday-invitation.vercel.app/flowercream/bg.png');
-    background-size: cover;
-    background-position: center;
-    background-color: #fdf6e9;
+    /* PENTING: Hapus background-image dari sini agar tidak double */
+    background-color: #fdf6e9; 
     
     box-shadow: -10px 0 30px rgba(0,0,0,0.05);
     overflow: hidden;
-    padding: 80px 20px 180px 20px; /* Padding bawah untuk dekorasi bunga */
+    padding: 80px 20px 180px 20px;
     box-sizing: border-box;
+    z-index: 1; /* Pastikan konten di atas background */
 }
 
-/* --- DEKORASI BUNGA POJOK ATAS --- */
-/* Bunga Kiri Atas */
-#comments-section-id::before {
+/* Pseudo-element untuk Background Blur */
+#comments-section-id.section-comments::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
-    width: 180px;
-    height: 180px;
-    background: url('https://template-pureday-invitation.vercel.app/flowercream/kiri-atas.png') no-repeat top left ;
-    animation: fadeInUp 4s ease-out forwards;
-    background-size: cover;
-    z-index: 5;
-    pointer-events: none;
-}
-
-/* Bunga Kanan Atas */
-#comments-section-id .container::after {
-    content: "";
-    position: absolute;
-    top: 0;
     right: 0;
-    width: 180px;
-    height: 180px;
-    background: url('https://template-pureday-invitation.vercel.app/flowercream/kanan-atas.png') no-repeat top right ;
-    animation: fadeInUp 4s ease-out forwards;
+    bottom: 0;
+    
+    /* Pindahkan Gambar ke Sini */
+    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/galeri2.jpg');
     background-size: cover;
-    z-index: 5;
-    pointer-events: none;
+    background-position: center;
+    
+    /* EFEK BLUR */
+    filter: blur(8px); /* Ubah angka px sesuai tingkat blur yang diinginkan */
+    transform: scale(1.1); /* Untuk menghilangkan garis putih di pinggiran akibat blur */
+    
+    z-index: -1; /* Meletakkan gambar di belakang konten */
+filter: blur(2px); /* Turunkan angka ini untuk mengurangi blur */   
 }
 
-/* --- DEKORASI BUNGA BAWAH (PRESISI) --- */
-.section-comments .container::before {
-    content: "";
-    position: absolute;
-    bottom: -10px; /* Tempel ke bawah */
-    left: 0;
-    width: 100%;
-    height: 280px;
-    /* background: url('https://template-pureday-invitation.vercel.app/flowercream/bunga-bawah.png') no-repeat bottom center ; */
-    background-size: cover;
-    z-index: 10;
-    pointer-events: none;
-}
+
 
 /* --- FORM & INPUT STYLING --- */
 .detail-box {
@@ -1008,13 +986,15 @@ body {
 }
 
 #comment-form .form-group {
+    
     margin-bottom: 20px;
 }
 
 #comment-form label {
     display: block;
     font-size: 0.9rem;
-    color: #444;
+    font-family: 'Baloo Bhaina 2', cursive;
+    color: #f4f2f2;
     margin-bottom: 8px;
     font-weight: 500;
 }
@@ -1022,13 +1002,15 @@ body {
 /* Input & Textarea sesuai gambar */
 #comment-name-input, 
 #comment-message-input {
+    color: white;
     width: 100%;
     padding: 12px 15px;
     border: 1px solid transparent;
     border-radius: 10px;
-    background: white;
+    border-color: white;
+    background: rgba(255, 255, 255, 0);
     box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-    font-family: inherit;
+    font-family: 'Baloo Bhaina 2', cursive;
     box-sizing: border-box;
 }
 
@@ -1048,26 +1030,27 @@ body {
     padding: 10px;
     border: none;
     border-radius: 8px;
-    background: white;
-    color: #666;
+    background: rgba(255, 255, 255, 0);
+    color: #f4f2f2;
     cursor: pointer;
     font-size: 0.85rem;
     transition: 0.3s;
+    font-family: 'Baloo Bhaina 2', cursive;
     box-shadow: 0 4px 10px rgba(0,0,0,0.03);
 }
 
 .template-status-btn.status-active {
-    background: #bc9c78; /* Warna coklat tema */
-    color: white;
+    background: #ffffff36; /* Warna coklat tema */
+    color: rgba(255, 255, 255, 0.605);
 }
 
 /* --- TOMBOL KIRIM --- */
 .btn-submit {
     width: 100%;
     padding: 15px;
-    background-color: #ffffff5e; /* Sesuai gambar referensi */
+    background-color: #ffffff00; /* Sesuai gambar referensi */
     color: white;
-    border: none;
+    border-color: white;
     border-radius: 10px;
     font-weight: bold;
     font-size: 1rem;
@@ -1096,7 +1079,7 @@ body {
     color: #ebe9e9;
     margin-bottom: 30px;
     text-align: center;
-     font-family: 'Baloo Bhaina 2', cursive;
+     font-family: 'Architects Daughter', cursive;
 }
 
 
@@ -1111,7 +1094,7 @@ body {
     min-height: 100vh; /* Wajib layar penuh */
     margin-left: auto; /* Paksa ke kanan pada landscape */
     margin-right: 0;
-    background-image: url('https://template-pureday-invitation.vercel.app/flowercream/bg.png');
+    background-image: url({{galeri3}});
     background-size: cover;
     background-position: center;
     background-color: #fdf6e9;
@@ -1361,7 +1344,7 @@ body {
                 <div class="card-overlay"></div>
                 <div class="card-content">
                     <div class="card-image-wrapper animate-up">
-                        <img src="https://ulemanti.id/wp-content/uploads/2022/08/Profile-Groom.jpg" alt="Foto Pria">
+                        <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/cowok.jpg" alt="Foto Pria">
                     </div>
                     <p class="card-name animate-up">{{nama_pria_lengkap}}</p>
                     <p class="parent-info animate-up">Putra dari Bapak {{nama_bapak_pria}} & Ibu {{nama_ibu_pria}}</p>
@@ -1372,7 +1355,7 @@ body {
                 <div class="card-overlay"></div>
                 <div class="card-content">
                     <div class="card-image-wrapper animate-up">
-                        <img src="https://ulemanti.id/wp-content/uploads/2022/08/Profile-Bride.jpg" alt="Foto Wanita">
+                        <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/cewek.jpg" alt="Foto Wanita">
                     </div>
                     <p class="card-name animate-up">{{nama_wanita_lengkap}}</p>
                     <p class="parent-info animate-up">Putri dari Bapak {{nama_bapak_wanita}} & Ibu {{nama_ibu_wanita}}</p>
@@ -1392,7 +1375,7 @@ body {
 
     <div class="event-inner-container">
         <div class="event-photo-wrapper animate-fade">
-            <img src="https://ulemanti.id/wp-content/uploads/2022/08/IMG_1878.jpg" class="event-photo">
+            <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/galeri1.jpg" class="event-photo">
         </div>
 
         <div id="countdown-timer" class="animate-fade">
@@ -1452,7 +1435,7 @@ body {
 
         <section id="comments-section-id" class="section section-comments">
             <div class="container">
-                <p class="subtitle-top">UCAPAN & DO'A</p>
+                <!-- <p class="subtitle-top">UCAPAN & DO'A</p> -->
                 <h2 class="main-title font-cursive">Kirimkan Ucapan Terbaik</h2>
                 
                 <div class="detail-box animate-on-scroll" style="margin-bottom: 40px;">
@@ -1469,7 +1452,7 @@ body {
                         </div>
                         <div class="form-group">
                             <label for="comment-message-input">Pesan Ucapan:</label>
-                            <textarea id="comment-message-input" placeholder="Tuliskan ucapan dan doa terbaik Anda..." required></textarea>
+                            <textarea id="comment-message-input" placeholder="" required></textarea>
                         </div>
                         
                         <div class="form-group">
