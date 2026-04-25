@@ -528,30 +528,37 @@
         /* ======================================================= */
         /* TOAST & ANIMATION STYLING */
         /* ======================================================= */
-        #toast-message {
-            position: fixed;
-            bottom: 80px; 
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--primary-blue);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 8px;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.4s, bottom 0.4s;
-            z-index: 9998;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            font-weight: 600;
-        }
-        #toast-message.show {
-            visibility: visible;
-            opacity: 1;
-            bottom: 100px;
-        }
-        #toast-message.success { background-color: #10B981; } /* Green accent */
-        #toast-message.error { background-color: #EF4444; } /* Red accent */
+           #toast-message {
+        position: fixed;
+        bottom: 150px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--color-bg-dark);
+        color: var(--color-text-light);
+        padding: 10px 20px;
+        border-radius: 5px;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+        font-size: 0.9rem;
+        font-family: 'Baloo Bhaina 2', cursive;
+        pointer-events: none;
+        min-width: 250px;
+    }
 
+    #toast-message.show {
+        opacity: 1;
+        font-family: 'Baloo Bhaina 2', cursive;
+    }
+#toast-message.error {
+    background-color: #565c566f;
+    font-family: 'Baloo Bhaina 2', cursive;
+}
+
+#toast-message.success {
+    background-color: #565c566f;
+    font-family: 'Baloo Bhaina 2', cursive;
+}
 
         /* ======================================================= */
     /* FLOATING MUSIC TOGGLE BUTTON (TOP RIGHT) */

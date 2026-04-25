@@ -7,10 +7,9 @@
     <link href="https://fonts.googleapis.com/css?family=Average" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Rouge+Script" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina+2" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Rosemary&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -143,11 +142,11 @@
 .template-cover-content-wrapper {
     position: relative;
     width: 100%;
-    max-width: 450px; /* Ukuran HP */
+    max-width: 1200px; /* Ukuran HP */
     height: 100vh;
     
     /* BACKGROUND HANYA DI PANEL INI */
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/cover.jpg') center/cover no-repeat;
+    background: url({{cover}}) center/cover no-repeat;
     
     display: flex;
     flex-direction: column;
@@ -257,11 +256,11 @@ body {
 .intro-content {
     position: relative;
     width: 100%;
-    max-width: 450px; 
+    max-width: 1200px; 
     height: 100vh;
     
     /* Background JPG diam, tidak dikasih animasi geser */
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/cover.jpg') center/cover no-repeat;
+    background: url({{cover}}) center/cover no-repeat;
     
     display: flex;
     flex-direction: row; 
@@ -378,7 +377,7 @@ body {
 
 .main-wrapper-detail {
     width: 100%;
-    max-width: 450px; /* Batas lebar seukuran HP */
+    max-width: 1200px; /* Batas lebar seukuran HP */
     background: #a92424;
     position: relative;
 }
@@ -401,7 +400,7 @@ body {
 /* Link Gambar Langsung */
 .groom-card, .bride-card { 
     position: relative;
-    /* KUNCI: Lebar harus 100% dari layar monitor, bukan 450px */
+    /* KUNCI: Lebar harus 100% dari layar monitor, bukan 1200px */
     width: 100% !important; 
     min-height: 100vh;
     display: flex;
@@ -417,10 +416,10 @@ body {
 
 /* Background tetap dipasang di sini */
 .groom-card { 
-    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/cowok.jpg'); 
+    background-image: url({{foto_pria}}); 
 }
 .bride-card { 
-    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/cewek.jpg'); 
+    background-image: url({{foto_wanita}}); 
 }
 
 /* Overlay transparan agar foto di kiri tetap terlihat tapi teks di kanan terbaca */
@@ -438,7 +437,7 @@ body {
     position: relative;
     z-index: 10;
     width: 100%;
-    max-width: 450px; /* Lebar teks tetap seukuran mobile */
+    max-width: 1200px; /* Lebar teks tetap seukuran mobile */
     height: 100vh;
     padding: 40px 20px;
     display: flex;
@@ -529,13 +528,13 @@ body {
     position: relative;
     z-index: 10;
     width: 100%;
-    max-width: 450px; /* Ukuran HP */
+    max-width: 1200px; /* Ukuran HP */
     min-height: 100vh;
     padding: 60px 30px;
     
     /* BACKGROUND PINDAH KE SINI */
-    /* Kita buang 'fixed' supaya gambar pas di kotak 450px */
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/galeri1.jpg') center/cover no-repeat;
+    /* Kita buang 'fixed' supaya gambar pas di kotak 1200px */
+    background: url({{galeri8}}) center/cover no-repeat;
     
     display: flex;
     flex-direction: column;
@@ -544,7 +543,7 @@ body {
     color: #fff;
 }
 
-/* Overlay dipindah ke inner agar gambar di dalam 450px juga gelap */
+/* Overlay dipindah ke inner agar gambar di dalam 1200px juga gelap */
 .event-overlay {
 
 }
@@ -674,17 +673,17 @@ body {
 
 /* --- KONDISI SAAT MUNCUL (Aktif via JS) --- */
 .gallery-vertical-title.visible {
-    left: -20px; /* Posisi ideal di samping box 450px */
+    left: -20px; /* Posisi ideal di samping box 1200px */
     opacity: 1;
 }
 
-/* --- KONTEN 450px --- */
+/* --- KONTEN 1200px --- */
 .gallery-inner-container {
     width: 100%;
-    max-width: 450px;
+    max-width: 1200px;
     min-height: 100vh;
     padding: 60px 30px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/galeri3.jpg') center/cover no-repeat;
+    background: url({{galeri9}}) center/cover no-repeat;
     position: relative;
     color: #fff;
 }
@@ -777,46 +776,66 @@ body {
 }
 /* --- Section Gift --- */
 .section-gift {
-      position: relative;
-    /* Tetap set lebar maksimal seukuran HP */
+    position: relative;
     width: 100%;
-    max-width: 450px; 
-    
-    /* UBAH DI SINI: margin-left set ke auto, margin-right ke 0 */
+    max-width: 1200px; 
     margin-left: auto;
     margin-right: 0;
-    
     height: 100vh;
-    
-    /* Background & Dekorasi */
-    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/galeri2.jpg'); 
-    background-size: cover;
-    background-position: center;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05); /* Bayangan di sisi kiri saja */
-    
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    /* Hilangkan background-image dari sini */
 }
+
+/* --- LAPISAN BACKGROUND BLUR --- */
+.section-gift::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Pindahkan background ke sini */
+    background-image: url({{galeri10}}); 
+    background-size: cover;
+    background-position: center;
+    /* ATUR BLUR DI SINI */
+    filter: blur(4px); 
+    /* Sedikit diperbesar biar pinggiran blur tidak putih/kosong */
+    transform: scale(1.1); 
+    z-index: 1;
+}
+
+/* --- OVERLAY GELAP (Opsional, agar teks lebih terbaca) --- */
+.section-gift::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2); /* Gelapkan 20% */
+    z-index: 2;
+}
+
 /* --- PANEL KONTEN KANAN --- */
 .gift-container {
     width: 100%;
-    max-width: 450px; 
+    max-width: 1200px; 
     min-height: 100vh;
-    /* Padding bawah 350px agar kartu terakhir tidak terpotong bunga */
-  /* Dari 30px, ubah ke 10px atau 0 */
     padding: 10px 25px 350px 25px;
     position: relative;
-    z-index: 10;
+    /* Pastikan z-index lebih tinggi dari ::before dan ::after */
+    z-index: 10; 
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05); /* Bayangan di sisi kiri panel */
+    /* Shadow tetap di sini */
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05); 
 }
-
-
 .bank-accounts-cards {
     display: flex;
     flex-direction: column;
@@ -828,7 +847,7 @@ body {
     background: url('https://ulemanti.id/wp-content/uploads/2024/04/card.png') center/cover no-repeat;
     border-radius: 15px; /* Radius kartu ATM standar tidak terlalu bulat */
     padding: 20px;
-    color: #fff;
+    color: #2d2c2c;
     position: relative;
     min-height: 220px;
     display: flex;
@@ -859,7 +878,7 @@ body {
     content: "";
     width: 50px; 
     height: 40px;
-    background: url('https://template-pureday-invitation.vercel.app/flowercream/pin-card.png') no-repeat center / contain;
+    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/pin-card.png') no-repeat center / contain;
     margin-top: 10px;
     margin-bottom: 20px;
     filter: brightness(1.2); /* Biar chip lebih 'nyala' */
@@ -867,16 +886,15 @@ body {
 
 /* Nomor Rekening: Elemen Utama */
 .account-number { 
-    /* GANTI KE SINI */
-    font-family: 'Roboto Mono', monospace !important;
-    
-    font-size: 1.35rem; 
-    font-weight: 700; 
-    letter-spacing: 3px; 
-    color: #ffffff !important;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
-    display: block;
-    margin: 10px 0; /* Tambah sedikit space biar nggak nempel cip */
+font-family: 'Roboto Mono', monospace !important;
+    font-variant-numeric: tabular-nums; /* Paksa angka berjejer rapi */
+    font-size: 1.4rem !important; 
+    font-weight: 700 !important; 
+    letter-spacing: 2px !important; 
+    color: #2d2c2c !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;   
 }
 
 /* Baris Bawah: Nama Pemilik & Tombol Copy */
@@ -894,27 +912,41 @@ body {
     letter-spacing: 1px;
     text-transform: uppercase;
     opacity: 0.9;
+    color: #2d2c2c;
+        max-width: 70%; /* Batasi lebar nama agar tidak tumpang tindih dengan tombol */
+    margin-bottom: 0;
 }
 
+/* Update pada Button Copy */
 .copy-btn {
+    /* Gunakan Absolute agar mengunci posisi */
+    position: absolute;
+    right: 20px; /* Jarak dari kanan kartu */
+    bottom: 20px; /* Jarak dari bawah kartu */
+    
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(4px);
-    color: #fff;
+    color: #2d2c2c;
     border: 1px solid rgba(255, 255, 255, 0.4);
-    padding: 5px 12px;
-    border-radius: 4px;
-    font-size: 0.6rem;
+    padding: 6px 14px;
+    border-radius: 6px; /* Lebih rapi sedikit kotak */
+    font-size: 0.65rem;
+    font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
+    font-weight: 700;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: 0.3s;
-    /* Tombol ini otomatis di kanan bawah karena parent-nya space-between */
+    transition: all 0.3s ease;
+    z-index: 5;
 }
 
 .copy-btn:hover {
-    background: #ffffff94;
+    background: #ffffff72;
     color: #000;
+    transform: translateY(-2px); /* Efek angkat sedikit saat hover */
 }
+
+
 .gift-text {
     font-family: 'Baloo Bhaina 2', cursive;
     font-size: 15px;
@@ -939,7 +971,7 @@ body {
 #comments-section-id.section-comments {
     position: relative;
     width: 100%;
-    max-width: 450px;
+    max-width: 1200px;
     min-height: 100vh;
     margin-left: auto;
     margin-right: 0;
@@ -964,17 +996,15 @@ body {
     bottom: 0;
     
     /* Pindahkan Gambar ke Sini */
-    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/galeri2.jpg');
+    background-image: url({{galeri11}});
     background-size: cover;
     background-position: center;
     
     /* EFEK BLUR */
-    filter: blur(8px); /* Ubah angka px sesuai tingkat blur yang diinginkan */
+    filter: blur(4px); /* Ubah angka px sesuai tingkat blur yang diinginkan */
     transform: scale(1.1); /* Untuk menghilangkan garis putih di pinggiran akibat blur */
     
-    z-index: -1; /* Meletakkan gambar di belakang konten */
-filter: blur(2px); /* Turunkan angka ini untuk mengurangi blur */   
-}
+    z-index: -1; /* Meletakkan gambar di belakang konten */}
 
 
 
@@ -1040,7 +1070,7 @@ filter: blur(2px); /* Turunkan angka ini untuk mengurangi blur */
 }
 
 .template-status-btn.status-active {
-    background: #ffffff00; /* Warna coklat tema */
+    background: #ffffff3a; /* Warna coklat tema */
     color: rgb(255, 255, 255);
     font-family: 'Baloo Bhaina 2', cursive;
     
@@ -1089,160 +1119,135 @@ filter: blur(2px); /* Turunkan angka ini untuk mengurangi blur */
 
 
 /* --- SECTION UTAMA --- */
+/* --- 1. SECTION UTAMA --- */
 #comments-list-section.section-comments-list {
     position: relative;
     width: 100%;
-    max-width: 450px; /* Ukuran HP */
-    min-height: 100vh; /* Wajib layar penuh */
-    margin-left: auto; /* Paksa ke kanan pada landscape */
+    max-width: 1200px;
+    min-height: 100vh;
+    margin-left: auto;
     margin-right: 0;
-    background-image: url({{galeri3}});
+    background-color: #fdf6e9; 
+    overflow: hidden; 
+    padding: 80px 20px 0 20px;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+/* --- 2. BACKGROUND BLUR --- */
+#comments-list-section.section-comments-list::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url({{galeri12}});
     background-size: cover;
     background-position: center;
-    background-color: #fdf6e9;
-    overflow: hidden;
-    padding: 80px 20px 0 20px; /* Padding bawah 0 agar bunga nempel pol */
-    box-sizing: border-box;
-    display: block;
+    filter: blur(4px); 
+    transform: scale(1.1);
+    z-index: -1;
 }
 
-/* --- DEKORASI BUNGA ATAS --- */
-/* Bunga Kiri Atas */
-#comments-list-section::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 180px;
-    height: 180px;
-    background: url('https://template-pureday-invitation.vercel.app/flowercream/kiri-atas.png') no-repeat top left / cover;
-    z-index: 5;
-    pointer-events: none;
-}
-
-/* Bunga Kanan Atas */
-.section-comments-list .container::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 180px;
-    height: 180px;
-    background: url('https://template-pureday-invitation.vercel.app/flowercream/kanan-atas.png') no-repeat top right / cover;
-    z-index: 5;
-    pointer-events: none;
-}
-
-/* --- DEKORASI BUNGA BAWAH (MENEMPEL POL) --- */
-#comments-list-section .flower-bottom {
-    content: "";
-    position: absolute;
-    bottom: -15px; /* Nilai negatif untuk narik jika PNG ada ruang kosong */
-    left: 0;
-    width: 100%;
-    height: 280px;
-    background: url('https://template-pureday-invitation.vercel.app/flowercream/bunga-bawah.png') no-repeat bottom center / cover;
-    z-index: 20;
-    pointer-events: none;
-}
-
-/* --- CONTAINER LIST KOMENTAR (AREA SKROL) --- */
-.comments-list-container {
-    position: relative;
-    z-index: 10;
-    margin-top: 30px;
-}
-
-.comments-scroll-box {
-    max-height: 550px; /* Tinggi maksimal sebelum skrol muncul */
-    overflow-y: auto;
-    padding: 10px 10px 200px 10px; /* Padding bawah besar agar tidak tertutup bunga */
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    scrollbar-width: none; /* Sembunyikan scrollbar di Firefox */
-}
-
-.comments-scroll-box::-webkit-scrollbar {
-    display: none; /* Sembunyikan scrollbar di Chrome/Safari */
-}
-
-/* --- KARTU KOMENTAR (STYLING {{comments}}) --- */
-/* Targetkan div yang muncul dari data {{comments}} */
+/* --- 3. KARTU KOMENTAR (ITEM) --- */
 .comments-scroll-box > div, 
 .comment-item {
-    background: #ffffff00;
-    border: 2px solid #ffffff; /* Border coklat muda sesuai tema */
+    background: rgba(255, 255, 255, 0.1); 
+    border: 2px solid #ffffff;
     border-radius: 15px;
     padding: 18px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* SEMUA RATA KIRI */
     text-align: left;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-    width: 100%;
     box-sizing: border-box;
-    position: relative;
 }
 
-/* Nama & Status Hadir */
-.comments-scroll-box strong, 
+/* --- 4. NAMA PENGIRIM --- */
+.comments-scroll-box > div strong, 
 .comment-name {
     font-family: 'Baloo Bhaina 2', cursive;
-    display: block;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     color: white;
     font-weight: 700;
-    margin-bottom: 5px;
+    display: inline; /* Biar sejajar */
+    margin-right: 10px; /* Jarak antara nama dan status */
 }
 
-/* Isi Pesan */
+/* STATUS (DI SEBELAH NAMA) */
+.comments-scroll-box span, 
+.comments-scroll-box small,
+.comment-status {
+    display: inline !important; /* Paksa satu baris, jangan enter */
+    font-family: 'Baloo Bhaina 2', cursive !important;
+    font-size: 0.7rem !important;
+    background: transparent !important;
+    border: none !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-transform: uppercase;
+}
+
+/* --- 6. ISI PESAN --- */
 .comments-scroll-box p,
 .comment-text {
     font-family: 'Baloo Bhaina 2', cursive;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: white;
-    line-height: 1.5;
+    line-height: 1.4;
     margin: 5px 0;
+    width: 100%;
+    word-wrap: break-word;
 }
 
-/* Status Hadir / Will Attend Label */
-.comment-status,
-.comments-scroll-box span.status {
-    display: inline-block;
-    font-family: 'Baloo Bhaina 2', cursive;
-    font-size: 0.7rem;
-    padding: 2px 10px;
-    border-radius: 20px;
-    background: #ffffff33; /* Putih transparan biar senada */
-    color: #ffffff;
-    border: 1px solid #ffffff;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* Variasi Warna kalau dia Hadir (Optional) */
-.status-hadir {
-    background: #ffffff4d; /* Agak lebih tebel dikit */
-    font-weight: 600;
-}
-
-/* Tanggal Komentar */
+/* --- 7. TANGGAL --- */
 .comment-date {
     font-family: 'Baloo Bhaina 2', cursive;
-    display: block;
-    text-align: right;
-    font-size: 0.75rem;
-    color: white;
-    margin-top: 10px;
+    text-align: right; 
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 12px;
+    width: 100%;
+    display: block; /* Wajib ada agar transform jalan */
+
+    /* Atur font ke ukuran minimal yang diizinkan browser dulu */
+    font-size: 10px; 
+
+    /* Baru dikecilkan paksa pakai scale */
+    transform: scale(0.8); 
+    
+    /* Atur titik tumpu penciutan ke kanan bawah supaya tetep rapi di pojok */
+    transform-origin: right bottom; 
+}
+
+/* --- 8. RESET GRID (Jika sebelumnya pakai grid, kita balikin ke normal) --- */
+.comments-scroll-box {
+    /* Trik: Atur tinggi maksimal agar hanya cukup untuk 3 kartu */
+    /* Jika tinggi 1 kartu ~140px, maka 3 kartu + gap = sekitar 450px-480px */
+    max-height: 460px; 
+    
+    overflow-y: auto; /* Munculkan scroll jika lebih dari 3 */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Jarak antar kartu */
+    
+    /* Sembunyikan scrollbar agar tetap estetik (opsional) */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.comments-scroll-box::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+/* Pastikan container luarnya tidak membatasi */
+.comments-list-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
 }
 
 
 
-.subtitle-top {
-    letter-spacing: 3px;
-    font-size: 0.8rem;
-    color: #ebe9e9;
-    text-align: center;
-}
+
 
 
     /* --- Floating Music Toggle --- */
@@ -1259,9 +1264,9 @@ filter: blur(2px); /* Turunkan angka ini untuk mengurangi blur */
     
     /* Properti tampilan lainnya (dipertahankan atau disesuaikan) */
     border-radius: 50%;
-    background-color: var(--color-bg-mid);
-    border: 2px solid var(--color-border-subtle);
-    color: var(--color-bg-dark); 
+    background-color: rgba(243, 240, 240, 0);
+    border: 2px solid white;
+    color: white; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1294,19 +1299,23 @@ filter: blur(2px); /* Turunkan angka ini untuk mengurangi blur */
         opacity: 0;
         transition: opacity 0.5s ease-in-out;
         font-size: 0.9rem;
+        font-family: 'Baloo Bhaina 2', cursive;
         pointer-events: none;
         min-width: 250px;
     }
 
     #toast-message.show {
         opacity: 1;
+        font-family: 'Baloo Bhaina 2', cursive;
     }
 #toast-message.error {
-    background-color: #d9534f;
+    background-color: #565c566f;
+    font-family: 'Baloo Bhaina 2', cursive;
 }
 
 #toast-message.success {
-    background-color: #5cb85c;
+    background-color: #565c566f;
+    font-family: 'Baloo Bhaina 2', cursive;
 }
 
 
@@ -1371,7 +1380,7 @@ filter: blur(2px); /* Turunkan angka ini untuk mengurangi blur */
                 <div class="card-overlay"></div>
                 <div class="card-content">
                     <div class="card-image-wrapper animate-up">
-                        <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/cowok.jpg" alt="Foto Pria">
+                        <img src="{{foto_pria}}" alt="Foto Pria">
                     </div>
                     <p class="card-name animate-up">{{nama_pria_lengkap}}</p>
                     <p class="parent-info animate-up">Putra dari Bapak {{nama_bapak_pria}} & Ibu {{nama_ibu_pria}}</p>
@@ -1382,7 +1391,7 @@ filter: blur(2px); /* Turunkan angka ini untuk mengurangi blur */
                 <div class="card-overlay"></div>
                 <div class="card-content">
                     <div class="card-image-wrapper animate-up">
-                        <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/cewek.jpg" alt="Foto Wanita">
+                        <img src="{{foto_wanita}}" alt="Foto Wanita">
                     </div>
                     <p class="card-name animate-up">{{nama_wanita_lengkap}}</p>
                     <p class="parent-info animate-up">Putri dari Bapak {{nama_bapak_wanita}} & Ibu {{nama_ibu_wanita}}</p>
@@ -1402,7 +1411,7 @@ filter: blur(2px); /* Turunkan angka ini untuk mengurangi blur */
 
     <div class="event-inner-container">
         <div class="event-photo-wrapper animate-fade">
-            <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/huda-vivi/galeri1.jpg" class="event-photo">
+            <img src="{{galeri8}}" class="event-photo">
         </div>
 
         <div id="countdown-timer" class="animate-fade">
@@ -1423,9 +1432,9 @@ filter: blur(2px); /* Turunkan angka ini untuk mengurangi blur */
                  <p class="event-location-address">{{lokasi_acara}}</p>
              </div>
              
-             <a href="{{maps_url}}" class="btn-maps-link animate-fade">
-                Buka di Google Maps
-             </a>
+                    <a href="https://{{maps_url}}" class="cover-open-btn animate-up" target="_blank" rel="noopener noreferrer">
+    Buka di Google Maps
+</a>
         </div>
     </div>
 </section>
@@ -1516,8 +1525,7 @@ filter: blur(2px); /* Turunkan angka ini untuk mengurangi blur */
         </div>
     </div>
     
-    <div class="flower-bottom"></div>
-</section>
+    </section>
 
 
 
