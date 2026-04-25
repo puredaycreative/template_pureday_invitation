@@ -1567,24 +1567,28 @@ font-family: 'Roboto Mono', monospace !important;
 <div id="toast-message"></div>
 
     <script>
-        (function() {
-    // 1. Buat elemen overlay secara otomatis tanpa ubah HTML manual
-    const overlay = document.createElement('div');
-    overlay.className = 'loading-overlay-pureday';
-    document.documentElement.appendChild(overlay);
+    (function() {
+        // 1. Buat layar penutup polos
+        const loader = document.createElement('div');
+        
+        // 2. Styling minimalis langsung di sini
+        Object.assign(loader.style, {
+         
+        });
 
-    // 2. Kunci scroll agar tamu tidak scroll saat masih loading
-    document.body.style.overflow = 'hidden';
+        document.documentElement.appendChild(loader);
+        document.body.style.overflow = 'hidden'; // Kunci scroll
 
-    // 3. Trigger saat semua asset (Images, CSS, Fonts) SELESAI di-load
-    window.addEventListener('load', function() {
-        // Beri jeda 500ms agar rendering engine browser selesai memproses gambar
-        setTimeout(() => {
-            overlay.classList.add('loaded-finish');
-            document.body.style.overflow = ''; // Aktifkan scroll lagi
-        }, 500);
-    });
-})();
+        // 3. Lepas saat semua asset (gambar/background) sudah siap
+        window.addEventListener('load', function() {
+            loader.style.opacity = '0';
+            document.body.style.overflow = ''; // Aktifkan scroll
+            
+            setTimeout(() => {
+                loader.remove(); // Hapus elemen dari HTML
+            }, 500);
+        });
+    })();
     
         
         // Data Pernikahan
