@@ -150,354 +150,263 @@
     }
     
     /* --- COVER SECTION --- */
-#cover-page {
+/* Container Utama */
+.template-cover-container {
     position: relative;
-    /* Tetap set lebar maksimal seukuran HP */
     width: 100%;
-    max-width: 1200px; 
-    
-    /* UBAH DI SINI: margin-left set ke auto, margin-right ke 0 */
-    margin-left: auto;
-    margin-right: 0;
-    
     height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/bg.png') !important;
     
-    /* Background & Dekorasi */
-    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bg.png'); 
-    background-size: cover;
+}
+
+/* 1. Background PNG Overlay */
+.template-cover-overlay {
+  position: absolute;
+    /* Pastikan top dan left 0 agar menempel */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/bg.png') !important;
     background-position: center;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05); /* Bayangan di sisi kiri saja */
+    background-repeat: no-repeat;
+    /* Gunakan 100% 100% agar ditarik mengikuti setinggi apapun kontennya */
+    background-size: 100% 100% !important; 
+    z-index: 1; /* Di bawah konten (z-index 20) */
+}
+
+/* 2. Border Atas & Bawah (Seamless Loop) */
+.border-run {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    /* Gunakan tinggi yang spesifik agar tidak menutupi tengah */
+    height: 800px; 
+    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/garisatas.png') repeat-x;
+    background-size: contain;
+    z-index: 10;
+}
+
+/* Tempelkan di paling atas */
+.border-top { 
+    top: 0; 
+    animation: borderSlide 15s linear infinite; 
+}
+
+/* Tempelkan di paling bawah */
+.border-bottom { 
+    bottom: 0; 
+    /* Gunakan transform scaleY(-1) jika ingin pola bawah terbalik menghadap ke atas */
+    transform: scaleY(-1); 
+    animation: borderSlide 15s linear infinite reverse; 
+}
+
+@keyframes borderSlide {
+    from { background-position: 0 0; }
+    to { background-position: 1000px 0; }
+}
+
+
+/* 3. Kipas PNG Pojok (Memutar/Mengayun) */
+.png-kipas {
+    position: absolute;
+    bottom: -10px;
+    width: 400px;
+    z-index: 5;
+    transform-origin: bottom center;
+}
+.kipas-kiri { left: -50px; animation: fanSwing 5s ease-in-out infinite alternate; }
+.kipas-kanan { right: -50px; animation: fanSwing 5s ease-in-out infinite alternate-reverse; }
+
+@keyframes fanSwing {
+    from { transform: rotate(-8deg); }
+    to { transform: rotate(8deg); }
+}
+
+/* 4. Frame Tengah & Konten Dinamis */
+.template-cover-content-wrapper {
+    position: relative;
+    z-index: 20;
+    width: 1000000px;
+    max-width: 400px;
+}
+/* Container Frame (Bingkai Kipas/Gunungan) */
+.frame-center {
+    position: relative;
+    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/kipastengahteks.png') no-repeat center;
+    background-size: contain;
+    padding: 0px 60px; 
+    text-align: center;
+    z-index: 20;
+    width: 490px;      
+    height: 1390px;
+    
+    /* UBAH DI SINI */
+    margin: 0 0 0 -50px; /* Atur angka 50px ini: makin kecil makin ke kiri */
     
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    overflow: hidden;
 }
 
-/* Pastikan Body punya background untuk area kosong di sebelah kiri */
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0; /* Warna area kosong di kiri */
-    /* Atau bisa pakai gambar wedding di sisi kiri yang lebar */
-    background-image: url('bg-samping.jpg'); 
-    background-size: cover;
-    background-position: left;
-}
-
-/* Dekorasi Bunga Kiri Atas (PNG) */
-#cover-page::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 280px; /* Sesuaikan ukuran bunga */
-    height: 280px;
-    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kiri-atas.png');
-
-    background-repeat: no-repeat;
-    background-position: top left;
-     background-size: cover;
-    z-index: 2;
-     animation: fadeInDown 2s ease-out forwards;
-}
-
-/* Dekorasi Bunga Kanan Atas (PNG) */
-.template-cover-overlay {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 280px;
-    height: 280px;
-    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kanan-atas.png');
-    background-repeat: no-repeat;
-    background-position: top right;
-    background-size: cover;
-    z-index: 2;
-    pointer-events: none;
-    animation: fadeInDown 2s ease-out forwards;
-}
-
-/* Dekorasi Bunga Bawah (PNG) */
-#cover-page::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    /* Gunakan height yang lebih kecil, atau ganti dengan px agar konsisten */
-    height: 45vh; 
-    max-height: 400px; /* BATASI tinggi maksimal agar tidak naik terlalu jauh di monitor besar */
-    
-    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bunga-bawah.png');
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    
-    /* Gunakan 'contain' agar gambar tidak terpotong, atau '100% auto' agar lebar penuh */
-    background-size: cover; 
-    
-    z-index: 3;
-    animation: fadeInUp 1.5s ease-out forwards;
-    pointer-events: none; /* Penting agar bunga tidak menghalangi klik tombol */
-}
-
-/* Konten Teks */
-.template-cover-content-wrapper {
+/* Wrapper Teks agar lebih rapi di tengah */
+.content-inside-frame {
     position: relative;
-    z-index: 10;
-    text-align: center;
-    /* Tambahan bayangan halus agar teks terbaca di atas tekstur */
-    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+    letter-spacing: normal;
+    z-index: 25;
 }
 
-/* Styling Teks */
+/* Base Style Bunga */
+.inner-flower-swing {
+    position: absolute;
+    width: 150px; /* Ukuran disesuaikan dengan gambar */
+    z-index: 21;
+    pointer-events: none;
+}
+
+/* POSISI BUNGA KIRI ATAS */
+.flower-top-left {
+    top: 32%; /* Geser ke area lekukan kiri atas */
+    left: 18%;
+    transform: translate(-20%, -20%);
+    transform-origin: center;
+    animation: swingFlowerTop 5s ease-in-out infinite alternate;
+    width:100%
+}
+
+/* POSISI BUNGA KANAN BAWAH */
+.flower-bottom-right {
+    bottom: 30%; /* Geser ke area lekukan kanan bawah */
+    right: 20%;
+    transform: translate(20%, 20%);
+    transform-origin: center;
+    animation: swingFlowerBottom 5s ease-in-out infinite alternate;
+    width:100%
+}
+
+/* Animasi Mengayun Lembut */
+@keyframes swingFlowerTop {
+    0% { transform: translate(-20%, -20%) rotate(-5deg); }
+    100% { transform: translate(-20%, -20%) rotate(5deg); }
+}
+
+@keyframes swingFlowerBottom {
+    0% { transform: translate(20%, 20%) rotate(5deg); }
+    100% { transform: translate(20%, 20%) rotate(-5deg); }
+}
+
+
+.template-cover-guest-name {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+/* Typography Dinamis */
+.yth-text {
+    z-index: 1;
+    color: #555;
+    font-size: 1.1rem;
+    margin-top: 10px;
+    font-family: 'Baloo Bhaina 2', cursive;
+}
+
 .template-cover-guest-name {
     font-family: 'Baloo Bhaina 2', cursive;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    margin-bottom: 30px;
-    color: #666;
-    display: inline-block;
-    padding: 5px 15px;
-    border-top: 1px solid #e2d5c5;
-    border-bottom: 1px solid #e2d5c5;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: -3px; /* Menaikkan posisi sedikit */
+    
+    /* --- Tambahkan kode di bawah ini --- */
+    max-width: 80px;      /* Batas lebar agar teks bisa "enter" otomatis */
+    margin-left: auto;     /* Menjaga tetap di tengah */
+    margin-right: auto;    /* Menjaga tetap di tengah */
+    line-height: 1.2;      /* Jarak antar baris jika teks pecah jadi dua */
+    display: block;        /* Agar max-width dan margin auto bekerja */
+    word-wrap: break-word; /* Memastikan kata panjang tidak keluar batas */
+    color: #333;           /* Pastikan warna kontras dengan background */
 }
 
 .template-cover-title {
-     font-family: 'Rouge Script', cursive; /* Gunakan font sambung */
-    font-size: 3.5rem;
-    margin: 20px 0;
-    color: #2c2c2c;
-    line-height: 1.2;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: #333;
+    margin: 10px auto; /* auto agar tetap di tengah secara horizontal */
+    padding-top: 20px !important;
+
+    /* --- TAMBAHKAN KODE DI BAWAH INI --- */
+    max-width: 80%;       /* Membatasi lebar teks agar tidak menabrak pinggir kipas */
+    line-height: 1.2;     /* Memberi jarak antar baris jika teks pecah jadi 2 baris */
+    word-wrap: break-word; /* Memaksa kata turun jika terlalu panjang */
+    overflow-wrap: break-word;
+    display: block;       /* Memastikan elemen bersifat blok untuk mendukung margin auto */
+}
+.date-text {
+    color: #777;
+    padding-bottom: 10px !important; 
+    font-family: 'Baloo Bhaina 2', cursive;
 }
 
-/* Tombol Buka */
+/* Button */
 .cover-open-btn {
-      font-family: 'Baloo Bhaina 2', cursive;
-    background-color: rgba(255, 255, 255, 0);
-    border: 1px dashed #ccc;
-    padding: 10px 25px;
-    border-radius: 50px;
-    font-size: 0.9rem;
+    margin-top: -20px;
+    padding: 10px 35px;
+    border: 2px solid #555;
+    background: #fff;
+    border-radius: 25px;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-    margin-top: 20px;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
 .cover-open-btn:hover {
-    transform: scale(1.05);
-    background-color: #fafafa;
+    background: #555;
+    color: #fff;
 }
 
+/* Container khusus teks ucapan agar tidak terlalu lebar */
+.closing-text-container {
+    max-width: 45%; /* Agar teks tidak menabrak pinggiran kipas */
+    margin: 0 auto;
+    line-height: 1.6;
+}
 
+.closing-description {
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.closing-thanks {
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 1.1rem;
+    color: #333;
+    text-align: center;
+}
+
+.closing-thanks strong {
+    font-size: 1.3rem;
+    display: block;
+    margin-top: 5px;
+    color: #333;
+}
+
+/* Memastikan kipas tetap proporsional untuk teks yang agak panjang */
+#closing-page .frame-center {
+    justify-content: center;
+    padding: 20px 60px; /* Menyesuaikan padding agar teks duduk pas di tengah */
+}
 
 
 
 
 
   /* --- Section Intro (Pasangan) --- */
-/* --- GLOBAL & BODY RESET --- */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Serif', 'Palatino Linotype', serif; /* Font default klasik */
-}
-
-/* --- SECTION UTAMA (Seukuran HP, Menepi ke Kanan) --- */
-/* --- ANIMASI TRANSISI TEKS --- */
-.animate-fade {
-    opacity: 0;
-    transform: translateX(-40px); /* Muncul geser dari kiri */
-    transition: all 1s cubic-bezier(0.2, 1, 0.3, 1);
-}
-
-.animate-fade.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/*
-/* --- CONTAINER UTAMA --- */
-#intro-section-id.section-intro {
-    min-height: 100vh;
-    position: relative;
-    width: 100%;
-    max-width: 1200px; /* Standar layar HP */
-    margin-left: auto; 
-    margin-right: 0;
-    
-    /* BACKGROUND */
-    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bg.png'); 
-    background-size: cover;
-    background-position: center;
-    background-color: #fdf6e9;
-    
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; /* Supaya dekorasi tidak bocor keluar */
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* --- 1. DEKORASI BUNGA (POSISI AWAL/DIAM) --- */
-
-/* Bunga Kiri Atas */
-#intro-section-id::before {
-    content: "";
-    position: absolute;
-    top: 0; 
-    left: 0;
-    width: 500px; 
-    height: 500px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kiri-atas.png') no-repeat top left / contain;
-    z-index: 5;
-    pointer-events: none;
-
-    /* Animasi Keluar */
-    opacity: 0;
-    transform: translate(-40px, -40px);
-    transition: all 1.2s ease-out;
-}
-
-/* Bunga Kanan Atas (Sekarang menempel ke Container Utama) */
-#intro-section-id::after {
-    content: "";
-    position: absolute;
-    top: 0; 
-    right: 0;
-    width: 500px; 
-    height: 500px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kanan-atas.png') no-repeat top right / contain;
-    z-index: 5;
-    pointer-events: none;
-
-    /* Animasi Keluar */
-    opacity: 0;
-    transform: translate(40px, -40px);
-    transition: all 1.2s ease-out;
-    transition-delay: 0.2s;
-}
-
-/* --- 2. ANIMASI SAAT SCROLL (VISIBLE) --- */
-#intro-section-id.visible::before,
-#intro-section-id.visible::after {
-    opacity: 1 !important;
-    transform: translate(0, 0) !important;
-}
-
-/* --- AREA KONTEN TENGAH --- */
-.intro-content {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    width: 100%;
-    padding: 100px 0 50px 0;
-}
-
-/* --- TYPOGRAPHY --- */
-.wedding-title {
-   font-family: Kreon, serif;
-    font-size: 2.8rem;
-    color: #333;
-    margin-bottom: 5px;
-}
-
-.opening-quote {
-    font-family: 'Baloo Bhaina 2', cursive;
-    font-size: 0.95rem;
-    color: #333;
-    margin-top: 5px;
-    margin-bottom: 40px;
-}
-
-.couple-names {
-    font-family: 'Rouge Script', cursive;
-    font-size: 2.5rem;
-    color: #333;
-    margin-top: 30px;
-    letter-spacing: 1px;
-}
-
-/* --- FRAME FOTO --- */
-.couple-photo-container {
-    position: relative;
-    width: 270px;
-    height: 400px;
-    margin: 0 auto;
-    border-radius: 150px; 
-    border: 1px solid #bc9c78;
-    padding: 12px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
-
-.couple-photo-container img.couple-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 140px; 
-}
-
-/* ORNAMEN DIAMOND */
-.couple-photo-container::before, 
-.couple-photo-container::after {
-    content: "♦";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #bc9c78;
-    font-size: 18px;
-    z-index: 11;
-}
-.couple-photo-container::before { left: -18px; }
-.couple-photo-container::after { right: -18px; }
-
-/* --- RESPONSIVITAS MOBILE (PERBAIKAN UKURAN) --- */
-@media (max-width: 1200px) {
-    #intro-section-id.section-intro {
-        box-shadow: none;
-    }
-
-    /* Kecilkan bunga agar tidak menutupi seluruh layar HP */
-    #intro-section-id::before {
-        width: 500px;
-        height: 500px;
-    }
-  #cover-page::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    /* Gunakan height yang lebih kecil, atau ganti dengan px agar konsisten */
-    height: 40vh; 
-    max-height: 1000px; /* BATASI tinggi maksimal agar tidak naik terlalu jauh di monitor besar */
-  }
-
-    #intro-section-id::after {
-        width: 500px;
-        height: 500px;
-    }
-    
-    .wedding-title {
-        font-size: 2.2rem;
-    }
-
-    .couple-photo-container {
-        width: 220px;
-        height: 330px;
-    }
-}
 
 
 
@@ -505,514 +414,396 @@ body {
 .section-detail {
     position: relative;
     width: 100%;
-    max-width: 1200px; /* Konsisten seukuran HP */
     min-height: 100vh;
-    margin-left: auto; /* Menempel ke kanan di laptop */
-    margin-right: 0;
-    
-    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bg.png'); /* Samakan dengan halaman sebelumnya */
-    background-size: cover;
-    background-position: center;
-    /* background-color: #fdf6e9; */
-    
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
     overflow: hidden;
-    padding: 60px 20px 150px 20px; /* Padding bawah besar agar tidak tertutup bunga */
-    box-sizing: border-box;
-    text-align: center;
-}
-
-/* --- DEKORASI BUNGA KIRI & KANAN BAWAH --- */
-/* --- 1. KONDISI DIAM (NGUMPET DI BAWAH) --- */
-.section-detail::before,
-.section-detail::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    width: 500px; /* Ukuran sudah diperbesar biar mantap */
-    height: 500px;
-    z-index: 5;
-    pointer-events: none;
-    background-repeat: no-repeat;
-    background-size: contain !important;
-
-    /* EFEK TRANSISI */
-    opacity: 0;
-
+    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/bg.png') center/cover no-repeat;
    
-opacity: 0;
-    transform: translate(40px, -40px); /* Keluar ke pojok kanan atas */
-    transition: all 1.2s ease-out;
-    transition-delay: 0.2s; /* Biar munculnya gantian, lebih elegan */
-    
+    padding: 120px 20px;
+    display: flex;
+    justify-content: center;
 }
 
-/* Bunga Kiri Bawah - Posisi Awal */
-.section-detail::before {
-    left: 0;
-    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kiri-bawah.png');
-    background-position: bottom left;
-    /* Ngumpet ke pojok kiri bawah luar */
-    transform: translate(-50px, 50px); 
+/* Background Overlay */
+.detail-bg-overlay {
+    position: absolute;
+
+    opacity: 0; /* Agar tidak terlalu mencolok */
+    z-index: 1;
 }
 
-/* Bunga Kanan Bawah - Posisi Awal */
-.section-detail::after {
-    right: 0;
-    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kanan-bawah.png');
-    background-position: bottom right;
-    /* Ngumpet ke pojok kanan bawah luar */
-    transform: translate(50px, 50px);
-    transition-delay: 0.2s; /* Biar gantian munculnya */
-}
-
-/* --- 2. KONDISI AKTIF (MUNCUL SAAT DISCOLL) --- */
-/* Begitu .section-detail dapet class .visible atau .active dari JS */
-.section-detail.visible::before,
-.section-detail.visible::after,
-.section-detail.active::before,
-.section-detail.active::after {
-     opacity: 1 !important;
-    transform: translate(0, 0) !important;
-}
-
-/* --- TYPOGRAPHY --- */
-.quote-opening, .quote-closing {
-    margin-top: 50px;
-    font-family: 'Baloo Bhaina 2', cursive;
-    font-size: 0.9rem;
-    color: #333;
-    line-height: 1.4;
-    margin-bottom: 20px;
-}
-
-.card-name {
-    font-family: 'Source Code Pro', monospace;
-    font-weight: bold;
-    font-size: 1rem;
-    margin: 10px 0 5px 0;
-    color: #232323;
-}
-
-/* --- FRAME FOTO MELENGKUNG (OVAL) --- */
-.card-image-wrapper {
+/* Label Mempelai */
+.mempelai-text {
     position: relative;
-    width: 120x; /* Ukuran frame lebih kecil karena ada dua foto */
-    height: 280px;
+    z-index: 5;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    text-align: left;
+    margin-bottom: 40px;
+    line-height: 1.2;
+    color: #333;
+}
+
+/* FRAME FOTO LINGKARAN (Gambar 4) */
+.card-image-wrapper {
+    width: 400px;
+    height: 400px;
     margin: 0 auto;
-    
-    border: 1px solid #bc9c78; /* Garis frame emas */
-    border-radius: 120px 120px 120px 120px; /* Bentuk lonjong */
-    padding: 10px;
-    box-sizing: border-box;
+    border-radius: 50%;
+    background: #fff;
+    border: 6px solid #fff; /* Garis putih dalam */
+    box-shadow: 0 0 0 3px #5d4037; /* Garis cokelat luar seperti di gambar */
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
 }
 
 .card-image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 110px 110px 110px 110px; /* Mengikuti frame */
 }
-
-/* Diamond Ornamen Samping */
-.card-image-wrapper::before, 
-.card-image-wrapper::after {
-    content: "♦";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #bc9c78;
-    font-size: 14px;
-}
-.card-image-wrapper::before { left: -12px; }
-.card-image-wrapper::after { right: -12px; }
-
-/* Spasi antar kartu pasangan */
-.couple-cards {
+.container-mempelai {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 500px; /* Batasi lebar agar rapi di tengah */
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 50px; /* Jarak antara Groom dan Bride */
-    margin-bottom: 50px;
+    align-items: center; /* Memastikan kartu dan teks rata tengah secara horizontal */
 }
 
+/* FRAME NAMA KAPSUL (Gambar 4) */
+.card-info-box {
+    position: relative;
+    z-index: 10;
+    background: #fff;
+    border: 2px solid #3e2723;
+    border-radius: 50px;
+    padding: 15px 30px;
+    margin-top: -35px; /* Menempel/Overlap ke foto */
+    display: inline-block;
+    min-width: 250px;
+}
 
+.card-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.7rem;
+    margin: 0;
+    color: #000;
+}
 
+.card-parents {
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    color: #444;
+}
+
+/* --- DEKORASI POJOK --- */
+.decor-corner {
+    position: absolute;
+    width: 200px; /* Ukuran gunungan pojok */
+    z-index: 30;
+}
+
+.decor-top-right {
+    bottom: 80px;
+    right: 10px;
+    /* Menambahkan rotate 180 derajat pada transform yang sudah ada */
+    transform: translate(10%, -10%) ;
+}
+
+.decor-bottom-left {
+    bottom: 80px;
+    left: 0;
+    transform: translate(-10%, 10%);
+}
+
+.gunungan-img {
+    width: 100%;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1));
+}
+
+/* Bunga Mengayun di Gunungan */
+.bunga-swing {
+    position: absolute;
+    width: 140px;
+    top: 20px;
+    right: 20px;
+    animation: swingDetail 5s ease-in-out infinite alternate;
+}
+
+@keyframes swingDetail {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(8deg); }
+}
+
+/* Responsif Mobile */
+@media (max-width: 480px) {
+    .card-image-wrapper {
+        width: 180px;
+        height: 180px;
+    }
+    .card-info-box {
+        min-width: 260px;
+    }
+}
 
     /* --- Section Event (Countdown) --- */
-
-/* --- CONTAINER EVENT --- */
-#event-section-id.section-event {
+/* Container Utama Section Event */
+.section-event {
     position: relative;
-    width: 100%;
-    max-width: 1200px;
-    min-height: 100vh;
-    margin-left: auto;
-    margin-right: 0;
-    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bg.png'); /* Background utama */
-    background-size: cover;
-    background-color: #fdf6e9;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
-    overflow: hidden;
-    padding: 80px 20px 180px 20px; /* Padding bawah lebih besar untuk bunga */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 100px 20px;
+   background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/bg.png') center/cover no-repeat;
     text-align: center;
-    box-sizing: border-box;
+    overflow: hidden;
 }
 
-/* --- BUNGA KANAN & KIRI ATAS --- */
-#event-section-id::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 180px; height: 180px;
-    /* background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kiri-atas.png') no-repeat top left ; */
-    z-index: 5;
-    background-size: cover;
+.subtitle-top {
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 1.1rem;
+    color: #8d6e63;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 50px;
 }
 
-.section-event::after {
-    content: "";
-    position: absolute;
-    top: 0; right: 0;
-    width: 180px; height: 180px;
-    /* background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kanan-atas.png') no-repeat top right ; */
-    z-index: 5;
-    background-size: cover;
+.main-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: #3e2723;
+    margin-bottom: 40px;
 }
 
-/* --- BUNGA BAWAH (MENUTUPI BAWAH) --- */
-.section-event .container::after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100%;
-    height: 250px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bunga-bawah.png') no-repeat bottom center ;
-    animation: fadeInUp 2s ease-out forwards;
-    z-index: 0;
-    pointer-events: none;
-    background-size: cover;
-}
-
-/* --- COUNTDOWN (BENTUK GERIGI/AWAN) --- */
+/* --- COUNTDOWN TIMER --- */
 #countdown-timer {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin: 30px 0;
+    gap: 15px;
+    margin-bottom: 50px;
 }
 
 .time-box {
-    width: 70px;
-    height: 70px;
-    background: #ffffff00;
-    border: 1px dashed #bc9c78;
-    border-radius: 50%; /* Membuat lingkaran */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    /* Efek Gerigi (opsional menggunakan mask atau border-image) */
+    background: #fff;
+    border: 1px solid #d7ccc8;
+    border-radius: 12px;
+    padding: 15px;
+    min-width: 75px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
 .time-number {
     font-family: 'Baloo Bhaina 2', cursive;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     font-weight: bold;
+    color: #5d4037;
     margin: 0;
-    color: #333;
 }
 
 .time-label {
     font-family: 'Baloo Bhaina 2', cursive;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
+    color: #8d6e63;
     margin: 0;
-    color: #888;
+    text-transform: uppercase;
 }
 
-/* --- CARD ACARA (RIBBON & LIST) --- */
-.event-card-wrapper {
-    background: rgba(255, 255, 255, 0.4); /* Transparan halus */
-    padding: 20px;
-    width: 100%;
+/* --- EVENT CARD WRAPPER --- */
+.event-card-wrappe {
     position: relative;
-    z-index: 15;
+    background: #fff;
+    border: 2px solid #d7ccc8;
+    border-radius: 20px;
+    padding: 60px 30px 40px;
+    max-width: 450px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
+/* Pita Tanggal (Ribbon) */
 .ribbon-date {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #5d4037;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 50px;
     font-family: 'Baloo Bhaina 2', cursive;
-    background-color: #f5e6d3; /* Warna krem pastel sesuai gambar */
-    padding: 10px 20px;
-    display: inline-block;
-    width: 90%;
-    clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%);
-    margin-bottom: 20px;
     font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    white-space: nowrap;
+    z-index: 5;
 }
 
 .event-item-list {
     font-family: 'Baloo Bhaina 2', cursive;
-    border-top: 2px dashed #bc9c78;
-    border-bottom: 2px dashed #bc9c78;
-    padding: 15px 0;
-    margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    font-size: 1.1rem;
+    color: #3e2723;
+    margin-bottom: 25px;
+    line-height: 1.6;
 }
 
-/* Mengatur style isi dari {{event_times}} */
+.location-wrapper {
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+
 .event-row {
     font-family: 'Baloo Bhaina 2', cursive;
-    font-size: 1rem;
-    display: block;
-    margin-bottom: 5px;
+    font-size: 0.95rem;
+    color: #5d4037;
+    line-height: 1.5;
 }
 
-.event-row b {
-    color: #333;
-}
-
-/* --- TOMBOL MAPS --- */
-.btn-maps-link {
-    font-family: 'Baloo Bhaina 2', cursive;
-    background-color: #f5e6d300;
-    color: #333;
-    text-decoration: none;
-    padding: 10px 25px;
+/* Tombol Google Maps */
+.cover-open-btn {
     display: inline-block;
-    width: 80%;
+    text-decoration: none;
+    padding: 12px 30px;
+    border: 2px solid #5d4037;
+    background: transparent;
+    color: #5d4037;
+    border-radius: 25px;
+    font-family: 'Baloo Bhaina 2', cursive;
     font-weight: bold;
-    clip-path: polygon(5% 0, 95% 0, 100% 50%, 95% 100%, 5% 100%, 0 50%);
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
-.btn-maps-link:hover {
-    background-color: #bc9c78;
-    color: white;
+.cover-open-btn:hover {
+    background: #5d4037;
+    color: #fff;
+    transform: translateY(-3px);
 }
 
-/* --- TYPOGRAPHY --- */
-.subtitle-top {
-      font-family: Abel, sans-serif;
-    letter-spacing: 3px;
-    font-size: 0.8rem;
-    margin-bottom: 0;
-    color: #666;
-}
-
-.main-title {
-    font-family: Kreon, serif;
-    font-size: 2.5rem;
-    margin-top: 5px;
-    color: #333;
-}
-
-
-
-
-
- 
-    
-/* --- Section Gallery --- */
-/* 1. KEYFRAMES: Fokus ke gerakan menyamping (X) */
-@keyframes daunKananMasuk {
-    from { 
-        transform: translateX(100px); /* Mulai dari luar kanan layar */
-        opacity: 0; 
+/* Responsif Mobile */
+@media (max-width: 480px) {
+    #countdown-timer {
+        gap: 8px;
     }
-    to { 
-        transform: translateX(0); /* Berakhir di posisi aslinya */
-        opacity: 1; 
+    .time-box {
+        min-width: 65px;
+        padding: 10px;
+    }
+    .main-title {
+        font-size: 2.5rem;
+    }
+    .event-card-wrappe {
+        width: 90%;
+        padding: 50px 20px 30px;
     }
 }
 
-@keyframes daunKiriMasuk {
-  from { 
-        transform: translateX(-150px) rotate(-10deg); /* Mulai dari luar kiri */
-        opacity: 0; 
-    }
-    to { 
-        transform: translateX(0) rotate(0deg); 
-        opacity: 1; 
-    }
-}
+
+
+
 
 /* 2. CONTAINER GALLERY */
+/* Container Utama Galeri */
 .section-gallery {
-    
-    position: relative !important;
-    overflow: hidden; /* PENTING: Supaya daun pas di luar layar gak bikin scroll horizontal */
-    view-timeline-name: --gallery-scroll;
-    view-timeline-axis: block;
-
-    
-    width: 100%;
-    max-width: 1200px; /* Tetap seukuran HP */
-    min-height: 100vh;
-    margin-left: auto; /* Menepi ke kanan di laptop */
-    margin-right: 0;
-    
-    /* Background Tekstur Kertas Lecek sesuai gambar */
-    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bg-kertas.png'); 
-    background-size: cover;
-    background-position: center;
-    background-color: #e5dec9;
-    
-    padding: 80px 20px;
-    box-sizing: border-box;
-   
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+    position: relative;
+    padding: 80px 15px;
+  background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/bg.png') center/cover no-repeat;
+    overflow: hidden;
 }
 
-/* 3. DAUN KANAN ATAS (Kanan ke Kiri) */
-.section-gallery::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 400px;
-    height: 400px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/daun-kanan-atas.png') no-repeat top right / contain;
-    z-index: 5;
-    pointer-events: none;
-
-    /* Hubungkan ke Scroll */
-    animation: daunKananMasuk linear forwards;
-    animation-timeline: --gallery-scroll;
-    animation-range: entry 10% entry 60%;
-}
-
-/* 4. DAUN KIRI BAWAH (Kiri ke Kanan) */
-.section-gallery::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 400px;
-    height: 400px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/daun-kiri-bawah.png') no-repeat bottom left / contain;
-    z-index: 5;
-    pointer-events: none;
-
-    /* Hubungkan ke Scroll */
-    animation: daunKiriMasuk linear forwards;
-    animation-timeline: --gallery-scroll;
-    animation-range: entry 10% entry 60%;
-}
-
-/* --- TYPOGRAPHY --- */
-.subtitle-top {
-    font-size: 0.8rem;
-    letter-spacing: 3px;
-    color: #666;
-    margin-bottom: 5px;
+/* Judul Galeri */
+.gallery-container .main-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem;
+    font-style: italic;
+    margin-bottom: 30px;
     text-align: center;
+    color: #000;
 }
 
-.main-title {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-/* --- SCRAPBOOK WRAPPER (Satu Kolom Besar) --- */
+/* --- MASONRY LAYOUT (2 KOLOM) --- */
 .scrapbook-wrapper {
-    display: flex;
-    flex-direction: column; /* Menyusun foto ke bawah */
-    align-items: center;    /* Memastikan foto berada di tengah (Center) */
-    gap: 30px;              /* Jarak antar foto agar tidak terlalu rapat */
+    column-count: 2; /* Membagi menjadi 2 kolom */
+    column-gap: 15px; /* Jarak horizontal antar kolom */
     width: 100%;
-    max-width: 450px; 
-    margin: 20px auto;
-    padding: 15px;
-    box-sizing: border-box;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
-/* Item Foto Polaroid */
+/* Wrapper per Gambar (Penting agar gambar tidak terpotong antar kolom) */
+.scrapbook-wrapper > * {
+    break-inside: avoid; /* Mencegah gambar terpotong saat pindah kolom */
+    margin-bottom: 15px; /* Jarak vertikal antar gambar */
+    display: block;
+}
+
+/* Style Gambar Sesuai Foto (Border Hitam Tebal & Rounded) */
 .scrapbook-wrapper img {
-    width: 90%;             /* Ukuran foto besar (90% dari lebar container) */
-    max-width: 380px;       /* Batas maksimal agar tidak pecah */
-    height: auto;
-    background: #fff;
-    /* Border putih tipis yang elegan */
-    padding: 8px 8px 25px 8px; 
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    border-radius: 4px;
-    box-sizing: border-box;
+    width: 100% !important;
+    height: auto !important; /* Tinggi mengikuti proporsi asli gambar */
+    display: block;
+    border: 3px solid #000 !important; /* Border hitam tebal sesuai gambar */
+    border-radius: 25px !important; /* Sudut sangat melengkung sesuai gambar */
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.1); /* Efek bayangan halus */
     transition: transform 0.3s ease;
 }
 
-/* Variasi Rotasi: Tetap pakai gaya scrapbook agar tidak kaku */
-.scrapbook-wrapper img:nth-child(odd) { 
-    transform: rotate(-1.5deg); 
-}
-.scrapbook-wrapper img:nth-child(even) { 
-    transform: rotate(1.5deg); 
-}
 
-/* Efek Hover */
-.scrapbook-wrapper img:hover {
-    z-index: 10;
-    transform: scale(1.02) rotate(0deg); /* Membesar sedikit saat disentuh */
-    box-shadow: 0 12px 25px rgba(0,0,0,0.18);
-}
 
-/* Penyesuaian untuk layar HP kecil */
-@media (max-width: 380px) {
+/* Mobile Adjustments */
+@media (max-width: 480px) {
+    .scrapbook-wrapper {
+        column-gap: 10px;
+    }
     .scrapbook-wrapper img {
-        width: 100%; /* Full di layar yang sangat kecil */
-        padding: 6px 6px 20px 6px;
+        border-radius: 20px !important;
+        border-width: 2.5px !important;
     }
 }
 
-
 /* --- Section Gift --- */
 .section-gift {
-      position: relative;
-    /* Tetap set lebar maksimal seukuran HP */
+    position: relative;
     width: 100%;
-    max-width: 1200px; 
+    /* UBAH: Jangan gunakan height: 100vh agar bisa memanjang ke bawah jika kartu banyak */
+    min-height: 100vh; 
+    height: auto; 
     
-    /* UBAH DI SINI: margin-left set ke auto, margin-right ke 0 */
     margin-left: auto;
     margin-right: 0;
     
-    height: 100vh;
-    
     /* Background & Dekorasi */
-    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bg.png'); 
+    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/bg.png'); 
     background-size: cover;
     background-position: center;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05); /* Bayangan di sisi kiri saja */
+    background-attachment: fixed; /* Menjaga background tetap tenang saat di-scroll */
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
     
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    /* UBAH: Gunakan flex-start agar konten mulai dari atas, bukan dipaksa di tengah */
+    justify-content: flex-start; 
+    overflow-y: auto; /* Izinkan scroll vertikal */
+    padding-bottom: 50px; 
 }
+
 /* --- PANEL KONTEN KANAN --- */
 .gift-container {
     width: 100%;
-    max-width: 12000px; 
+    max-width: 1200px; 
+    /* UBAH: min-height tetap 100vh tapi biarkan tinggi aslinya auto */
     min-height: 100vh;
-    /* Padding bawah 350px agar kartu terakhir tidak terpotong bunga */
-  /* Dari 30px, ubah ke 10px atau 0 */
-    padding: 10px 25px 350px 25px;
+    height: auto; 
+    
+    /* Padding bawah besar agar kartu terakhir tidak tertutup dekorasi border-bottom */
+    padding: 80px 25px 250px 25px; 
     position: relative;
     z-index: 10;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.05); /* Bayangan di sisi kiri panel */
+    /* Menghapus box-shadow ganda jika sudah ada di parent agar lebih ringan */
 }
-
 
 
 .bank-accounts-cards {
@@ -1020,20 +811,38 @@ opacity: 0;
     flex-direction: column;
     gap: 20px;
     margin-top: -10px;
+    margin-bottom: 70px !important;
 }
 
 .bank-accounts-cards > div {
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/asset/cardgrey.png') center/cover no-repeat;
-    border-radius: 15px; /* Radius kartu ATM standar tidak terlalu bulat */
-    padding: 20px;
+    /* 1. Paksa gambar menutupi seluruh area dari ujung ke ujung */
+    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/asset/cardgrey2.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100% !important; /* Paksa gambar memenuhi seluruh dimensi box */
+    
+    /* 2. Pastikan gambar dimulai dari tepi border terluar */
+    background-origin: border-box; 
+    text-align: left;
+    /* 3. Properti Kartu */
+    border-radius: 15px;
+    padding: 25px;
     color: #333;
     position: relative;
-    min-height: 220px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-    text-align: left;
+    
+    /* 4. Shadow dan Border (Pastikan border transparan jika ingin gambar benar-benar mentok) */
+    border: none; 
+    overflow: hidden; /* Memastikan isi kartu tidak keluar dari lengkungan radius */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    
+    /* 5. Rasio Kartu agar tidak gepeng */
+    aspect-ratio: 1.58 / 1; 
+    width: 100%;
+    max-width: 400px;
+    margin: 15px auto;
 }
 
 /* Baris Atas: Biasanya cuma ada Nama Bank */
@@ -1182,11 +991,11 @@ font-family: 'OCR A', 'Courier Prime', monospace;
 #comments-section-id.section-comments {
     position: relative !important;
     width: 100%;
-    max-width: 1200px;
+    /* max-width: 1200px; */
     min-height: 100vh;
     margin-left: auto;
     margin-right: 0;
-    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bg.png');
+    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/bg.png');
     background-size: cover;
     background-position: center;
     background-color: #fdf6e9;
@@ -1200,55 +1009,6 @@ font-family: 'OCR A', 'Courier Prime', monospace;
     view-timeline-axis: block;
 }
 
-/* 3. BUNGA KIRI ATAS */
-#comments-section-id::before {
-    content: "";
-    position: absolute;
-    top: 0; 
-    left: 0;
-    width: 400px; /* Ukuran saya sesuaikan dikit biar gak terlalu nutupin teks */
-    height: 400px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kiri-atas.png') no-repeat top left / contain;
-    z-index: 5;
-    pointer-events: none;
-
-    /* SETTING ANIMASI SCROLL (Tanpa Transition!) */
-    animation: turunKiri linear forwards;
-    animation-timeline: --comments-scroll;
-    /* Mulai gerak pas bagian atas section muncul di layar */
-    animation-range: entry 0% entry 40%;
-}
-
-/* 4. BUNGA KANAN ATAS */
-#comments-section-id::after {
-    content: "";
-    position: absolute;
-    top: 0; 
-    right: 0;
-    width: 400px; 
-    height: 400px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kanan-atas.png') no-repeat top right / contain;
-    z-index: 5;
-    pointer-events: none;
-
-    /* SETTING ANIMASI SCROLL (Tanpa Transition!) */
-    animation: turunKanan linear forwards;
-    animation-timeline: --comments-scroll;
-    animation-range: entry 0% entry 40%;
-}
-/* --- DEKORASI BUNGA BAWAH (PRESISI) --- */
-.section-comments .container::before {
-    content: "";
-    position: absolute;
-    bottom: -10px; /* Tempel ke bawah */
-    left: 0;
-    width: 100%;
-    height: 280px;
-    /* background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bunga-bawah.png') no-repeat bottom center ; */
-    background-size: cover;
-    z-index: 10;
-    pointer-events: none;
-}
 
 #comments-section-id.visible::before,
 #comments-section-id.visible::after {
@@ -1389,70 +1149,44 @@ font-family: 'OCR A', 'Courier Prime', monospace;
     }
 }
 
-/* 2. SECTION UTAMA */
+
+/* =========================================
+   SECTION UCAPAN TAMU (COMMENT LIST)
+   ========================================= */
 #comments-list-section.section-comments-list {
     position: relative;
     width: 100%;
-    max-width: 1200px;
+    /* max-width: 1200px; */
     min-height: 100vh;
+    height: auto; 
     margin-left: auto;
     margin-right: 0;
-    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bg.png');
-    background-size: cover;
+    background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/bg.png');
+    background-size: 100% 100% !important;
     background-position: center;
-    background-color: #fdf6e9;
-    padding: 80px 20px 0 20px;
+    background-color: #9f3b0f;
+    
+    /* Ruang kosong di bawah agar tidak menabrak form */
+    padding: 100px 20px 280px 20px; 
     box-sizing: border-box;
     display: block;
+    overflow: visible; 
 
-    /* AKTIFKAN RADAR SCROLL */
-    overflow: hidden; 
     view-timeline-name: --list-comments-scroll;
     view-timeline-axis: block;
 }
 
-/* 3. BUNGA KIRI ATAS */
-#comments-list-section::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 500px;
-    height: 500px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kiri-atas.png') no-repeat top left / contain;
-    z-index: 5;
-    pointer-events: none;
-
-    /* HUBUNGKAN KE SCROLL */
-    animation: bungaTurunKiri linear forwards;
-    animation-timeline: --list-comments-scroll;
-    /* Mulai gerak pas bagian atas section masuk layar 5%, selesai di 40% */
-    animation-range: entry 5% entry 40%;
-}
-
-
-/* 4. BUNGA KANAN ATAS */
-/* Saya ganti selektornya ke ::after section langsung biar gak nabrak container */
+/* --- FIX DEKORASI AGAR TIDAK MENGHALANGI SCROLL --- */
+.png-kipas, 
+.border-run, 
+#comments-list-section::before, 
 #comments-list-section::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 500px;
-    height: 500px;
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/kanan-atas.png') no-repeat top right / contain;
+    pointer-events: none !important; /* Jari bisa tembus ke area scroll */
     z-index: 5;
-    pointer-events: none;
-
-    /* HUBUNGKAN KE SCROLL */
-    animation: bungaTurunKanan linear forwards;
-    animation-timeline: --list-comments-scroll;
-    animation-range: entry 5% entry 40%;
 }
 
 
-
-/* --- CONTAINER LIST KOMENTAR (AREA SKROL) --- */
+/* --- AREA SCROLL KOMENTAR --- */
 .comments-list-container {
     position: relative;
     z-index: 10;
@@ -1460,100 +1194,87 @@ font-family: 'OCR A', 'Courier Prime', monospace;
 }
 
 .comments-scroll-box {
-    max-height: 550px; /* Tinggi maksimal sebelum skrol muncul */
-    overflow-y: auto;
-    padding: 10px 10px 200px 10px; /* Padding bawah besar agar tidak tertutup bunga */
+    max-height: 550px; 
+    overflow-y: auto !important;
+    padding: 10px 10px 80px 10px;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    scrollbar-width: none; /* Sembunyikan scrollbar di Firefox */
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch; /* Scroll halus di HP */
 }
 
 .comments-scroll-box::-webkit-scrollbar {
-    display: none; /* Sembunyikan scrollbar di Chrome/Safari */
+    display: none;
 }
 
-/* --- KARTU KOMENTAR (STYLING {{comments}}) --- */
-/* Targetkan div yang muncul dari data {{comments}} */
+/* --- KARTU KOMENTAR --- */
 .comments-scroll-box > div, 
 .comment-item {
-    background: #ffffff00;
-    border: 2px solid #e2d5c5; /* Border coklat muda sesuai tema */
+    background: rgba(255, 255, 255, 0.5); 
+    border: 2px solid #e2d5c5; 
     border-radius: 15px;
-    padding: 18px;
+    padding: 20px;
     text-align: left;
     box-shadow: 0 4px 12px rgba(0,0,0,0.03);
     width: 100%;
     box-sizing: border-box;
-    position: relative;
 }
 
-/* Nama & Status Hadir */
-.comments-scroll-box > div strong, 
-.comment-name {
-    display: inline;
-    font-size: 1rem;
-    font-family: 'Baloo Bhaina 2', cursive;
-    color: #333;
-    font-weight: 700;
-    font-weight: bold;
-    margin-bottom: 0px;
+/* --- PAKSA FONT BALOO BHAINA 2 (Nama, Status, Pesan) --- */
+
+/* Nama */
+.comments-scroll-box strong, 
+.comments-scroll-box .comment-name {
+    font-family: 'Baloo Bhaina 2', cursive !important;
+    font-size: 1.1rem !important;
+    color: #3e2723 !important;
+    font-weight: 700 !important;
 }
+
+/* Status Hadir */
 .comments-scroll-box span, 
-.comments-scroll-box small,
-    .comment-status {
-        display: inline !important; /* Paksa satu baris, jangan enter */
-        font-family: 'Baloo Bhaina 2', cursive !important;
-        font-size: 0.7rem !important;
-        background: transparent !important;
-        border: none !important;
-        color: rgba(41, 39, 39, 0.8) !important;
-        text-transform: uppercase;
-    }
+.comments-scroll-box small, 
+.comments-scroll-box .comment-status {
+    font-family: 'Baloo Bhaina 2', cursive !important;
+    font-size: 0.75rem !important;
+    color: #8d6e63 !important;
+    text-transform: uppercase !important;
+}
 
 /* Isi Pesan */
-.comments-scroll-box p,
-.comment-text {
-    font-size: 0.9rem;
-    font-family: 'Baloo Bhaina 2', cursive;
-    color: #555;
-    line-height: 1;
-    margin: 5px 0;
+.comments-scroll-box p, 
+.comments-scroll-box .comment-text {
+    font-family: 'Baloo Bhaina 2', cursive !important;
+    font-size: 0.95rem !important;
+    color: #555 !important;
+    line-height: 1.4 !important;
+    margin-top: 5px !important;
+    text-align: left !important; /* Kembalikan ke kiri agar rapi */
 }
 
-/* Tanggal Komentar */
-.comment-date {
-    font-family: 'Baloo Bhaina 2', cursive;
-    text-align: right; 
-    color: rgba(73, 66, 66, 0.753);
-    margin-top: 12px;
-    width: 100%;
-    display: block; /* Wajib ada agar transform jalan */
-
-    /* Atur font ke ukuran minimal yang diizinkan browser dulu */
-    font-size: 10px; 
-
-    /* Baru dikecilkan paksa pakai scale */
-    transform: scale(0.8); 
-    
-    /* Atur titik tumpu penciutan ke kanan bawah supaya tetep rapi di pojok */
-    transform-origin: right bottom; 
+/* Tanggal */
+.comments-scroll-box .comment-date {
+    font-family: 'Baloo Bhaina 2', cursive !important;
+    font-size: 10px !important;
+    text-align: right !important;
+    display: block !important;
+    opacity: 0.7 !important;
+    margin-top: 10px !important;
 }
 
-/* --- TYPOGRAPHY --- */
-.main-title {
-    font-size: 2.2rem;
-    color: #333;
-    margin-bottom: 10px;
-    text-align: center;
+/* Judul Utama */
+.section-comments-list .main-title {
+    font-family: 'Great Vibes', cursive !important;
+    font-size: 2.8rem !important;
 }
 
-.subtitle-top {
-    letter-spacing: 3px;
-    font-size: 0.8rem;
-    color: #888;
-    text-align: center;
+.section-comments-list .subtitle-top {
+    font-family: 'Baloo Bhaina 2', cursive !important;
+    letter-spacing: 3px !important;
+    font-size: 0.8rem !important;
 }
+
 
 
     /* --- Floating Music Toggle --- */
@@ -1647,24 +1368,71 @@ font-family: 'OCR A', 'Courier Prime', monospace;
 </head>
 <body class="scroll-locked">
 
-   <div id="cover-page" class="template-cover-container">
-    <div class="template-cover-overlay"></div>
-    <div class="template-cover-content-wrapper animate-down">
-        <p style="color: #555; font-size: 1.1rem; margin-bottom: 5px;  font-family: 'Baloo Bhaina 2', cursive;">Kepada Yth:</p>
-        <h3 class="template-cover-guest-name" id="guest-name-display">TAMU UNDANGAN</h3>
-        
-        <h1 class="template-cover-title">{{nama_pria}} & {{nama_wanita}}</h1>
-        
-        <p style="color: #777; margin-top: 20px;  font-family: 'Baloo Bhaina 2', cursive;">{{tanggal_acara_baca}}</p>
-        
-        <button id="open-invitation-btn" class="cover-open-btn">
-            Buka
-        </button>
+<div id="cover-page" class="template-cover-container">
+    <!-- <div class="template-cover-overlay"></div> -->
+
+    <div class="border-run border-top"></div>
+    
+
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/kipaskiri.png" class="png-kipas kipas-kiri" alt="decor">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/kipaskanan.png" class="png-kipas kipas-kanan" alt="decor">
+ <div class="border-run border-bottom"></div>
+<div class="template-cover-content-wrapper animate-down">
+     
+    <div class="frame-center">
+        <p class="yth-text">Yth:</p>
+            <h3 class="template-cover-guest-name" id="guest-name-display">TAMU UNDANGAN</h3>
+        <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/bungabuattengahkiriatas.png" 
+             class="inner-flower-swing flower-top-left" alt="decor">
+             
+        <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/bungabuattengahkananbawah.png" 
+             class="inner-flower-swing flower-bottom-right" alt="decor">
+  
+            
+        <div class="content-inside-frame">
+         
+            <h1 class="template-cover-title">{{nama_pria}} & {{nama_wanita}}</h1>
+            
+            <p class="date-text">{{tanggal_acara_baca}}</p>
+            
+            <button id="open-invitation-btn" class="cover-open-btn">Buka</button>
+        </div>
     </div>
 </div>
+</div>
+
     <div id="main-content">
+        <div id="closing-page" class="template-cover-container">
+    <div class="template-cover-overlay"></div>
+
+    <div class="border-run border-top"></div>
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/kipaskiri.png" class="png-kipas kipas-kiri" alt="decor">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/kipaskanan.png" class="png-kipas kipas-kanan" alt="decor">
+    <div class="border-run border-bottom"></div>
+
+    <div class="template-cover-content-wrapper animate-down">
+        <div class="frame-center">
+            <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/bungabuattengahkiriatas.png" 
+                 class="inner-flower-swing flower-top-left" alt="decor">
+            <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/bungabuattengahkananbawah.png" 
+                 class="inner-flower-swing flower-bottom-right" alt="decor">
+      
+            <div class="content-inside-frame">
+                <div class="closing-text-container">
+                    <p class="closing-description">
+                        Merupakan suatu kehormatan apabila Bapak/Ibu/Saudara/i berkenan hadir, memberikan restu dan mendoakan dalam acara pernikahan kami. Atas kehadirannya kami ucapkan Terima Kasih
+                    </p>
+                    
+                </div>
+                
+              
+            </div>
+        </div>
+    </div>
+</div>
+
         
-       <section id="intro-section-id" class="section-intro">
+       <!-- <section id="intro-section-id" class="section-intro">
     <div class="intro-content">
         <h1 class="wedding-title animate-up">Undangan Pernikahan</h1>
         <p class="opening-quote animate-up">Dengan memohon rahmat dan ridho Allah SWT</p>
@@ -1679,42 +1447,112 @@ font-family: 'OCR A', 'Courier Prime', monospace;
 
         <h3 class="couple-names animate-up">{{nama_pria}} & {{nama_wanita}}</h3>
     </div>
+</section> -->
+
+<section class="section-detail">
+    <div class="border-run border-top"></div>
+    <div class="border-run border-bottom"></div>
+
+    <div class="detail-bg-overlay"></div>
+ <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/kipaskiri.png" class="png-kipas kipas-kiri" alt="decor">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/kipaskanan.png" class="png-kipas kipas-kanan" alt="decor">
+
+    <div class="decor-corner decor-top-right">
+        <!-- <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/kipasbalikkanan.png" class="gunungan-img"> -->
+        <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/bungabuattengahkananbawah.png" class="bunga-swing">
+    </div>
+
+    <div class="decor-corner decor-bottom-left">
+        <!-- <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/kipasbalikkiri.png" class="gunungan-img"> -->
+        <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/bungabuattengahkiriatas.png" class="bunga-swing">
+    </div>
+
+    <div class="container-mempelai animate-up">
+        <p class="mempelai-text">Mempelai <br> Pengantin Pria :</p>
+        
+        <div class="card groom-card animate-up">
+            <div class="card-image-wrapper">
+                <img src="{{foto_pria}}" alt="Foto Pria">
+            </div>
+            
+            <div class="card-info-box">
+                <p class="card-name">{{nama_pria_lengkap}}</p>
+                <p class="card-parents">Putra dari Bapak {{nama_bapak_pria}} & Ibu {{nama_ibu_pria}}</p>
+            </div>
+        </div>
+    </div>
 </section>
 
+<section class="section-detail">
+    <div class="border-run border-top"></div>
+    <div class="border-run border-bottom"></div>
 
-        <section class="section section-detail" style="padding-top: 0;">
-            <div><br>
-                <p class="quote-opening animate-up">
-                    Tanpa mengurangi rasa hormat, kami mengundang Anda untuk berkenan menghadiri acara pernikahan kami:
-                </p>
+    <div class="detail-bg-overlay"></div>
+ <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/kipaskiri.png" class="png-kipas kipas-kiri" alt="decor">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/kipaskanan.png" class="png-kipas kipas-kanan" alt="decor">
 
-                <div class="couple-cards animate-up">
-                    <div class="card groom-card animate-up" data-delay="0.0s">
-                        <div class="card-image-wrapper">
-                            <img src="{{foto_pria}}" alt="Foto Pria">
-                        </div>
-                        <p class="card-name">{{nama_pria_lengkap}}</p>
-                        <p style="font-size: 0.9rem; font-family: 'Baloo Bhaina 2', cursive;">Putra dari Bapak {{nama_bapak_pria}} & Ibu {{nama_ibu_pria}}</p>
-                    </div>
-                    
-                    <div class="card bride-card animate-up" data-delay="0.3s">
-                        <div class="card-image-wrapper">
-                            <img src="{{foto_wanita}}" alt="Foto Wanita">
-                        </div>
-                        <p class="card-name">{{nama_wanita_lengkap}}</p>
-                        <p style="font-size: 0.9rem; font-family: 'Baloo Bhaina 2', cursive;">Putri dari Bapak {{nama_bapak_wanita}} & Ibu {{nama_ibu_wanita}}</p>
-                    </div>
-                </div>
+    <div class="decor-corner decor-top-right">
+        <!-- <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/kipasbalikkanan.png" class="gunungan-img"> -->
+        <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/bungabuattengahkananbawah.png" class="bunga-swing">
+    </div>
 
-                <p class="quote-closing animate-up">
-                    Segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat (kebesaran Allah).<br>
-                   ~ QS Adz-Dzariyat: 49
-                </p>
+    <div class="decor-corner decor-bottom-left">
+        <!-- <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/kipasbalikkiri.png" class="gunungan-img"> -->
+        <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/bungabuattengahkiriatas.png" class="bunga-swing">
+    </div>
+
+    <div class="container-mempelai animate-up">
+        <p class="mempelai-text">Mempelai <br> Pengantin Wanita :</p>
+        
+        <div class="card groom-card animate-up">
+            <div class="card-image-wrapper">
+                <img src="{{foto_wanita}}" alt="Foto Pria">
             </div>
-        </section>
+            
+            <div class="card-info-box">
+                <p class="card-name">{{nama_wanita_lengkap}}</p>
+                <p class="card-parents">Putra dari Bapak {{nama_bapak_wanita}} & Ibu {{nama_ibu_wanita}}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <div id="closing-page" class="template-cover-container">
+    <div class="template-cover-overlay"></div>
+
+    <div class="border-run border-top"></div>
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/kipaskiri.png" class="png-kipas kipas-kiri" alt="decor">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/kipaskanan.png" class="png-kipas kipas-kanan" alt="decor">
+    <div class="border-run border-bottom"></div>
+
+    <div class="template-cover-content-wrapper animate-down">
+        <div class="frame-center">
+            <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/bungabuattengahkiriatas.png" 
+                 class="inner-flower-swing flower-top-left" alt="decor">
+            <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/bungabuattengahkananbawah.png" 
+                 class="inner-flower-swing flower-bottom-right" alt="decor">
+      
+            <div class="content-inside-frame">
+                <div class="closing-text-container">
+                    <p class="closing-description">
+                    Segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat (kebesaran Allah).<br>
+           ~ QS Adz-Dzariyat: 49    
+                    </p>
+                    
+                </div>
+                
+              
+            </div>
+        </div>
+    </div>
+</div>
+
 
      <section id="event-section-id" class="section section-event">
+                  <div class="border-run border-top"></div>
+    <div class="border-run border-bottom"></div>
     <div >
+ 
         <p class="subtitle-top animate-up">Our Special</p>
         <h2 class="main-title font-cursive animate-up">Wedding Event</h2>
 
@@ -1747,6 +1585,8 @@ font-family: 'OCR A', 'Courier Prime', monospace;
 
 
      <section id="gallery-section-id" class="section-gallery">
+         <div class="border-run border-top"></div>
+     <div class="border-run border-bottom"></div>
     <div class="gallery-container animate-up">
         <p class="subtitle-top">OUR SWEET MEMORY</p>
         <h2 class="main-title font-cursive">Photo Gallery</h2>
@@ -1759,6 +1599,8 @@ font-family: 'OCR A', 'Courier Prime', monospace;
         
        
 <section id="gift-section-id" class="section-gift">
+       <div class="border-run border-top"></div>
+     <div class="border-run border-bottom"></div>
     <div class="container gift-container animate-up">
         <br>
         <p class="subtitle-top">WEDDING GIFT</p>
@@ -1776,7 +1618,11 @@ font-family: 'OCR A', 'Courier Prime', monospace;
 
 
         <section id="comments-section-id" class="section section-comments">
-            <div class="container an">
+           <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/kipaskiri.png" class="png-kipas kipas-kiri" alt="decor">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatcoklatcream/kipaskanan.png" class="png-kipas kipas-kanan" alt="decor">
+               <div class="border-run border-top"></div>
+     <div class="border-run border-bottom"></div>
+       <div class="container an">
                 <p class="subtitle-top">UCAPAN & DO'A</p>
                 <h2 class="main-title font-cursive">Kirimkan Ucapan Terbaik</h2>
                 
@@ -1820,6 +1666,8 @@ font-family: 'OCR A', 'Courier Prime', monospace;
         </section>
         
      <section id="comments-list-section" class="section-comments-list">
+        <div class="border-run border-top"></div>
+     <div class="border-run border-bottom"></div>
     <div class="container animate-up">
         <p class="subtitle-top">UCAPAN TAMU</p>
         <h2 class="main-title font-cursive">Komentar Terbaru</h2>
@@ -1831,7 +1679,7 @@ font-family: 'OCR A', 'Courier Prime', monospace;
         </div>
     </div>
     
-    <div class="flower-bottom"></div>
+  
 </section>
 
 
