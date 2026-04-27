@@ -973,6 +973,10 @@ opacity: 0;
 
 
 /* --- Section Gift --- */
+/* Sembunyikan section secara default agar tidak crash/kosong */
+#gift-section-id {
+    display: none !important;
+}
 .section-gift {
       position: relative;
     /* Tetap set lebar maksimal seukuran HP */
@@ -1695,6 +1699,7 @@ font-family: 'OCR A', 'Courier Prime', monospace;
                         </div>
                         <p class="card-name">{{nama_pria_lengkap}}</p>
                         <p style="font-size: 0.9rem; font-family: 'Baloo Bhaina 2', cursive;">Putra dari Bapak {{nama_bapak_pria}} & Ibu {{nama_ibu_pria}}</p>
+                        <p style="font-size: 0.8rem; font-family: 'Baloo Bhaina 2', cursive;">{{alamat_pria}}</p>
                     </div>
                     
                     <div class="card bride-card animate-up" data-delay="0.3s">
@@ -1703,6 +1708,7 @@ font-family: 'OCR A', 'Courier Prime', monospace;
                         </div>
                         <p class="card-name">{{nama_wanita_lengkap}}</p>
                         <p style="font-size: 0.9rem; font-family: 'Baloo Bhaina 2', cursive;">Putri dari Bapak {{nama_bapak_wanita}} & Ibu {{nama_ibu_wanita}}</p>
+                        <p style="font-size: 0.8rem; font-family: 'Baloo Bhaina 2', cursive;">{{alamat_wanita}}</p>
                     </div>
                 </div>
 
@@ -1736,7 +1742,7 @@ font-family: 'OCR A', 'Courier Prime', monospace;
                  <p class="event-row font-family: 'Baloo Bhaina 2', cursive; animate-up">{{lokasi_acara}}</p>
              </div>
              
-            <a href="https://{{maps_url}}" class="cover-open-btn animate-up" target="_blank" rel="noopener noreferrer">
+            <a href="{{maps_url}}" class="cover-open-btn animate-up" target="_blank" rel="noopener noreferrer">
     Buka di Google Maps
 </a>
         </div>
@@ -1757,7 +1763,7 @@ font-family: 'OCR A', 'Courier Prime', monospace;
     </div>
 </section>
         
-       
+    
 <section id="gift-section-id" class="section-gift">
     <div class="container gift-container animate-up">
         <br>
@@ -1941,6 +1947,33 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+
+(function() {
+    try {
+        // Tunggu sampai semua elemen selesai dimuat
+        window.addEventListener('load', function() {
+            const container = document.getElementById('bank-accounts-cards');
+            const section = document.getElementById('gift-section-id');
+
+            if (container && section) {
+                const rawContent = container.innerHTML.trim();
+                
+                // CEK: Apakah ada data asli di dalamnya?
+                // Kita anggap data valid kalau panjang teks lebih dari 20 karakter
+                // dan tidak mengandung teks variabel mentah {{...}}
+                if (rawContent.length > 20 && !rawContent.includes('{{')) {
+                    section.style.setProperty('display', 'flex', 'important');
+                    console.log("Gift Section: Data ditemukan, menampilkan section.");
+                } else {
+                    console.log("Gift Section: Data kosong atau mentah, tetap sembunyi.");
+                }
+            }
+        });
+    } catch (err) {
+        // Jika ada error, script ini tidak akan menghentikan render halaman lain
+        console.error("Gift Script Error: ", err);
+    }
+})();
 // --- Music Toggle Logic ---
 
 const music = document.getElementById('background-music');
