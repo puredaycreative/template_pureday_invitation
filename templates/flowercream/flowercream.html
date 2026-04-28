@@ -148,17 +148,29 @@
         border-color: var(--color-bg-dark);
         transform: translateY(-1px);
     } */
+
+
+
+    /* Class Variabel untuk Centering Section */
+.bg-tengah {
+    width: 100%;
+    max-width: 450px; /* Ukuran standar HP agar ramping */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Opsional: Tambahkan efek shadow agar terlihat terpisah dari background luar */
+.bg-tengah {
+    box-shadow: 0 0 40px rgba(0,0,0,0.1);
+}
     
     /* --- COVER SECTION --- */
 #cover-page {
     position: relative;
     /* Tetap set lebar maksimal seukuran HP */
-    width: 100%;
-    max-width: 1200px; 
     
-    /* UBAH DI SINI: margin-left set ke auto, margin-right ke 0 */
-    margin-left: auto;
-    margin-right: 0;
     
     height: 100vh;
     
@@ -325,10 +337,7 @@ body {
 #intro-section-id.section-intro {
     min-height: 100vh;
     position: relative;
-    width: 100%;
-    max-width: 1200px; /* Standar layar HP */
-    margin-left: auto; 
-    margin-right: 0;
+ 
     
     /* BACKGROUND */
     background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bg.webp'); 
@@ -463,53 +472,14 @@ body {
 .couple-photo-container::before { left: -18px; }
 .couple-photo-container::after { right: -18px; }
 
-/* --- RESPONSIVITAS MOBILE (PERBAIKAN UKURAN) --- */
-@media (max-width: 1200px) {
-    #intro-section-id.section-intro {
-        box-shadow: none;
-    }
-
-    /* Kecilkan bunga agar tidak menutupi seluruh layar HP */
-    #intro-section-id::before {
-        width: 500px;
-        height: 500px;
-    }
-  #cover-page::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    /* Gunakan height yang lebih kecil, atau ganti dengan px agar konsisten */
-    height: 40vh; 
-    max-height: 1000px; /* BATASI tinggi maksimal agar tidak naik terlalu jauh di monitor besar */
-  }
-
-    #intro-section-id::after {
-        width: 500px;
-        height: 500px;
-    }
-    
-    .wedding-title {
-        font-size: 2.2rem;
-    }
-
-    .couple-photo-container {
-        width: 220px;
-        height: 330px;
-    }
-}
 
 
 
 /* --- CONTAINER UTAMA SECTION DETAIL --- */
 .section-detail {
     position: relative;
-    width: 100%;
-    max-width: 1200px; /* Konsisten seukuran HP */
     min-height: 100vh;
-    margin-left: auto; /* Menempel ke kanan di laptop */
-    margin-right: 0;
+
     
     background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bg.webp'); /* Samakan dengan halaman sebelumnya */
     background-size: cover;
@@ -644,11 +614,8 @@ opacity: 0;
 /* --- CONTAINER EVENT --- */
 #event-section-id.section-event {
     position: relative;
-    width: 100%;
-    max-width: 1200px;
     min-height: 100vh;
-    margin-left: auto;
-    margin-right: 0;
+
     background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bg.webp'); /* Background utama */
     background-size: cover;
     background-color: #fdf6e9;
@@ -852,11 +819,7 @@ opacity: 0;
     view-timeline-axis: block;
 
     
-    width: 100%;
-    max-width: 1200px; /* Tetap seukuran HP */
-    min-height: 100vh;
-    margin-left: auto; /* Menepi ke kanan di laptop */
-    margin-right: 0;
+  
     
     /* Background Tekstur Kertas Lecek sesuai gambar */
     background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bg-kertas.webp'); 
@@ -981,12 +944,7 @@ opacity: 0;
 .section-gift {
       position: relative;
     /* Tetap set lebar maksimal seukuran HP */
-    width: 100%;
-    max-width: 1200px; 
-    
-    /* UBAH DI SINI: margin-left set ke auto, margin-right ke 0 */
-    margin-left: auto;
-    margin-right: 0;
+
     
     height: 100vh;
     
@@ -1004,8 +962,7 @@ opacity: 0;
 }
 /* --- PANEL KONTEN KANAN --- */
 .gift-container {
-    width: 100%;
-    max-width: 12000px; 
+
     min-height: 100vh;
     /* Padding bawah 350px agar kartu terakhir tidak terpotong bunga */
   /* Dari 30px, ubah ke 10px atau 0 */
@@ -1186,11 +1143,9 @@ font-family: 'OCR A', 'Courier Prime', monospace;
 /* 2. CONTAINER UTAMA */
 #comments-section-id.section-comments {
     position: relative !important;
-    width: 100%;
-    max-width: 1200px;
+
     min-height: 100vh;
-    margin-left: auto;
-    margin-right: 0;
+ 
     background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bg.webp');
     background-size: cover;
     background-position: center;
@@ -1397,11 +1352,9 @@ font-family: 'OCR A', 'Courier Prime', monospace;
 /* 2. SECTION UTAMA */
 #comments-list-section.section-comments-list {
     position: relative;
-    width: 100%;
-    max-width: 1200px;
+
     min-height: 100vh;
-    margin-left: auto;
-    margin-right: 0;
+
     background-image: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercream/bg.webp');
     background-size: cover;
     background-position: center;
@@ -1652,7 +1605,7 @@ font-family: 'OCR A', 'Courier Prime', monospace;
 </head>
 <body class="scroll-locked">
 
-   <div id="cover-page" class="template-cover-container">
+   <div id="cover-page" class="template-cover-container bg-tengah">
     <div class="template-cover-overlay"></div>
     <div class="template-cover-content-wrapper animate-down">
         <p style="color: #555; font-size: 1.1rem; margin-bottom: 5px;  font-family: 'Baloo Bhaina 2', cursive;">Kepada Yth:</p>
@@ -1669,7 +1622,7 @@ font-family: 'OCR A', 'Courier Prime', monospace;
 </div>
     <div id="main-content">
         
-       <section id="intro-section-id" class="section-intro">
+       <section id="intro-section-id" class="section-intro bg-tengah">
     <div class="intro-content">
         <h1 class="wedding-title animate-up">Undangan Pernikahan</h1>
         <p class="opening-quote animate-up">Dengan memohon rahmat dan ridho Allah SWT</p>
@@ -1687,7 +1640,7 @@ font-family: 'OCR A', 'Courier Prime', monospace;
 </section>
 
 
-        <section class="section section-detail" style="padding-top: 0;">
+        <section class="section section-detail bg-tengah" style="padding-top: 0;">
             <div><br>
                 <p class="quote-opening animate-up">
                     Tanpa mengurangi rasa hormat, kami mengundang Anda untuk berkenan menghadiri acara pernikahan kami:
@@ -1720,7 +1673,7 @@ font-family: 'OCR A', 'Courier Prime', monospace;
             </div>
         </section>
 
-     <section id="event-section-id" class="section section-event">
+     <section id="event-section-id" class="section section-event bg-tengah">
     <div >
         <p class="subtitle-top animate-up">Our Special</p>
         <h2 class="main-title font-cursive animate-up">Wedding Event</h2>
@@ -1754,7 +1707,7 @@ font-family: 'OCR A', 'Courier Prime', monospace;
 
 
 
-     <section id="gallery-section-id" class="section-gallery">
+     <section id="gallery-section-id" class="section-gallery bg-tengah">
     <div class="gallery-container animate-up">
         <p class="subtitle-top">OUR SWEET MEMORY</p>
         <h2 class="main-title font-cursive">Photo Gallery</h2>
@@ -1766,7 +1719,7 @@ font-family: 'OCR A', 'Courier Prime', monospace;
 </section>
         
     
-<section id="gift-section-id" class="section-gift">
+<section id="gift-section-id" class="section-gift bg-tengah">
     <div class="container gift-container animate-up">
         <br>
         <p class="subtitle-top">WEDDING GIFT</p>
@@ -1783,7 +1736,7 @@ font-family: 'OCR A', 'Courier Prime', monospace;
 </section>
 
 
-        <section id="comments-section-id" class="section section-comments">
+        <section id="comments-section-id" class="section section-comments bg-tengah">
             <div class="container an">
                 <p class="subtitle-top">UCAPAN & DO'A</p>
                 <h2 class="main-title font-cursive">Kirimkan Ucapan Terbaik</h2>
@@ -1827,7 +1780,7 @@ font-family: 'OCR A', 'Courier Prime', monospace;
                 
         </section>
         
-     <section id="comments-list-section" class="section-comments-list">
+     <section id="comments-list-section" class="section-comments-list bg-tengah">
     <div class="container animate-up">
         <p class="subtitle-top">UCAPAN TAMU</p>
         <h2 class="main-title font-cursive">Komentar Terbaru</h2>
