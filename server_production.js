@@ -8,7 +8,7 @@ const app = express();
 
 // CORS
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://pureday-invitation.vercel.app','https://www.puredayinvitation.my.id', 'https://puredayinvitation.my.id', 'https://res.cloudinary.com']
+  origin: ['http://localhost:3000', 'https://pureday-invitation.vercel.app','https://www.puredayinvitation.my.id', 'https://puredayinvitation.my.id', 'https://res.cloudinary.com','https://template-pureday-invitation.vercel.app']
 }));
 
 app.use(express.json());

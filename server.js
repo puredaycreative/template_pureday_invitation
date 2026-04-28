@@ -18,7 +18,8 @@ app.use(cors({
     'http://localhost:3003', // Tambahkan ini jika testing antar port
     'https://pureday-invitation.vercel.app',
     'https://www.puredayinvitation.my.id', 
-    'https://puredayinvitation.my.id'
+    'https://puredayinvitation.my.id',
+    'https://template-pureday-invitation.vercel.app'
   ]
 }));
 
