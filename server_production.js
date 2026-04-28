@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
+import fs from 'fs';
 
 const app = express();
 
@@ -11,6 +12,22 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.get('/api/get-music', (req, res) => {
+    // Gunakan __dirname agar path absolut ke folder music benar
+    const directoryPath = path.join(__dirname, 'music');
+    
+    try {
+        if (!fs.existsSync(directoryPath)) {
+            return res.status(404).json({ error: "Folder music tidak ditemukan" });
+        }
+
+        const files = fs.readdirSync(directoryPath);
+        const mp3Files = files.filter(file => file.endsWith('.mp3'));
+        res.status(200).json(mp3Files);
+    } catch (err) {
+        res.status(500).json({ error: "Gagal membaca folder musik" });
+    }
+});
 
 // __dirname setup
 const __filename = fileURLToPath(import.meta.url);
