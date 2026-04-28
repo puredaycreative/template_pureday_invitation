@@ -127,7 +127,7 @@
     }
 
     /* Tombol Aksi Umum */
-    .btn-maps-link, .btn-submit, .cover-open-btn {
+    /* .btn-maps-link, .btn-submit, .cover-open-btn {
         display: inline-flex;
       font-family: 'Rosemary', cursive;
         align-items: center;
@@ -147,7 +147,7 @@
         background-color: var(--color-bg-dark);
         border-color: var(--color-bg-dark);
         transform: translateY(-1px);
-    }
+    } */
     
     /* --- COVER SECTION --- */
 #cover-page {
@@ -274,20 +274,21 @@ body {
 }
 
 /* Tombol Buka */
-.cover-open-btn {
+.btn-maps-link, .btn-submit, .cover-open-btn {
       font-family: 'Baloo Bhaina 2', cursive;
     background-color: rgba(255, 255, 255, 0);
-    border: 1px dashed #ccc;
+    border: 2px dashed #ccc;
     padding: 10px 25px;
-    border-radius: 50px;
+    border-radius: 70px;
     font-size: 0.9rem;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     transition: all 0.3s ease;
     margin-top: 20px;
+    color: #333;
 }
 
-.cover-open-btn:hover {
+    .btn-maps-link:hover, .btn-submit:hover, .cover-open-btn:hover {
     transform: scale(1.05);
     background-color: #fafafa;
 }
@@ -762,7 +763,7 @@ opacity: 0;
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    /* gap: 10px; */
 }
 
 /* Mengatur style isi dari {{event_times}} */
@@ -1736,15 +1737,16 @@ font-family: 'OCR A', 'Courier Prime', monospace;
              
              <div class="event-item-list animate-up">
                  {{event_times}} 
+                     <!-- <a href="{{maps_url}}" class="cover-open-btn animate-up" target="_blank" rel="noopener noreferrer">
+    Buka di Google Maps
+</a> -->
                  </div>
 
-             <div class="location-wrapper animate-up">
+             <!-- <div class="location-wrapper animate-up">
                  <p class="event-row font-family: 'Baloo Bhaina 2', cursive; animate-up">{{lokasi_acara}}</p>
-             </div>
+             </div> -->
              
-            <a href="{{maps_url}}" class="cover-open-btn animate-up" target="_blank" rel="noopener noreferrer">
-    Buka di Google Maps
-</a>
+        
         </div>
     </div>
 </section>
