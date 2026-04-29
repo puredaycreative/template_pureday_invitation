@@ -19,6 +19,23 @@
 <style>
     /* Animasi Fade In dari Bawah ke Atas */
 /* --- ANIMASI TEKS --- */
+/* RESET BRUTAL: Hapus semua garis/bayangan di semua elemen tanpa terkecuali */
+* {
+    /* border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-sizing: border-box !important; */
+}
+
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow-x: hidden !important;
+    background-color: #ede5e3; /* Samakan dengan warna tema biar kalau ada celah nggak kontras */
+}
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -134,7 +151,7 @@
     max-width: 450px; /* Ukuran standar HP agar ramping */
     margin-left: auto !important;
     margin-right: auto !important;
-    position: relative;
+    position: cover;
     box-sizing: border-box;
 }
 
@@ -164,7 +181,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fdf8f8;
 }
 
 .cover-bg-base {
@@ -712,23 +728,13 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     padding: 40px 20px;
 }
 
-/* Memastikan background di luar container saat landscape tetap rapi */
-@media (min-width: 768px) or (min-aspect-ratio: 1/1) {
-    body {
-        background-color: #1a1a1a; /* Warna gelap di luar area undangan */
-    }
-    #event-section-id-timer.section-event-timer {
-        /* Memberikan kesan kartu yang berdiri di tengah layar landscape */
-        border-left: 1px solid rgba(255,255,255,0.1);
-        border-right: 1px solid rgba(255,255,255,0.1);
-    }
-}
+
 
 /* --- COUNTDOWN --- */
 #countdown-timer {
     display: flex;
     justify-content: center;
-    gap: 15px; /* Jarak antar box sedikit diperlebar */
+    gap: 10px; /* Jarak antar box sedikit diperlebar */
     margin: 40px 0;
     width: 100%;
 }
@@ -933,17 +939,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     100% { transform: rotate(4deg) scale(1.03); }
 }
 
-/* Centering Background Landscape */
-@media (min-aspect-ratio: 1/1) {
-    body {
-        background-color: #1a1a1a; /* Background luar lebih gelap */
-    }
-    .section-event {
-        max-width: 450px;
-        margin: 0 auto;
-        box-shadow: 0 0 100px rgba(0,0,0,0.5);
-    }
-}
+
 
 /* Container Utama Dekorasi */
 .bottom-flower-cluster {
@@ -1497,6 +1493,7 @@ font-family: 'OCR A', 'Courier Prime', monospace;
     overflow: hidden;
      height: auto;
      padding: 150px 20px 100px 20px;
+     
 }
 
 /* --- 2. BACKGROUND BLUR --- */
@@ -1514,9 +1511,10 @@ font-family: 'OCR A', 'Courier Prime', monospace;
 .comments-scroll-box > div, 
 .comment-item {
     background: rgba(255, 255, 255, 0.1); 
-    border: 2px solid #8b2d2d;
+    border: 1px solid #8b2d2d;
     border-radius: 15px;
-    padding: 18px;
+  padding:-42px 15px;
+  padding-left: 20px !important;
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
@@ -1529,7 +1527,7 @@ font-family: 'OCR A', 'Courier Prime', monospace;
 .comments-scroll-box > div strong, 
 .comment-name {
     font-family: 'Baloo Bhaina 2', cursive;
-    font-size: 1.05rem;
+    font-size: 0.8rem;
     color: #545353;
     font-weight: 700;
     display: inline; /* Biar sejajar */
@@ -1555,8 +1553,9 @@ font-family: 'OCR A', 'Courier Prime', monospace;
     font-family: 'Baloo Bhaina 2', cursive;
     font-size: 0.95rem;
     color: #545353;
-    line-height: 1.4;
-    margin: 5px 0;
+  margin: 10px 0; 
+    /* Line-height merapatkan jarak antar baris kalimat */
+    line-height: 1.2;
     width: 100%;
     word-wrap: break-word;
 }
@@ -1566,20 +1565,20 @@ font-family: 'OCR A', 'Courier Prime', monospace;
     font-family: 'Baloo Bhaina 2', cursive;
     text-align: right; 
     color: #545353;
-    margin-top: 12px;
+    margin-top: 2px;
     width: 100%;
-    display: block; /* Wajib ada agar transform jalan */
+    display: block;
 
-    /* Atur font ke ukuran minimal yang diizinkan browser dulu */
-    font-size: 10px; 
-
-    /* Baru dikecilkan paksa pakai scale */
-    transform: scale(0.8); 
+    /* --- KUNCI GESER KIRI --- */
+    /* Tambahkan margin kanan agar dia menjauh dari tembok kanan */
+    margin-right: 15px !important; 
     
-    /* Atur titik tumpu penciutan ke kanan bawah supaya tetep rapi di pojok */
+    font-size: 10px; 
+    /* Atau pakai translateX negatif untuk narik ke kiri lebih kuat */
+    transform: scale(0.8) translateX(-10px); 
+    
     transform-origin: right bottom; 
 }
-
 /* --- 8. RESET GRID (Jika sebelumnya pakai grid, kita balikin ke normal) --- */
 .comments-scroll-box {
     /* Trik: Atur tinggi maksimal agar hanya cukup untuk 3 kartu */
@@ -1624,9 +1623,9 @@ font-family: 'OCR A', 'Courier Prime', monospace;
     
     /* Properti tampilan lainnya (dipertahankan atau disesuaikan) */
     border-radius: 50%;
-    background-color: #bfbebe;
-    border: 2px solid var(--color-border-subtle);
-    color: #bfbebe; 
+    background-color: #f9f6f6bb;
+    border: 2px solid #000;
+    color: #bfbebe00; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1827,7 +1826,7 @@ font-family: 'OCR A', 'Courier Prime', monospace;
     <div class="event-container">
     
         <div class="event-card-wrapper animate-left">
-            <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamblack/bingkai.webp" class="event-flower-deco">
+            <!-- <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamblack/bingkai.webp" class="event-flower-deco"> -->
             
             <div class="event-inner-border">
                 <div class="ribbon-date">{{tanggal_acara_baca}}</div>
@@ -2132,8 +2131,8 @@ function updateMusicIcon(isPlaying) {
         }
         
         // Warna merah (aktif) jika sedang play
-        floatingMusicToggle.style.color = isPlaying ? 'var(--netflix-red)' : 'var(--netflix-grey)';
-        floatingMusicToggle.style.borderColor = isPlaying ? 'var(--netflix-red)' : 'var(--netflix-grey)';
+        floatingMusicToggle.style.color = isPlaying ? '#8b2d2d' : '#8b2d2d';
+        floatingMusicToggle.style.borderColor = isPlaying ? '#8b2d2d' : '#8b2d2d';
     }
 }
 
