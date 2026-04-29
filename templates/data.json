@@ -1,0 +1,58 @@
+[
+  {
+    "id": "dhoni-erna",
+    "name": "lavender gold",
+    "category": "basic",
+    "imageUrl": "https://picsum.photos/800/1000?random=1",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/dhoni-erna"
+  },
+  {
+    "id": "andi-sari",
+    "name": "karikatur",
+    "category": "basic",
+    "imageUrl": "https://picsum.photos/800/1000?random=2",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/andi-sari"
+  },
+  {
+    "id": "edi-tia",
+    "name": "soft pink",
+    "category": "basic",
+    "imageUrl": "https://picsum.photos/800/1000?random=3",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/edi-tia"
+  },
+  {
+    "id": "juan-lasya",
+    "name": "soft green",
+    "category": "basic",
+    "imageUrl": "https://picsum.photos/800/1000?random=4",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/juan-lasya"
+  },
+  {
+    "id": "handika-tara",
+    "name": "black yellow",
+    "category": "basic",
+    "imageUrl": "https://picsum.photos/800/1000?random=5",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/handika-tara"
+  },
+  {
+    "id": "otoy-jamila",
+    "name": "brown aesthetic",
+    "category": "basic",
+    "imageUrl": "https://picsum.photos/800/1000?random=6",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/otoy-jamila"
+  },
+  {
+    "id": "malik-cinta",
+    "name": "notebook white",
+    "category": "basic",
+    "imageUrl": "https://picsum.photos/800/1000?random=7",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/malik-cinta"
+  },
+  {
+    "id": "tara-hani",
+    "name": "white gold",
+    "category": "basic",
+    "imageUrl": "https://picsum.photos/800/1000?random=8",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/tara-hani"
+  }
+]
