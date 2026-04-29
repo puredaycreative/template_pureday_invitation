@@ -10,49 +10,98 @@
     "id": "andi-sari",
     "name": "karikatur",
     "category": "basic",
-    "imageUrl": "https://picsum.photos/800/1000?random=2",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates/karikatur.png",
     "previewUrl": "https://www.puredayinvitation.my.id/template/andi-sari"
   },
   {
     "id": "edi-tia",
     "name": "soft pink",
     "category": "basic",
-    "imageUrl": "https://picsum.photos/800/1000?random=3",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates/softpink.png",
     "previewUrl": "https://www.puredayinvitation.my.id/template/edi-tia"
   },
   {
     "id": "juan-lasya",
     "name": "soft green",
     "category": "basic",
-    "imageUrl": "https://picsum.photos/800/1000?random=4",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates/softgreen.png",
     "previewUrl": "https://www.puredayinvitation.my.id/template/juan-lasya"
   },
   {
     "id": "handika-tara",
     "name": "black yellow",
     "category": "basic",
-    "imageUrl": "https://picsum.photos/800/1000?random=5",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates/blackyellow.png",
     "previewUrl": "https://www.puredayinvitation.my.id/template/handika-tara"
   },
   {
     "id": "otoy-jamila",
     "name": "brown aesthetic",
     "category": "basic",
-    "imageUrl": "https://picsum.photos/800/1000?random=6",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates/brownaesthetic.png",
     "previewUrl": "https://www.puredayinvitation.my.id/template/otoy-jamila"
   },
   {
     "id": "malik-cinta",
     "name": "notebook white",
     "category": "basic",
-    "imageUrl": "https://picsum.photos/800/1000?random=7",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates/notebookwhite.png",
     "previewUrl": "https://www.puredayinvitation.my.id/template/malik-cinta"
   },
   {
     "id": "tara-hani",
     "name": "white gold",
     "category": "basic",
-    "imageUrl": "https://picsum.photos/800/1000?random=8",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates/whitegold.png",
     "previewUrl": "https://www.puredayinvitation.my.id/template/tara-hani"
+  },
+    {
+    "id": "huda-vivi",
+    "name": "full photo",
+    "category": "foto",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates/fullphoto.png",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/fullphoto"
+  },
+      {
+    "id": "huda-vivi",
+    "name": "flower cream",
+    "category": "dekorasi",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates/flowercream.png",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/huda-vivi"
+  },
+        {
+    "id": "huda-vivi",
+    "name": "Adat Coklat Cream",
+    "category": "dekorasi",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates/adatcoklatcream.png",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/adatcoklatcream"
+  },
+         {
+    "id": "julio-yuli",
+    "name": "flower cream black",
+    "category": "dekorasi",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates/flowercreamblack.png",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/flowercreamblack"
+  },
+           {
+    "id": "huda-vivi",
+    "name": "flower red",
+    "category": "dekorasi",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates/flowerred.png",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/flowerred"
+  },
+             {
+    "id": "huda-vivi",
+    "name": "flower blue pink",
+    "category": "dekorasi",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates/flowerbluepink.png",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/flowerbluepink"
+  },
+               {
+    "id": "huda-vivi",
+    "name": "flower cream green",
+    "category": "dekorasi",
+    "imageUrl": "https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/templates/flowercreamgreen.png",
+    "previewUrl": "https://www.puredayinvitation.my.id/template/flowercreamgreen"
   }
 ]
