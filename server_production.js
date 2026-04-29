@@ -12,6 +12,8 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.use('/templates', express.static(path.join(__dirname, 'templates')));
+
 app.get('/api/get-music', (req, res) => {
     // Gunakan __dirname agar path absolut ke folder music benar
     const directoryPath = path.join(__dirname, 'music');

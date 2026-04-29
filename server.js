@@ -47,6 +47,7 @@ app.get('/api/get-music', (req, res) => {
 // Static folders
 app.use(express.static(path.join(__dirname, 'templates')));
 app.use('/music', express.static(path.join(__dirname, 'music')));
+app.use('/templates', express.static(path.join(__dirname, 'templates')));
 
 // Route index.html
 app.get('/', (req, res) => {
