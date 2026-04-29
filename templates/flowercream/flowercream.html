@@ -565,6 +565,20 @@ opacity: 0;
     color: #232323;
 }
 
+.parent-info {
+   font-family: Abel, sans-serif;
+    font-size: 0.9rem;
+    color: #232323;
+    margin: 0;
+}
+
+.address-info {
+    font-family: 'Baloo Bhaina 2', cursive;
+    font-size: 0.8rem;
+    color: #232323;
+    margin-top: 5px;
+}
+
 /* --- FRAME FOTO MELENGKUNG (OVAL) --- */
 .card-image-wrapper {
     position: relative;
@@ -1651,10 +1665,10 @@ font-family: 'OCR A', 'Courier Prime', monospace;
                         <div class="card-image-wrapper">
                             <img src="{{foto_pria}}" alt="Foto Pria">
                         </div>
-                        <p class="card-name">{{nama_pria_lengkap}}</p>
-                        <p style="font-size: 0.9rem; font-family: 'Baloo Bhaina 2', cursive;">Putra dari Bapak {{nama_bapak_pria}} & Ibu {{nama_ibu_pria}}</p>
-                        <p style="font-size: 0.8rem; font-family: 'Baloo Bhaina 2', cursive;">{{alamat_pria}}</p>
-                    </div>
+                              <h3 class="card-name">{{nama_pria_lengkap}}</h3>
+                <p class="parent-info">Putra dari Bapak {{nama_bapak_pria}} & Ibu {{nama_ibu_pria}}</p>
+                <p class="address-info">{{alamat_pria}}</p>
+             </div>
                     
                     <div class="card bride-card animate-up" data-delay="0.3s">
                         <div class="card-image-wrapper">

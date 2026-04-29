@@ -16,8 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Kreon" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=OCR+A&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
 <style>
     /* Animasi Fade In dari Bawah ke Atas */
 /* --- ANIMASI TEKS --- */
@@ -36,7 +35,7 @@ html, body {
     width: 100% !important;
     height: 100% !important;
     overflow-x: hidden !important;
-    background-color: #ede5e3; /* Samakan dengan warna tema biar kalau ada celah nggak kontras */
+    background-color: #fdf6e9; /* Samakan dengan warna tema biar kalau ada celah nggak kontras */
 }
 @keyframes fadeInUp {
     from {
@@ -115,7 +114,7 @@ html, body {
 .subtitle-top {
     font-size: 0.75rem;
     letter-spacing: 3px;
-    color: #ede5e3;
+    color: #fdf6e9;
     text-transform: uppercase;
      text-align: center;
 }
@@ -123,7 +122,7 @@ html, body {
 .main-title {
       font-family: 'Bilbo Swash Caps', cursive;
     font-size: 2.4rem;
-    color: #ede5e3;
+    color: #fdf6e9;
     margin: 10px 0 20px;
      text-align: center;
 }
@@ -132,7 +131,7 @@ html, body {
 .subtitle-top2 {
     font-size: 0.75rem;
     letter-spacing: 3px;
-    color: #545353;
+    color: #545454;
     text-transform: uppercase;
 
     text-align: center;
@@ -141,7 +140,7 @@ html, body {
 .main-title2 {
       font-family: 'Bilbo Swash Caps', cursive;
     font-size: 2.4rem;
-    color: #545353;
+    color: #545454;
     margin: 10px 0 20px;
     text-align: center;
 }
@@ -173,7 +172,7 @@ html, body {
 
     /* --- CONTAINER UTAMA (FULL SCREEN) --- */
 #cover-page {
-    background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bg.webp') center/cover no-repeat; 
+     background: url('https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bg.webp') center/cover no-repeat; 
     position: relative;
     height: 100vh;
     width: 100%;
@@ -191,7 +190,6 @@ html, body {
     z-index: 1;
 }
 
-/* --- SISTEM BUNGA (MEPET POJOK) --- */
 /* --- GLOBAL FLOWER SETUP --- */
 .flower-container {
     position: absolute;
@@ -206,78 +204,101 @@ html, body {
     object-fit: contain;
 }
 
-/* --- KANAN ATAS (TR) --- */
-.top-right { 
-    top: -50px; 
-    right: -50px; 
-}
 
 /* Mawar Besar (Paling Depan) */
-.tr-l1 { 
-    z-index: 10; 
-width: 20% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
-    height: auto !important;
-    top: 50px; right: 50px !important;
-    transform-origin: top right;
-    animation: swayTR 1s ease-in-out infinite alternate;
-}
-/* Bunga Kecil 1 */
-.tr-l2 { 
-    z-index: 9; 
-width: 30% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
-    height: auto !important;
-    top: 50px; right: 50px !important;
-    transform-origin: top right;
-    animation: swayTR 1s ease-in-out infinite alternate-reverse;
-}
-/* Bunga Kecil 2 */
-.tr-l3 { 
-    z-index: 8; 
- width: 35% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
-    height: auto !important;
-    top: 50px; right: 50px !important;
-    transform-origin: top right;
-    animation: swayTR 1s ease-in-out infinite alternate;
-}
-/* Tangkai 1 (Paling Belakang) */
-.tr-l4 { 
-    z-index: 7; 
-  width: 20% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
-    height: auto !important;
-    top: 100px; right: 50px !important;
-    transform-origin: top right;
-    animation: swayTR 1s ease-in-out infinite alternate-reverse;
-}
-/* Tangkai 2 */
-.tr-l5 { 
-    z-index: 6; 
- width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
-    height: auto !important;
-    top: 50px !important; right: 40px !important;
-    transform-origin: top right;
-    animation: swayTR 1s ease-in-out infinite alternate;
+/* --- KANAN ATAS (TR) --- */
+.top-right { 
+    top: -0px; 
+    right: 30px; 
 }
 
-/* --- KIRI BAWAH (BL) --- */
-.bottom-left { 
-    bottom: -60px; 
-    left: 30px; 
+/* Animasi khusus TR(Sudah diputar 180 derajat agar tetap goyang) */
+@keyframes swayTR_Inverted {
+    0% { transform: rotate(0deg) scale(1); }
+    100% { transform: rotate(3deg) scale(1.03); }
 }
 
 /* Mawar Besar */
+.tr-l1 { 
+    z-index: 10; 
+    width: 15% !important; 
+    top: 0px !important;    /* Bottom jadi Top */
+    right: -30px !important; /* Left jadi Right */
+    position: absolute;
+    transform-origin: top right;
+    animation: swayTR_Inverted 1s ease-in-out infinite alternate;
+}
+
+/* Bunga Kecil 1 */
+.tr-l2 { 
+    z-index: 9; 
+    width: 50% !important; 
+    top: 0px !important; 
+    right: -28px !important;
+    position: absolute;
+    transform-origin: top right;
+    animation: swayTR_Inverted 1s ease-in-out infinite alternate-reverse;
+}
+
+/* Bunga Kecil 2 */
+.tr-l3 { 
+    z-index: 8; 
+    width: 40% !important; 
+    top: 0px !important; 
+    right: 40px !important;
+    position: absolute;
+    transform-origin: top right;
+    animation: swayTR_Inverted 1s ease-in-out infinite alternate;
+}
+
+/* Tangkai 1 */
+.tr-l4 { 
+    z-index: 7; 
+    width: 45% !important; 
+    top: -15px !important; 
+    right: -50px !important;
+    position: absolute;
+    transform-origin: top right;
+    animation: swayTR_Inverted 1s ease-in-out infinite alternate-reverse;
+}
+
+/* Tangkai 2 */
+.tr-l5 { 
+    z-index: 6; 
+    width: 40% !important; 
+    top: 40px !important; 
+    right: -10px !important;
+    position: absolute;
+    transform-origin: top right;
+    animation: swayTR_Inverted 1s ease-in-out infinite alternate;
+}
+
+/* --- KIRI BAWAH (BL) --- */
+
+@keyframes swayBL {
+    0% { transform: rotate(180deg) scale(1); }
+    100% { transform: rotate(183deg) scale(1.05); }
+}
+
+.bottom-left { 
+    bottom: 200px; 
+    left: 0px; 
+}
+
 .bl-l1 { 
-    z-index: 10; width: 25% !important; 
-    bottom: 60px !important; 
-    left: -30px !important;
+    z-index: 10; 
+    width: 15% !important; 
+    bottom: -150px !important; 
+    left: -60px !important;
     transform-origin: bottom left;
     animation: swayBL 1s ease-in-out infinite alternate;
 }
 /* Bunga Kecil 1 */
 .bl-l2 { 
     z-index: 9; 
-    width: 30% !important; 
-    bottom: 50px !important; 
-    left: 0px !important;
+    width: 50% !important; 
+    bottom: 0px !important; 
+    left: -200px !important;
     transform-origin: bottom left;
     animation: swayBL 1s ease-in-out infinite alternate-reverse;
 }
@@ -285,58 +306,174 @@ width: 30% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 .bl-l3 { 
     z-index: 8; 
     width: 40% !important; 
-    bottom: 50px !important;
-     left: -10px !important;
+    bottom: -40px !important;
+     left: -90px !important;
     transform-origin: bottom left;
     animation: swayBL 1s ease-in-out infinite alternate;
 }
 /* Tangkai 1 */
 .bl-l4 { 
     z-index: 7; 
-    width: 35% !important; 
-    bottom: 20px !important; 
-    left: -25px !important;
+    width: 45% !important; 
+    bottom: 100px !important; 
+    left: -205px !important;
     transform-origin: bottom left;
     animation: swayBL 1s ease-in-out infinite alternate-reverse;
 }
 /* Tangkai 2 */
 .bl-l5 { 
     z-index: 6; 
-    width: 55% !important; 
-    bottom: 50px !important; 
-    left: -10px !important;
+    width: 40% !important; 
+    bottom: 20px !important; 
+    left: -145px !important;
     transform-origin: bottom left;
     animation: swayBL 1s ease-in-out infinite alternate;
 }
 
-
-
-
-
-/* --- KANAN ATAS (TR) --- */
-.top-leftcenter { 
-    top: -50px; 
-    right: -50px; 
+/* --- KIRI ATAS (TL) --- */
+.top-left { 
+    top: -20px; 
+    left: 40px; 
 }
 
-/* Mawar Besar (Paling Depan) */
-.lc-l1 { 
-    z-index: 1; 
-width: 40% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
-    height: auto !important;
-    bottom: 10px; left: -140px !important;
-    transform-origin: top right;
-    animation: swayTR 1s ease-in-out infinite alternate;
+/* Animasi khusus TL (Diputar 90 derajat atau disesuaikan agar pas di pojok kiri atas) */
+@keyframes swayTL {
+0% { 
+        /* scale(-1, 1) artinya Flip Horizontal, tetap ukuran asli */
+        transform: rotate(0deg) scale(-1, 1); 
+    }
+    100% { 
+        /* scale(-1.03, 1.03) artinya Flip Horizontal sambil membesar sedikit */
+        transform: rotate(3deg) scale(-1.03, 1.03); 
+    }
 }
+
+/* Mawar Besar */
+.tl-l1 { 
+    z-index: 10; 
+    width: 15% !important; 
+    top: 20px !important;    
+    left: -100px !important;
+    position: absolute;
+    transform-origin: top left;
+    animation: swayTL 1.2s ease-in-out infinite alternate;
+}
+
 /* Bunga Kecil 1 */
-.lc-l2 { 
-    z-index: 2; 
-width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
-    height: auto !important;
-    bottom: 10px; left: -10px !important;
-    transform-origin: top right;
-    animation: swayTR 1s ease-in-out infinite alternate-reverse;
+.tl-l2 { 
+    z-index: 9; 
+    width: 50% !important; 
+    top: 20px !important; 
+    left: -245px !important;
+    position: absolute;
+    transform-origin: top left;
+    animation: swayTL 1s ease-in-out infinite alternate-reverse;
 }
+
+.tl-l3 { 
+    z-index: 8; 
+    width: 40% !important; 
+    top: 20px !important; 
+    left: -130px !important;
+    position: absolute;
+    transform-origin: top left;
+    animation: swayTL 1.1s ease-in-out infinite alternate;
+}
+
+/* Tangkai 1 */
+.tl-l4 { 
+    z-index: 7; 
+    width: 45% !important; 
+    top: 10px !important; 
+    left: -245px !important;
+    position: absolute;
+    transform-origin: top left;
+    animation: swayTL 1.3s ease-in-out infinite alternate-reverse;
+}
+
+/* Tangkai 2 */
+.tl-l5 { 
+    z-index: 6; 
+    width: 40% !important; 
+    top: 55px !important; 
+    left: -175px !important;
+    position: absolute;
+    transform-origin: top left;
+    animation: swayTL 1s ease-in-out infinite alternate;
+}
+
+
+/* --- KANAN BAWAH (BR) --- */
+.bottom-right { 
+    bottom: 200px; 
+    right: 0px; 
+}
+
+/* Animasi khusus BR (Diputar -90 derajat agar menghadap ke kiri atas) */
+@keyframes swayBR {
+  0% { 
+        transform: rotate(0deg) scale(1, -1); 
+    }
+    100% { 
+        transform: rotate(3deg) scale(1.03, -1.03); 
+    }
+}
+
+/* Mawar Besar */
+.br-l1 { 
+    z-index: 10; 
+    width: 15% !important; 
+    bottom: -150px !important;    
+    right: 0px !important;
+    position: absolute;
+    transform-origin: bottom right;
+    animation: swayBR 1s ease-in-out infinite alternate;
+}
+
+/* Bunga Kecil 1 */
+.br-l2 { 
+    z-index: 9; 
+    width: 50% !important; 
+    bottom: 0px !important; 
+    right: -10px !important;
+    position: absolute;
+    transform-origin: bottom right;
+    animation: swayBR 1.2s ease-in-out infinite alternate-reverse;
+}
+
+/* Bunga Kecil 2 */
+.br-l3 { 
+    z-index: 8; 
+    width: 40% !important; 
+    bottom: -50px !important; 
+    right: 68px !important;
+    position: absolute;
+    transform-origin: bottom right;
+    animation: swayBR 1.1s ease-in-out infinite alternate;
+}
+
+/* Tangkai 1 */
+.br-l4 { 
+    z-index: 7; 
+    width: 45% !important; 
+    bottom: 100px !important; 
+    right: -20px !important;
+    position: absolute;
+    transform-origin: bottom right;
+    animation: swayBR 1.3s ease-in-out infinite alternate-reverse;
+}
+
+/* Tangkai 2 */
+.br-l5 { 
+    z-index: 6; 
+    width: 40% !important; 
+    bottom: 15px !important; 
+    right: 15px !important;
+    position: absolute;
+    transform-origin: bottom right;
+    animation: swayBR 1s ease-in-out infinite alternate;
+}
+
 
 /* --- ANIMASI KEYFRAMES --- */
 @keyframes swayTR {
@@ -344,10 +481,6 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     100% { transform: rotate(3deg) scale(1.03); }
 }
 
-@keyframes swayBL {
-    0% { transform: rotate(0deg) scale(1); }
-    100% { transform: rotate(-4deg) scale(1.05); }
-}
 
 /* --- KONTEN TEKS (TENGAH & AMAN) --- */
 .template-cover-content-wrapper {
@@ -367,15 +500,15 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 }
 
 .guest-label {
-    color: #8b2d2d;
+    color: #545454;
     font-size: 1.1rem;
     font-family: Andada, serif;
     margin-bottom: 5px;
 }
 
 .template-cover-guest-name {
-    font-family: 'Montserrat', sans-serif;
-    color: #4a4a4a;
+     font-family: Andada, serif;
+    color: #545454;
     font-size: 1.1rem;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -385,21 +518,21 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 .template-cover-title {
     font-family: 'Rouge Script', cursive;
     font-size: 3.8rem;
-    color: #8b2d2d;
+    color: #545454;
     line-height: 1.1;
     text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
 }
 
 .event-date {
-    color: #666;
+    color: #545454;
     margin-top: 15px;
     font-family: Andada, serif;
 }
 
 /* --- TOMBOL OPEN --- */
 .cover-open-btn {
-    background-color: #8b2d2d;
-    color: #fff;
+    background-color: #57615e;
+    color: #fdf6e9;
     border: none;
     padding: 12px 40px;
     border-radius: 50px;
@@ -407,13 +540,13 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     font-size: 1rem;
     margin-top: 25px;
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(139, 45, 45, 0.3);
+    box-shadow: #323836;
     transition: 0.3s ease;
 }
 
 .cover-open-btn:hover {
     transform: translateY(-3px) scale(1.05);
-    background-color: #6d2323;
+    background-color: #3e4442;
 }
 
 
@@ -483,12 +616,12 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     left: 0;
     width: 100%;
     height: 30%;
-    background: linear-gradient(to bottom, transparent, #ede5e3);
+    background: linear-gradient(to bottom, transparent, #fdf6e9);
 }
 
 /* --- GRID BAWAH: KONTEN --- */
 .bg-content-wrapper {
-    background-color: #ede5e3;
+    background-color: #fdf6e9;
     position: relative;
     display: flex;
     flex-direction: column; /* Menyusun teks ke bawah */
@@ -503,7 +636,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     font-family: 'Architects Daughter', cursive;
     font-size: 1.8rem;
     text-align: right;
-    color: #545353;
+    color: #545454;
     margin: 0;
 }
 
@@ -511,7 +644,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     font-family: Andada, serif;
     font-size: 0.8rem;
     text-align: right;
-    color: #545353;
+    color: #545454;
     margin: 5px 0;
 }
 
@@ -519,7 +652,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     font-size: 2.8rem;
     font-family: 'Rouge Script', cursive;
     text-align: right;
-    color: #8b2d2d;
+    color: #545454;
     margin-top: 10px;
 }
 
@@ -578,7 +711,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 
 /* Container Utama Detail */
 .section-detail {
-    background-color: #ede5e3;
+    background-color: #fdf6e9;
     color: #ffffff;
     text-align: center;
     padding: 60px 0px;
@@ -598,7 +731,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     font-family: Andada, serif;
     font-size: 0.95rem;
     line-height: 1.6;
-    color: #545353;
+    color: #545454;
     margin-bottom: 40px;
 }
 
@@ -629,7 +762,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     width: 100%; /* Mengikuti lebar card-item */
     aspect-ratio: 3 / 4; /* Mengunci rasio kotak (3 lebar, 4 tinggi) agar tetap persegi panjang */
     
-    border: 2px solid #8b2d2d; 
+    border: 2px solid #545454; 
     border-radius: 10px;
     padding: 5px; /* Jarak bingkai ke foto */
     background: transparent;
@@ -664,30 +797,30 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 .card-name {
     font-family: 'Rouge Script', cursive;
     font-size: 2.2rem;
-    color: #8b2d2d;
+    color: #545454;
     margin-bottom: 8px;
 }
 
 .parent-info {
- font-family: Abel, sans-serif;
+  font-family: Abel, sans-serif;
     font-size: 0.9rem;
-    color: #545353;
+    color: #545454;
     margin: 0;
 }
 
 .address-info {
     font-family: Andada, serif;
     font-size: 0.8rem;
-    color: #545353;
+    color: #545454;
     margin-top: 5px;
 }
 
 /* Quote Bawah */
 .quote-closing {
     margin-top: 50px;
-    font-family: Andada, serif;
+   font-family: Andada, serif;
     font-size: 0.9rem;
-    color: #545353;
+    color: #545454;
     line-height: 1.5;
 }
 
@@ -716,7 +849,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     min-height: 100vh;
     /* KUNCI TENGAH: margin auto kiri dan kanan */
     margin: 0 auto; 
-    background-color: #8b2d2d;
+    background-color: #57615e;
     box-shadow: 0 0 30px rgba(0,0,0,0.1);
     overflow: hidden;
     padding: 80px 20px;
@@ -745,7 +878,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     width: 75px;
     height: 75px;
     background: rgba(255, 255, 255, 0.2); /* Memberikan sedikit kontras transparan */
-    border: 1px dashed #ede5e3;
+    border: 1px dashed #fdf6e9;
     border-radius: 50%; 
     display: flex;
     flex-direction: column;
@@ -763,7 +896,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     font-size: 1.4rem; /* Sedikit lebih besar agar mudah dibaca */
     font-weight: bold;
     margin: 0;
-    color: #ede5e3; /* Putih agar kontras dengan background krem emas */
+    color: #fdf6e9; /* Putih agar kontras dengan background krem emas */
     line-height: 1;
 }
 
@@ -771,7 +904,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     font-family: Andada, serif;
     font-size: 0.75rem;
     margin: 0;
-    color: #ede5e3;
+    color: #fdf6e9;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -782,7 +915,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 /* --- Container Utama --- */
 /* --- Perbaikan Container Utama --- */
 .section-event {
-    background-color: #ede5e3;
+    background-color: #fdf6e9;
     padding: 80px 0;
     text-align: center;
     color: #ffffff;
@@ -815,7 +948,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     margin-left: auto;
     margin-right: auto;
     background: rgba(255, 255, 255, 0.02);
-    border: 1px solid #8b2d2d;
+    border: 1px solid #545454;
     border-radius: 40px 5px 40px 5px;
     padding: 12px;
     box-sizing: border-box;  /* Agar padding tidak menambah lebar elemen */
@@ -823,7 +956,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 
 /* Pastikan Inner Border juga Center */
 .event-inner-border {
-    border: 1px solid #8b2d2d;
+    border: 1px solid #545454;
     border-radius: 35px 3px 35px 3px;
     padding: 50px 20px;
     display: flex;
@@ -836,7 +969,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 .ribbon-date {
     font-family: Andada, serif;
     padding: 10px 20px;
-    color: #8b2d2d;
+    color: #545454;
     display: inline-block;
     width: 90%;
    margin-bottom: 20px;
@@ -844,7 +977,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 
 .event-item-list {
     font-family: Abel, sans-serif;
-     color: #8b2d2d;
+     color: #545454;
     padding: 15px 0;
     margin-bottom: 15px;
     display: flex;
@@ -856,20 +989,20 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 .event-row {
     font-family: Andada, serif;
     font-size: 1rem;
-     color: #8b2d2d;
+     color: #545454;
     display: block;
     margin-bottom: 5px;
 }
 
 .event-row b {
-     color: #8b2d2d;
+     color: #545454;
 }
 
 /* --- TOMBOL MAPS --- */
 .btn-maps-link {
     font-family: Andada, serif;
-    background-color: #8b2d2d;
-    color: #ede5e3;
+    background-color: #57615e;
+    color: #fdf6e9;
     text-decoration: none;
     padding: 10px 25px;
     display: inline-block;
@@ -879,8 +1012,8 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 }
 
 .btn-maps-link:hover {
-    background-color: #782626;
-    color: #ede5e3;
+    background-color: #404745;
+    color: #fdf6e9;
 }
 
 
@@ -1075,7 +1208,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 /* --- Container Galeri --- */
 .section-gallery {
     padding: 60px 15px;
-    background-color: #8b2d2d;
+    background-color: #57615e;
     background-size: cover;
     min-height: 80vh;
 }
@@ -1133,7 +1266,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     min-height: 100vh; 
     height: auto; 
     
-    background-color: #ede5e3;
+    background-color: #fdf6e9;
     background-size: cover;
     background-position: center;
     box-shadow: 0 0 30px rgba(0,0,0,0.1);
@@ -1278,7 +1411,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     font-size: 15px;
     line-height: 1.5;
     text-align: center;
-    color: #545353;
+    color: #545454;
     position: relative;
     
     /* JARAK ATAS DAN BAWAH */
@@ -1324,7 +1457,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     margin-right: 0;
     
     /* PENTING: Hapus background-image dari sini agar tidak double */
-    background-color: #ede5e3; 
+    background-color: #fdf6e9; 
     
     box-shadow: -10px 0 30px rgba(0,0,0,0.05);
     overflow: hidden;
@@ -1365,7 +1498,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     display: block;
     font-size: 0.9rem;
     font-family: Andada, serif;
-    color: #545353;
+    color: #545454;
     margin-bottom: 8px;
     font-weight: 500;
 }
@@ -1373,12 +1506,12 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 /* Input & Textarea sesuai gambar */
 #comment-name-input, 
 #comment-message-input {
-    color: #545353;
+    color: #545454;
     width: 100%;
     padding: 12px 15px;
     border: 1px solid transparent;
     border-radius: 10px;
-    border-color: #545353;
+    border-color: #545454;
     background: rgba(255, 255, 255, 0);
     box-shadow: 0 4px 10px rgba(0,0,0,0.03);
     font-family: Andada, serif;
@@ -1401,8 +1534,8 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     padding: 10px;
     border: none;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0);
-    color: #545353;
+    background: #958976;
+    color: rgb(255, 255, 255);
     cursor: pointer;
     font-size: 0.85rem;
     transition: 0.3s;
@@ -1411,7 +1544,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 }
 
 .template-status-btn.status-active {
-    background: #8b2d2d; /* Warna coklat tema */
+    background: #57615e; /* Warna coklat tema */
     color: rgb(255, 255, 255);
     font-family: Andada, serif;
     
@@ -1422,7 +1555,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 .btn-submit {
     width: 100%;
     padding: 15px;
-    background-color: #8b2d2d; /* Sesuai gambar referensi */
+    background-color: #57615e; /* Sesuai gambar referensi */
     color: white;
     border: none;
     font-family: Andada, serif;
@@ -1441,7 +1574,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 }
 
 .btn-submit:hover {
-    background-color: #a93737;
+    background-color: #48514e;
     transform: translateY(-2px);
 }
 
@@ -1478,7 +1611,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
     min-height: 100vh;
     margin-left: auto;
     margin-right: 0;
-    background-color: #ede5e3; 
+    background-color: #fdf6e9; 
     overflow: hidden; 
     padding: 80px 20px 0 20px;
     box-sizing: border-box;
@@ -1504,7 +1637,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 .comments-scroll-box > div, 
 .comment-item {
     background: rgba(255, 255, 255, 0.1); 
-    border: 1px solid #8b2d2d;
+    border: 1px solid #545454;
     border-radius: 15px;
   padding:-42px 15px;
   padding-left: 20px !important;
@@ -1521,7 +1654,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 .comment-name {
     font-family: Andada, serif;
     font-size: 0.8rem;
-    color: #545353;
+    color: #545454;
     font-weight: 700;
     display: inline; /* Biar sejajar */
     margin-right: 10px; /* Jarak antara nama dan status */
@@ -1536,7 +1669,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
         font-size: 0.7rem !important;
         background: transparent !important;
         border: none !important;
-        color: #545353 !important;
+        color: #545454 !important;
         text-transform: uppercase;
     }
 
@@ -1545,7 +1678,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 .comment-text {
     font-family: Andada, serif;
     font-size: 0.95rem;
-    color: #545353;
+    color: #545454;
   margin: 10px 0; 
     /* Line-height merapatkan jarak antar baris kalimat */
     line-height: 1.2;
@@ -1559,7 +1692,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 .comment-date {
     font-family: Andada, serif;
     text-align: right; 
-    color: #545353;
+    color: #545454;
     margin-top: 2px;
     width: 100%;
     display: block;
@@ -1698,20 +1831,38 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 <div id="cover-page" class="template-cover-container">
     <div class="cover-bg-base" ></div>
 
-    <div class="flower-container top-right">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungabesarkananatas.webp" class="flower-layer tr-l1">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungakecilkananatas.webp" class="flower-layer tr-l2">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungakecil2kananatas.webp" class="flower-layer tr-l3">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai1kananatas.webp" class="flower-layer tr-l4">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai2kananatas.webp" class="flower-layer tr-l5">
-</div>
+    <div class="flower-container top-right animate-right">
+   <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer tr-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer tr-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer tr-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer tr-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer tr-l5">
 
-<div class="flower-container bottom-left">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungabesarkiribawah.webp" class="flower-layer bl-l1">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bunga2kiribawah.webp" class="flower-layer bl-l2">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bunga3kiribawah.webp" class="flower-layer bl-l3">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai1kiribawah.webp" class="flower-layer bl-l4">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai2kiribawah.webp" class="flower-layer bl-l5">
+    </div>
+
+        <div class="flower-container top-left animate-left">
+   <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer tl-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer tl-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer tl-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer tl-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer tl-l5">
+
+    </div>
+            <div class="flower-container bottom-right animate-right">
+   <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer br-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer br-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer br-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer br-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer br-l5">
+
+    </div>
+
+<div class="flower-container bottom-left animate-left">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer bl-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer bl-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer bl-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer bl-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer bl-l5">
 </div>
 
     <div class="template-cover-content-wrapper animate-down">
@@ -1740,12 +1891,12 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
             <h3 class="couple-names animate-left">{{nama_pria}} & {{nama_wanita}}</h3>
         </div>
 
-  <div class="flower-container bottom-left">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungabesarkiribawah.webp" class="flower-layer bl-l1">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bunga2kiribawah.webp" class="flower-layer bl-l2">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bunga3kiribawah.webp" class="flower-layer bl-l3">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai1kiribawah.webp" class="flower-layer bl-l4">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai2kiribawah.webp" class="flower-layer bl-l5">
+<div class="flower-container bottom-left animate-left">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer bl-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer bl-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer bl-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer bl-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer bl-l5">
 </div>
     </div>
 </section>
@@ -1758,7 +1909,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 </div> -->
         
         <p class="quote-opening animate-left">
-            Assalamu’alaikum Wr. Wb. <br><br>
+            <!-- Assalamu’alaikum Wr. Wb. <br><br> -->
             Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i serta kerabat sekalian untuk menghadiri acara pernikahan kami.
         </p>
 
@@ -1810,14 +1961,39 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
        </section> 
 
 <section id="event-section-id" class="section section-event">
-      <div class="flower-container top-right">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungabesarkananatas.webp" class="flower-layer tr-l1">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungakecilkananatas.webp" class="flower-layer tr-l2">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungakecil2kananatas.webp" class="flower-layer tr-l3">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai1kananatas.webp" class="flower-layer tr-l4">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai2kananatas.webp" class="flower-layer tr-l5">
-</div>
+     <div class="flower-container top-right animate-right">
+   <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer tr-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer tr-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer tr-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer tr-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer tr-l5">
 
+    </div>
+
+        <div class="flower-container top-left animate-left">
+   <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer tl-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer tl-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer tl-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer tl-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer tl-l5">
+
+    </div>
+            <div class="flower-container bottom-right animate-right">
+   <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer br-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer br-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer br-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer br-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer br-l5">
+
+    </div>
+
+<div class="flower-container bottom-left">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer bl-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer bl-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer bl-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer bl-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer bl-l5">
+</div>
     <div class="event-container">
     
         <div class="event-card-wrapper animate-left">
@@ -1831,13 +2007,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
             </div>
         </div>
     </div>
-    <div class="flower-container bottom-left">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungabesarkiribawah.webp" class="flower-layer bl-l1">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bunga2kiribawah.webp" class="flower-layer bl-l2">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bunga3kiribawah.webp" class="flower-layer bl-l3">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai1kiribawah.webp" class="flower-layer bl-l4">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai2kiribawah.webp" class="flower-layer bl-l5">
-</div>
+ 
 </section>
 
 
@@ -1854,12 +2024,38 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
         
     
 <section id="gift-section-id" class="section-gift">
-       <div class="flower-container top-right">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungabesarkananatas.webp" class="flower-layer tr-l1">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungakecilkananatas.webp" class="flower-layer tr-l2">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungakecil2kananatas.webp" class="flower-layer tr-l3">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai1kananatas.webp" class="flower-layer tr-l4">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai2kananatas.webp" class="flower-layer tr-l5">
+     <div class="flower-container top-right animate-right">
+   <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer tr-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer tr-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer tr-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer tr-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer tr-l5">
+
+    </div>
+
+        <div class="flower-container top-left animate-left">
+   <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer tl-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer tl-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer tl-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer tl-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer tl-l5">
+
+    </div>
+            <div class="flower-container bottom-right animate-right">
+   <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer br-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer br-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer br-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer br-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer br-l5">
+
+    </div>
+
+<div class="flower-container bottom-left">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer bl-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer bl-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer bl-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer bl-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer bl-l5">
 </div>
     <div class="container gift-container animate-left">
         <br>
@@ -1874,23 +2070,43 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
             {{bank_details_table}} 
         </div>
     </div>
-    <div class="flower-container bottom-left">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungabesarkiribawah.webp" class="flower-layer bl-l1">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bunga2kiribawah.webp" class="flower-layer bl-l2">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bunga3kiribawah.webp" class="flower-layer bl-l3">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai1kiribawah.webp" class="flower-layer bl-l4">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai2kiribawah.webp" class="flower-layer bl-l5">
-</div>
+   
 </section>
 
 
         <section id="comments-section-id" class="section section-comments">
-      <div class="flower-container top-right">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungabesarkananatas.webp" class="flower-layer tr-l1">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungakecilkananatas.webp" class="flower-layer tr-l2">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungakecil2kananatas.webp" class="flower-layer tr-l3">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai1kananatas.webp" class="flower-layer tr-l4">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai2kananatas.webp" class="flower-layer tr-l5">
+    <div class="flower-container top-right animate-right">
+   <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer tr-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer tr-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer tr-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer tr-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer tr-l5">
+
+    </div>
+
+        <div class="flower-container top-left animate-left">
+   <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer tl-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer tl-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer tl-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer tl-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer tl-l5">
+
+    </div>
+            <div class="flower-container bottom-right animate-right">
+   <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer br-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer br-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer br-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer br-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer br-l5">
+
+    </div>
+
+<div class="flower-container bottom-left">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer bl-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer bl-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer bl-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer bl-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer bl-l5">
 </div>
             <div class="container an">
                 <p class="subtitle-top2">UCAPAN & DO'A</p>
@@ -1931,24 +2147,44 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
                     </form>
                 </div>
          
-  <div class="flower-container bottom-left">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungabesarkiribawah.webp" class="flower-layer bl-l1">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bunga2kiribawah.webp" class="flower-layer bl-l2">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bunga3kiribawah.webp" class="flower-layer bl-l3">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai1kiribawah.webp" class="flower-layer bl-l4">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai2kiribawah.webp" class="flower-layer bl-l5">
-</div>
+
 
                 
         </section>
         
      <section id="comments-list-section" class="section-comments-list">
-        <div class="flower-container top-right">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungabesarkananatas.webp" class="flower-layer tr-l1">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungakecilkananatas.webp" class="flower-layer tr-l2">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungakecil2kananatas.webp" class="flower-layer tr-l3">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai1kananatas.webp" class="flower-layer tr-l4">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai2kananatas.webp" class="flower-layer tr-l5">
+     <div class="flower-container top-right animate-right">
+   <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer tr-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer tr-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer tr-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer tr-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer tr-l5">
+
+    </div>
+
+        <div class="flower-container top-left animate-left">
+   <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer tl-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer tl-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer tl-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer tl-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer tl-l5">
+
+    </div>
+            <div class="flower-container bottom-right animate-right">
+   <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer br-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer br-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer br-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer br-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer br-l5">
+
+    </div>
+
+<div class="flower-container bottom-left">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga1.webp" class="flower-layer bl-l1">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga2.webp" class="flower-layer bl-l2">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga3.webp" class="flower-layer bl-l3">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga4.webp" class="flower-layer bl-l4">
+    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowercreamgreen/bunga5.webp" class="flower-layer bl-l5">
 </div>
         <div class="container animate-left">
         <p class="subtitle-top2">UCAPAN TAMU</p>
@@ -1962,13 +2198,7 @@ width: 50% !important; /* Coba ganti ke 30% dulu untuk tes apakah mengecil */
 
     </div>
 
-  <div class="flower-container bottom-left">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bungabesarkiribawah.webp" class="flower-layer bl-l1">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bunga2kiribawah.webp" class="flower-layer bl-l2">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/bunga3kiribawah.webp" class="flower-layer bl-l3">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai1kiribawah.webp" class="flower-layer bl-l4">
-    <img src="https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/flowerred/tangkai2kiribawah.webp" class="flower-layer bl-l5">
-</div>
+
   
 </section>
 
@@ -2126,8 +2356,8 @@ function updateMusicIcon(isPlaying) {
         }
         
         // Warna merah (aktif) jika sedang play
-        floatingMusicToggle.style.color = isPlaying ? '#8b2d2d' : '#8b2d2d';
-        floatingMusicToggle.style.borderColor = isPlaying ? '#8b2d2d' : '#8b2d2d';
+        floatingMusicToggle.style.color = isPlaying ? '#57615e' : '#57615e';
+        floatingMusicToggle.style.borderColor = isPlaying ? '#57615e' : '#57615e';
     }
 }
 
