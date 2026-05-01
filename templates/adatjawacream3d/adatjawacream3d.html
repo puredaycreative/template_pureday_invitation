@@ -619,24 +619,34 @@
 
 
 /* --- 1. Background Utama (Statis) --- */
+/* Pengaturan Global */
 body {
     margin: 0;
     padding: 0;
-    /* Hapus background dari sini */
+    min-height: 100vh;
 }
 
+/* Background Utama */
 body::before {
     content: "";
-    position: fixed; /* Membuatnya tetap diam */
+    position: fixed;
     top: 0;
-    left: 0;
+    left: 50%; /* Letakkan di tengah */
+    transform: translateX(-50%); /* Geser ke kiri setengah lebar agar presisi di tengah */
     width: 100%;
     height: 100%;
-    z-index: -1; /* Berada di belakang konten */
+    max-width: 450px; /* Lebar maksimal mengikuti layout undangan */
     background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatjawacream3d/bgall.webp") !important;
+    background-attachment: scroll; /* Tetap scroll karena container-nya sudah fixed */
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover; /* Sekarang cover akan bekerja lebih stabil */
+    background-size: cover;
+    z-index: -1;
+}
+
+/* Background luar (warna dasar) untuk area di luar 450px */
+body {
+    background-color: #fdf6e9; /* Warna krem tema Pureday */
 }
 
 /* --- 2. Transparansi Section --- */
