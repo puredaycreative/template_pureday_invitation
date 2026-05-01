@@ -622,11 +622,21 @@
 body {
     margin: 0;
     padding: 0;
+    /* Hapus background dari sini */
+}
+
+body::before {
+    content: "";
+    position: fixed; /* Membuatnya tetap diam */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Berada di belakang konten */
     background-image: url("https://cdn.jsdelivr.net/gh/puredaycreative/file_pureday_invitation@main/adatjawacream3d/bgall.webp") !important;
-    background-attachment: fixed !important; /* WAJIB: agar tetap diam */
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; /* Sekarang cover akan bekerja lebih stabil */
 }
 
 /* --- 2. Transparansi Section --- */
